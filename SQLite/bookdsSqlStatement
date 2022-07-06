@@ -1,0 +1,11 @@
+SELECT b.booksid as Kitap_NO,b.isbn as ISBN,b.booksname as Kitap_Adı,a.personid as Yazar_No, p.firstname as Adı,p.lastname as Soyadı,bt.typename as Kitap_Türü,pub.publishername as Yayın_Evi,b.pressdate as Yayınlama_Tarihi,b.lastupdate as Son_Güncelleme_Tarihi 
+FROM books b, publisher pub,author a,bookstype bt,bookstypebooks btb, booksauthor ba,person p 
+WHERE b.publisherid=pub.publisherid AND 
+b.booksid=ba.booksid AND 
+ba.authorid=a.authorid AND 
+b.booksid=btb.booksid AND 
+btb.bookstypeid = bt.bookstypeid AND 
+a.personid=p.personid
+
+SELECT b.booksid as Kitap_NO,b.isbn as ISBN,b.booksname as Kitap_Adı,a.personid as Yazar_No, p.firstname as Adı,p.lastname as Soyadı,bt.typename as Kitap_Türü,pub.publishername as Yayın_Evi,b.pressdate as Yayınlama_Tarihi,b.lastupdate as Son_Güncelleme_Tarihi 
+FROM books b, publisher pub,author a,bookstype bt,bookstypebooks btb, booksauthor ba,person p 

@@ -1,0 +1,21 @@
+delete from booktype;    
+delete from sqlite_sequence where name='booktype';
+
+INSERT INTO booktype(typename,abbreviation) VALUES('Roman','ro');
+INSERT INTO booktype(typename,abbreviation) VALUES('Öykü','ö');
+INSERT INTO booktype(typename,abbreviation) VALUES('Deneme','den');
+INSERT INTO booktype(typename,abbreviation) VALUES('Masal-Efsane','ma');
+INSERT INTO booktype(typename,abbreviation) VALUES('Gezi Yazısı','ge');
+INSERT INTO booktype(typename,abbreviation) VALUES('Atatürk','ata');
+INSERT INTO booktype(typename,abbreviation) VALUES('Tarih','ta');
+INSERT INTO booktype(typename,abbreviation) VALUES('Biyografi','bi');
+INSERT INTO booktype(typename,abbreviation) VALUES('Sözlük','sö');
+INSERT INTO booktype(typename,abbreviation) VALUES('Ansiklopedi','ans');
+INSERT INTO booktype(typename,abbreviation) VALUES('Eğitim','eğ');
+INSERT INTO booktype(typename,abbreviation) VALUES('Tiyatro','tiy');
+INSERT INTO booktype(typename,abbreviation) VALUES('Felsefe','fe');
+INSERT INTO booktype(typename,abbreviation) VALUES('şiir','şi');
+INSERT INTO booktype(typename,abbreviation) VALUES('araştırma','ar');
+INSERT INTO booktype(typename,abbreviation) VALUES('Bilim','bil');
+INSERT INTO booktype(typename,abbreviation) VALUES('Çocuk Kitapları','ço');
+INSERT INTO booktype(typename,abbreviation) VALUES('Anı','anı');

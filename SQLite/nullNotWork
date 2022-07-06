@@ -1,0 +1,17 @@
+SELECT b.booksid as Kitap_NO,b.isbn as ISBN,b.booksname as Kitap_Adı, 
+group_concat(DISTINCT bt.typename) Kitap_Türü, group_concat(DISTINCT (p.firstname || ' ' || p.lastname)) Kitap_Yazarı,
+pub.publishername as Yayın_Evi,pb.startdate as Veriliş_Tarihi,pb.finishdate as Bitiş_Tarihi,pb.bookspersonid as Ödünç_No, 
+ps.firstname ||' '||ps.lastname as Öğrenci_Adı_Soyadı,s.studentnumber as Öğrenci_No, 
+s.studentclass as Sınıfı, sch.schoolname as Okul_Adı,
+ps.phone as Telefon, ps.address as Adres, pb.bringbackdate as velirliş_tarihi 
+FROM books b 
+LEFT JOIN bookstypebooks btb on  b.booksid = btb.booksid 
+LEFT JOIN bookstype bt on btb.bookstypeid = bt.bookstypeid 
+LEFT JOIN booksauthor ba on b.booksid = ba.booksid 
+LEFT JOIN author a on ba.authorid = a.authorid 
+LEFT JOIN person p on a.personid = p.personid 
+LEFT JOIN personbooks pb on pb.booksid = b.booksid 
+LEFT JOIN person ps on pb.personid = ps.personid 
+LEFT JOIN student s on ps.personid = s.personid 
+LEFT JOIN school sch on s.schoolid = sch.schoolid 
+LEFT JOIN publisher pub on b.publisherid = pub.publisherid WHERE  b.bookborrowed = 1 AND b.isbn='9787750807060'  GROUP BY b.booksid

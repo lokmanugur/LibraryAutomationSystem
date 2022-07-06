@@ -1,0 +1,9 @@
+SELECT b.booksid as Kitap_NO,b.isbn as ISBN,b.booksname as Kitap_Adı, pub.publishername as Yayın_Evi,b.pressdate as Basım_Tarihi,b.lastupdate as Son_Güncelleme_Tarihi, 
+bt.typename Kitap_Türü, p.firstname || ' ' || p.lastname Adı_Soyadı
+FROM books b 
+left join bookstypebooks btb on b.booksid=btb.booksid 
+left join bookstype bt on btb.bookstypeid = bt.bookstypeid
+left join publisher pub on b.publisherid=pub.publisherid 
+left join booksauthor ba on b.booksid=ba.booksid 
+left join author a on ba.authorid=a.authorid 
+left join person p on a.personid=p.personid

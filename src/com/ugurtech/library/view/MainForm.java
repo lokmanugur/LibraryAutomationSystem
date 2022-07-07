@@ -57,8 +57,8 @@ public final class MainForm extends MainFrame{
         takenBooksTableButton = new javax.swing.JButton();
         studentBar = new javax.swing.JToolBar();
         jPanel4 = new javax.swing.JPanel();
-        studentForm = new javax.swing.JButton();
         studentTable = new javax.swing.JButton();
+        studentForm = new javax.swing.JButton();
         schoolBar = new javax.swing.JToolBar();
         jPanel3 = new javax.swing.JPanel();
         schoolForm = new javax.swing.JButton();
@@ -71,8 +71,8 @@ public final class MainForm extends MainFrame{
         personFormButton = new javax.swing.JButton();
         istatisticBar = new javax.swing.JToolBar();
         jPanel6 = new javax.swing.JPanel();
-        istatistic = new javax.swing.JButton();
         topReadingBooks = new javax.swing.JButton();
+        istatistic = new javax.swing.JButton();
         araclarBar = new javax.swing.JToolBar();
         jPanel7 = new javax.swing.JPanel();
         userLabel = new javax.swing.JLabel();
@@ -99,13 +99,16 @@ public final class MainForm extends MainFrame{
         JTabbPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JTabbPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         JTabbPane.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        JTabbPane.setPreferredSize(new java.awt.Dimension(1044, 148));
 
-        bookBar.setFloatable(false);
         bookBar.setRollover(true);
 
         publisherButton.setText("<html><center>Yayın Evi<br>Tablosu<center><html>");
         publisherButton.setFocusable(false);
         publisherButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        publisherButton.setMaximumSize(new java.awt.Dimension(110, 70));
+        publisherButton.setMinimumSize(new java.awt.Dimension(110, 70));
+        publisherButton.setPreferredSize(new java.awt.Dimension(110, 70));
         publisherButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         publisherButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +119,9 @@ public final class MainForm extends MainFrame{
         authorTableButton.setText("<html><center>Yazarlar<br>Tablosu<center><html>");
         authorTableButton.setFocusable(false);
         authorTableButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        authorTableButton.setMaximumSize(new java.awt.Dimension(110, 70));
+        authorTableButton.setMinimumSize(new java.awt.Dimension(110, 70));
+        authorTableButton.setPreferredSize(new java.awt.Dimension(110, 70));
         authorTableButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         authorTableButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +132,9 @@ public final class MainForm extends MainFrame{
         authorButton.setText("<html><center>Yazar Kayıt<br>Formu<center><html>");
         authorButton.setFocusable(false);
         authorButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        authorButton.setMaximumSize(new java.awt.Dimension(110, 70));
+        authorButton.setMinimumSize(new java.awt.Dimension(110, 70));
+        authorButton.setPreferredSize(new java.awt.Dimension(110, 70));
         authorButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         authorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,6 +145,9 @@ public final class MainForm extends MainFrame{
         bookTypeButton.setText("<html><center>Kitap Türü<br>Tablosu<center><html>");
         bookTypeButton.setFocusable(false);
         bookTypeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bookTypeButton.setMaximumSize(new java.awt.Dimension(110, 70));
+        bookTypeButton.setMinimumSize(new java.awt.Dimension(110, 70));
+        bookTypeButton.setPreferredSize(new java.awt.Dimension(110, 70));
         bookTypeButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         bookTypeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +158,9 @@ public final class MainForm extends MainFrame{
         booksTable.setText("<html><center>Kitaplar<br>Tablosu<center><html>");
         booksTable.setFocusable(false);
         booksTable.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        booksTable.setMaximumSize(new java.awt.Dimension(110, 70));
+        booksTable.setMinimumSize(new java.awt.Dimension(110, 70));
+        booksTable.setPreferredSize(new java.awt.Dimension(110, 70));
         booksTable.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         booksTable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +171,9 @@ public final class MainForm extends MainFrame{
         addBooks.setText("<html><center>Kitap Kayıt<br> Formu</center></html>");
         addBooks.setFocusable(false);
         addBooks.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        addBooks.setMaximumSize(new java.awt.Dimension(110, 70));
+        addBooks.setMinimumSize(new java.awt.Dimension(110, 70));
+        addBooks.setPreferredSize(new java.awt.Dimension(110, 70));
         addBooks.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         addBooks.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,6 +184,9 @@ public final class MainForm extends MainFrame{
         takenBooksTableButton.setText("<html><center>Ödünç Kitaplar<br>Tablosu<center><html>");
         takenBooksTableButton.setFocusable(false);
         takenBooksTableButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        takenBooksTableButton.setMaximumSize(new java.awt.Dimension(110, 70));
+        takenBooksTableButton.setMinimumSize(new java.awt.Dimension(110, 70));
+        takenBooksTableButton.setPreferredSize(new java.awt.Dimension(110, 70));
         takenBooksTableButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         takenBooksTableButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,61 +199,66 @@ public final class MainForm extends MainFrame{
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(takenBooksTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(addBooks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(booksTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bookTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(authorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(authorTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(publisherButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(takenBooksTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(addBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(booksTable, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(bookTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(authorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(authorTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(publisherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(268, Short.MAX_VALUE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addBooks, authorButton, authorTableButton, bookTypeButton, booksTable, publisherButton, takenBooksTableButton});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(publisherButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(authorTableButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(authorButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bookTypeButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(booksTable, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(takenBooksTableButton)
-                    .addComponent(addBooks))
-                .addContainerGap())
+            .addComponent(takenBooksTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(addBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(booksTable, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(bookTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(authorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(authorTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(publisherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addBooks, authorButton, authorTableButton, bookTypeButton, booksTable, publisherButton, takenBooksTableButton});
 
         bookBar.add(jPanel1);
 
         JTabbPane.addTab("Kitaplar", new javax.swing.ImageIcon(getClass().getResource("/resources/img/bookshelf64.png")), bookBar); // NOI18N
 
-        studentBar.setFloatable(false);
         studentBar.setRollover(true);
-
-        studentForm.setText("<html><center>Öğrenci Kayıt<br>Formu</center></html>");
-        studentForm.setFocusable(false);
-        studentForm.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        studentForm.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        studentForm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                studentFormActionPerformed(evt);
-            }
-        });
 
         studentTable.setText("<html><center>Öğrenciler<br>Tablosu</center></html>");
         studentTable.setFocusable(false);
         studentTable.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        studentTable.setMaximumSize(new java.awt.Dimension(110, 70));
+        studentTable.setMinimumSize(new java.awt.Dimension(110, 70));
+        studentTable.setPreferredSize(new java.awt.Dimension(110, 70));
         studentTable.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         studentTable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 studentTableActionPerformed(evt);
+            }
+        });
+
+        studentForm.setText("<html><center>Öğrenci Kayıt<br>Formu</center></html>");
+        studentForm.setFocusable(false);
+        studentForm.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        studentForm.setMaximumSize(new java.awt.Dimension(110, 70));
+        studentForm.setMinimumSize(new java.awt.Dimension(110, 70));
+        studentForm.setPreferredSize(new java.awt.Dimension(110, 70));
+        studentForm.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        studentForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentFormActionPerformed(evt);
             }
         });
 
@@ -241,32 +267,36 @@ public final class MainForm extends MainFrame{
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(studentForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(studentTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(studentForm, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(studentTable, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 818, Short.MAX_VALUE))
         );
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {studentForm, studentTable});
+
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(studentTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(studentForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(studentForm, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(studentTable, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {studentForm, studentTable});
 
         studentBar.add(jPanel4);
 
         JTabbPane.addTab("Öğrenciler", new javax.swing.ImageIcon(getClass().getResource("/resources/img/graduated64.png")), studentBar); // NOI18N
 
-        schoolBar.setFloatable(false);
         schoolBar.setRollover(true);
 
         schoolForm.setText("<html><center>Okul Kayıt<br>Formu</center></html>");
-        schoolForm.setFocusable(false);
         schoolForm.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        schoolForm.setMaximumSize(new java.awt.Dimension(110, 70));
+        schoolForm.setMinimumSize(new java.awt.Dimension(110, 70));
+        schoolForm.setPreferredSize(new java.awt.Dimension(110, 70));
         schoolForm.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         schoolForm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,29 +309,26 @@ public final class MainForm extends MainFrame{
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(schoolForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(schoolForm, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 928, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(schoolForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(schoolForm, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         schoolBar.add(jPanel3);
 
         JTabbPane.addTab("Okul", new javax.swing.ImageIcon(getClass().getResource("/resources/img/school64.png")), schoolBar); // NOI18N
 
-        kullaniciBar.setFloatable(false);
         kullaniciBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         userForm.setText("<html><center>Kullanıcı Kayıt<br>Formu</center></html>");
         userForm.setFocusable(false);
-        userForm.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        userForm.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        userForm.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        userForm.setMaximumSize(new java.awt.Dimension(110, 70));
+        userForm.setMinimumSize(new java.awt.Dimension(110, 70));
+        userForm.setPreferredSize(new java.awt.Dimension(110, 70));
         userForm.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         userForm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -312,6 +339,9 @@ public final class MainForm extends MainFrame{
         personTableButton.setText("<html><center>Kişiler<br>Tablosu<center><html>");
         personTableButton.setFocusable(false);
         personTableButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        personTableButton.setMaximumSize(new java.awt.Dimension(110, 70));
+        personTableButton.setMinimumSize(new java.awt.Dimension(110, 70));
+        personTableButton.setPreferredSize(new java.awt.Dimension(110, 70));
         personTableButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         personTableButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -321,8 +351,10 @@ public final class MainForm extends MainFrame{
 
         userDetails.setText("<html><center>Kullanıcı Ayrıntı<br>Bilgileri</center></html>");
         userDetails.setFocusable(false);
-        userDetails.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        userDetails.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        userDetails.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        userDetails.setMaximumSize(new java.awt.Dimension(110, 70));
+        userDetails.setMinimumSize(new java.awt.Dimension(110, 70));
+        userDetails.setPreferredSize(new java.awt.Dimension(110, 70));
         userDetails.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         userDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -332,8 +364,10 @@ public final class MainForm extends MainFrame{
 
         userTable.setText("<html><center>Kullanıcılar<br>Tablosu</center></html>");
         userTable.setFocusable(false);
-        userTable.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        userTable.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        userTable.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        userTable.setMaximumSize(new java.awt.Dimension(110, 70));
+        userTable.setMinimumSize(new java.awt.Dimension(110, 70));
+        userTable.setPreferredSize(new java.awt.Dimension(110, 70));
         userTable.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         userTable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -344,6 +378,9 @@ public final class MainForm extends MainFrame{
         personFormButton.setText("<html><center>Kişi Ekle<br>Formu<center><html>");
         personFormButton.setFocusable(false);
         personFormButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        personFormButton.setMaximumSize(new java.awt.Dimension(110, 70));
+        personFormButton.setMinimumSize(new java.awt.Dimension(110, 70));
+        personFormButton.setPreferredSize(new java.awt.Dimension(110, 70));
         personFormButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         personFormButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,55 +393,54 @@ public final class MainForm extends MainFrame{
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(personFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(personTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(userForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(userTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(userDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(personFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(personTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(userForm, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(userTable, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(userDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(488, Short.MAX_VALUE))
         );
+
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {personFormButton, personTableButton, userDetails, userForm, userTable});
+
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(personFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(userTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(userDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(personTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(userForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(personFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(personTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(userForm, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(userTable, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(userDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {personFormButton, personTableButton, userDetails, userForm, userTable});
 
         kullaniciBar.add(jPanel5);
 
         JTabbPane.addTab("Kullanici", new javax.swing.ImageIcon(getClass().getResource("/resources/img/profile64.png")), kullaniciBar); // NOI18N
 
-        istatisticBar.setFloatable(false);
         istatisticBar.setRollover(true);
 
-        istatistic.setText("<html><center>Türe Göre<br>Kitap Sayısı</center></html>");
-        istatistic.setFocusable(false);
-        istatistic.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        istatistic.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        istatistic.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                istatisticActionPerformed(evt);
-            }
-        });
-
         topReadingBooks.setText("<html><center>En Çok<br>Okunan Kitaplar</center></html>");
-        topReadingBooks.setFocusable(false);
         topReadingBooks.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        topReadingBooks.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        topReadingBooks.setMaximumSize(new java.awt.Dimension(110, 70));
+        topReadingBooks.setMinimumSize(new java.awt.Dimension(110, 70));
         topReadingBooks.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 topReadingBooksActionPerformed(evt);
+            }
+        });
+
+        istatistic.setText("<html><center>Türe Göre<br>Kitap Sayısı</center></html>");
+        istatistic.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        istatistic.setMaximumSize(new java.awt.Dimension(110, 70));
+        istatistic.setMinimumSize(new java.awt.Dimension(110, 70));
+        istatistic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                istatisticActionPerformed(evt);
             }
         });
 
@@ -413,27 +449,30 @@ public final class MainForm extends MainFrame{
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(istatistic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(topReadingBooks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 0, 0)
+                .addComponent(topReadingBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(istatistic, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(818, Short.MAX_VALUE))
         );
+
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {istatistic, topReadingBooks});
+
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(topReadingBooks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(istatistic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(istatistic, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(topReadingBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {istatistic, topReadingBooks});
 
         istatisticBar.add(jPanel6);
 
         JTabbPane.addTab("İstatistik", new javax.swing.ImageIcon(getClass().getResource("/resources/img/statistics64.png")), istatisticBar); // NOI18N
 
-        araclarBar.setFloatable(false);
         araclarBar.setRollover(true);
         JTabbPane.addTab(" Ayarlar ", new javax.swing.ImageIcon(getClass().getResource("/resources/img/settings64.png")), araclarBar); // NOI18N
 
@@ -481,7 +520,7 @@ public final class MainForm extends MainFrame{
         userPanelLayout.setHorizontalGroup(
             userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userPanelLayout.createSequentialGroup()
-                .addComponent(JTabbPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1044, Short.MAX_VALUE)
+                .addComponent(JTabbPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -547,8 +586,8 @@ public final class MainForm extends MainFrame{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(userPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleDescription("");

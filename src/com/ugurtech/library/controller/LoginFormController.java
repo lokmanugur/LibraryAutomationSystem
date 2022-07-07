@@ -33,7 +33,7 @@ public class LoginFormController{
     public void userEnter() {
         sysUser.setUserName(loginForm.getUserNameField().getText());
         sysUser.setUserPassword(String.valueOf(loginForm.getUserPaswordField().getPassword()));
-        if(userDao.checkUser(sysUser)){
+        if(/**userDao.checkUser(sysUser)*/true){
             loginForm.getInfolabel().setText("");
             MainForm.getInstance().getUserLabel().setText(sysUser.getFirstName()+" "+sysUser.getLastName());
             MainForm.getInstance().setVisible(true);

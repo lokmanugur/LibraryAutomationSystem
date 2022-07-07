@@ -45,49 +45,48 @@ public final class MainForm extends MainFrame{
 
         desktopPane = new javax.swing.JDesktopPane();
         userPanel = new javax.swing.JPanel();
-        JTabbPane = new javax.swing.JTabbedPane();
+        tabbPane = new javax.swing.JTabbedPane();
         bookBar = new javax.swing.JToolBar();
-        jPanel1 = new javax.swing.JPanel();
+        bookPanel = new javax.swing.JPanel();
         publisherButton = new javax.swing.JButton();
         authorTableButton = new javax.swing.JButton();
         authorButton = new javax.swing.JButton();
         bookTypeButton = new javax.swing.JButton();
-        booksTable = new javax.swing.JButton();
-        addBooks = new javax.swing.JButton();
+        bookTable = new javax.swing.JButton();
+        addBook = new javax.swing.JButton();
         takenBooksTableButton = new javax.swing.JButton();
         studentBar = new javax.swing.JToolBar();
-        jPanel4 = new javax.swing.JPanel();
+        studentPanel = new javax.swing.JPanel();
         studentTable = new javax.swing.JButton();
         studentForm = new javax.swing.JButton();
         schoolBar = new javax.swing.JToolBar();
-        jPanel3 = new javax.swing.JPanel();
+        schoolPanel = new javax.swing.JPanel();
         schoolForm = new javax.swing.JButton();
-        kullaniciBar = new javax.swing.JToolBar();
-        jPanel5 = new javax.swing.JPanel();
+        userBar = new javax.swing.JToolBar();
+        userPanel2 = new javax.swing.JPanel();
         userForm = new javax.swing.JButton();
         personTableButton = new javax.swing.JButton();
         userDetails = new javax.swing.JButton();
         userTable = new javax.swing.JButton();
         personFormButton = new javax.swing.JButton();
-        istatisticBar = new javax.swing.JToolBar();
-        jPanel6 = new javax.swing.JPanel();
-        topReadingBooks = new javax.swing.JButton();
-        istatistic = new javax.swing.JButton();
-        araclarBar = new javax.swing.JToolBar();
-        jPanel7 = new javax.swing.JPanel();
+        statisticsBar = new javax.swing.JToolBar();
+        statisticsPanel = new javax.swing.JPanel();
+        topReadBooks = new javax.swing.JButton();
+        topReadStudents = new javax.swing.JButton();
+        settingsBar = new javax.swing.JToolBar();
+        currentUserPanel = new javax.swing.JPanel();
         userLabel = new javax.swing.JLabel();
         dateLabel = new javax.swing.JLabel();
         timeLabel = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        topMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         closeOperation = new javax.swing.JMenuItem();
-        editMenu = new javax.swing.JMenu();
-        guiProperties = new javax.swing.JMenuItem();
         settingsMenu = new javax.swing.JMenu();
-        databaseProperties = new javax.swing.JMenuItem();
+        databaseMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Ugur Software and Hardware Technologies");
+        setTitle(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("mainform.topmenubar.label")
+        );
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -96,14 +95,14 @@ public final class MainForm extends MainFrame{
 
         userPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        JTabbPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        JTabbPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        JTabbPane.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        JTabbPane.setPreferredSize(new java.awt.Dimension(1044, 148));
+        tabbPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tabbPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tabbPane.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        tabbPane.setPreferredSize(new java.awt.Dimension(1044, 148));
 
         bookBar.setRollover(true);
 
-        publisherButton.setText("<html><center>Yayın Evi<br>Tablosu<center><html>");
+        publisherButton.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.publisherbutton"));
         publisherButton.setFocusable(false);
         publisherButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         publisherButton.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -116,7 +115,8 @@ public final class MainForm extends MainFrame{
             }
         });
 
-        authorTableButton.setText("<html><center>Yazarlar<br>Tablosu<center><html>");
+        authorTableButton.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.authortablebutton")
+        );
         authorTableButton.setFocusable(false);
         authorTableButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         authorTableButton.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -129,7 +129,8 @@ public final class MainForm extends MainFrame{
             }
         });
 
-        authorButton.setText("<html><center>Yazar Kayıt<br>Formu<center><html>");
+        authorButton.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.authorbutton")
+        );
         authorButton.setFocusable(false);
         authorButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         authorButton.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -142,7 +143,8 @@ public final class MainForm extends MainFrame{
             }
         });
 
-        bookTypeButton.setText("<html><center>Kitap Türü<br>Tablosu<center><html>");
+        bookTypeButton.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.booktypebutton")
+        );
         bookTypeButton.setFocusable(false);
         bookTypeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         bookTypeButton.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -155,33 +157,36 @@ public final class MainForm extends MainFrame{
             }
         });
 
-        booksTable.setText("<html><center>Kitaplar<br>Tablosu<center><html>");
-        booksTable.setFocusable(false);
-        booksTable.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        booksTable.setMaximumSize(new java.awt.Dimension(110, 70));
-        booksTable.setMinimumSize(new java.awt.Dimension(110, 70));
-        booksTable.setPreferredSize(new java.awt.Dimension(110, 70));
-        booksTable.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        booksTable.addActionListener(new java.awt.event.ActionListener() {
+        bookTable.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.booktable")
+        );
+        bookTable.setFocusable(false);
+        bookTable.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bookTable.setMaximumSize(new java.awt.Dimension(110, 70));
+        bookTable.setMinimumSize(new java.awt.Dimension(110, 70));
+        bookTable.setPreferredSize(new java.awt.Dimension(110, 70));
+        bookTable.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bookTable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                booksTableActionPerformed(evt);
+                bookTableActionPerformed(evt);
             }
         });
 
-        addBooks.setText("<html><center>Kitap Kayıt<br> Formu</center></html>");
-        addBooks.setFocusable(false);
-        addBooks.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        addBooks.setMaximumSize(new java.awt.Dimension(110, 70));
-        addBooks.setMinimumSize(new java.awt.Dimension(110, 70));
-        addBooks.setPreferredSize(new java.awt.Dimension(110, 70));
-        addBooks.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        addBooks.addActionListener(new java.awt.event.ActionListener() {
+        addBook.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.addbook")
+        );
+        addBook.setFocusable(false);
+        addBook.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        addBook.setMaximumSize(new java.awt.Dimension(110, 70));
+        addBook.setMinimumSize(new java.awt.Dimension(110, 70));
+        addBook.setPreferredSize(new java.awt.Dimension(110, 70));
+        addBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        addBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addBooksActionPerformed(evt);
+                addBookActionPerformed(evt);
             }
         });
 
-        takenBooksTableButton.setText("<html><center>Ödünç Kitaplar<br>Tablosu<center><html>");
+        takenBooksTableButton.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.takenbooktablebutton")
+        );
         takenBooksTableButton.setFocusable(false);
         takenBooksTableButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         takenBooksTableButton.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -194,16 +199,16 @@ public final class MainForm extends MainFrame{
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout bookPanelLayout = new javax.swing.GroupLayout(bookPanel);
+        bookPanel.setLayout(bookPanelLayout);
+        bookPanelLayout.setHorizontalGroup(
+            bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bookPanelLayout.createSequentialGroup()
                 .addComponent(takenBooksTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(addBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addBook, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(booksTable, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bookTable, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(bookTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -215,28 +220,28 @@ public final class MainForm extends MainFrame{
                 .addContainerGap(268, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addBooks, authorButton, authorTableButton, bookTypeButton, booksTable, publisherButton, takenBooksTableButton});
+        bookPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addBook, authorButton, authorTableButton, bookTable, bookTypeButton, publisherButton, takenBooksTableButton});
 
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        bookPanelLayout.setVerticalGroup(
+            bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(takenBooksTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(addBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(booksTable, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(addBook, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(bookTable, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(bookTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(authorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(authorTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(publisherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addBooks, authorButton, authorTableButton, bookTypeButton, booksTable, publisherButton, takenBooksTableButton});
+        bookPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addBook, authorButton, authorTableButton, bookTable, bookTypeButton, publisherButton, takenBooksTableButton});
 
-        bookBar.add(jPanel1);
+        bookBar.add(bookPanel);
 
-        JTabbPane.addTab("Kitaplar", new javax.swing.ImageIcon(getClass().getResource("/resources/img/bookshelf64.png")), bookBar); // NOI18N
+        tabbPane.addTab(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar"), new javax.swing.ImageIcon(getClass().getResource("/resources/img/bookshelf64.png")), bookBar); // NOI18N
 
         studentBar.setRollover(true);
 
-        studentTable.setText("<html><center>Öğrenciler<br>Tablosu</center></html>");
+        studentTable.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.studentbar.studentpanel.studenttable"));
         studentTable.setFocusable(false);
         studentTable.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         studentTable.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -249,7 +254,8 @@ public final class MainForm extends MainFrame{
             }
         });
 
-        studentForm.setText("<html><center>Öğrenci Kayıt<br>Formu</center></html>");
+        studentForm.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.studentbar.studentpanel.studentform")
+        );
         studentForm.setFocusable(false);
         studentForm.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         studentForm.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -262,37 +268,37 @@ public final class MainForm extends MainFrame{
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout studentPanelLayout = new javax.swing.GroupLayout(studentPanel);
+        studentPanel.setLayout(studentPanelLayout);
+        studentPanelLayout.setHorizontalGroup(
+            studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentPanelLayout.createSequentialGroup()
                 .addComponent(studentForm, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(studentTable, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 818, Short.MAX_VALUE))
         );
 
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {studentForm, studentTable});
+        studentPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {studentForm, studentTable});
 
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        studentPanelLayout.setVerticalGroup(
+            studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentPanelLayout.createSequentialGroup()
+                .addGroup(studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(studentForm, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(studentTable, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {studentForm, studentTable});
+        studentPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {studentForm, studentTable});
 
-        studentBar.add(jPanel4);
+        studentBar.add(studentPanel);
 
-        JTabbPane.addTab("Öğrenciler", new javax.swing.ImageIcon(getClass().getResource("/resources/img/graduated64.png")), studentBar); // NOI18N
+        tabbPane.addTab(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.studentbar"), new javax.swing.ImageIcon(getClass().getResource("/resources/img/graduated64.png")), studentBar); // NOI18N
 
         schoolBar.setRollover(true);
 
-        schoolForm.setText("<html><center>Okul Kayıt<br>Formu</center></html>");
+        schoolForm.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.schoolbar.schoolpanel.schoolform"));
         schoolForm.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         schoolForm.setMaximumSize(new java.awt.Dimension(110, 70));
         schoolForm.setMinimumSize(new java.awt.Dimension(110, 70));
@@ -304,26 +310,28 @@ public final class MainForm extends MainFrame{
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout schoolPanelLayout = new javax.swing.GroupLayout(schoolPanel);
+        schoolPanel.setLayout(schoolPanelLayout);
+        schoolPanelLayout.setHorizontalGroup(
+            schoolPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(schoolPanelLayout.createSequentialGroup()
                 .addComponent(schoolForm, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 928, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        schoolPanelLayout.setVerticalGroup(
+            schoolPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(schoolForm, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        schoolBar.add(jPanel3);
+        schoolBar.add(schoolPanel);
 
-        JTabbPane.addTab("Okul", new javax.swing.ImageIcon(getClass().getResource("/resources/img/school64.png")), schoolBar); // NOI18N
+        tabbPane.addTab(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.schoolbar")
+            , new javax.swing.ImageIcon(getClass().getResource("/resources/img/school64.png")), schoolBar); // NOI18N
 
-        kullaniciBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        userBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        userForm.setText("<html><center>Kullanıcı Kayıt<br>Formu</center></html>");
+        userForm.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.userform")
+        );
         userForm.setFocusable(false);
         userForm.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         userForm.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -336,7 +344,7 @@ public final class MainForm extends MainFrame{
             }
         });
 
-        personTableButton.setText("<html><center>Kişiler<br>Tablosu<center><html>");
+        personTableButton.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.persontablebutton"));
         personTableButton.setFocusable(false);
         personTableButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         personTableButton.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -349,7 +357,7 @@ public final class MainForm extends MainFrame{
             }
         });
 
-        userDetails.setText("<html><center>Kullanıcı Ayrıntı<br>Bilgileri</center></html>");
+        userDetails.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.userdetail"));
         userDetails.setFocusable(false);
         userDetails.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         userDetails.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -362,7 +370,7 @@ public final class MainForm extends MainFrame{
             }
         });
 
-        userTable.setText("<html><center>Kullanıcılar<br>Tablosu</center></html>");
+        userTable.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.usertable"));
         userTable.setFocusable(false);
         userTable.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         userTable.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -375,7 +383,7 @@ public final class MainForm extends MainFrame{
             }
         });
 
-        personFormButton.setText("<html><center>Kişi Ekle<br>Formu<center><html>");
+        personFormButton.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.personformbutton"));
         personFormButton.setFocusable(false);
         personFormButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         personFormButton.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -388,11 +396,11 @@ public final class MainForm extends MainFrame{
             }
         });
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout userPanel2Layout = new javax.swing.GroupLayout(userPanel2);
+        userPanel2.setLayout(userPanel2Layout);
+        userPanel2Layout.setHorizontalGroup(
+            userPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userPanel2Layout.createSequentialGroup()
                 .addComponent(personFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(personTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -405,10 +413,10 @@ public final class MainForm extends MainFrame{
                 .addContainerGap(488, Short.MAX_VALUE))
         );
 
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {personFormButton, personTableButton, userDetails, userForm, userTable});
+        userPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {personFormButton, personTableButton, userDetails, userForm, userTable});
 
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        userPanel2Layout.setVerticalGroup(
+            userPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(personFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(personTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(userForm, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -416,67 +424,67 @@ public final class MainForm extends MainFrame{
             .addComponent(userDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {personFormButton, personTableButton, userDetails, userForm, userTable});
+        userPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {personFormButton, personTableButton, userDetails, userForm, userTable});
 
-        kullaniciBar.add(jPanel5);
+        userBar.add(userPanel2);
 
-        JTabbPane.addTab("Kullanici", new javax.swing.ImageIcon(getClass().getResource("/resources/img/profile64.png")), kullaniciBar); // NOI18N
+        tabbPane.addTab(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.userbar"), new javax.swing.ImageIcon(getClass().getResource("/resources/img/profile64.png")), userBar); // NOI18N
 
-        istatisticBar.setRollover(true);
+        statisticsBar.setRollover(true);
 
-        topReadingBooks.setText("<html><center>En Çok<br>Okunan Kitaplar</center></html>");
-        topReadingBooks.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        topReadingBooks.setMaximumSize(new java.awt.Dimension(110, 70));
-        topReadingBooks.setMinimumSize(new java.awt.Dimension(110, 70));
-        topReadingBooks.addActionListener(new java.awt.event.ActionListener() {
+        topReadBooks.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.statisticsbar.statisticspanel.topreadbooks"));
+        topReadBooks.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        topReadBooks.setMaximumSize(new java.awt.Dimension(110, 70));
+        topReadBooks.setMinimumSize(new java.awt.Dimension(110, 70));
+        topReadBooks.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                topReadingBooksActionPerformed(evt);
+                topReadBooksActionPerformed(evt);
             }
         });
 
-        istatistic.setText("<html><center>Türe Göre<br>Kitap Sayısı</center></html>");
-        istatistic.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        istatistic.setMaximumSize(new java.awt.Dimension(110, 70));
-        istatistic.setMinimumSize(new java.awt.Dimension(110, 70));
-        istatistic.addActionListener(new java.awt.event.ActionListener() {
+        topReadStudents.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.statisticsbar.statisticspanel.topreadstudents"));
+        topReadStudents.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        topReadStudents.setMaximumSize(new java.awt.Dimension(110, 70));
+        topReadStudents.setMinimumSize(new java.awt.Dimension(110, 70));
+        topReadStudents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                istatisticActionPerformed(evt);
+                topReadStudentsActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout statisticsPanelLayout = new javax.swing.GroupLayout(statisticsPanel);
+        statisticsPanel.setLayout(statisticsPanelLayout);
+        statisticsPanelLayout.setHorizontalGroup(
+            statisticsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(statisticsPanelLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(topReadingBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(topReadBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(istatistic, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(topReadStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(818, Short.MAX_VALUE))
         );
 
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {istatistic, topReadingBooks});
+        statisticsPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {topReadBooks, topReadStudents});
 
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(istatistic, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(topReadingBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+        statisticsPanelLayout.setVerticalGroup(
+            statisticsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(statisticsPanelLayout.createSequentialGroup()
+                .addGroup(statisticsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(topReadStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(topReadBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {istatistic, topReadingBooks});
+        statisticsPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {topReadBooks, topReadStudents});
 
-        istatisticBar.add(jPanel6);
+        statisticsBar.add(statisticsPanel);
 
-        JTabbPane.addTab("İstatistik", new javax.swing.ImageIcon(getClass().getResource("/resources/img/statistics64.png")), istatisticBar); // NOI18N
+        tabbPane.addTab(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.statisticsbar"), new javax.swing.ImageIcon(getClass().getResource("/resources/img/statistics64.png")), statisticsBar); // NOI18N
 
-        araclarBar.setRollover(true);
-        JTabbPane.addTab(" Ayarlar ", new javax.swing.ImageIcon(getClass().getResource("/resources/img/settings64.png")), araclarBar); // NOI18N
+        settingsBar.setRollover(true);
+        tabbPane.addTab(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.settingsbar"), new javax.swing.ImageIcon(getClass().getResource("/resources/img/settings64.png")), settingsBar); // NOI18N
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        currentUserPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         userLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/enter.png"))); // NOI18N
         userLabel.setToolTipText("Sistemde Aktif Olan Kullnici");
@@ -495,17 +503,17 @@ public final class MainForm extends MainFrame{
         timeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         timeLabel.setText("Time");
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout currentUserPanelLayout = new javax.swing.GroupLayout(currentUserPanel);
+        currentUserPanel.setLayout(currentUserPanelLayout);
+        currentUserPanelLayout.setHorizontalGroup(
+            currentUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(userLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(timeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
             .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        currentUserPanelLayout.setVerticalGroup(
+            currentUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(currentUserPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(userLabel)
                 .addGap(18, 18, 18)
@@ -520,23 +528,25 @@ public final class MainForm extends MainFrame{
         userPanelLayout.setHorizontalGroup(
             userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userPanelLayout.createSequentialGroup()
-                .addComponent(JTabbPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabbPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(currentUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         userPanelLayout.setVerticalGroup(
             userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userPanelLayout.createSequentialGroup()
-                .addComponent(JTabbPane, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabbPane, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(currentUserPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        JTabbPane.getAccessibleContext().setAccessibleName("Kitaplar");
+        tabbPane.getAccessibleContext().setAccessibleName("tabbpane");
 
-        fileMenu.setText("Dosya");
+        fileMenu.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("mainform.topmenubar.filemenu")
+        );
 
-        closeOperation.setText("Kapat");
+        closeOperation.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("mainform.topmenubar.filemenu.closeoperation")
+        );
         closeOperation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeOperationActionPerformed(evt);
@@ -544,35 +554,24 @@ public final class MainForm extends MainFrame{
         });
         fileMenu.add(closeOperation);
 
-        jMenuBar1.add(fileMenu);
+        topMenuBar.add(fileMenu);
 
-        editMenu.setText("Edit");
-
-        guiProperties.setText("Database");
-        guiProperties.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guiPropertiesActionPerformed(evt);
-            }
-        });
-        editMenu.add(guiProperties);
-
-        jMenuBar1.add(editMenu);
-
-        settingsMenu.setText("Araçlar");
+        settingsMenu.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("mainform.topmenubar.settingsmenu")
+        );
         settingsMenu.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        databaseProperties.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        databaseProperties.setText("Database");
-        databaseProperties.addActionListener(new java.awt.event.ActionListener() {
+        databaseMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        databaseMenuItem.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("mainform.topmenubar.settingsmenu.databasemenuitem"));
+        databaseMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                databasePropertiesActionPerformed(evt);
+                databaseMenuItemActionPerformed(evt);
             }
         });
-        settingsMenu.add(databaseProperties);
+        settingsMenu.add(databaseMenuItem);
 
-        jMenuBar1.add(settingsMenu);
+        topMenuBar.add(settingsMenu);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(topMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -595,12 +594,12 @@ public final class MainForm extends MainFrame{
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    private void booksTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_booksTableActionPerformed
+    private void bookTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookTableActionPerformed
         addDesktopPane(BookSearch.getInstance());
-    }//GEN-LAST:event_booksTableActionPerformed
-    private void addBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBooksActionPerformed
+    }//GEN-LAST:event_bookTableActionPerformed
+    private void addBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookActionPerformed
         addDesktopPane(BookForm.getInstance());
-    }//GEN-LAST:event_addBooksActionPerformed
+    }//GEN-LAST:event_addBookActionPerformed
     private void studentFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentFormActionPerformed
         addDesktopPane(StudentForm.getInstance());
     }//GEN-LAST:event_studentFormActionPerformed
@@ -616,17 +615,17 @@ public final class MainForm extends MainFrame{
     private void userTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTableActionPerformed
         addDesktopPane(UserTableForm.getInstance());
     }//GEN-LAST:event_userTableActionPerformed
-    private void databasePropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_databasePropertiesActionPerformed
+    private void databaseMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_databaseMenuItemActionPerformed
         addDesktopPane(DatabaseUI.getInstance());
-    }//GEN-LAST:event_databasePropertiesActionPerformed
+    }//GEN-LAST:event_databaseMenuItemActionPerformed
 
-    private void topReadingBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topReadingBooksActionPerformed
+    private void topReadBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topReadBooksActionPerformed
         //addDesktopPane(UserForm.getInstance());
-    }//GEN-LAST:event_topReadingBooksActionPerformed
+    }//GEN-LAST:event_topReadBooksActionPerformed
 
-    private void istatisticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_istatisticActionPerformed
+    private void topReadStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topReadStudentsActionPerformed
         //addDesktopPane(UserTableForm.getInstance());
-    }//GEN-LAST:event_istatisticActionPerformed
+    }//GEN-LAST:event_topReadStudentsActionPerformed
 
     private void closeOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeOperationActionPerformed
         if(!userDao.isClosed()){
@@ -636,10 +635,6 @@ public final class MainForm extends MainFrame{
         LoginForm.getInstance().dispose();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     }//GEN-LAST:event_closeOperationActionPerformed
-
-    private void guiPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiPropertiesActionPerformed
-        
-    }//GEN-LAST:event_guiPropertiesActionPerformed
 
     private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
         if (evt.getClickCount() == 2 && !evt.isConsumed()){
@@ -686,47 +681,45 @@ public final class MainForm extends MainFrame{
     }//GEN-LAST:event_bookTypeButtonActionPerformed
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane JTabbPane;
-    private javax.swing.JButton addBooks;
-    private javax.swing.JToolBar araclarBar;
+    private javax.swing.JButton addBook;
     private javax.swing.JButton authorButton;
     private javax.swing.JButton authorTableButton;
     private javax.swing.JToolBar bookBar;
+    private javax.swing.JPanel bookPanel;
+    private javax.swing.JButton bookTable;
     private javax.swing.JButton bookTypeButton;
-    private javax.swing.JButton booksTable;
     private javax.swing.JMenuItem closeOperation;
-    private javax.swing.JMenuItem databaseProperties;
+    private javax.swing.JPanel currentUserPanel;
+    private javax.swing.JMenuItem databaseMenuItem;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenuItem guiProperties;
-    private javax.swing.JButton istatistic;
-    private javax.swing.JToolBar istatisticBar;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JToolBar kullaniciBar;
     private javax.swing.JButton personFormButton;
     private javax.swing.JButton personTableButton;
     private javax.swing.JButton publisherButton;
     private javax.swing.JToolBar schoolBar;
     private javax.swing.JButton schoolForm;
+    private javax.swing.JPanel schoolPanel;
+    private javax.swing.JToolBar settingsBar;
     private javax.swing.JMenu settingsMenu;
+    private javax.swing.JToolBar statisticsBar;
+    private javax.swing.JPanel statisticsPanel;
     private javax.swing.JToolBar studentBar;
     private javax.swing.JButton studentForm;
+    private javax.swing.JPanel studentPanel;
     private javax.swing.JButton studentTable;
+    private javax.swing.JTabbedPane tabbPane;
     private javax.swing.JButton takenBooksTableButton;
     private javax.swing.JLabel timeLabel;
-    private javax.swing.JButton topReadingBooks;
+    private javax.swing.JMenuBar topMenuBar;
+    private javax.swing.JButton topReadBooks;
+    private javax.swing.JButton topReadStudents;
+    private javax.swing.JToolBar userBar;
     private javax.swing.JButton userDetails;
     private javax.swing.JButton userForm;
     private javax.swing.JLabel userLabel;
     private javax.swing.JPanel userPanel;
+    private javax.swing.JPanel userPanel2;
     private javax.swing.JButton userTable;
     // End of variables declaration//GEN-END:variables
 

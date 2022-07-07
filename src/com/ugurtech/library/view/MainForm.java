@@ -645,7 +645,7 @@ public final class MainForm extends MainFrame{
     }//GEN-LAST:event_userLabelMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        System.out.println("sdfasdf");
+        System.out.println("window closing method work at MainForm");
     }//GEN-LAST:event_formWindowClosing
 
     private void authorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorButtonActionPerformed

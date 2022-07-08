@@ -713,18 +713,15 @@ public final class MainForm extends MainFrame {
     }//GEN-LAST:event_bookTypeButtonActionPerformed
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
-        System.out.println("mous entered");
         SimpleDate.getInstance().setTimeStart();
     }//GEN-LAST:event_formMouseEntered
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         SimpleDate.getInstance().setTimeStart();
-        System.out.println("mous entered");
     }//GEN-LAST:event_formKeyPressed
 
     private void desktopPaneMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desktopPaneMouseEntered
         SimpleDate.getInstance().setTimeStart();
-        System.out.println("mous entered");
     }//GEN-LAST:event_desktopPaneMouseEntered
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

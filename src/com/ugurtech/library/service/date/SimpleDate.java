@@ -20,13 +20,13 @@ public class SimpleDate extends Thread {
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(localDateFormat);
     private final SimpleDateFormat simpleTimeFormat = new SimpleDateFormat(localTimeFormat);
     private long startTime;
-    private final long endTime=5000;
+    private long endTime = 60000;
     private long currentTime;
     private long today;
-    private boolean flag = true;
 
     private SimpleDate() {
         this.startTime = System.currentTimeMillis();
+        this.currentTime = System.currentTimeMillis();
     }
     
       public static SimpleDate getInstance(){
@@ -35,13 +35,14 @@ public class SimpleDate extends Thread {
             simpleDate.start();
             return simpleDate;
         }
-        else
-        {return simpleDate;}
+        else{
+            return simpleDate;
+            }
     }
     
     @Override
     public void run() {
-         do {
+         while (!Thread.currentThread().isInterrupted()) {
             try {
                currentTime = System.currentTimeMillis();
                today = System.currentTimeMillis();
@@ -54,13 +55,15 @@ public class SimpleDate extends Thread {
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
-        }while (!Thread.currentThread().isInterrupted()&&flag);
+        }
     }
     
     public void setTimeStart(){
         startTime = System.currentTimeMillis();
     }
-    public void setFlag(boolean flag){
-        this.flag = flag;
+
+    public void setEndTime(long endTime) {
+        this.endTime = endTime;
     }
+    
 }

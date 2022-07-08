@@ -1,6 +1,7 @@
 package com.ugurtech.library.view;
 
 import com.ugurtech.library.persistance.user.UserDaoImpl;
+import com.ugurtech.library.service.date.SimpleDate;
 import com.ugurtech.library.view.book.AuthorForm;
 import com.ugurtech.library.view.book.AuthorSearchForm;
 import com.ugurtech.library.view.database.DatabaseUI;
@@ -100,6 +101,17 @@ public final class MainForm extends MainFrame {
                 formWindowClosing(evt);
             }
         });
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
+
+        desktopPane.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                desktopPaneMouseEntered(evt);
+            }
+        });
 
         userPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -108,6 +120,7 @@ public final class MainForm extends MainFrame {
         tabbPane.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         tabbPane.setPreferredSize(new java.awt.Dimension(1044, 148));
 
+        bookBar.setFloatable(false);
         bookBar.setRollover(true);
 
         publisherButton.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.publisherbutton"));
@@ -232,13 +245,13 @@ public final class MainForm extends MainFrame {
 
         bookPanelLayout.setVerticalGroup(
             bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(takenBooksTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(addBook, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(bookTable, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(bookTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(authorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(authorTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(publisherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(takenBooksTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(addBook, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(bookTable, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(bookTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(authorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(authorTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(publisherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         bookPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addBook, authorButton, authorTableButton, bookTable, bookTypeButton, publisherButton, takenBooksTableButton});
@@ -247,6 +260,7 @@ public final class MainForm extends MainFrame {
 
         tabbPane.addTab(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar"), new javax.swing.ImageIcon(getClass().getResource("/resources/img/bookshelf64.png")), bookBar); // NOI18N
 
+        studentBar.setFloatable(false);
         studentBar.setRollover(true);
 
         studentTable.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.studentbar.studentpanel.studenttable"));
@@ -293,8 +307,8 @@ public final class MainForm extends MainFrame {
             studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(studentPanelLayout.createSequentialGroup()
                 .addGroup(studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(studentForm, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(studentTable, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(studentForm, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(studentTable, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -304,6 +318,7 @@ public final class MainForm extends MainFrame {
 
         tabbPane.addTab(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.studentbar"), new javax.swing.ImageIcon(getClass().getResource("/resources/img/graduated64.png")), studentBar); // NOI18N
 
+        schoolBar.setFloatable(false);
         schoolBar.setRollover(true);
 
         schoolForm.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.schoolbar.schoolpanel.schoolform"));
@@ -328,7 +343,7 @@ public final class MainForm extends MainFrame {
         );
         schoolPanelLayout.setVerticalGroup(
             schoolPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(schoolForm, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(schoolForm, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         schoolBar.add(schoolPanel);
@@ -336,6 +351,7 @@ public final class MainForm extends MainFrame {
         tabbPane.addTab(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.schoolbar")
             , new javax.swing.ImageIcon(getClass().getResource("/resources/img/school64.png")), schoolBar); // NOI18N
 
+        userBar.setFloatable(false);
         userBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         userForm.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.userform")
@@ -425,11 +441,11 @@ public final class MainForm extends MainFrame {
 
         userPanel2Layout.setVerticalGroup(
             userPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(personFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(personTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(userForm, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(userTable, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(userDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(personFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(personTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(userForm, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(userTable, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(userDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         userPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {personFormButton, personTableButton, userDetails, userForm, userTable});
@@ -438,6 +454,7 @@ public final class MainForm extends MainFrame {
 
         tabbPane.addTab(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.userbar"), new javax.swing.ImageIcon(getClass().getResource("/resources/img/profile64.png")), userBar); // NOI18N
 
+        statisticsBar.setFloatable(false);
         statisticsBar.setRollover(true);
 
         topReadBooks.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.statisticsbar.statisticspanel.topreadbooks"));
@@ -478,8 +495,8 @@ public final class MainForm extends MainFrame {
             statisticsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(statisticsPanelLayout.createSequentialGroup()
                 .addGroup(statisticsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(topReadStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(topReadBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(topReadStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(topReadBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -489,6 +506,7 @@ public final class MainForm extends MainFrame {
 
         tabbPane.addTab(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.statisticsbar"), new javax.swing.ImageIcon(getClass().getResource("/resources/img/statistics64.png")), statisticsBar); // NOI18N
 
+        settingsBar.setFloatable(false);
         settingsBar.setRollover(true);
         tabbPane.addTab(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.settingsbar"), new javax.swing.ImageIcon(getClass().getResource("/resources/img/settings64.png")), settingsBar); // NOI18N
 
@@ -527,9 +545,9 @@ public final class MainForm extends MainFrame {
             .addGroup(currentUserPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(userLabel)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(timeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -601,7 +619,7 @@ public final class MainForm extends MainFrame {
                 .addGap(0, 0, 0)
                 .addComponent(userPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE))
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleDescription("");
@@ -696,7 +714,18 @@ public final class MainForm extends MainFrame {
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
         System.out.println("mous entered");
+        SimpleDate.getInstance().setTimeStart();
     }//GEN-LAST:event_formMouseEntered
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        SimpleDate.getInstance().setTimeStart();
+        System.out.println("mous entered");
+    }//GEN-LAST:event_formKeyPressed
+
+    private void desktopPaneMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desktopPaneMouseEntered
+        SimpleDate.getInstance().setTimeStart();
+        System.out.println("mous entered");
+    }//GEN-LAST:event_desktopPaneMouseEntered
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBook;

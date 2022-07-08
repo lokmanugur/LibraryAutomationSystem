@@ -48,7 +48,7 @@ public class LoginFormController{
     }
     
     public void loginExit(){
-        SimpleDate.getInstance().setFlag(false);
+        SimpleDate.getInstance().interrupt();
         if(!userDao.isClosed()){
         } else {
             userDao.closeConnection();

@@ -69,6 +69,7 @@
   <Events>
     <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="formMouseEntered"/>
     <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosing"/>
+    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formKeyPressed"/>
   </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -100,13 +101,16 @@
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="userPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="desktopPane" pref="631" max="32767" attributes="0"/>
+              <Component id="desktopPane" pref="637" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JDesktopPane" name="desktopPane">
+      <Events>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="desktopPaneMouseEntered"/>
+      </Events>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
         <Property name="useNullLayout" type="boolean" value="true"/>
@@ -166,6 +170,7 @@
           <SubComponents>
             <Container class="javax.swing.JToolBar" name="bookBar">
               <Properties>
+                <Property name="floatable" type="boolean" value="false"/>
                 <Property name="rollover" type="boolean" value="true"/>
               </Properties>
               <Constraints>
@@ -208,13 +213,13 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="takenBooksTableButton" linkSize="10" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                          <Component id="addBook" linkSize="10" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                          <Component id="bookTable" linkSize="10" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                          <Component id="bookTypeButton" linkSize="10" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                          <Component id="authorButton" linkSize="10" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                          <Component id="authorTableButton" linkSize="10" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                          <Component id="publisherButton" linkSize="10" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
+                          <Component id="takenBooksTableButton" linkSize="10" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="addBook" linkSize="10" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="bookTable" linkSize="10" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="bookTypeButton" linkSize="10" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="authorButton" linkSize="10" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="authorTableButton" linkSize="10" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="publisherButton" linkSize="10" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -379,6 +384,7 @@
             </Container>
             <Container class="javax.swing.JToolBar" name="studentBar">
               <Properties>
+                <Property name="floatable" type="boolean" value="false"/>
                 <Property name="rollover" type="boolean" value="true"/>
               </Properties>
               <Constraints>
@@ -413,8 +419,8 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="studentForm" linkSize="4" min="-2" pref="69" max="-2" attributes="0"/>
-                                  <Component id="studentTable" linkSize="4" min="-2" pref="69" max="-2" attributes="0"/>
+                                  <Component id="studentForm" linkSize="4" min="-2" pref="65" max="-2" attributes="0"/>
+                                  <Component id="studentTable" linkSize="4" min="-2" pref="65" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -472,6 +478,7 @@
             </Container>
             <Container class="javax.swing.JToolBar" name="schoolBar">
               <Properties>
+                <Property name="floatable" type="boolean" value="false"/>
                 <Property name="rollover" type="boolean" value="true"/>
               </Properties>
               <Constraints>
@@ -502,7 +509,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="schoolForm" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
+                          <Component id="schoolForm" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -534,6 +541,7 @@
             </Container>
             <Container class="javax.swing.JToolBar" name="userBar">
               <Properties>
+                <Property name="floatable" type="boolean" value="false"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Default Cursor"/>
                 </Property>
@@ -574,11 +582,11 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="personFormButton" linkSize="8" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                          <Component id="personTableButton" linkSize="8" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                          <Component id="userForm" linkSize="8" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                          <Component id="userTable" linkSize="8" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                          <Component id="userDetails" linkSize="8" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
+                          <Component id="personFormButton" linkSize="8" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="personTableButton" linkSize="8" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="userForm" linkSize="8" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="userTable" linkSize="8" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="userDetails" linkSize="8" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -699,6 +707,7 @@
             </Container>
             <Container class="javax.swing.JToolBar" name="statisticsBar">
               <Properties>
+                <Property name="floatable" type="boolean" value="false"/>
                 <Property name="rollover" type="boolean" value="true"/>
               </Properties>
               <Constraints>
@@ -734,8 +743,8 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="topReadStudents" linkSize="6" min="-2" pref="69" max="-2" attributes="0"/>
-                                  <Component id="topReadBooks" linkSize="6" min="-2" pref="69" max="-2" attributes="0"/>
+                                  <Component id="topReadStudents" linkSize="6" min="-2" pref="65" max="-2" attributes="0"/>
+                                  <Component id="topReadBooks" linkSize="6" min="-2" pref="65" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -783,6 +792,7 @@
             </Container>
             <Container class="javax.swing.JToolBar" name="settingsBar">
               <Properties>
+                <Property name="floatable" type="boolean" value="false"/>
                 <Property name="rollover" type="boolean" value="true"/>
               </Properties>
               <Constraints>
@@ -824,9 +834,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="userLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="dateLabel" min="-2" pref="30" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="timeLabel" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>

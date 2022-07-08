@@ -9,8 +9,8 @@ import com.ugurtech.library.model.CurrentUserModel;
 import com.ugurtech.library.view.LoginForm;
 import com.ugurtech.library.view.MainForm;
 import com.ugurtech.library.persistance.user.UserDaoImpl;
+import com.ugurtech.library.service.date.SimpleDate;
 import com.ugurtech.library.service.localization.Internationalization;
-
 
 /**
  *
@@ -41,12 +41,14 @@ public class LoginFormController{
             loginForm.setVisible(false);
             loginForm.getUserNameField().setText("");
             loginForm.getUserPaswordField().setText("");
+            SimpleDate.getInstance().setTimeStart();
         } else {
             loginForm.getInfolabel().setText(Internationalization.getInstance().getLable("loginform.infolabel"));
         }
     }
     
     public void loginExit(){
+        SimpleDate.getInstance().setFlag(false);
         if(!userDao.isClosed()){
         } else {
             userDao.closeConnection();

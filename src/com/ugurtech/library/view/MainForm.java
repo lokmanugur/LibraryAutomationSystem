@@ -1,4 +1,5 @@
 package com.ugurtech.library.view;
+
 import com.ugurtech.library.persistance.user.UserDaoImpl;
 import com.ugurtech.library.view.book.AuthorForm;
 import com.ugurtech.library.view.book.AuthorSearchForm;
@@ -18,24 +19,26 @@ import com.ugurtech.library.view.person.PersonSearchForm;
 import com.ugurtech.library.view.user.UserDetailsForm;
 import javax.swing.JLabel;
 
-public final class MainForm extends MainFrame{
-   // private String dPaneimage="/img/MEBLogo.png"; 
-    
+public final class MainForm extends MainFrame {
+    // private String dPaneimage="/img/MEBLogo.png"; 
+
     private static MainForm mainForm;
     private UserDaoImpl userDao;
-   
-    private MainForm(){
+
+    private MainForm() {
         initComponents();
         setDesktopPane(desktopPane);
     }
-    
-    public static MainForm getInstance(){
-        if(mainForm == null)
+
+    public static MainForm getInstance() {
+        if (mainForm == null) {
             return mainForm = new MainForm();
-        else
+        } else {
             return mainForm;
+        }
     }
-    public void setUserDao(UserDaoImpl userDao){
+
+    public void setUserDao(UserDaoImpl userDao) {
         this.userDao = userDao;
     }
 
@@ -87,6 +90,11 @@ public final class MainForm extends MainFrame{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("mainform.topmenubar.label")
         );
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                formMouseEntered(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -486,6 +494,7 @@ public final class MainForm extends MainFrame{
 
         currentUserPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        userLabel.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         userLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/enter.png"))); // NOI18N
         userLabel.setToolTipText("Sistemde Aktif Olan Kullnici");
         userLabel.setAlignmentX(0.5F);
@@ -497,9 +506,11 @@ public final class MainForm extends MainFrame{
             }
         });
 
+        dateLabel.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         dateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dateLabel.setText("Date");
 
+        timeLabel.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         timeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         timeLabel.setText("Time");
 
@@ -507,9 +518,9 @@ public final class MainForm extends MainFrame{
         currentUserPanel.setLayout(currentUserPanelLayout);
         currentUserPanelLayout.setHorizontalGroup(
             currentUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(userLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(timeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+            .addComponent(userLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
             .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(timeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         currentUserPanelLayout.setVerticalGroup(
             currentUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -517,10 +528,10 @@ public final class MainForm extends MainFrame{
                 .addContainerGap()
                 .addComponent(userLabel)
                 .addGap(18, 18, 18)
-                .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(timeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(timeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout userPanelLayout = new javax.swing.GroupLayout(userPanel);
@@ -528,9 +539,10 @@ public final class MainForm extends MainFrame{
         userPanelLayout.setHorizontalGroup(
             userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userPanelLayout.createSequentialGroup()
-                .addComponent(tabbPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabbPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(currentUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(currentUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         userPanelLayout.setVerticalGroup(
             userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -577,8 +589,11 @@ public final class MainForm extends MainFrame{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane)
-            .addComponent(userPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desktopPane)
+                    .addComponent(userPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -628,7 +643,7 @@ public final class MainForm extends MainFrame{
     }//GEN-LAST:event_topReadStudentsActionPerformed
 
     private void closeOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeOperationActionPerformed
-        if(!userDao.isClosed()){
+        if (!userDao.isClosed()) {
             userDao.closeConnection();
         }
         this.dispose();
@@ -637,9 +652,8 @@ public final class MainForm extends MainFrame{
     }//GEN-LAST:event_closeOperationActionPerformed
 
     private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
-        if (evt.getClickCount() == 2 && !evt.isConsumed()){
-            this.setVisible(false);
-            LoginForm.getInstance().setVisible(true);
+        if (evt.getClickCount() == 2 && !evt.isConsumed()) {
+            exitMainForm();
             evt.consume();
         }
     }//GEN-LAST:event_userLabelMouseClicked
@@ -677,9 +691,13 @@ public final class MainForm extends MainFrame{
     }//GEN-LAST:event_takenBooksTableButtonActionPerformed
 
     private void bookTypeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookTypeButtonActionPerformed
-       addDesktopPane(BookTypeForm.getInstance());
+        addDesktopPane(BookTypeForm.getInstance());
     }//GEN-LAST:event_bookTypeButtonActionPerformed
-   
+
+    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
+        System.out.println("mous entered");
+    }//GEN-LAST:event_formMouseEntered
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBook;
     private javax.swing.JButton authorButton;
@@ -730,5 +748,26 @@ public final class MainForm extends MainFrame{
     public void setUserLabel(JLabel userLabel) {
         this.userLabel = userLabel;
     }
-     
+
+    public JLabel getDateLabel() {
+        return dateLabel;
+    }
+
+    public void setDateLabel(JLabel dateLabel) {
+        this.dateLabel = dateLabel;
+    }
+
+    public JLabel getTimeLabel() {
+        return timeLabel;
+    }
+
+    public void setTimeLabel(JLabel timeLabel) {
+        this.timeLabel = timeLabel;
+    }
+
+    public void exitMainForm() {
+        this.setVisible(false);
+        LoginForm.getInstance().setVisible(true);
+    }
+
 }

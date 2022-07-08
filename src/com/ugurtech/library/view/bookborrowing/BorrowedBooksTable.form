@@ -51,7 +51,7 @@
                   <Component id="panelOut" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="375" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="369" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
           </Group>
@@ -76,48 +76,45 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="labelID" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="0" min="-2" pref="81" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jLabel2" pref="81" max="32767" attributes="0"/>
+                      <Component id="labelID" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="ISBNTextField" pref="230" max="32767" attributes="0"/>
                       <Component id="personNameTextField" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Component id="labelMenuAdi" min="-2" pref="84" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="searchComboBox" pref="304" max="32767" attributes="0"/>
                       <Component id="bookNameTextField" max="32767" attributes="0"/>
-                      <Component id="searchComboBox" pref="305" max="32767" attributes="0"/>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="ISBNTextField" max="32767" attributes="0"/>
+                      <Component id="labelID" alignment="1" max="32767" attributes="0"/>
                       <Component id="bookNameTextField" alignment="1" max="32767" attributes="0"/>
                       <Component id="labelMenuAdi" alignment="1" max="32767" attributes="0"/>
-                      <Component id="ISBNTextField" alignment="1" max="32767" attributes="0"/>
-                      <Component id="labelID" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="personNameTextField" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="searchComboBox" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="personNameTextField" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="searchComboBox" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="jLabel2" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -196,14 +193,14 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="writeFileButton" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
                   <Component id="writeFileButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               </Group>

@@ -21,7 +21,7 @@ public class Internationalization {
     private static Internationalization internationalization;
 
     private Internationalization() {
-       // setLocaleCountry("en", "US");
+        setLocaleCountry("en", "US");
         if (languageCountry == null) {
             languageCountry = Locale.getDefault();
         } else {}

@@ -218,6 +218,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="G&#xfc;ncelle"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="closeButton">
           <Properties>

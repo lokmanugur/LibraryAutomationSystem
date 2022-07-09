@@ -671,7 +671,7 @@ public final class MainForm extends MainFrame {
 
     private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
         if (evt.getClickCount() == 2 && !evt.isConsumed()) {
-            exitMainForm();
+            returnLoginForm();
             evt.consume();
         }
     }//GEN-LAST:event_userLabelMouseClicked
@@ -791,7 +791,8 @@ public final class MainForm extends MainFrame {
         this.timeLabel = timeLabel;
     }
 
-    public void exitMainForm() {
+    public void returnLoginForm() {
+        SimpleDate.getInstance().setLoginWin(true);
         this.setVisible(false);
         LoginForm.getInstance().setVisible(true);
     }

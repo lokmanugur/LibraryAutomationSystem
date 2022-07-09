@@ -41,6 +41,7 @@ public class LoginFormController{
             loginForm.setVisible(false);
             loginForm.getUserNameField().setText("");
             loginForm.getUserPaswordField().setText("");
+            SimpleDate.getInstance().setLoginWin(false);
             SimpleDate.getInstance().setTimeStart();
         } else {
             loginForm.getInfolabel().setText(Internationalization.getInstance().getLable("loginform.infolabel"));

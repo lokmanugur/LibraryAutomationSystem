@@ -5,6 +5,7 @@
  */
 package com.ugurtech.library.view.user;
 import com.ugurtech.library.controller.UserInfoController;
+import com.ugurtech.library.view.MainForm;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -106,6 +107,11 @@ public final class UserDetailsForm extends JInternalFrame {
         lastUpdateTextField.setEditable(false);
 
         updateButton.setText("Güncelle");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
 
         closeButton.setText("Kapat");
         closeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -235,6 +241,10 @@ public final class UserDetailsForm extends JInternalFrame {
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_closeButtonActionPerformed
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        MainForm.getInstance().returnLoginForm();
+    }//GEN-LAST:event_updateButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea addressTextArea;

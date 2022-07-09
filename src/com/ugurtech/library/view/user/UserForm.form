@@ -61,46 +61,38 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
-                          <Component id="checkLabel" min="-2" pref="256" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="labelPersonel" max="32767" attributes="0"/>
-                              <Component id="labelKullaniciTipi" alignment="1" max="32767" attributes="0"/>
-                              <Component id="labelKullaniciAdi" alignment="1" max="32767" attributes="0"/>
-                              <Component id="labelKullaniciSifre" alignment="1" max="32767" attributes="0"/>
-                              <Component id="labelKullaniciSifreTekrar" min="-2" pref="105" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="userTypeComboBox" max="32767" attributes="0"/>
-                              <Component id="personComboBox" alignment="0" max="32767" attributes="0"/>
-                              <Component id="loginNameTextField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="passwordTextField" max="32767" attributes="0"/>
-                              <Component id="passMatchTextField" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="labelPersonel" max="32767" attributes="0"/>
+                      <Component id="labelKullaniciTipi" alignment="1" max="32767" attributes="0"/>
+                      <Component id="labelKullaniciAdi" alignment="1" max="32767" attributes="0"/>
+                      <Component id="labelKullaniciSifre" alignment="1" max="32767" attributes="0"/>
+                      <Component id="labelKullaniciSifreTekrar" min="-2" pref="105" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="checkLabel" max="32767" attributes="0"/>
+                      <Component id="userTypeComboBox" pref="280" max="32767" attributes="0"/>
+                      <Component id="personComboBox" alignment="0" max="32767" attributes="0"/>
+                      <Component id="loginNameTextField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="passwordTextField" max="32767" attributes="0"/>
+                      <Component id="passMatchTextField" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="saveButton" pref="84" max="32767" attributes="0"/>
                       <Component id="cancelButton" max="32767" attributes="0"/>
                       <Component id="cancelButton1" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="saveButton" min="-2" pref="35" max="-2" attributes="0"/>
@@ -137,8 +129,9 @@
                           </Group>
                       </Group>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="checkLabel" min="-2" pref="35" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

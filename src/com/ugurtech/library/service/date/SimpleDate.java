@@ -20,50 +20,65 @@ public class SimpleDate extends Thread {
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(localDateFormat);
     private final SimpleDateFormat simpleTimeFormat = new SimpleDateFormat(localTimeFormat);
     private long startTime;
-    private long endTime = 60000;
+    private long endTime = 6000;
     private long currentTime;
     private long today;
+    private boolean loginWin = false;
+    private String time;
+    private String date;
 
     private SimpleDate() {
         this.startTime = System.currentTimeMillis();
         this.currentTime = System.currentTimeMillis();
     }
-    
-      public static SimpleDate getInstance(){
-        if(simpleDate == null){
+
+    public static SimpleDate getInstance() {
+        if (simpleDate == null) {
             simpleDate = new SimpleDate();
             simpleDate.start();
             return simpleDate;
-        }
-        else{
+        } else {
             return simpleDate;
-            }
+        }
     }
-    
+
     @Override
     public void run() {
-         while (!Thread.currentThread().isInterrupted()) {
+        while (!Thread.currentThread().isInterrupted()) {
             try {
-               currentTime = System.currentTimeMillis();
-               today = System.currentTimeMillis();
-               MainForm.getInstance().getDateLabel().setText(simpleDateFormat.format(currentTime));
-               MainForm.getInstance().getTimeLabel().setText(simpleTimeFormat.format(today));
-               Thread.sleep(1000);
-               if(currentTime-startTime>endTime){
-                MainForm.getInstance().exitMainForm();
-               }
+                currentTime = System.currentTimeMillis();
+                today = System.currentTimeMillis();
+                time = simpleTimeFormat.format(currentTime);
+                date = simpleDateFormat.format(today);
+                MainForm.getInstance().getDateLabel().setText(date);
+                MainForm.getInstance().getTimeLabel().setText(time);
+                Thread.sleep(1000);
+                if (currentTime - startTime >= endTime && !loginWin) {
+                    MainForm.getInstance().returnLoginForm();
+                }
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
         }
     }
-    
-    public void setTimeStart(){
+
+    public void setTimeStart() {
         startTime = System.currentTimeMillis();
     }
 
     public void setEndTime(long endTime) {
-        this.endTime = endTime;
+        this.endTime = endTime * 1000;
     }
-    
+
+    public void setLoginWin(boolean loginWin) {
+        this.loginWin = loginWin;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getDate() {
+        return date;
+    }
 }

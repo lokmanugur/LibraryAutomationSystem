@@ -14,14 +14,15 @@ public class CurrentUserModel extends PersonModel {
     private int sysUserId;
     private String userName;
     private String userPassword;
+    private String language;
+    private String region;
+    private int sessionTime;
     private static CurrentUserModel currentUser;
     
-    private CurrentUserModel(){
-        
-    }
+    private CurrentUserModel(){}
     
     public static CurrentUserModel getInstance(){
-        if(currentUser==null)
+        if(currentUser == null)
             return currentUser = new CurrentUserModel();        
         else
            return currentUser;
@@ -51,4 +52,27 @@ public class CurrentUserModel extends PersonModel {
         this.userPassword = userPassword;
     }
 
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public int getSessionTime() {
+        return sessionTime;
+    }
+
+    public void setSessionTime(int sessionTime) {
+        this.sessionTime = sessionTime;
+    } 
 }

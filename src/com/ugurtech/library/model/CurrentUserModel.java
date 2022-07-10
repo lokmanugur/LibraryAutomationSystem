@@ -16,7 +16,7 @@ public class CurrentUserModel extends PersonModel {
     private String userPassword;
     private String language;
     private String region;
-    private int sessionTime;
+    private int sessionTime=60*60*5;
     private static CurrentUserModel currentUser;
     
     private CurrentUserModel(){}

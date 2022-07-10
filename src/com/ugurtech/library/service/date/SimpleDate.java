@@ -20,7 +20,7 @@ public class SimpleDate extends Thread {
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(localDateFormat);
     private final SimpleDateFormat simpleTimeFormat = new SimpleDateFormat(localTimeFormat);
     private long startTime;
-    private long endTime = 6000;
+    private long sessionTime;
     private long currentTime;
     private long today;
     private boolean loginWin = false;
@@ -53,7 +53,7 @@ public class SimpleDate extends Thread {
                 MainForm.getInstance().getDateLabel().setText(date);
                 MainForm.getInstance().getTimeLabel().setText(time);
                 Thread.sleep(1000);
-                if (currentTime - startTime >= endTime && !loginWin) {
+                if (currentTime - startTime >= sessionTime && !loginWin) {
                     MainForm.getInstance().returnLoginForm();
                 }
             } catch (InterruptedException ex) {
@@ -66,8 +66,8 @@ public class SimpleDate extends Thread {
         startTime = System.currentTimeMillis();
     }
 
-    public void setEndTime(long endTime) {
-        this.endTime = endTime * 1000;
+    public void setSessionTime(long sessionTime) {
+        this.sessionTime = sessionTime * 1000;
     }
 
     public void setLoginWin(boolean loginWin) {

@@ -8,6 +8,8 @@ import javax.swing.JInternalFrame;
 import com.ugurtech.library.controller.BorrowedBookTableController;
 import com.ugurtech.library.view.MainForm;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 /**
  *
  * @author lokman uğur
@@ -40,22 +42,19 @@ public final class BorrowedBooksTable extends JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelSearch = new javax.swing.JPanel();
-        ISBNTextField = new javax.swing.JTextField();
-        bookNameTextField = new javax.swing.JTextField();
-        labelID = new javax.swing.JLabel();
-        labelMenuAdi = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        personNameTextField = new javax.swing.JTextField();
+        searchPanel = new javax.swing.JPanel();
+        searchTextField = new javax.swing.JTextField();
+        searchLabel = new javax.swing.JLabel();
         searchComboBox = new javax.swing.JComboBox<>();
-        panelOut = new javax.swing.JPanel();
+        writeFilePanel = new javax.swing.JPanel();
         writeFileButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        booksScrollPane = new javax.swing.JScrollPane();
         booksTable = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
+        bottomPanel = new javax.swing.JPanel();
         borrowButton = new javax.swing.JButton();
         retunButton = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(30, 0), new java.awt.Dimension(30, 0), new java.awt.Dimension(30, 32767));
+        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(30, 0), new java.awt.Dimension(30, 0), new java.awt.Dimension(30, 32767));
 
         setClosable(true);
         setIconifiable(true);
@@ -64,35 +63,17 @@ public final class BorrowedBooksTable extends JInternalFrame {
         setTitle("Ödünç Verilen Kitaplar Tablosu");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        panelSearch.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Ara", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
+        searchPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Ara", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
 
-        ISBNTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+        searchTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                ISBNTextFieldKeyReleased(evt);
+                searchTextFieldKeyReleased(evt);
             }
         });
 
-        bookNameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                bookNameTextFieldKeyReleased(evt);
-            }
-        });
-
-        labelID.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelID.setText("ISBN:");
-        labelID.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        labelMenuAdi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelMenuAdi.setText("Kitap Adı:");
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Kişi Adı:");
-
-        personNameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                personNameTextFieldKeyReleased(evt);
-            }
-        });
+        searchLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        searchLabel.setText("Ara:");
+        searchLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         searchComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ödünç Alınmış Bütün Kitaplar", "İade Edilen Kitaplar", "Okuyucuda Bulunan Kitaplar", "İade Zamanı Aşan Kitaplar" }));
         searchComboBox.addItemListener(new java.awt.event.ItemListener() {
@@ -101,45 +82,31 @@ public final class BorrowedBooksTable extends JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout panelSearchLayout = new javax.swing.GroupLayout(panelSearch);
-        panelSearch.setLayout(panelSearchLayout);
-        panelSearchLayout.setHorizontalGroup(
-            panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSearchLayout.createSequentialGroup()
+        javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
+        searchPanel.setLayout(searchPanelLayout);
+        searchPanelLayout.setHorizontalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-                    .addComponent(labelID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(9, 9, 9)
-                .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ISBNTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                    .addComponent(personNameTextField))
-                .addGap(12, 12, 12)
-                .addComponent(labelMenuAdi, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(searchComboBox, 0, 304, Short.MAX_VALUE)
-                    .addComponent(bookNameTextField))
+                .addComponent(searchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78))
+        );
+        searchPanelLayout.setVerticalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(searchLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(searchComboBox, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        panelSearchLayout.setVerticalGroup(
-            panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSearchLayout.createSequentialGroup()
-                .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ISBNTextField)
-                    .addComponent(labelID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bookNameTextField)
-                    .addComponent(labelMenuAdi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(personNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(10, 10, 10))
-        );
 
-        panelOut.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Çıktı", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
+        writeFilePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Çıktı", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
 
         writeFileButton.setText("Exelle Yaz");
         writeFileButton.addActionListener(new java.awt.event.ActionListener() {
@@ -148,21 +115,21 @@ public final class BorrowedBooksTable extends JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout panelOutLayout = new javax.swing.GroupLayout(panelOut);
-        panelOut.setLayout(panelOutLayout);
-        panelOutLayout.setHorizontalGroup(
-            panelOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelOutLayout.createSequentialGroup()
+        javax.swing.GroupLayout writeFilePanelLayout = new javax.swing.GroupLayout(writeFilePanel);
+        writeFilePanel.setLayout(writeFilePanelLayout);
+        writeFilePanelLayout.setHorizontalGroup(
+            writeFilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(writeFilePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(writeFileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(9, 9, 9))
         );
-        panelOutLayout.setVerticalGroup(
-            panelOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOutLayout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addComponent(writeFileButton)
-                .addGap(52, 52, 52))
+        writeFilePanelLayout.setVerticalGroup(
+            writeFilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(writeFilePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(writeFileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         booksTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -173,7 +140,7 @@ public final class BorrowedBooksTable extends JInternalFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(booksTable);
+        booksScrollPane.setViewportView(booksTable);
 
         borrowButton.setText("Ödünç Ver");
         borrowButton.addActionListener(new java.awt.event.ActionListener() {
@@ -189,27 +156,30 @@ public final class BorrowedBooksTable extends JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(607, Short.MAX_VALUE)
+        javax.swing.GroupLayout bottomPanelLayout = new javax.swing.GroupLayout(bottomPanel);
+        bottomPanel.setLayout(bottomPanelLayout);
+        bottomPanelLayout.setHorizontalGroup(
+            bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bottomPanelLayout.createSequentialGroup()
+                .addContainerGap(696, Short.MAX_VALUE)
                 .addComponent(retunButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(borrowButton)
-                .addGap(66, 66, 66))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        bottomPanelLayout.setVerticalGroup(
+            bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bottomPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(retunButton, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(retunButton, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                     .addComponent(filler1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(borrowButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(borrowButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(filler3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -219,23 +189,23 @@ public final class BorrowedBooksTable extends JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panelSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(writeFilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane1)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(booksScrollPane)
+            .addComponent(bottomPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(writeFilePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                .addComponent(booksScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(bottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         getAccessibleContext().setAccessibleName("Menu Hareket");
@@ -244,20 +214,12 @@ public final class BorrowedBooksTable extends JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void writeFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_writeFileButtonActionPerformed
-      new TableToExcelImpl(booksTable, "Ödünç Verilen Kitaplar Tablosu").writeToTable();
+      new TableToExcelImpl(booksTable, getSearchComboBox().getSelectedItem().toString()).writeToTable();
     }//GEN-LAST:event_writeFileButtonActionPerformed
 
-    private void ISBNTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ISBNTextFieldKeyReleased
+    private void searchTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTextFieldKeyReleased
         getAllBorrowedBooks();
-    }//GEN-LAST:event_ISBNTextFieldKeyReleased
-
-    private void bookNameTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bookNameTextFieldKeyReleased
-        getAllBorrowedBooks();
-    }//GEN-LAST:event_bookNameTextFieldKeyReleased
-
-    private void personNameTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_personNameTextFieldKeyReleased
-        getAllBorrowedBooks();
-    }//GEN-LAST:event_personNameTextFieldKeyReleased
+    }//GEN-LAST:event_searchTextFieldKeyReleased
 
     private void searchComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_searchComboBoxItemStateChanged
         getAllBorrowedBooks();
@@ -278,38 +240,27 @@ public final class BorrowedBooksTable extends JInternalFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ISBNTextField;
-    private javax.swing.JTextField bookNameTextField;
+    private javax.swing.JScrollPane booksScrollPane;
     private javax.swing.JTable booksTable;
     private javax.swing.JButton borrowButton;
+    private javax.swing.JPanel bottomPanel;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelID;
-    private javax.swing.JLabel labelMenuAdi;
-    private javax.swing.JPanel panelOut;
-    private javax.swing.JPanel panelSearch;
-    private javax.swing.JTextField personNameTextField;
+    private javax.swing.Box.Filler filler3;
     private javax.swing.JButton retunButton;
     private javax.swing.JComboBox<String> searchComboBox;
+    private javax.swing.JLabel searchLabel;
+    private javax.swing.JPanel searchPanel;
+    private javax.swing.JTextField searchTextField;
     private javax.swing.JButton writeFileButton;
+    private javax.swing.JPanel writeFilePanel;
     // End of variables declaration//GEN-END:variables
-    
-    public JTextField getISBNTextField() {
-        return ISBNTextField;
+
+    public static BorrowedBooksTable getBorrowedBookTable() {
+        return borrowedBookTable;
     }
 
-    public void setISBNTextField(JTextField ISBNTextField) {
-        this.ISBNTextField = ISBNTextField;
-    }
-
-    public JTextField getBookNameTextField() {
-        return bookNameTextField;
-    }
-
-    public void setBookNameTextField(JTextField bookNameTextField) {
-        this.bookNameTextField = bookNameTextField;
+    public static void setBorrowedBookTable(BorrowedBooksTable borrowedBookTable) {
+        BorrowedBooksTable.borrowedBookTable = borrowedBookTable;
     }
 
     public JTable getBooksTable() {
@@ -320,28 +271,76 @@ public final class BorrowedBooksTable extends JInternalFrame {
         this.booksTable = booksTable;
     }
 
-    public JButton getWriteFlileButton() {
-        return writeFileButton;
+    public JButton getBorrowButton() {
+        return borrowButton;
     }
 
-    public void setWriteFlileButton(JButton writeFlileButton) {
-        this.writeFileButton = writeFlileButton;
+    public void setBorrowButton(JButton borrowButton) {
+        this.borrowButton = borrowButton;
     }
 
-    public JTextField getPersonNameTextField() {
-        return personNameTextField;
+    public JPanel getBottomPanel() {
+        return bottomPanel;
     }
 
-    public void setPersonNameTextField(JTextField personNameTextField) {
-        this.personNameTextField = personNameTextField;
+    public void setBottomPanel(JPanel bottomPanel) {
+        this.bottomPanel = bottomPanel;
+    }
+
+    public JButton getRetunButton() {
+        return retunButton;
+    }
+
+    public void setRetunButton(JButton retunButton) {
+        this.retunButton = retunButton;
     }
 
     public JComboBox<String> getSearchComboBox() {
         return searchComboBox;
     }
 
-    public void setSearchComboBox(JComboBox<String> jComboBox1) {
-        this.searchComboBox = jComboBox1;
+    public void setSearchComboBox(JComboBox<String> searchComboBox) {
+        this.searchComboBox = searchComboBox;
     }
-      
+
+    public JLabel getSearchLabel() {
+        return searchLabel;
+    }
+
+    public void setSearchLabel(JLabel searchLabel) {
+        this.searchLabel = searchLabel;
+    }
+
+    public JPanel getSearchPanel() {
+        return searchPanel;
+    }
+
+    public void setSearchPanel(JPanel searchPanel) {
+        this.searchPanel = searchPanel;
+    }
+
+    public JTextField getSearchTextField() {
+        return searchTextField;
+    }
+
+    public void setSearchTextField(JTextField searchTextField) {
+        this.searchTextField = searchTextField;
+    }
+
+    public JButton getWriteFileButton() {
+        return writeFileButton;
+    }
+
+    public void setWriteFileButton(JButton writeFileButton) {
+        this.writeFileButton = writeFileButton;
+    }
+
+    public JPanel getWriteFilePanel() {
+        return writeFilePanel;
+    }
+
+    public void setWriteFilePanel(JPanel writeFilePanel) {
+        this.writeFilePanel = writeFilePanel;
+    }
+
 }

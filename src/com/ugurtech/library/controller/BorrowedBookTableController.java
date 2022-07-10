@@ -31,15 +31,9 @@ public final class BorrowedBookTableController {
     
     public void fillAllBorrowedBooks(){
         Map<String,String> filters = new HashMap<>();
-        Optional.ofNullable(borrowedBooksTable.getISBNTextField().getText())
+        Optional.ofNullable(borrowedBooksTable.getSearchTextField().getText())
                 .filter(value->!value.isEmpty())
-                .ifPresent(value->filters.put("isbnNumber", value));
-        Optional.ofNullable(borrowedBooksTable.getBookNameTextField().getText())
-                .filter(value->!value.isEmpty())
-                .ifPresent(value->filters.put("bookTitle", value));
-        Optional.ofNullable(borrowedBooksTable.getPersonNameTextField().getText())
-                .filter(value->!value.isEmpty())
-                .ifPresent(value->filters.put("firstLastName", value));
+                .ifPresent(value->filters.put("search", value));
         Optional.ofNullable(borrowedBooksTable.getSearchComboBox().getSelectedItem().toString())
                 .ifPresent(value ->filters.put("allBooks", value));
         borrowedBooksTable.getBooksTable().setModel(DbUtils.resultSetToTableModel(borrowedBookDao.filtersAllBorrowedBooks(filters)));

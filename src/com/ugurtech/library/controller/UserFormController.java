@@ -71,7 +71,7 @@ public class UserFormController {
     }
     
     public boolean checkPassword(){
-        boolean check=String.valueOf(userForm.getPasswordTextField().getPassword()).equals(String.valueOf(userForm.getPassMatchTextField().getPassword()));
+        boolean check = String.valueOf(userForm.getPasswordTextField().getPassword()).equals(String.valueOf(userForm.getPassMatchTextField().getPassword()));
         if(check){
             userForm.getCheckLabel().setForeground(Color.BLACK);
             userForm.getCheckLabel().setText(Internationalization.getInstance().getLable("userformcontroller.password.match"));
@@ -83,7 +83,6 @@ public class UserFormController {
     }
     
     public boolean checkFields(){
-    
         return userForm.getUserTypeComboBox().getSelectedItem()!=null&&userForm.getPersonComboBox().getSelectedItem()!=null
                 &&userForm.getPasswordTextField().getPassword()!=null&&userForm.getLoginNameTextField().getText()!=null;
     }

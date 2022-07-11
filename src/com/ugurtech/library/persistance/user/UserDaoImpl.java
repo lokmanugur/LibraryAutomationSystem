@@ -43,6 +43,7 @@ public class UserDaoImpl extends DaoAbstract implements UserDao {
             + "FROM sysuser s, usertype u,person p ";
     private static final String USER_LOGIN = "SELECT s.sysuserid,s.personid,s.username,s.userpassword,p.firstname,p.lastname,p.phone,p.address,p.birthdate,s.createddate,s.lastupdate "
                 + "FROM sysuser s, person p ";
+    private static final String EXIST_USERS = "SELECT * FROM sysuser";
 
     public boolean checkUser(CurrentUserModel currentUser) {
             StringBuilder query = new StringBuilder(USER_LOGIN);
@@ -74,6 +75,10 @@ public class UserDaoImpl extends DaoAbstract implements UserDao {
             Logger.getLogger(UserDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+    }
+    
+    public boolean existUsers(){
+    return createResultSet(EXIST_USERS) == null;
     }
 
     @Override

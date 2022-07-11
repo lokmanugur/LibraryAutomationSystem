@@ -6,6 +6,7 @@
 package com.ugurtech.library;
 
 import com.ugurtech.library.view.LoginForm;
+import com.ugurtech.library.view.user.UserForm;
 import javax.swing.*;
 
 /**
@@ -30,7 +31,8 @@ public class StartApplication {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            LoginForm.getInstance().setVisible(true);
+            UserForm.getInstance().setVisible(true);
+            LoginForm.getInstance().setVisible(false);
         });
     }
 }

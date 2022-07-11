@@ -44,7 +44,7 @@ public final class BookFormController {
         List<BookTypeModel> bookTypeList = new ArrayList<>();
         bookModel.setIsbn(Long.parseLong(bookForm.getIsbnTextField().getText()));
         bookModel.setBookName(bookForm.getBookNameTextField().getText());
-        bookModel.setPressDate(bookForm.getPressDateChooser().getDate()==null?null:new Date(bookForm.getPressDateChooser().getDate().getTime()));
+        bookModel.setPressDate(bookForm.getPressDateChooser().getDate()==null?null:bookForm.getPressDateChooser().getDate().getTime());
         
         for(int i=0;i<bookForm.getBooksTypeDefaultListModel().getSize();i++){
             bookTypeList.add((BookTypeModel)bookForm.getBooksTypeDefaultListModel().getElementAt(i));

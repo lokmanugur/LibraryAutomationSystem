@@ -90,7 +90,7 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
             preparedStatement.setInt(2, book.getSysuserId());
             preparedStatement.setInt(3, book.getBublisherId());
             preparedStatement.setString(4, book.getBookName());
-            preparedStatement.setString(5, book.getPressDate().toString());
+            preparedStatement.setLong(5, book.getPressDate());
             int effactedRow = preparedStatement.executeUpdate();
 
             preparedStatement = createPrepareStatement(INSERT_BOOK_AUTHOR);

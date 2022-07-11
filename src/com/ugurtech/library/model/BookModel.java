@@ -20,7 +20,7 @@ public class BookModel extends DateModel {
     private List<BookTypeModel> booksType;
     private int bublisherId;
     private String bookName;
-    private Date pressDate;
+    private long pressDate;
     private int count;
 
     public int getBookId() {
@@ -63,11 +63,11 @@ public class BookModel extends DateModel {
         this.bookName = bookName;
     }
 
-    public Date getPressDate() {
+    public long getPressDate() {
         return pressDate;
     }
 
-    public void setPressDate(Date pressDate) {
+    public void setPressDate(long pressDate) {
         this.pressDate = pressDate;
     }
 

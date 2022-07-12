@@ -1,5 +1,7 @@
 package com.ugurtech.library.view;
 
+import com.ugurtech.library.controllerv2.FirstStepFormController;
+import com.ugurtech.library.modelv2.FirstStepModel;
 import com.ugurtech.library.persistance.user.UserDaoImpl;
 import com.ugurtech.library.service.date.SimpleDate;
 import com.ugurtech.library.view.book.AuthorForm;
@@ -17,6 +19,7 @@ import com.ugurtech.library.view.book.PublisherForm;
 import com.ugurtech.library.view.bookborrowing.BorrowedBooksTable;
 import com.ugurtech.library.view.person.PersonForm;
 import com.ugurtech.library.view.person.PersonSearchForm;
+import com.ugurtech.library.view.user.FirstStepForm;
 import com.ugurtech.library.view.user.UserDetailsForm;
 import javax.swing.JLabel;
 
@@ -657,7 +660,7 @@ public final class MainForm extends MainFrame {
     }//GEN-LAST:event_topReadBooksActionPerformed
 
     private void topReadStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topReadStudentsActionPerformed
-        //addDesktopPane(UserTableForm.getInstance());
+        //addDesktopPane(new FirstStepFormController(new FirstStepForm(), new FirstStepModel()).getFirstStepForm());
     }//GEN-LAST:event_topReadStudentsActionPerformed
 
     private void closeOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeOperationActionPerformed

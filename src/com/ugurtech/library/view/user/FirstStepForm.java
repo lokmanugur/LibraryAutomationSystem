@@ -5,25 +5,25 @@
  */
 package com.ugurtech.library.view.user;
 import com.toedter.calendar.JDateChooser;
-import javax.swing.JInternalFrame;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
  * @author ugur
  */
-public class FirstStepForm extends JInternalFrame {
-
-    private static FirstStepForm firstStepForm;
-    private FirstStepForm() {
+public class FirstStepForm extends JFrame {
+    
+    public FirstStepForm() {
         initComponents();
         setLocation(getWidth()/2, getHeight()/10);
-    }
-    
-    public static FirstStepForm getInstance(){
-        if(firstStepForm==null)
-            return firstStepForm= new FirstStepForm();
-        else
-            return firstStepForm;
     }
 
     /**
@@ -58,11 +58,11 @@ public class FirstStepForm extends JInternalFrame {
         phoneLabel = new javax.swing.JLabel();
         addressLabel = new javax.swing.JLabel();
         saveButton = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
+        languageComboBox = new javax.swing.JComboBox<>();
+        languageLabel = new javax.swing.JLabel();
+        countryComboBox = new javax.swing.JComboBox<>();
+        countryLabel = new javax.swing.JLabel();
 
-        setClosable(true);
-        setIconifiable(true);
         setTitle("Add User Form");
 
         addUserPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -83,15 +83,8 @@ public class FirstStepForm extends JInternalFrame {
         labelKullaniciAdi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelKullaniciAdi.setText("Kulanıcı Adı:");
 
-        passMatchTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                passMatchTextFieldKeyReleased(evt);
-            }
-        });
-
         checkLabel.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         checkLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        checkLabel.setText("Password match field");
         checkLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         userTypeComboBox.setEditable(true);
@@ -147,8 +140,11 @@ public class FirstStepForm extends JInternalFrame {
             }
         });
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("Lenguage");
+        languageLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        languageLabel.setText("Language");
+
+        countryLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        countryLabel.setText("Country");
 
         javax.swing.GroupLayout addUserPanelLayout = new javax.swing.GroupLayout(addUserPanel);
         addUserPanel.setLayout(addUserPanelLayout);
@@ -166,24 +162,26 @@ public class FirstStepForm extends JInternalFrame {
                     .addComponent(firstNameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelKullaniciTipi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                     .addComponent(labelKullaniciSifreTekrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(languageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(countryLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addUserPanelLayout.createSequentialGroup()
                         .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cancelButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(passwordTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 240, Short.MAX_VALUE)
-                    .addComponent(phoneTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                    .addComponent(loginNameTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                    .addComponent(birthDateChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                    .addComponent(lastNameTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                    .addComponent(firstNameTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                    .addComponent(checkLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                    .addComponent(userTypeComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 240, Short.MAX_VALUE)
-                    .addComponent(passMatchTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(passwordTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(languageComboBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(phoneTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(loginNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(birthDateChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lastNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(firstNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(userTypeComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(passMatchTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(countryComboBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(76, 76, 76))
         );
         addUserPanelLayout.setVerticalGroup(
@@ -218,9 +216,13 @@ public class FirstStepForm extends JInternalFrame {
                     .addComponent(addressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(countryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(countryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(languageComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(languageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelKullaniciSifre, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,9 +258,9 @@ public class FirstStepForm extends JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addComponent(addUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -271,10 +273,6 @@ public class FirstStepForm extends JInternalFrame {
     private void userTypeComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_userTypeComboBoxPopupMenuWillBecomeVisible
       //  userFormController.allUserType();
     }//GEN-LAST:event_userTypeComboBoxPopupMenuWillBecomeVisible
-
-    private void passMatchTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passMatchTextFieldKeyReleased
-       // userFormController.checkPassword();
-    }//GEN-LAST:event_passMatchTextFieldKeyReleased
 
     private void cancelButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButton1ActionPerformed
         clearTextFields();
@@ -292,15 +290,17 @@ public class FirstStepForm extends JInternalFrame {
     private javax.swing.JLabel birthDateLabel;
     private javax.swing.JButton cancelButton1;
     private javax.swing.JLabel checkLabel;
+    private javax.swing.JComboBox<String> countryComboBox;
+    private javax.swing.JLabel countryLabel;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameTextField;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelKullaniciAdi;
     private javax.swing.JLabel labelKullaniciSifre;
     private javax.swing.JLabel labelKullaniciSifreTekrar;
     private javax.swing.JLabel labelKullaniciTipi;
+    private javax.swing.JComboBox<String> languageComboBox;
+    private javax.swing.JLabel languageLabel;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JTextField lastNameTextField;
     private javax.swing.JTextField loginNameTextField;
@@ -313,7 +313,222 @@ public class FirstStepForm extends JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void clearTextFields() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
- 
+
+    public JPanel getAddUserPanel() {
+        return addUserPanel;
+    }
+
+    public void setAddUserPanel(JPanel addUserPanel) {
+        this.addUserPanel = addUserPanel;
+    }
+
+    public JLabel getAddressLabel() {
+        return addressLabel;
+    }
+
+    public void setAddressLabel(JLabel addressLabel) {
+        this.addressLabel = addressLabel;
+    }
+
+    public JTextArea getAddressTextArea() {
+        return addressTextArea;
+    }
+
+    public void setAddressTextArea(JTextArea addressTextArea) {
+        this.addressTextArea = addressTextArea;
+    }
+
+    public JDateChooser getBirthDateChooser() {
+        return birthDateChooser;
+    }
+
+    public void setBirthDateChooser(JDateChooser birthDateChooser) {
+        this.birthDateChooser = birthDateChooser;
+    }
+
+    public JLabel getBirthDateLabel() {
+        return birthDateLabel;
+    }
+
+    public void setBirthDateLabel(JLabel birthDateLabel) {
+        this.birthDateLabel = birthDateLabel;
+    }
+
+    public JButton getCancelButton1() {
+        return cancelButton1;
+    }
+
+    public void setCancelButton1(JButton cancelButton1) {
+        this.cancelButton1 = cancelButton1;
+    }
+
+    public JLabel getCheckLabel() {
+        return checkLabel;
+    }
+
+    public void setCheckLabel(JLabel checkLabel) {
+        this.checkLabel = checkLabel;
+    }
+
+    public JComboBox<String> getCountryComboBox() {
+        return countryComboBox;
+    }
+
+    public void setCountryComboBox(JComboBox<String> countryComboBox) {
+        this.countryComboBox = countryComboBox;
+    }
+
+    public JLabel getCountryLabel() {
+        return countryLabel;
+    }
+
+    public void setCountryLabel(JLabel countryLabel) {
+        this.countryLabel = countryLabel;
+    }
+
+    public JLabel getFirstNameLabel() {
+        return firstNameLabel;
+    }
+
+    public void setFirstNameLabel(JLabel firstNameLabel) {
+        this.firstNameLabel = firstNameLabel;
+    }
+
+    public JTextField getFirstNameTextField() {
+        return firstNameTextField;
+    }
+
+    public void setFirstNameTextField(JTextField firstNameTextField) {
+        this.firstNameTextField = firstNameTextField;
+    }
+
+    public JScrollPane getjScrollPane2() {
+        return jScrollPane2;
+    }
+
+    public void setjScrollPane2(JScrollPane jScrollPane2) {
+        this.jScrollPane2 = jScrollPane2;
+    }
+
+    public JLabel getLabelKullaniciAdi() {
+        return labelKullaniciAdi;
+    }
+
+    public void setLabelKullaniciAdi(JLabel labelKullaniciAdi) {
+        this.labelKullaniciAdi = labelKullaniciAdi;
+    }
+
+    public JLabel getLabelKullaniciSifre() {
+        return labelKullaniciSifre;
+    }
+
+    public void setLabelKullaniciSifre(JLabel labelKullaniciSifre) {
+        this.labelKullaniciSifre = labelKullaniciSifre;
+    }
+
+    public JLabel getLabelKullaniciSifreTekrar() {
+        return labelKullaniciSifreTekrar;
+    }
+
+    public void setLabelKullaniciSifreTekrar(JLabel labelKullaniciSifreTekrar) {
+        this.labelKullaniciSifreTekrar = labelKullaniciSifreTekrar;
+    }
+
+    public JLabel getLabelKullaniciTipi() {
+        return labelKullaniciTipi;
+    }
+
+    public void setLabelKullaniciTipi(JLabel labelKullaniciTipi) {
+        this.labelKullaniciTipi = labelKullaniciTipi;
+    }
+
+    public JComboBox<String> getLanguageComboBox() {
+        return languageComboBox;
+    }
+
+    public void setLanguageComboBox(JComboBox<String> languageComboBox) {
+        this.languageComboBox = languageComboBox;
+    }
+
+    public JLabel getLanguageLabel() {
+        return languageLabel;
+    }
+
+    public void setLanguageLabel(JLabel languageLabel) {
+        this.languageLabel = languageLabel;
+    }
+
+    public JLabel getLastNameLabel() {
+        return lastNameLabel;
+    }
+
+    public void setLastNameLabel(JLabel lastNameLabel) {
+        this.lastNameLabel = lastNameLabel;
+    }
+
+    public JTextField getLastNameTextField() {
+        return lastNameTextField;
+    }
+
+    public void setLastNameTextField(JTextField lastNameTextField) {
+        this.lastNameTextField = lastNameTextField;
+    }
+
+    public JTextField getLoginNameTextField() {
+        return loginNameTextField;
+    }
+
+    public void setLoginNameTextField(JTextField loginNameTextField) {
+        this.loginNameTextField = loginNameTextField;
+    }
+
+    public JPasswordField getPassMatchTextField() {
+        return passMatchTextField;
+    }
+
+    public void setPassMatchTextField(JPasswordField passMatchTextField) {
+        this.passMatchTextField = passMatchTextField;
+    }
+
+    public JPasswordField getPasswordTextField() {
+        return passwordTextField;
+    }
+
+    public void setPasswordTextField(JPasswordField passwordTextField) {
+        this.passwordTextField = passwordTextField;
+    }
+
+    public JLabel getPhoneLabel() {
+        return phoneLabel;
+    }
+
+    public void setPhoneLabel(JLabel phoneLabel) {
+        this.phoneLabel = phoneLabel;
+    }
+
+    public JTextField getPhoneTextField() {
+        return phoneTextField;
+    }
+
+    public void setPhoneTextField(JTextField phoneTextField) {
+        this.phoneTextField = phoneTextField;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton;
+    }
+
+    public void setSaveButton(JButton saveButton) {
+        this.saveButton = saveButton;
+    }
+
+    public JComboBox getUserTypeComboBox() {
+        return userTypeComboBox;
+    }
+
+    public void setUserTypeComboBox(JComboBox userTypeComboBox) {
+        this.userTypeComboBox = userTypeComboBox;
+    }
 }

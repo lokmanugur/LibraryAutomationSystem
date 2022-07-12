@@ -170,7 +170,6 @@
           <SubComponents>
             <Container class="javax.swing.JToolBar" name="bookBar">
               <Properties>
-                <Property name="floatable" type="boolean" value="false"/>
                 <Property name="rollover" type="boolean" value="true"/>
               </Properties>
               <Constraints>
@@ -384,7 +383,6 @@
             </Container>
             <Container class="javax.swing.JToolBar" name="studentBar">
               <Properties>
-                <Property name="floatable" type="boolean" value="false"/>
                 <Property name="rollover" type="boolean" value="true"/>
               </Properties>
               <Constraints>
@@ -478,7 +476,6 @@
             </Container>
             <Container class="javax.swing.JToolBar" name="schoolBar">
               <Properties>
-                <Property name="floatable" type="boolean" value="false"/>
                 <Property name="rollover" type="boolean" value="true"/>
               </Properties>
               <Constraints>
@@ -541,7 +538,6 @@
             </Container>
             <Container class="javax.swing.JToolBar" name="userBar">
               <Properties>
-                <Property name="floatable" type="boolean" value="false"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Default Cursor"/>
                 </Property>
@@ -707,7 +703,6 @@
             </Container>
             <Container class="javax.swing.JToolBar" name="statisticsBar">
               <Properties>
-                <Property name="floatable" type="boolean" value="false"/>
                 <Property name="rollover" type="boolean" value="true"/>
               </Properties>
               <Constraints>
@@ -792,7 +787,6 @@
             </Container>
             <Container class="javax.swing.JToolBar" name="settingsBar">
               <Properties>
-                <Property name="floatable" type="boolean" value="false"/>
                 <Property name="rollover" type="boolean" value="true"/>
               </Properties>
               <Constraints>

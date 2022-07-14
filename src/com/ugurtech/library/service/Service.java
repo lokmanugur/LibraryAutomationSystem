@@ -5,16 +5,18 @@
  */
 package com.ugurtech.library.service;
 
-import java.sql.ResultSet;
+import java.util.List;
+
 
 /**
  *
  * @author ugur
+ * @param <V>
  */
-public interface Service<T> {
-    public ResultSet getAll();
-    public T get(int id);
-    public void add(T t);
-    public void update(T t);
-    public void delete(T t); 
+public interface Service<V> {
+    public List<V> getAll();
+    public V get(int id);
+    public void add(V v);
+    public void update(V v);
+    public void delete(V v); 
 }

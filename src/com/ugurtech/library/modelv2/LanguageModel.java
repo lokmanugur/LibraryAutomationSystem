@@ -4,6 +4,8 @@
  */
 package com.ugurtech.library.modelv2;
 
+import java.util.Objects;
+
 /**
  *
  * @author Teacher
@@ -41,6 +43,43 @@ public class LanguageModel {
 
     public void setAbbriviation(String abbriviation) {
         this.abbriviation = abbriviation;
+    }
+
+    @Override
+    public String toString() {
+        return  languagename;
+    }
+
+    
+    
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + this.languageid;
+        hash = 37 * hash + Objects.hashCode(this.languagename);
+        hash = 37 * hash + Objects.hashCode(this.abbriviation);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final LanguageModel other = (LanguageModel) obj;
+        if (this.languageid != other.languageid) {
+            return false;
+        }
+        if (!Objects.equals(this.languagename, other.languagename)) {
+            return false;
+        }
+        return Objects.equals(this.abbriviation, other.abbriviation);
     }
     
     

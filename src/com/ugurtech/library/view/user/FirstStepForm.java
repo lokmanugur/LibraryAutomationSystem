@@ -5,6 +5,8 @@
  */
 package com.ugurtech.library.view.user;
 import com.toedter.calendar.JDateChooser;
+import com.ugurtech.library.modelv2.CountryModel;
+import com.ugurtech.library.modelv2.LanguageModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -37,7 +39,7 @@ public class FirstStepForm extends JFrame {
 
         addUserPanel = new javax.swing.JPanel();
         labelKullaniciSifre = new javax.swing.JLabel();
-        cancelButton1 = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
         labelKullaniciSifreTekrar = new javax.swing.JLabel();
         labelKullaniciAdi = new javax.swing.JLabel();
         loginNameTextField = new javax.swing.JTextField();
@@ -47,8 +49,8 @@ public class FirstStepForm extends JFrame {
         userTypeComboBox = new javax.swing.JComboBox();
         labelKullaniciTipi = new javax.swing.JLabel();
         firstNameTextField = new javax.swing.JTextField();
-        lastNameTextField = new javax.swing.JTextField();
-        lastNameLabel = new javax.swing.JLabel();
+        secondNameTextField = new javax.swing.JTextField();
+        secondNameLabel = new javax.swing.JLabel();
         firstNameLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         addressTextArea = new javax.swing.JTextArea();
@@ -70,10 +72,10 @@ public class FirstStepForm extends JFrame {
         labelKullaniciSifre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelKullaniciSifre.setText("Şifresi:");
 
-        cancelButton1.setText("Reset");
-        cancelButton1.addActionListener(new java.awt.event.ActionListener() {
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButton1ActionPerformed(evt);
+                cancelButtonActionPerformed(evt);
             }
         });
 
@@ -106,9 +108,9 @@ public class FirstStepForm extends JFrame {
         labelKullaniciTipi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelKullaniciTipi.setText("Kullanıcı Tipi:");
 
-        lastNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lastNameLabel.setText("Soyad:");
-        lastNameLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        secondNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        secondNameLabel.setText("Soyad:");
+        secondNameLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
         firstNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         firstNameLabel.setText("Adı:");
@@ -140,6 +142,12 @@ public class FirstStepForm extends JFrame {
             }
         });
 
+        languageComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                languageComboBoxActionPerformed(evt);
+            }
+        });
+
         languageLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         languageLabel.setText("Language");
 
@@ -158,7 +166,7 @@ public class FirstStepForm extends JFrame {
                     .addComponent(phoneLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelKullaniciAdi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(birthDateLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lastNameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(secondNameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(firstNameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelKullaniciTipi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                     .addComponent(labelKullaniciSifreTekrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -169,13 +177,13 @@ public class FirstStepForm extends JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addUserPanelLayout.createSequentialGroup()
                         .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cancelButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(passwordTextField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(languageComboBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(phoneTextField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(loginNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(birthDateChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lastNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(secondNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(firstNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(checkLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(userTypeComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -197,8 +205,8 @@ public class FirstStepForm extends JFrame {
                     .addComponent(firstNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lastNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(secondNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(secondNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(birthDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,7 +244,7 @@ public class FirstStepForm extends JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
         );
 
@@ -274,13 +282,17 @@ public class FirstStepForm extends JFrame {
       //  userFormController.allUserType();
     }//GEN-LAST:event_userTypeComboBoxPopupMenuWillBecomeVisible
 
-    private void cancelButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButton1ActionPerformed
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         clearTextFields();
-    }//GEN-LAST:event_cancelButton1ActionPerformed
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void userTypeComboBoxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userTypeComboBoxKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_userTypeComboBoxKeyReleased
+
+    private void languageComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_languageComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_languageComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addUserPanel;
@@ -288,9 +300,9 @@ public class FirstStepForm extends JFrame {
     private javax.swing.JTextArea addressTextArea;
     private com.toedter.calendar.JDateChooser birthDateChooser;
     private javax.swing.JLabel birthDateLabel;
-    private javax.swing.JButton cancelButton1;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JLabel checkLabel;
-    private javax.swing.JComboBox<String> countryComboBox;
+    private javax.swing.JComboBox<CountryModel> countryComboBox;
     private javax.swing.JLabel countryLabel;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameTextField;
@@ -299,16 +311,16 @@ public class FirstStepForm extends JFrame {
     private javax.swing.JLabel labelKullaniciSifre;
     private javax.swing.JLabel labelKullaniciSifreTekrar;
     private javax.swing.JLabel labelKullaniciTipi;
-    private javax.swing.JComboBox<String> languageComboBox;
+    private javax.swing.JComboBox<LanguageModel> languageComboBox;
     private javax.swing.JLabel languageLabel;
-    private javax.swing.JLabel lastNameLabel;
-    private javax.swing.JTextField lastNameTextField;
     private javax.swing.JTextField loginNameTextField;
     private javax.swing.JPasswordField passMatchTextField;
     private javax.swing.JPasswordField passwordTextField;
     private javax.swing.JLabel phoneLabel;
     private javax.swing.JTextField phoneTextField;
     private javax.swing.JButton saveButton;
+    private javax.swing.JLabel secondNameLabel;
+    private javax.swing.JTextField secondNameTextField;
     private javax.swing.JComboBox userTypeComboBox;
     // End of variables declaration//GEN-END:variables
 
@@ -357,11 +369,11 @@ public class FirstStepForm extends JFrame {
     }
 
     public JButton getCancelButton1() {
-        return cancelButton1;
+        return cancelButton;
     }
 
     public void setCancelButton1(JButton cancelButton1) {
-        this.cancelButton1 = cancelButton1;
+        this.cancelButton = cancelButton1;
     }
 
     public JLabel getCheckLabel() {
@@ -372,11 +384,11 @@ public class FirstStepForm extends JFrame {
         this.checkLabel = checkLabel;
     }
 
-    public JComboBox<String> getCountryComboBox() {
+    public JComboBox<CountryModel> getCountryComboBox() {
         return countryComboBox;
     }
 
-    public void setCountryComboBox(JComboBox<String> countryComboBox) {
+    public void setCountryComboBox(JComboBox<CountryModel> countryComboBox) {
         this.countryComboBox = countryComboBox;
     }
 
@@ -444,11 +456,11 @@ public class FirstStepForm extends JFrame {
         this.labelKullaniciTipi = labelKullaniciTipi;
     }
 
-    public JComboBox<String> getLanguageComboBox() {
+    public JComboBox<LanguageModel> getLanguageComboBox() {
         return languageComboBox;
     }
 
-    public void setLanguageComboBox(JComboBox<String> languageComboBox) {
+    public void setLanguageComboBox(JComboBox<LanguageModel> languageComboBox) {
         this.languageComboBox = languageComboBox;
     }
 
@@ -460,20 +472,20 @@ public class FirstStepForm extends JFrame {
         this.languageLabel = languageLabel;
     }
 
-    public JLabel getLastNameLabel() {
-        return lastNameLabel;
+    public JLabel getSecondNameLabel() {
+        return secondNameLabel;
     }
 
-    public void setLastNameLabel(JLabel lastNameLabel) {
-        this.lastNameLabel = lastNameLabel;
+    public void setSecondNameLabel(JLabel secondNameLabel) {
+        this.secondNameLabel = secondNameLabel;
     }
 
-    public JTextField getLastNameTextField() {
-        return lastNameTextField;
+    public JTextField getSecondNameTextField() {
+        return secondNameTextField;
     }
 
-    public void setLastNameTextField(JTextField lastNameTextField) {
-        this.lastNameTextField = lastNameTextField;
+    public void setSecondNameTextField(JTextField secondNameTextField) {
+        this.secondNameTextField = secondNameTextField;
     }
 
     public JTextField getLoginNameTextField() {

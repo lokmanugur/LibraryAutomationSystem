@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.ugurtech.library.modelv2;
+package com.ugurtech.library.modelv2.responsmodels;
 
 import java.util.Objects;
 

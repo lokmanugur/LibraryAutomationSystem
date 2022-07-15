@@ -4,7 +4,7 @@
  */
 package com.ugurtech.library.service.country;
 
-import com.ugurtech.library.modelv2.CountryModel;
+import com.ugurtech.library.modelv2.responsmodels.CountryModel;
 import com.ugurtech.library.persistancev2.country.CountryDao;
 import java.util.List;
 

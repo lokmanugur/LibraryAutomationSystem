@@ -2,16 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.ugurtech.library.persistancev2.firststep;
+package com.ugurtech.library.service.firstStep;
 
-import com.ugurtech.library.modelv2.FirstStepModel;
+import com.ugurtech.library.modelv2.requestmodels.FirstStepModel;
+import com.ugurtech.library.persistancev2.firststep.FirstStepDao;
 import java.util.List;
 
 /**
  *
  * @author Teacher
  */
-public class FirstStepImpl implements FirstStepDao {
+public class FirstStepServiceImpl implements FirstStepService{
+    private final FirstStepDao firstStepDao;
+            
+    public FirstStepServiceImpl(FirstStepDao firstStepDao){
+        this.firstStepDao = firstStepDao;
+    }
 
     @Override
     public List<FirstStepModel> getAll() {
@@ -25,7 +31,7 @@ public class FirstStepImpl implements FirstStepDao {
 
     @Override
     public void add(FirstStepModel v) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        firstStepDao.add(v);
     }
 
     @Override
@@ -37,5 +43,5 @@ public class FirstStepImpl implements FirstStepDao {
     public void delete(FirstStepModel v) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+ 
 }

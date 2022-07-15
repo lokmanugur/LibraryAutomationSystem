@@ -5,8 +5,9 @@
  */
 package com.ugurtech.library.view.user;
 import com.toedter.calendar.JDateChooser;
-import com.ugurtech.library.modelv2.CountryModel;
-import com.ugurtech.library.modelv2.LanguageModel;
+import com.ugurtech.library.modelv2.responsmodels.CountryModel;
+import com.ugurtech.library.modelv2.responsmodels.LanguageModel;
+import com.ugurtech.library.modelv2.responsmodels.UserTypeModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -46,7 +47,7 @@ public class FirstStepForm extends JFrame {
         passwordTextField = new javax.swing.JPasswordField();
         passMatchTextField = new javax.swing.JPasswordField();
         checkLabel = new javax.swing.JLabel();
-        userTypeComboBox = new javax.swing.JComboBox();
+        userTypeComboBox = new javax.swing.JComboBox<>();
         labelKullaniciTipi = new javax.swing.JLabel();
         firstNameTextField = new javax.swing.JTextField();
         secondNameTextField = new javax.swing.JTextField();
@@ -73,11 +74,6 @@ public class FirstStepForm extends JFrame {
         labelKullaniciSifre.setText("Şifresi:");
 
         cancelButton.setText("Cancel");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
-            }
-        });
 
         labelKullaniciSifreTekrar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelKullaniciSifreTekrar.setText("Şifresi Tekrar:");
@@ -88,22 +84,6 @@ public class FirstStepForm extends JFrame {
         checkLabel.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         checkLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         checkLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        userTypeComboBox.setEditable(true);
-        userTypeComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                userTypeComboBoxPopupMenuWillBecomeVisible(evt);
-            }
-        });
-        userTypeComboBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                userTypeComboBoxKeyReleased(evt);
-            }
-        });
 
         labelKullaniciTipi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelKullaniciTipi.setText("Kullanıcı Tipi:");
@@ -136,17 +116,6 @@ public class FirstStepForm extends JFrame {
         addressLabel.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         saveButton.setText("Kaydet");
-        saveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveButtonActionPerformed(evt);
-            }
-        });
-
-        languageComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                languageComboBoxActionPerformed(evt);
-            }
-        });
 
         languageLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         languageLabel.setText("Language");
@@ -248,12 +217,6 @@ public class FirstStepForm extends JFrame {
                 .addGap(26, 26, 26))
         );
 
-        userTypeComboBox.getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                userTypeComboBoxKeyReleased(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -273,26 +236,6 @@ public class FirstStepForm extends JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-       // personController.insertPerson();
-    }//GEN-LAST:event_saveButtonActionPerformed
-
-    private void userTypeComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_userTypeComboBoxPopupMenuWillBecomeVisible
-      //  userFormController.allUserType();
-    }//GEN-LAST:event_userTypeComboBoxPopupMenuWillBecomeVisible
-
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        clearTextFields();
-    }//GEN-LAST:event_cancelButtonActionPerformed
-
-    private void userTypeComboBoxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userTypeComboBoxKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTypeComboBoxKeyReleased
-
-    private void languageComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_languageComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_languageComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addUserPanel;
@@ -321,7 +264,7 @@ public class FirstStepForm extends JFrame {
     private javax.swing.JButton saveButton;
     private javax.swing.JLabel secondNameLabel;
     private javax.swing.JTextField secondNameTextField;
-    private javax.swing.JComboBox userTypeComboBox;
+    private javax.swing.JComboBox<UserTypeModel> userTypeComboBox;
     // End of variables declaration//GEN-END:variables
 
     private void clearTextFields() {

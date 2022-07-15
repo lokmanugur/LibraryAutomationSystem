@@ -4,7 +4,7 @@
  */
 package com.ugurtech.library.service.language;
 
-import com.ugurtech.library.modelv2.LanguageModel;
+import com.ugurtech.library.modelv2.responsmodels.LanguageModel;
 import com.ugurtech.library.service.Service;
 
 /**

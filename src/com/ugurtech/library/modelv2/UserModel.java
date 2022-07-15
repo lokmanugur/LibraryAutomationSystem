@@ -5,6 +5,10 @@
  */
 package com.ugurtech.library.modelv2;
 
+import com.ugurtech.library.modelv2.responsmodels.UserTypeModel;
+import com.ugurtech.library.modelv2.responsmodels.LanguageModel;
+import com.ugurtech.library.modelv2.responsmodels.CountryModel;
+
 /**
  *
  * @author ugur
@@ -17,15 +21,6 @@ public class UserModel extends PersonModel {
     private String userPassword;
     private CountryModel countryModel;
     private LanguageModel languageModel;
-
-    public UserModel(int sysUserId, UserTypeModel userTypeModel, String userName, String userPassword, CountryModel countryModel, LanguageModel languageModel) {
-        this.sysUserId = sysUserId;
-        this.userTypeModel = userTypeModel;
-        this.userName = userName;
-        this.userPassword = userPassword;
-        this.countryModel = countryModel;
-        this.languageModel = languageModel;
-    }
 
     public int getSysUserId() {
         return sysUserId;

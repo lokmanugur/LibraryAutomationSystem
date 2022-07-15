@@ -4,7 +4,7 @@
  */
 package com.ugurtech.library.persistancev2.country;
 
-import com.ugurtech.library.modelv2.CountryModel;
+import com.ugurtech.library.modelv2.responsmodels.CountryModel;
 import com.ugurtech.library.persistancev2.Dao;
 
 /**

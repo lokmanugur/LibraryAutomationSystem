@@ -81,4 +81,7 @@ public class SimpleDate extends Thread {
     public String getDate() {
         return date;
     }
+    public String longToDate(long value){
+        return simpleDateFormat.format(value)+" "+simpleTimeFormat.format(value);
+    }
 }

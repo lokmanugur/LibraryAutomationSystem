@@ -173,9 +173,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancel"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelButtonActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelKullaniciSifreTekrar">
           <Properties>
@@ -206,17 +203,12 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="userTypeComboBox">
           <Properties>
-            <Property name="editable" type="boolean" value="true"/>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="popupMenuWillBecomeVisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="userTypeComboBoxPopupMenuWillBecomeVisible"/>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="userTypeComboBoxKeyReleased"/>
-          </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="userTypeComboBox.getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {&#xa;    public void keyReleased(java.awt.event.KeyEvent evt) {&#xa;        userTypeComboBoxKeyReleased(evt);&#xa;    }&#xa;});"/>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;UserTypeModel&gt;"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="labelKullaniciTipi">
@@ -297,14 +289,8 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Kaydet"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveButtonActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="languageComboBox">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="languageComboBoxActionPerformed"/>
-          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;LanguageModel&gt;"/>
           </AuxValues>

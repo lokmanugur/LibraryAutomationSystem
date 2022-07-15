@@ -4,7 +4,7 @@
  */
 package com.ugurtech.library.persistancev2.firststep;
 
-import com.ugurtech.library.modelv2.FirstStepModel;
+import com.ugurtech.library.modelv2.requestmodels.FirstStepModel;
 import com.ugurtech.library.persistancev2.Dao;
 
 /**

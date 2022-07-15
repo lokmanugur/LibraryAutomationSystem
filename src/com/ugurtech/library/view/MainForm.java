@@ -1,7 +1,7 @@
 package com.ugurtech.library.view;
 
 import com.ugurtech.library.controllerv2.FirstStepFormController;
-import com.ugurtech.library.modelv2.FirstStepModel;
+import com.ugurtech.library.modelv2.requestmodels.FirstStepModel;
 import com.ugurtech.library.persistance.user.UserDaoImpl;
 import com.ugurtech.library.service.date.SimpleDate;
 import com.ugurtech.library.view.book.AuthorForm;

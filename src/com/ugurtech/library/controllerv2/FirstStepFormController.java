@@ -128,7 +128,6 @@ public class FirstStepFormController {
     }
 
     private void saveFirstUser() {
-        boolean flag;
         firstStepModel.setFirstName(firstStepForm.getFirstNameTextField().getText());
         firstStepModel.setLastName(firstStepForm.getSecondNameTextField().getText());
         firstStepModel.setBirtDate(firstStepForm.getBirthDateChooser().getDate().getTime());
@@ -139,4 +138,5 @@ public class FirstStepFormController {
         firstStepService.add(firstStepModel);
     }
 
+    
 }

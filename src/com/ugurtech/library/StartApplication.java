@@ -5,10 +5,9 @@
  */
 package com.ugurtech.library;
 
-import com.ugurtech.library.controllerv2.FirstStepFormController;
-import com.ugurtech.library.modelv2.requestmodels.FirstStepModel;
+import com.ugurtech.library.controllerv2.LoginFormController;
+import com.ugurtech.library.modelv2.CurrentUserModel;
 import com.ugurtech.library.view.LoginForm;
-import com.ugurtech.library.view.user.FirstStepForm;
 import javax.swing.*;
 
 /**
@@ -33,12 +32,9 @@ public class StartApplication {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-           // UserForm.getInstance().setVisible(true);
-            FirstStepForm firstStepForm = new FirstStepForm();
-            FirstStepModel firstStepModel = new FirstStepModel();
-            firstStepForm.setVisible(true);
-            new FirstStepFormController(firstStepForm,firstStepModel);
-            LoginForm.getInstance().setVisible(true);
+            LoginForm loginForm = LoginForm.getInstance();
+            LoginFormController loginFormController = new LoginFormController(loginForm,CurrentUserModel.getInstance());
+
         });
     }
 }

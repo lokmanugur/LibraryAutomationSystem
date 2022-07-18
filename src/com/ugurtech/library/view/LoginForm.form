@@ -148,9 +148,6 @@
                   <Border info="null"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="userPaswordFieldKeyReleased"/>
-              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="userPaswordField.setBackground(new Color(0,0,0,0));"/>
               </AuxValues>
@@ -199,10 +196,6 @@
                   <Dimension value="[50, 20]"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userNameFieldActionPerformed"/>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="userNameFieldKeyReleased"/>
-              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="LoginForm_userNameField"/>
               </AuxValues>
@@ -242,9 +235,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Ubuntu" size="15" style="1"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" id="black" palette="1" red="0" type="palette"/>
-            </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="verticalAlignment" type="int" value="1"/>
           </Properties>
@@ -276,9 +266,6 @@
               <Image iconType="3" name="/resources/images/girisClick.png"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginButtonActionPerformed"/>
-          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="LoginForm_loginButton"/>
           </AuxValues>
@@ -303,9 +290,6 @@
               <Image iconType="3" name="/resources/images/cikisClick.png"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loginExit"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

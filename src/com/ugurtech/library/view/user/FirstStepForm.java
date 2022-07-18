@@ -22,11 +22,10 @@ import javax.swing.JTextField;
  *
  * @author ugur
  */
-public class FirstStepForm extends JFrame {
+public final class FirstStepForm extends JFrame {
     
     public FirstStepForm() {
         initComponents();
-        setLocation(getWidth()/2, getHeight()/10);
     }
 
     /**
@@ -39,16 +38,16 @@ public class FirstStepForm extends JFrame {
     private void initComponents() {
 
         addUserPanel = new javax.swing.JPanel();
-        labelKullaniciSifre = new javax.swing.JLabel();
+        labelPassword = new javax.swing.JLabel();
         cancelButton = new javax.swing.JButton();
-        labelKullaniciSifreTekrar = new javax.swing.JLabel();
-        labelKullaniciAdi = new javax.swing.JLabel();
+        labelRepeatPassword = new javax.swing.JLabel();
+        labelUserName = new javax.swing.JLabel();
         loginNameTextField = new javax.swing.JTextField();
         passwordTextField = new javax.swing.JPasswordField();
         passMatchTextField = new javax.swing.JPasswordField();
         checkLabel = new javax.swing.JLabel();
         userTypeComboBox = new javax.swing.JComboBox<>();
-        labelKullaniciTipi = new javax.swing.JLabel();
+        labelUserType = new javax.swing.JLabel();
         firstNameTextField = new javax.swing.JTextField();
         secondNameTextField = new javax.swing.JTextField();
         secondNameLabel = new javax.swing.JLabel();
@@ -66,27 +65,30 @@ public class FirstStepForm extends JFrame {
         countryComboBox = new javax.swing.JComboBox<>();
         countryLabel = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Add User Form");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setUndecorated(true);
 
         addUserPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        labelKullaniciSifre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelKullaniciSifre.setText("Şifresi:");
+        labelPassword.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelPassword.setText("Şifresi:");
 
         cancelButton.setText("Cancel");
 
-        labelKullaniciSifreTekrar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelKullaniciSifreTekrar.setText("Şifresi Tekrar:");
+        labelRepeatPassword.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelRepeatPassword.setText("Şifresi Tekrar:");
 
-        labelKullaniciAdi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelKullaniciAdi.setText("Kulanıcı Adı:");
+        labelUserName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelUserName.setText("Kulanıcı Adı:");
 
         checkLabel.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         checkLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         checkLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        labelKullaniciTipi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelKullaniciTipi.setText("Kullanıcı Tipi:");
+        labelUserType.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelUserType.setText("Kullanıcı Tipi:");
 
         secondNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         secondNameLabel.setText("Soyad:");
@@ -130,15 +132,15 @@ public class FirstStepForm extends JFrame {
             .addGroup(addUserPanelLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelKullaniciSifre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(addressLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(phoneLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelKullaniciAdi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelUserName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(birthDateLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(secondNameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(firstNameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelKullaniciTipi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                    .addComponent(labelKullaniciSifreTekrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelUserType, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                    .addComponent(labelRepeatPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(languageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(countryLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -166,7 +168,7 @@ public class FirstStepForm extends JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addUserPanelLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelKullaniciTipi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(userTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -183,7 +185,7 @@ public class FirstStepForm extends JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(loginNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelKullaniciAdi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(labelUserName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -202,11 +204,11 @@ public class FirstStepForm extends JFrame {
                     .addComponent(languageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelKullaniciSifre, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelKullaniciSifreTekrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelRepeatPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passMatchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(checkLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -229,12 +231,13 @@ public class FirstStepForm extends JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -250,10 +253,10 @@ public class FirstStepForm extends JFrame {
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameTextField;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel labelKullaniciAdi;
-    private javax.swing.JLabel labelKullaniciSifre;
-    private javax.swing.JLabel labelKullaniciSifreTekrar;
-    private javax.swing.JLabel labelKullaniciTipi;
+    private javax.swing.JLabel labelPassword;
+    private javax.swing.JLabel labelRepeatPassword;
+    private javax.swing.JLabel labelUserName;
+    private javax.swing.JLabel labelUserType;
     private javax.swing.JComboBox<LanguageModel> languageComboBox;
     private javax.swing.JLabel languageLabel;
     private javax.swing.JTextField loginNameTextField;
@@ -266,10 +269,6 @@ public class FirstStepForm extends JFrame {
     private javax.swing.JTextField secondNameTextField;
     private javax.swing.JComboBox<UserTypeModel> userTypeComboBox;
     // End of variables declaration//GEN-END:variables
-
-    private void clearTextFields() {
-        
-    }
 
     public JPanel getAddUserPanel() {
         return addUserPanel;
@@ -311,12 +310,12 @@ public class FirstStepForm extends JFrame {
         this.birthDateLabel = birthDateLabel;
     }
 
-    public JButton getCancelButton1() {
+    public JButton getCancelButton() {
         return cancelButton;
     }
 
-    public void setCancelButton1(JButton cancelButton1) {
-        this.cancelButton = cancelButton1;
+    public void setCancelButton(JButton cancelButton) {
+        this.cancelButton = cancelButton;
     }
 
     public JLabel getCheckLabel() {
@@ -367,36 +366,36 @@ public class FirstStepForm extends JFrame {
         this.jScrollPane2 = jScrollPane2;
     }
 
-    public JLabel getLabelKullaniciAdi() {
-        return labelKullaniciAdi;
+    public JLabel getLabelPassword() {
+        return labelPassword;
     }
 
-    public void setLabelKullaniciAdi(JLabel labelKullaniciAdi) {
-        this.labelKullaniciAdi = labelKullaniciAdi;
+    public void setLabelPassword(JLabel labelPassword) {
+        this.labelPassword = labelPassword;
     }
 
-    public JLabel getLabelKullaniciSifre() {
-        return labelKullaniciSifre;
+    public JLabel getLabelRepeatPassword() {
+        return labelRepeatPassword;
     }
 
-    public void setLabelKullaniciSifre(JLabel labelKullaniciSifre) {
-        this.labelKullaniciSifre = labelKullaniciSifre;
+    public void setLabelRepeatPassword(JLabel labelRepeatPassword) {
+        this.labelRepeatPassword = labelRepeatPassword;
     }
 
-    public JLabel getLabelKullaniciSifreTekrar() {
-        return labelKullaniciSifreTekrar;
+    public JLabel getLabelUserName() {
+        return labelUserName;
     }
 
-    public void setLabelKullaniciSifreTekrar(JLabel labelKullaniciSifreTekrar) {
-        this.labelKullaniciSifreTekrar = labelKullaniciSifreTekrar;
+    public void setLabelUserName(JLabel labelUserName) {
+        this.labelUserName = labelUserName;
     }
 
-    public JLabel getLabelKullaniciTipi() {
-        return labelKullaniciTipi;
+    public JLabel getLabelUserType() {
+        return labelUserType;
     }
 
-    public void setLabelKullaniciTipi(JLabel labelKullaniciTipi) {
-        this.labelKullaniciTipi = labelKullaniciTipi;
+    public void setLabelUserType(JLabel labelUserType) {
+        this.labelUserType = labelUserType;
     }
 
     public JComboBox<LanguageModel> getLanguageComboBox() {
@@ -413,22 +412,6 @@ public class FirstStepForm extends JFrame {
 
     public void setLanguageLabel(JLabel languageLabel) {
         this.languageLabel = languageLabel;
-    }
-
-    public JLabel getSecondNameLabel() {
-        return secondNameLabel;
-    }
-
-    public void setSecondNameLabel(JLabel secondNameLabel) {
-        this.secondNameLabel = secondNameLabel;
-    }
-
-    public JTextField getSecondNameTextField() {
-        return secondNameTextField;
-    }
-
-    public void setSecondNameTextField(JTextField secondNameTextField) {
-        this.secondNameTextField = secondNameTextField;
     }
 
     public JTextField getLoginNameTextField() {
@@ -479,11 +462,29 @@ public class FirstStepForm extends JFrame {
         this.saveButton = saveButton;
     }
 
-    public JComboBox getUserTypeComboBox() {
+    public JLabel getSecondNameLabel() {
+        return secondNameLabel;
+    }
+
+    public void setSecondNameLabel(JLabel secondNameLabel) {
+        this.secondNameLabel = secondNameLabel;
+    }
+
+    public JTextField getSecondNameTextField() {
+        return secondNameTextField;
+    }
+
+    public void setSecondNameTextField(JTextField secondNameTextField) {
+        this.secondNameTextField = secondNameTextField;
+    }
+
+    public JComboBox<UserTypeModel> getUserTypeComboBox() {
         return userTypeComboBox;
     }
 
-    public void setUserTypeComboBox(JComboBox userTypeComboBox) {
+    public void setUserTypeComboBox(JComboBox<UserTypeModel> userTypeComboBox) {
         this.userTypeComboBox = userTypeComboBox;
     }
+
+   
 }

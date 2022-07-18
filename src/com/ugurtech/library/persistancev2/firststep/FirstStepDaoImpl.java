@@ -24,6 +24,7 @@ public class FirstStepDaoImpl extends DaoAbstract implements FirstStepDao {
     private static final String INSERT_PERSON = "INSERT INTO person (firstname,lastname,birthdate,address,phone,createddate) VALUES (?, ?, ?, ?, ?,?)";
     private static final String INSERT_SYSTEM_USER = "INSERT INTO sysuser (personid,usertypeid,countryid,languageid,username,userpassword,createddate) VALUES (?,?,?,?,?,?,?)";
 
+
     @Override
     public List<FirstStepModel> getAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

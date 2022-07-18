@@ -22,7 +22,7 @@ public class SimpleDate extends Thread {
     private long startTime;
     private long sessionTime;
     private long currentTime;
-    private long today;
+    private long timeCount;
     private boolean loginWin = false;
     private String time;
     private String date;
@@ -44,20 +44,19 @@ public class SimpleDate extends Thread {
 
     @Override
     public void run() {
-        while (!Thread.currentThread().isInterrupted()) {
+        while (!SimpleDate.currentThread().isInterrupted()) {
             try {
                 currentTime = System.currentTimeMillis();
-                today = System.currentTimeMillis();
                 time = simpleTimeFormat.format(currentTime);
-                date = simpleDateFormat.format(today);
+                date = simpleDateFormat.format(currentTime);
                 MainForm.getInstance().getDateLabel().setText(date);
                 MainForm.getInstance().getTimeLabel().setText(time);
-                Thread.sleep(1000);
+                SimpleDate.sleep(1000);
                 if (currentTime - startTime >= sessionTime && !loginWin) {
                     MainForm.getInstance().returnLoginForm();
                 }
             } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
+                SimpleDate.currentThread().interrupt();
             }
         }
     }

@@ -1,8 +1,5 @@
 package com.ugurtech.library.view;
 
-import com.ugurtech.library.controllerv2.FirstStepFormController;
-import com.ugurtech.library.modelv2.requestmodels.FirstStepModel;
-import com.ugurtech.library.persistance.user.UserDaoImpl;
 import com.ugurtech.library.service.date.SimpleDate;
 import com.ugurtech.library.view.book.AuthorForm;
 import com.ugurtech.library.view.book.AuthorSearchForm;
@@ -19,7 +16,6 @@ import com.ugurtech.library.view.book.PublisherForm;
 import com.ugurtech.library.view.bookborrowing.BorrowedBooksTable;
 import com.ugurtech.library.view.person.PersonForm;
 import com.ugurtech.library.view.person.PersonSearchForm;
-import com.ugurtech.library.view.user.FirstStepForm;
 import com.ugurtech.library.view.user.UserDetailsForm;
 import javax.swing.JLabel;
 
@@ -27,7 +23,6 @@ public final class MainForm extends MainFrame {
     // private String dPaneimage="/img/MEBLogo.png"; 
 
     private static MainForm mainForm;
-    private UserDaoImpl userDao;
 
     private MainForm() {
         initComponents();
@@ -40,10 +35,6 @@ public final class MainForm extends MainFrame {
         } else {
             return mainForm;
         }
-    }
-
-    public void setUserDao(UserDaoImpl userDao) {
-        this.userDao = userDao;
     }
 
     @SuppressWarnings("unchecked")
@@ -664,9 +655,6 @@ public final class MainForm extends MainFrame {
     }//GEN-LAST:event_topReadStudentsActionPerformed
 
     private void closeOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeOperationActionPerformed
-        if (!userDao.isClosed()) {
-            userDao.closeConnection();
-        }
         this.dispose();
         LoginForm.getInstance().dispose();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);

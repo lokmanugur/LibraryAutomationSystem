@@ -37,7 +37,6 @@ public class LoginFormController{
             loginForm.getInfolabel().setText("");
             MainForm.getInstance().getUserLabel().setText(sysUser.getFirstName()+" "+sysUser.getLastName());
             MainForm.getInstance().setVisible(true);
-            MainForm.getInstance().setUserDao(userDao);
             loginForm.setVisible(false);
             loginForm.getUserNameField().setText("");
             loginForm.getUserPaswordField().setText("");

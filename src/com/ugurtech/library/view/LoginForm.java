@@ -1,7 +1,5 @@
 package com.ugurtech.library.view;
 
-import com.ugurtech.library.controller.LoginFormController;
-import com.ugurtech.library.service.localization.Internationalization;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Graphics;
@@ -9,23 +7,19 @@ import javax.swing.ImageIcon;
 import javax.swing.*;
 
 public final class LoginForm extends JFrame {
-
-    private final LoginFormController loginFormController;
+    
     private static LoginForm loginForm;
 
     private LoginForm() {
         initComponents();
-        loginFormController = new LoginFormController(this);
         this.getUserNameField().setText("admin");
         this.getUserPaswordField().setText("admin");
     }
-
     public static LoginForm getInstance(){
-        if (loginForm == null) {
+        if(loginForm==null)
             return loginForm = new LoginForm();
-        } else {
+        else
             return loginForm;
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -68,11 +62,6 @@ public final class LoginForm extends JFrame {
 
                     userPaswordField.setBackground(new Color(0,0,0,0));
                     userPaswordField.setBorder(null);
-                    userPaswordField.addKeyListener(new java.awt.event.KeyAdapter() {
-                        public void keyReleased(java.awt.event.KeyEvent evt) {
-                            userPaswordFieldKeyReleased(evt);
-                        }
-                    });
 
                     javax.swing.GroupLayout passwordPanelLayout = new javax.swing.GroupLayout(passwordPanel);
                     passwordPanel.setLayout(passwordPanelLayout);
@@ -97,16 +86,6 @@ public final class LoginForm extends JFrame {
                     userNameField.setBackground(new Color(0,0,0,0));
                     userNameField.setBorder(null);
                     userNameField.setPreferredSize(new java.awt.Dimension(50, 20));
-                    userNameField.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                            userNameFieldActionPerformed(evt);
-                        }
-                    });
-                    userNameField.addKeyListener(new java.awt.event.KeyAdapter() {
-                        public void keyReleased(java.awt.event.KeyEvent evt) {
-                            userNameFieldKeyReleased(evt);
-                        }
-                    });
 
                     javax.swing.GroupLayout userNamePanelLayout = new javax.swing.GroupLayout(userNamePanel);
                     userNamePanel.setLayout(userNamePanelLayout);
@@ -128,35 +107,29 @@ public final class LoginForm extends JFrame {
                     userNameLable.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
                     userNameLable.setForeground(new java.awt.Color(255, 255, 255));
                     userNameLable.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-                    userNameLable.setText(Internationalization.getInstance().getLable("loginform.usernamelabel")
+                    userNameLable.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("loginform.usernamelabel")
                     );
 
                     passwordLable.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
                     passwordLable.setForeground(new java.awt.Color(255, 255, 255));
                     passwordLable.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-                    passwordLable.setText(Internationalization.getInstance().getLable("loginform.passwordlabel")
+                    passwordLable.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("loginform.passwordlabel")
                     );
 
                     infolabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-                    infolabel.setForeground(java.awt.Color.black);
                     infolabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                     infolabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
                     loginButton.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
                     loginButton.setForeground(new java.awt.Color(255, 255, 255));
                     loginButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/giris.png"))); // NOI18N
-                    loginButton.setText(Internationalization.getInstance().getLable("loginform.button"));
+                    loginButton.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("loginform.button"));
                     loginButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
                     loginButton.setBorderPainted(false);
                     loginButton.setFocusPainted(false);
                     loginButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
                     loginButton.setRolloverEnabled(false);
                     loginButton.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/girisClick.png"))); // NOI18N
-                    loginButton.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                            loginButtonActionPerformed(evt);
-                        }
-                    });
 
                     closeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/cikis.png"))); // NOI18N
                     closeButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -165,11 +138,6 @@ public final class LoginForm extends JFrame {
                     closeButton.setPreferredSize(new java.awt.Dimension(40, 40));
                     closeButton.setRolloverEnabled(false);
                     closeButton.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/cikisClick.png"))); // NOI18N
-                    closeButton.addMouseListener(new java.awt.event.MouseAdapter() {
-                        public void mouseClicked(java.awt.event.MouseEvent evt) {
-                            loginExit(evt);
-                        }
-                    });
 
                     javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
                     mainPanel.setLayout(mainPanelLayout);
@@ -232,26 +200,6 @@ public final class LoginForm extends JFrame {
                     setLocationRelativeTo(null);
                 }// </editor-fold>//GEN-END:initComponents
 
-    private void loginExit(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginExit
-        loginFormController.loginExit();
-    }//GEN-LAST:event_loginExit
-
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        userLogin();
-    }//GEN-LAST:event_loginButtonActionPerformed
-
-    private void userNameFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userNameFieldKeyReleased
-        enterKey(evt);
-    }//GEN-LAST:event_userNameFieldKeyReleased
-
-    private void userPaswordFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userPaswordFieldKeyReleased
-        enterKey(evt);
-    }//GEN-LAST:event_userPaswordFieldKeyReleased
-
-    private void userNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userNameFieldActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
     private javax.swing.JLabel infolabel;
@@ -264,17 +212,6 @@ public final class LoginForm extends JFrame {
     private javax.swing.JPanel userNamePanel;
     private javax.swing.JPasswordField userPaswordField;
     // End of variables declaration//GEN-END:variables
-
-    private void enterKey(java.awt.event.KeyEvent evt) {
-        infolabel.setText("");
-        if (evt.getKeyCode() == 10) {
-            userLogin();
-        }
-    }
-
-    private void userLogin() {
-        loginFormController.userEnter();
-    }
 
     public JButton getCloseButton() {
         return closeButton;
@@ -300,12 +237,52 @@ public final class LoginForm extends JFrame {
         this.loginButton = loginButton;
     }
 
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    public void setMainPanel(JPanel mainPanel) {
+        this.mainPanel = mainPanel;
+    }
+
+    public JLabel getPasswordLable() {
+        return passwordLable;
+    }
+
+    public void setPasswordLable(JLabel passwordLable) {
+        this.passwordLable = passwordLable;
+    }
+
+    public JPanel getPasswordPanel() {
+        return passwordPanel;
+    }
+
+    public void setPasswordPanel(JPanel passwordPanel) {
+        this.passwordPanel = passwordPanel;
+    }
+
     public JTextField getUserNameField() {
         return userNameField;
     }
 
     public void setUserNameField(JTextField userNameField) {
         this.userNameField = userNameField;
+    }
+
+    public JLabel getUserNameLable() {
+        return userNameLable;
+    }
+
+    public void setUserNameLable(JLabel userNameLable) {
+        this.userNameLable = userNameLable;
+    }
+
+    public JPanel getUserNamePanel() {
+        return userNamePanel;
+    }
+
+    public void setUserNamePanel(JPanel userNamePanel) {
+        this.userNamePanel = userNamePanel;
     }
 
     public JPasswordField getUserPaswordField() {
@@ -315,4 +292,5 @@ public final class LoginForm extends JFrame {
     public void setUserPaswordField(JPasswordField userPaswordField) {
         this.userPaswordField = userPaswordField;
     }
+
 }

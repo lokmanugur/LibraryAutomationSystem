@@ -21,6 +21,7 @@ import com.ugurtech.library.service.language.LanguageServiceImpl;
 import com.ugurtech.library.service.localization.Internationalization;
 import com.ugurtech.library.service.usertype.UserTypeService;
 import com.ugurtech.library.service.usertype.UserTypeServiceImpl;
+import com.ugurtech.library.service.validation.UserInfoMessages;
 import com.ugurtech.library.view.user.FirstStepForm;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -40,12 +41,15 @@ public class FirstStepFormController {
     private final LanguageService languageService = new LanguageServiceImpl(new LanguageDaoImpl());
     private final UserTypeService userTypeService = new UserTypeServiceImpl(new UserTypeDaoImpl());
     private final FirstStepService firstStepService = new FirstStepServiceImpl(new FirstStepDaoImpl());
+    private boolean saveFirstUserFlag;
 
     public FirstStepFormController(FirstStepForm firstStepForm, FirstStepModel firstStepModel) {
+        this.saveFirstUserFlag = true;
         this.firstStepForm = firstStepForm;
         this.firstStepModel = firstStepModel;
         initView();
         initController();
+        this.firstStepForm.setVisible(true);
     }
 
     public FirstStepForm getFirstStepForm() {
@@ -105,8 +109,9 @@ public class FirstStepFormController {
             UserTypeModel userType = (UserTypeModel) firstStepForm.getUserTypeComboBox().getSelectedItem();
             firstStepModel.setUserTypeId(userType.getUserTypeId());
         });
-        firstStepForm.getCancelButton1().addActionListener((java.awt.event.ActionEvent evt) -> {
-           System.exit(0);
+        firstStepForm.getCancelButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            System.exit(0);
+
         });
         firstStepForm.getSaveButton().addActionListener((java.awt.event.ActionEvent evt) -> {
             saveFirstUser();
@@ -128,15 +133,22 @@ public class FirstStepFormController {
     }
 
     private void saveFirstUser() {
-        firstStepModel.setFirstName(firstStepForm.getFirstNameTextField().getText());
-        firstStepModel.setLastName(firstStepForm.getSecondNameTextField().getText());
-        firstStepModel.setBirtDate(firstStepForm.getBirthDateChooser().getDate().getTime());
-        firstStepModel.setPhone(firstStepForm.getPhoneTextField().getText());
-        firstStepModel.setAddress(firstStepForm.getAddressTextArea().getText());
-        firstStepModel.setUserName(firstStepForm.getLoginNameTextField().getText());
-        firstStepModel.setPassword(String.valueOf(firstStepForm.getPasswordTextField().getPassword()));
-        firstStepService.add(firstStepModel);
+        
+        firstStepModel.setFirstName(UserInfoMessages.getInstance().emptyField(firstStepForm.getFirstNameLabel(), firstStepForm.getFirstNameTextField().getText()));
+        firstStepModel.setLastName(UserInfoMessages.getInstance().emptyField(firstStepForm.getSecondNameLabel(), firstStepForm.getSecondNameTextField().getText()));
+        firstStepModel.setPhone(UserInfoMessages.getInstance().emptyField(firstStepForm.getPhoneLabel(), firstStepForm.getPhoneTextField().getText()));
+        firstStepModel.setAddress(UserInfoMessages.getInstance().emptyField(firstStepForm.getAddressLabel(), firstStepForm.getAddressTextArea().getText()));
+        firstStepModel.setUserName(UserInfoMessages.getInstance().emptyField(firstStepForm.getLabelUserName(), firstStepForm.getLoginNameTextField().getText()));
+        firstStepModel.setPassword(UserInfoMessages.getInstance().emptyField(firstStepForm.getLabelPassword(), String.valueOf(firstStepForm.getPasswordTextField().getPassword())));
+        firstStepModel.setBirtDate(UserInfoMessages.getInstance().emptyField(firstStepForm.getBirthDateLabel(), firstStepForm.getBirthDateChooser().getDate()));
+        if(false) {
+            //firstStepService.add(firstStepModel);
+            UserInfoMessages.getInstance().showInfoMessages(Internationalization.getInstance().getLable("validation.message"));
+            System.exit(0);
+        }else{
+            firstStepForm.getCheckLabel().setForeground(Color.RED);
+            firstStepForm.getCheckLabel().setText(Internationalization.getInstance().getLable("message.for.blanck.fields"));
+        }
     }
 
-    
 }

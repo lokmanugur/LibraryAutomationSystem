@@ -134,15 +134,15 @@ public class FirstStepFormController {
 
     private void saveFirstUser() {
         
-        firstStepModel.setFirstName(UserInfoMessages.getInstance().emptyField(firstStepForm.getFirstNameLabel(), firstStepForm.getFirstNameTextField().getText()));
-        firstStepModel.setLastName(UserInfoMessages.getInstance().emptyField(firstStepForm.getSecondNameLabel(), firstStepForm.getSecondNameTextField().getText()));
+        firstStepModel.setFirstName(UserInfoMessages.getInstance().emptyField(firstStepForm.getFirstNameLabel(),firstStepForm.getFirstNameTextField().getText()));
+        firstStepModel.setLastName(UserInfoMessages.getInstance().emptyField(firstStepForm.getSecondNameLabel(),firstStepForm.getSecondNameTextField().getText()));
         firstStepModel.setPhone(UserInfoMessages.getInstance().emptyField(firstStepForm.getPhoneLabel(), firstStepForm.getPhoneTextField().getText()));
         firstStepModel.setAddress(UserInfoMessages.getInstance().emptyField(firstStepForm.getAddressLabel(), firstStepForm.getAddressTextArea().getText()));
         firstStepModel.setUserName(UserInfoMessages.getInstance().emptyField(firstStepForm.getLabelUserName(), firstStepForm.getLoginNameTextField().getText()));
         firstStepModel.setPassword(UserInfoMessages.getInstance().emptyField(firstStepForm.getLabelPassword(), String.valueOf(firstStepForm.getPasswordTextField().getPassword())));
         firstStepModel.setBirtDate(UserInfoMessages.getInstance().emptyField(firstStepForm.getBirthDateLabel(), firstStepForm.getBirthDateChooser().getDate()));
-        if(false) {
-            //firstStepService.add(firstStepModel);
+        if(true) {
+            
             UserInfoMessages.getInstance().showInfoMessages(Internationalization.getInstance().getLable("validation.message"));
             System.exit(0);
         }else{

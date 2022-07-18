@@ -5,12 +5,13 @@
  */
 package com.ugurtech.library.service.validation;
 
+
 import java.awt.Color;
 import java.awt.Component;
 import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
+import javax.validation.constraints.NotNull;
 /**
  *
  * @author ugur
@@ -60,7 +61,7 @@ public class UserInfoMessages {
         JOptionPane.showMessageDialog(parentComponent, message, title, JOptionPane.ERROR_MESSAGE);
     }
 
-    public String emptyField(JLabel label, String str) {
+    public String emptyField(JLabel label,@NotNull String str) {
         if (!str.equals("")) {
             label.setForeground(Color.black);
             return str;

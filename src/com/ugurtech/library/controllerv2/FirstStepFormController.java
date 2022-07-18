@@ -41,10 +41,8 @@ public class FirstStepFormController {
     private final LanguageService languageService = new LanguageServiceImpl(new LanguageDaoImpl());
     private final UserTypeService userTypeService = new UserTypeServiceImpl(new UserTypeDaoImpl());
     private final FirstStepService firstStepService = new FirstStepServiceImpl(new FirstStepDaoImpl());
-    private boolean saveFirstUserFlag;
 
     public FirstStepFormController(FirstStepForm firstStepForm, FirstStepModel firstStepModel) {
-        this.saveFirstUserFlag = true;
         this.firstStepForm = firstStepForm;
         this.firstStepModel = firstStepModel;
         initView();
@@ -67,12 +65,12 @@ public class FirstStepFormController {
     public void checkPassword() {
         boolean check = String.valueOf(firstStepForm.getPasswordTextField().getPassword()).equals(String.valueOf(firstStepForm.getPassMatchTextField().getPassword()));
         if (check) {
-            firstStepForm.getCheckLabel().setForeground(Color.BLACK);
-            firstStepForm.getCheckLabel().setText(Internationalization.getInstance().getLable("userformcontroller.password.match"));
+            firstStepForm.getLabelCheckPassword().setForeground(Color.BLACK);
+            firstStepForm.getLabelCheckPassword().setText(Internationalization.getInstance().getLable("userformcontroller.password.match"));
             firstStepForm.getSaveButton().setEnabled(true);
         } else {
-            firstStepForm.getCheckLabel().setForeground(Color.RED);
-            firstStepForm.getCheckLabel().setText(Internationalization.getInstance().getLable("userformcontroller.password.dont.match"));
+            firstStepForm.getLabelCheckPassword().setForeground(Color.RED);
+            firstStepForm.getLabelCheckPassword().setText(Internationalization.getInstance().getLable("userformcontroller.password.dont.match"));
             firstStepForm.getSaveButton().setEnabled(false);
         }
     }
@@ -126,29 +124,45 @@ public class FirstStepFormController {
         for (CountryModel countryModel : countryService.getAll()) {
             firstStepForm.getCountryComboBox().addItem(countryModel);
         }
+        
         for (LanguageModel languageModel : languageService.getAll()) {
             firstStepForm.getLanguageComboBox().addItem(languageModel);
         }
+        
         firstStepForm.getSaveButton().setEnabled(false);
+        setLanguage();
     }
 
     private void saveFirstUser() {
-        
-        firstStepModel.setFirstName(UserInfoMessages.getInstance().emptyField(firstStepForm.getFirstNameLabel(),firstStepForm.getFirstNameTextField().getText()));
-        firstStepModel.setLastName(UserInfoMessages.getInstance().emptyField(firstStepForm.getSecondNameLabel(),firstStepForm.getSecondNameTextField().getText()));
-        firstStepModel.setPhone(UserInfoMessages.getInstance().emptyField(firstStepForm.getPhoneLabel(), firstStepForm.getPhoneTextField().getText()));
-        firstStepModel.setAddress(UserInfoMessages.getInstance().emptyField(firstStepForm.getAddressLabel(), firstStepForm.getAddressTextArea().getText()));
-        firstStepModel.setUserName(UserInfoMessages.getInstance().emptyField(firstStepForm.getLabelUserName(), firstStepForm.getLoginNameTextField().getText()));
-        firstStepModel.setPassword(UserInfoMessages.getInstance().emptyField(firstStepForm.getLabelPassword(), String.valueOf(firstStepForm.getPasswordTextField().getPassword())));
-        firstStepModel.setBirtDate(UserInfoMessages.getInstance().emptyField(firstStepForm.getBirthDateLabel(), firstStepForm.getBirthDateChooser().getDate()));
-        if(true) {
-            
+        firstStepForm.getLabelCheckPassword().setText(Internationalization.getInstance().getLable("userformcontroller.password.match"));
+        firstStepModel.setFirstName(UserInfoMessages.getInstance().emptyField(firstStepForm.getFirstNameTextField().getText(),firstStepForm.getLabelFirstName(),firstStepForm.getLabelCheckPassword()));
+        firstStepModel.setLastName(UserInfoMessages.getInstance().emptyField(firstStepForm.getSecondNameTextField().getText(),firstStepForm.getLabelSecondName(),firstStepForm.getLabelCheckPassword()));
+        firstStepModel.setPhone(UserInfoMessages.getInstance().emptyField( firstStepForm.getPhoneTextField().getText(),firstStepForm.getLabelPhone(),firstStepForm.getLabelCheckPassword()));
+        firstStepModel.setAddress(UserInfoMessages.getInstance().emptyField( firstStepForm.getAddressTextArea().getText(),firstStepForm.getLabelAddress(),firstStepForm.getLabelCheckPassword()));
+        firstStepModel.setUserName(UserInfoMessages.getInstance().emptyField( firstStepForm.getLoginNameTextField().getText(),firstStepForm.getLabelUserName(),firstStepForm.getLabelCheckPassword()));
+        firstStepModel.setPassword(UserInfoMessages.getInstance().emptyField(String.valueOf(firstStepForm.getPasswordTextField().getPassword()),firstStepForm.getLabelPassword(),firstStepForm.getLabelCheckPassword()));
+        firstStepModel.setBirtDate(UserInfoMessages.getInstance().emptyField(firstStepForm.getBirthDateChooser().getDate(),firstStepForm.getLabelBirthDate(),firstStepForm.getLabelCheckPassword()));
+        if(Internationalization.getInstance().getLable("userformcontroller.password.match").equals(firstStepForm.getLabelCheckPassword().getText())) {
+            firstStepService.add(firstStepModel);
             UserInfoMessages.getInstance().showInfoMessages(Internationalization.getInstance().getLable("validation.message"));
             System.exit(0);
         }else{
-            firstStepForm.getCheckLabel().setForeground(Color.RED);
-            firstStepForm.getCheckLabel().setText(Internationalization.getInstance().getLable("message.for.blanck.fields"));
         }
+    }
+    private void setLanguage(){
+        firstStepForm.getLabelUserType().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelusertype"));
+        firstStepForm.getLabelUserName().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelfirstname"));
+        firstStepForm.getLabelSecondName().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelsecondname"));
+        firstStepForm.getLabelBirthDate().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelbirthdatechooser"));
+        firstStepForm.getLabelUserName().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelusename"));
+        firstStepForm.getLabelPhone().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelphone"));
+        firstStepForm.getLabelAddress().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labeladdress"));
+        firstStepForm.getLabelCountry().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelcountry"));
+        firstStepForm.getLabelLanguage().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labellanguage"));
+        firstStepForm.getLabelPassword().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelpassword"));
+        firstStepForm.getLabelRepeatPassword().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelrepeatpassword"));
+        firstStepForm.getSaveButton().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.savebutton"));
+        firstStepForm.getCancelButton().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.cancelbutton"));
     }
 
 }

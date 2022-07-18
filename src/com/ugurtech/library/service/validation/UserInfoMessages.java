@@ -6,12 +6,12 @@
 package com.ugurtech.library.service.validation;
 
 
+import com.ugurtech.library.service.localization.Internationalization;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.validation.constraints.NotNull;
 /**
  *
  * @author ugur
@@ -61,23 +61,30 @@ public class UserInfoMessages {
         JOptionPane.showMessageDialog(parentComponent, message, title, JOptionPane.ERROR_MESSAGE);
     }
 
-    public String emptyField(JLabel label,@NotNull String str) {
+    public String emptyField( String str,JLabel... label) {
         if (!str.equals("")) {
-            label.setForeground(Color.black);
+            label[0].setForeground(Color.black);
             return str;
         } else {
-            label.setForeground(Color.red);
+            label[0].setForeground(Color.red);
+            setPassMatchLabel(label[1]);
             return "";
         }
     }
 
-    public long emptyField(JLabel label, Date date) {
+    public long emptyField(Date date,JLabel... label) {
         if (date != null) {
-            label.setForeground(Color.black);
+            label[0].setForeground(Color.black);
             return date.getTime();
         } else {
-            label.setForeground(Color.red);
+            label[0].setForeground(Color.red);
+            setPassMatchLabel(label[1]);
             return 0;
         }
+    }
+    
+    private void setPassMatchLabel(JLabel label){
+        label.setForeground(Color.RED);
+        label.setText(Internationalization.getInstance().getLable("message.for.blanck.fields"));
     }
 }

@@ -16,7 +16,7 @@ public class CurrentUserModel extends PersonModel {
     private String userPassword;
     private String language;
     private String region;
-    private int sessionTime=60*60*5;
+    private long sessionTime;
     private static CurrentUserModel currentUser;
     
     private CurrentUserModel(){}
@@ -68,11 +68,11 @@ public class CurrentUserModel extends PersonModel {
         this.region = region;
     }
 
-    public int getSessionTime() {
+    public long getSessionTime() {
         return sessionTime;
     }
 
-    public void setSessionTime(int sessionTime) {
+    public void setSessionTime(long sessionTime) {
         this.sessionTime = sessionTime;
     } 
 }

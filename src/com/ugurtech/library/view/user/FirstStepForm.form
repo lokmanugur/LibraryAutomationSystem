@@ -62,16 +62,16 @@
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="labelPassword" max="32767" attributes="0"/>
-                      <Component id="addressLabel" alignment="1" max="32767" attributes="0"/>
-                      <Component id="phoneLabel" alignment="1" max="32767" attributes="0"/>
+                      <Component id="labelAddress" alignment="1" max="32767" attributes="0"/>
+                      <Component id="labelPhone" alignment="1" max="32767" attributes="0"/>
                       <Component id="labelUserName" alignment="1" max="32767" attributes="0"/>
-                      <Component id="birthDateLabel" alignment="1" max="32767" attributes="0"/>
-                      <Component id="secondNameLabel" alignment="1" max="32767" attributes="0"/>
-                      <Component id="firstNameLabel" alignment="1" max="32767" attributes="0"/>
+                      <Component id="labelBirthDate" alignment="1" max="32767" attributes="0"/>
+                      <Component id="labelSecondName" alignment="1" max="32767" attributes="0"/>
+                      <Component id="labelFirstName" alignment="1" max="32767" attributes="0"/>
                       <Component id="labelUserType" alignment="1" pref="115" max="32767" attributes="0"/>
                       <Component id="labelRepeatPassword" max="32767" attributes="0"/>
-                      <Component id="languageLabel" max="32767" attributes="0"/>
-                      <Component id="countryLabel" alignment="1" max="32767" attributes="0"/>
+                      <Component id="labelLanguage" max="32767" attributes="0"/>
+                      <Component id="labelCountry" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -87,7 +87,7 @@
                       <Component id="birthDateChooser" alignment="0" max="32767" attributes="0"/>
                       <Component id="secondNameTextField" alignment="0" max="32767" attributes="0"/>
                       <Component id="firstNameTextField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="checkLabel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="labelCheckPassword" alignment="0" max="32767" attributes="0"/>
                       <Component id="userTypeComboBox" alignment="0" max="32767" attributes="0"/>
                       <Component id="passMatchTextField" alignment="0" max="32767" attributes="0"/>
                       <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
@@ -108,17 +108,17 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="firstNameTextField" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="firstNameLabel" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="labelFirstName" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="secondNameTextField" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="secondNameLabel" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="labelSecondName" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="birthDateChooser" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="birthDateLabel" max="32767" attributes="0"/>
+                      <Component id="labelBirthDate" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -128,22 +128,22 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="phoneTextField" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="phoneLabel" max="32767" attributes="0"/>
+                      <Component id="labelPhone" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="addressLabel" max="32767" attributes="0"/>
+                      <Component id="labelAddress" max="32767" attributes="0"/>
                       <Component id="jScrollPane2" pref="96" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="countryLabel" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="labelCountry" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="countryComboBox" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="languageComboBox" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="languageLabel" max="32767" attributes="0"/>
+                      <Component id="labelLanguage" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -156,7 +156,7 @@
                       <Component id="passMatchTextField" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="checkLabel" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="labelCheckPassword" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="saveButton" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -197,7 +197,7 @@
         </Component>
         <Component class="javax.swing.JPasswordField" name="passMatchTextField">
         </Component>
-        <Component class="javax.swing.JLabel" name="checkLabel">
+        <Component class="javax.swing.JLabel" name="labelCheckPassword">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Ubuntu" size="14" style="1"/>
@@ -226,14 +226,14 @@
         </Component>
         <Component class="javax.swing.JTextField" name="secondNameTextField">
         </Component>
-        <Component class="javax.swing.JLabel" name="secondNameLabel">
+        <Component class="javax.swing.JLabel" name="labelSecondName">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Soyad:"/>
             <Property name="horizontalTextPosition" type="int" value="10"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="firstNameLabel">
+        <Component class="javax.swing.JLabel" name="labelFirstName">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Ad&#x131;:"/>
@@ -265,21 +265,21 @@
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JDateChooser()"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="birthDateLabel">
+        <Component class="javax.swing.JLabel" name="labelBirthDate">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Do&#x11f;um y&#x131;l&#x131;:"/>
             <Property name="horizontalTextPosition" type="int" value="10"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="phoneLabel">
+        <Component class="javax.swing.JLabel" name="labelPhone">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Telefon:"/>
             <Property name="horizontalTextPosition" type="int" value="10"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="addressLabel">
+        <Component class="javax.swing.JLabel" name="labelAddress">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Adres:"/>
@@ -300,7 +300,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;LanguageModel&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="languageLabel">
+        <Component class="javax.swing.JLabel" name="labelLanguage">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Language"/>
@@ -311,7 +311,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;CountryModel&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="countryLabel">
+        <Component class="javax.swing.JLabel" name="labelCountry">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Country"/>

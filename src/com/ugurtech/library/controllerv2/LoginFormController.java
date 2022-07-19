@@ -101,7 +101,7 @@ public class LoginFormController {
         if(loginService.checkExistUsers()){
             loginForm.setVisible(true);}
         else{
-            new FirstStepFormController(new FirstStepForm(), new FirstStepModel());
+            new FirstStepFormController(new FirstStepForm(), new FirstStepModel()).getClass();
         }
     }
 }

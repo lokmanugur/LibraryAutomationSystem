@@ -8,20 +8,15 @@ import javax.swing.*;
 
 public final class LoginForm extends JFrame {
     
-    private static LoginForm loginForm;
+    public static final LoginForm INSTANCE = new LoginForm();
 
     private LoginForm() {
         initComponents();
         this.getUserNameField().setText("admin");
         this.getUserPaswordField().setText("admin");
     }
-    public static LoginForm getInstance(){
-        if(loginForm==null)
-            return loginForm = new LoginForm();
-        else
-            return loginForm;
-    }
 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

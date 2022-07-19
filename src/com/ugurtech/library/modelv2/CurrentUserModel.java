@@ -17,16 +17,9 @@ public class CurrentUserModel extends PersonModel {
     private String language;
     private String region;
     private long sessionTime;
-    private static CurrentUserModel currentUser;
+    public static final CurrentUserModel INSTANCE = new CurrentUserModel();
     
     private CurrentUserModel(){}
-    
-    public static CurrentUserModel getInstance(){
-        if(currentUser == null)
-            return currentUser = new CurrentUserModel();        
-        else
-           return currentUser;
-    }
     
     public String getUserName() {
         return userName;

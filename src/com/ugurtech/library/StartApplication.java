@@ -32,9 +32,7 @@ public class StartApplication {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            LoginForm loginForm = LoginForm.getInstance();
-            LoginFormController loginFormController = new LoginFormController(loginForm,CurrentUserModel.getInstance());
-
+            new LoginFormController(LoginForm.INSTANCE,CurrentUserModel.INSTANCE).getClass();
         });
     }
 }

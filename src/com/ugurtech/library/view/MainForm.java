@@ -656,7 +656,7 @@ public final class MainForm extends MainFrame {
 
     private void closeOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeOperationActionPerformed
         this.dispose();
-        LoginForm.getInstance().dispose();
+        LoginForm.INSTANCE.dispose();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     }//GEN-LAST:event_closeOperationActionPerformed
 
@@ -785,7 +785,7 @@ public final class MainForm extends MainFrame {
     public void returnLoginForm() {
         SimpleDate.getInstance().setLoginWin(true);
         this.setVisible(false);
-        LoginForm.getInstance().setVisible(true);
+        LoginForm.INSTANCE.setVisible(true);
     }
 
 }

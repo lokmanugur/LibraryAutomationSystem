@@ -227,12 +227,12 @@ public final class BorrowedBooksTable extends JInternalFrame {
 
     private void retunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retunButtonActionPerformed
         
-        MainForm.getInstance().addDesktopPane(TakenBackForm.getInstance());
+        MainForm.INSTANCE.addDesktopPane(TakenBackForm.getInstance());
         
     }//GEN-LAST:event_retunButtonActionPerformed
 
     private void borrowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrowButtonActionPerformed
-        MainForm.getInstance().addDesktopPane(BookBorrowingForm.getInstance());
+        MainForm.INSTANCE.addDesktopPane(BookBorrowingForm.getInstance());
     }//GEN-LAST:event_borrowButtonActionPerformed
 
     public void getAllBorrowedBooks(){

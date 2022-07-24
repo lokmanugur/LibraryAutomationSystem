@@ -494,7 +494,7 @@ public final class BookBorrowingForm extends JInternalFrame {
     }//GEN-LAST:event_removeBookButtonActionPerformed
 
     private void addPersonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPersonButtonActionPerformed
-       MainForm.getInstance().addDesktopPane(StudentForm.getInstance());
+       MainForm.INSTANCE.addDesktopPane(StudentForm.getInstance());
        clearBookFeatureField();
     }//GEN-LAST:event_addPersonButtonActionPerformed
 

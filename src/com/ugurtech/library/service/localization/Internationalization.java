@@ -15,10 +15,11 @@ import java.util.ResourceBundle;
  */
 public class Internationalization {
 
+    public static final Internationalization INSTANCE = new Internationalization();
     private static final String BASE_NAME = "resources/localization/MessagesBundle";
     private Locale languageCountry;
     private final ResourceBundle messages;
-    private static Internationalization internationalization;
+    
 
     private Internationalization() {
        // setLocaleCountry("en", "US");
@@ -26,14 +27,6 @@ public class Internationalization {
             languageCountry = Locale.getDefault();
         } else {}
         messages = ResourceBundle.getBundle(BASE_NAME, languageCountry);
-    }
-
-    public static Internationalization getInstance() {
-        if (internationalization == null) {
-            return internationalization = new Internationalization();
-        } else {
-            return internationalization;
-        }
     }
 
     public String getLable(String label) {

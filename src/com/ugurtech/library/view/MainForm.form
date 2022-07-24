@@ -6,16 +6,12 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="fileMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;mainform.topmenubar.filemenu&quot;)&#xd;&#xa;" type="code"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="File"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="closeOperation">
               <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;mainform.topmenubar.filemenu.closeoperation&quot;)&#xd;&#xa;" type="code"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Close"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="closeOperationActionPerformed"/>
@@ -28,9 +24,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="settingsMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;mainform.topmenubar.settingsmenu&quot;)&#xd;&#xa;" type="code"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="Settings"/>
             <Property name="horizontalTextPosition" type="int" value="10"/>
           </Properties>
           <SubComponents>
@@ -39,9 +33,7 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+Alt+D"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;mainform.topmenubar.settingsmenu.databasemenuitem&quot;)" type="code"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Database"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="databaseMenuItemActionPerformed"/>
@@ -54,9 +46,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-      <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;mainform.topmenubar.label&quot;)&#xd;&#xa;" type="code"/>
-    </Property>
+    <Property name="title" type="java.lang.String" value="Library Automaion System"/>
   </Properties>
   <AccessibilityProperties>
     <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
@@ -174,10 +164,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
-                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.bookbar&quot;)" type="code"/>
-                    </Property>
+                  <JTabbedPaneConstraints tabName="Books">
+                    <Property name="tabTitle" type="java.lang.String" value="Books"/>
                     <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/resources/img/bookshelf64.png"/>
                     </Property>
@@ -225,9 +213,7 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="publisherButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.bookbar.bookpanel.publisherbutton&quot;)" type="code"/>
-                        </Property>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Publisher&lt;br&gt;Table&lt;/center&gt;&lt;/html&gt;"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -247,9 +233,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="authorTableButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.bookbar.bookpanel.authortablebutton&quot;)&#xd;&#xa;" type="code"/>
-                        </Property>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Author&lt;br&gt;Table&lt;/center&gt;&lt;/html&gt;"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -269,9 +253,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="authorButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.bookbar.bookpanel.authorbutton&quot;)&#xd;&#xa;" type="code"/>
-                        </Property>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Add&lt;br&gt;Author&lt;/center&gt;&lt;/html&gt;"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -291,9 +273,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="bookTypeButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.bookbar.bookpanel.booktypebutton&quot;)&#xd;&#xa;" type="code"/>
-                        </Property>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Books Type&lt;br&gt;Table&lt;/center&gt;&lt;/html&gt;"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -313,9 +293,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="bookTable">
                       <Properties>
-                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.bookbar.bookpanel.booktable&quot;)&#xd;&#xa;" type="code"/>
-                        </Property>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Books&lt;br&gt;Table&lt;/center&gt;&lt;/html&gt;"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -335,9 +313,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="addBook">
                       <Properties>
-                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.bookbar.bookpanel.addbook&quot;)&#xd;&#xa;" type="code"/>
-                        </Property>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Add&lt;br&gt;Book&lt;/center&gt;&lt;/html&gt;"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -357,9 +333,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="takenBooksTableButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.bookbar.bookpanel.takenbooktablebutton&quot;)&#xd;&#xa;" type="code"/>
-                        </Property>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Borrowed&lt;br&gt;Book Table&lt;/center&gt;&lt;/html&gt;"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -387,10 +361,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
-                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.studentbar&quot;)" type="code"/>
-                    </Property>
+                  <JTabbedPaneConstraints tabName="Students">
+                    <Property name="tabTitle" type="java.lang.String" value="Students"/>
                     <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/resources/img/graduated64.png"/>
                     </Property>
@@ -428,9 +400,7 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="studentTable">
                       <Properties>
-                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.studentbar.studentpanel.studenttable&quot;)" type="code"/>
-                        </Property>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Students&lt;br&gt;Table&lt;/center&gt;&lt;/html&gt;"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -450,9 +420,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="studentForm">
                       <Properties>
-                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.studentbar.studentpanel.studentform&quot;)&#xd;&#xa;" type="code"/>
-                        </Property>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Add&lt;br&gt;Student&lt;/center&gt;&lt;/html&gt;"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -480,10 +448,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
-                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.schoolbar&quot;)&#xd;&#xa;" type="code"/>
-                    </Property>
+                  <JTabbedPaneConstraints tabName="Schools">
+                    <Property name="tabTitle" type="java.lang.String" value="Schools"/>
                     <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/resources/img/school64.png"/>
                     </Property>
@@ -513,9 +479,7 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="schoolForm">
                       <Properties>
-                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.schoolbar.schoolpanel.schoolform&quot;)" type="code"/>
-                        </Property>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;School&lt;br&gt;Table&lt;/center&gt;&lt;/html&gt;"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[110, 70]"/>
@@ -544,10 +508,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
-                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.userbar&quot;)" type="code"/>
-                    </Property>
+                  <JTabbedPaneConstraints tabName="Users">
+                    <Property name="tabTitle" type="java.lang.String" value="Users"/>
                     <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/resources/img/profile64.png"/>
                     </Property>
@@ -589,9 +551,7 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="userForm">
                       <Properties>
-                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.userbar.userpanel2.userform&quot;)&#xd;&#xa;" type="code"/>
-                        </Property>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Add&lt;br&gt;User&lt;/center&gt;&lt;/html&gt;"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -611,9 +571,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="personTableButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.userbar.userpanel2.persontablebutton&quot;)" type="code"/>
-                        </Property>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Person&lt;br&gt;Table&lt;center&gt;&lt;html&gt;"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -633,9 +591,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="userDetails">
                       <Properties>
-                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.userbar.userpanel2.userdetail&quot;)" type="code"/>
-                        </Property>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;User&lt;br&gt;Details&lt;/center&gt;&lt;/html&gt;"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -655,9 +611,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="userTable">
                       <Properties>
-                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.userbar.userpanel2.usertable&quot;)" type="code"/>
-                        </Property>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;User&lt;br&gt;Table&lt;/center&gt;&lt;/html&gt;"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -677,9 +631,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="personFormButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.userbar.userpanel2.personformbutton&quot;)" type="code"/>
-                        </Property>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Add&lt;br&gt;Person&lt;/center&gt;&lt;/html&gt;"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -707,10 +659,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
-                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.statisticsbar&quot;)" type="code"/>
-                    </Property>
+                  <JTabbedPaneConstraints tabName="Statistics">
+                    <Property name="tabTitle" type="java.lang.String" value="Statistics"/>
                     <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/resources/img/statistics64.png"/>
                     </Property>
@@ -749,9 +699,7 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="topReadBooks">
                       <Properties>
-                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.statisticsbar.statisticspanel.topreadbooks&quot;)" type="code"/>
-                        </Property>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Top Read&lt;br&gt;Books&lt;/center&gt;&lt;/html&gt;"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[110, 70]"/>
@@ -766,9 +714,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="topReadStudents">
                       <Properties>
-                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.statisticsbar.statisticspanel.topreadstudents&quot;)" type="code"/>
-                        </Property>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Top Reader&lt;br&gt;Students&lt;/center&gt;&lt;/html&gt;"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[110, 70]"/>
@@ -791,10 +737,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
-                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;userpanel.tabbpane.settingsbar&quot;)" type="code"/>
-                    </Property>
+                  <JTabbedPaneConstraints tabName="Settings">
+                    <Property name="tabTitle" type="java.lang.String" value="Settings"/>
                     <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/resources/img/settings64.png"/>
                     </Property>

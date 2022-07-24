@@ -35,26 +35,26 @@ public class LoginFormController{
         sysUser.setUserPassword(String.valueOf(loginForm.getUserPaswordField().getPassword()));
         if(userDao.checkUser(sysUser)){
             loginForm.getInfolabel().setText("");
-            MainForm.getInstance().getUserLabel().setText(sysUser.getFirstName()+" "+sysUser.getLastName());
-            MainForm.getInstance().setVisible(true);
+            MainForm.INSTANCE.getUserLabel().setText(sysUser.getFirstName()+" "+sysUser.getLastName());
+            MainForm.INSTANCE.setVisible(true);
             loginForm.setVisible(false);
             loginForm.getUserNameField().setText("");
             loginForm.getUserPaswordField().setText("");
-            SimpleDate.getInstance().setLoginWin(false);
-            SimpleDate.getInstance().setSessionTime(sysUser.getSessionTime());
-            SimpleDate.getInstance().setTimeStart();
+            SimpleDate.INSTANCE.setLoginWin(false);
+            SimpleDate.INSTANCE.setSessionTime(sysUser.getSessionTime());
+            SimpleDate.INSTANCE.setTimeStart();
         } else {
-            loginForm.getInfolabel().setText(Internationalization.getInstance().getLable("loginform.infolabel"));
+            loginForm.getInfolabel().setText(Internationalization.INSTANCE.getLable("loginform.infolabel"));
         }
     }
     
     public void loginExit(){
-        SimpleDate.getInstance().interrupt();
+        SimpleDate.INSTANCE.interrupt();
         if(!userDao.isClosed()){
         } else {
             userDao.closeConnection();
         }
         loginForm.dispose();
-        MainForm.getInstance().dispose();
+        MainForm.INSTANCE.dispose();
     }
 }

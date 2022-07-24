@@ -31,7 +31,7 @@ public class LoginDaoImpl extends DaoAbstract implements LoginDao{
             + "p.lastname as Soyadı,u.usertypename as Kullanıcı_Tipi,s.createddate as Oluşturma_Tarihi,"
             + "s.lastupdate as Son_Güncelleme_tarihi "
             + "FROM sysuser s, usertype u,person p ";
-    private static final String USER_LOGIN = "SELECT s.sysuserid,s.personid,s.username,s.userpassword,p.firstname,p.lastname,p.phone,p.address,p.birthdate,s.createddate,s.lastupdate "
+    private static final String USER_LOGIN = "SELECT s.sysuserid,s.personid,s.username,s.userpassword,p.firstname,p.lastname,p.phone,p.address,p.birthdate,s.createddate,s.lastupdate,s.sessiontime "
                 + "FROM sysuser s, person p ";
     private static final String EXIST_USERS = "SELECT * FROM sysuser";
     
@@ -93,6 +93,7 @@ public class LoginDaoImpl extends DaoAbstract implements LoginDao{
                 currentUser.setAddress(resultSet.getString("address"));
                 currentUser.setCreatedDate(resultSet.getDate("createddate").getTime());
                 currentUser.setLastUpdate(resultSet.getDate("lastupdate").getTime());
+                currentUser.setSessionTime(resultSet.getInt("sessiontime"));
                 return true;
             } else {
                 return false;

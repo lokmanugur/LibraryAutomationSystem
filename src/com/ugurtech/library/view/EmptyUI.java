@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package com.ugurtech.library.view;
-import java.util.Locale;
 import javax.swing.JInternalFrame;
 
 /**
@@ -13,17 +12,10 @@ import javax.swing.JInternalFrame;
  */
 public class EmptyUI extends JInternalFrame {
 
-    private static EmptyUI emptyUI;
+    public static final EmptyUI emptyUI = new EmptyUI();
     private EmptyUI() {
         initComponents();
         setLocation(getWidth()/2, getHeight()/10);
-    }
-    
-    public static EmptyUI getInstance(){
-        if(emptyUI==null)
-            return emptyUI= new EmptyUI();
-        else
-            return emptyUI;
     }
 
     /**
@@ -39,17 +31,19 @@ public class EmptyUI extends JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Boş Form");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setName(""); // NOI18N
+        setVisible(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 598, Short.MAX_VALUE)
+            .addGap(0, 611, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGap(0, 366, Short.MAX_VALUE)
         );
 
         pack();

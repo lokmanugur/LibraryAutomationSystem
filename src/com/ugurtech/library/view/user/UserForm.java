@@ -248,7 +248,7 @@ public final class UserForm extends JInternalFrame {
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void cancelButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButton1ActionPerformed
-        MainForm.getInstance().addDesktopPane(PersonForm.getInstance());
+        MainForm.INSTANCE.addDesktopPane(PersonForm.getInstance());
     }//GEN-LAST:event_cancelButton1ActionPerformed
 
     private void personComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_personComboBoxPopupMenuWillBecomeVisible

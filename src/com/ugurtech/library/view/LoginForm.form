@@ -54,7 +54,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace pref="61" max="32767" attributes="0"/>
+                  <EmptySpace pref="66" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -211,9 +211,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;loginform.usernamelabel&quot;)&#xa;    " type="code"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="User Name"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="passwordLable">
@@ -225,9 +223,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;loginform.passwordlabel&quot;)&#xa;    " type="code"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="Password"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="infolabel">
@@ -250,9 +246,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/resources/images/giris.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="com.ugurtech.library.service.localization.Internationalization.getInstance().getLable(&quot;loginform.button&quot;)" type="code"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="Login"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                 <EmptyBorder/>

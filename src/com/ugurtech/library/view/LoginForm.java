@@ -102,14 +102,12 @@ public final class LoginForm extends JFrame {
                     userNameLable.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
                     userNameLable.setForeground(new java.awt.Color(255, 255, 255));
                     userNameLable.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-                    userNameLable.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("loginform.usernamelabel")
-                    );
+                    userNameLable.setText("User Name");
 
                     passwordLable.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
                     passwordLable.setForeground(new java.awt.Color(255, 255, 255));
                     passwordLable.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-                    passwordLable.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("loginform.passwordlabel")
-                    );
+                    passwordLable.setText("Password");
 
                     infolabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
                     infolabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -118,7 +116,7 @@ public final class LoginForm extends JFrame {
                     loginButton.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
                     loginButton.setForeground(new java.awt.Color(255, 255, 255));
                     loginButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/giris.png"))); // NOI18N
-                    loginButton.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("loginform.button"));
+                    loginButton.setText("Login");
                     loginButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
                     loginButton.setBorderPainted(false);
                     loginButton.setFocusPainted(false);
@@ -139,7 +137,7 @@ public final class LoginForm extends JFrame {
                     mainPanelLayout.setHorizontalGroup(
                         mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(mainPanelLayout.createSequentialGroup()
-                            .addContainerGap(61, Short.MAX_VALUE)
+                            .addContainerGap(66, Short.MAX_VALUE)
                             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                                     .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)

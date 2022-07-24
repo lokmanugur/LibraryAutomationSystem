@@ -22,19 +22,11 @@ import javax.swing.JLabel;
 public final class MainForm extends MainFrame {
     // private String dPaneimage="/img/MEBLogo.png"; 
 
-    private static MainForm mainForm;
+    public static final MainForm INSTANCE = new MainForm();
 
     private MainForm() {
         initComponents();
         setDesktopPane(desktopPane);
-    }
-
-    public static MainForm getInstance() {
-        if (mainForm == null) {
-            return mainForm = new MainForm();
-        } else {
-            return mainForm;
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -83,8 +75,7 @@ public final class MainForm extends MainFrame {
         databaseMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("mainform.topmenubar.label")
-        );
+        setTitle("Library Automaion System");
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 formMouseEntered(evt);
@@ -114,10 +105,9 @@ public final class MainForm extends MainFrame {
         tabbPane.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         tabbPane.setPreferredSize(new java.awt.Dimension(1044, 148));
 
-        bookBar.setFloatable(false);
         bookBar.setRollover(true);
 
-        publisherButton.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.publisherbutton"));
+        publisherButton.setText("<html><center>Publisher<br>Table</center></html>");
         publisherButton.setFocusable(false);
         publisherButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         publisherButton.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -130,8 +120,7 @@ public final class MainForm extends MainFrame {
             }
         });
 
-        authorTableButton.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.authortablebutton")
-        );
+        authorTableButton.setText("<html><center>Author<br>Table</center></html>");
         authorTableButton.setFocusable(false);
         authorTableButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         authorTableButton.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -144,8 +133,7 @@ public final class MainForm extends MainFrame {
             }
         });
 
-        authorButton.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.authorbutton")
-        );
+        authorButton.setText("<html><center>Add<br>Author</center></html>");
         authorButton.setFocusable(false);
         authorButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         authorButton.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -158,8 +146,7 @@ public final class MainForm extends MainFrame {
             }
         });
 
-        bookTypeButton.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.booktypebutton")
-        );
+        bookTypeButton.setText("<html><center>Books Type<br>Table</center></html>");
         bookTypeButton.setFocusable(false);
         bookTypeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         bookTypeButton.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -172,8 +159,7 @@ public final class MainForm extends MainFrame {
             }
         });
 
-        bookTable.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.booktable")
-        );
+        bookTable.setText("<html><center>Books<br>Table</center></html>");
         bookTable.setFocusable(false);
         bookTable.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         bookTable.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -186,8 +172,7 @@ public final class MainForm extends MainFrame {
             }
         });
 
-        addBook.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.addbook")
-        );
+        addBook.setText("<html><center>Add<br>Book</center></html>");
         addBook.setFocusable(false);
         addBook.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         addBook.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -200,8 +185,7 @@ public final class MainForm extends MainFrame {
             }
         });
 
-        takenBooksTableButton.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.takenbooktablebutton")
-        );
+        takenBooksTableButton.setText("<html><center>Borrowed<br>Book Table</center></html>");
         takenBooksTableButton.setFocusable(false);
         takenBooksTableButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         takenBooksTableButton.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -252,12 +236,11 @@ public final class MainForm extends MainFrame {
 
         bookBar.add(bookPanel);
 
-        tabbPane.addTab(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar"), new javax.swing.ImageIcon(getClass().getResource("/resources/img/bookshelf64.png")), bookBar); // NOI18N
+        tabbPane.addTab("Books", new javax.swing.ImageIcon(getClass().getResource("/resources/img/bookshelf64.png")), bookBar); // NOI18N
 
-        studentBar.setFloatable(false);
         studentBar.setRollover(true);
 
-        studentTable.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.studentbar.studentpanel.studenttable"));
+        studentTable.setText("<html><center>Students<br>Table</center></html>");
         studentTable.setFocusable(false);
         studentTable.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         studentTable.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -270,8 +253,7 @@ public final class MainForm extends MainFrame {
             }
         });
 
-        studentForm.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.studentbar.studentpanel.studentform")
-        );
+        studentForm.setText("<html><center>Add<br>Student</center></html>");
         studentForm.setFocusable(false);
         studentForm.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         studentForm.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -310,12 +292,11 @@ public final class MainForm extends MainFrame {
 
         studentBar.add(studentPanel);
 
-        tabbPane.addTab(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.studentbar"), new javax.swing.ImageIcon(getClass().getResource("/resources/img/graduated64.png")), studentBar); // NOI18N
+        tabbPane.addTab("Students", new javax.swing.ImageIcon(getClass().getResource("/resources/img/graduated64.png")), studentBar); // NOI18N
 
-        schoolBar.setFloatable(false);
         schoolBar.setRollover(true);
 
-        schoolForm.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.schoolbar.schoolpanel.schoolform"));
+        schoolForm.setText("<html><center>School<br>Table</center></html>");
         schoolForm.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         schoolForm.setMaximumSize(new java.awt.Dimension(110, 70));
         schoolForm.setMinimumSize(new java.awt.Dimension(110, 70));
@@ -342,14 +323,11 @@ public final class MainForm extends MainFrame {
 
         schoolBar.add(schoolPanel);
 
-        tabbPane.addTab(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.schoolbar")
-            , new javax.swing.ImageIcon(getClass().getResource("/resources/img/school64.png")), schoolBar); // NOI18N
+        tabbPane.addTab("Schools", new javax.swing.ImageIcon(getClass().getResource("/resources/img/school64.png")), schoolBar); // NOI18N
 
-        userBar.setFloatable(false);
         userBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        userForm.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.userform")
-        );
+        userForm.setText("<html><center>Add<br>User</center></html>");
         userForm.setFocusable(false);
         userForm.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         userForm.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -362,7 +340,7 @@ public final class MainForm extends MainFrame {
             }
         });
 
-        personTableButton.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.persontablebutton"));
+        personTableButton.setText("<html><center>Person<br>Table<center><html>");
         personTableButton.setFocusable(false);
         personTableButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         personTableButton.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -375,7 +353,7 @@ public final class MainForm extends MainFrame {
             }
         });
 
-        userDetails.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.userdetail"));
+        userDetails.setText("<html><center>User<br>Details</center></html>");
         userDetails.setFocusable(false);
         userDetails.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         userDetails.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -388,7 +366,7 @@ public final class MainForm extends MainFrame {
             }
         });
 
-        userTable.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.usertable"));
+        userTable.setText("<html><center>User<br>Table</center></html>");
         userTable.setFocusable(false);
         userTable.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         userTable.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -401,7 +379,7 @@ public final class MainForm extends MainFrame {
             }
         });
 
-        personFormButton.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.personformbutton"));
+        personFormButton.setText("<html><center>Add<br>Person</center></html>");
         personFormButton.setFocusable(false);
         personFormButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         personFormButton.setMaximumSize(new java.awt.Dimension(110, 70));
@@ -446,12 +424,11 @@ public final class MainForm extends MainFrame {
 
         userBar.add(userPanel2);
 
-        tabbPane.addTab(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.userbar"), new javax.swing.ImageIcon(getClass().getResource("/resources/img/profile64.png")), userBar); // NOI18N
+        tabbPane.addTab("Users", new javax.swing.ImageIcon(getClass().getResource("/resources/img/profile64.png")), userBar); // NOI18N
 
-        statisticsBar.setFloatable(false);
         statisticsBar.setRollover(true);
 
-        topReadBooks.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.statisticsbar.statisticspanel.topreadbooks"));
+        topReadBooks.setText("<html><center>Top Read<br>Books</center></html>");
         topReadBooks.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         topReadBooks.setMaximumSize(new java.awt.Dimension(110, 70));
         topReadBooks.setMinimumSize(new java.awt.Dimension(110, 70));
@@ -461,7 +438,7 @@ public final class MainForm extends MainFrame {
             }
         });
 
-        topReadStudents.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.statisticsbar.statisticspanel.topreadstudents"));
+        topReadStudents.setText("<html><center>Top Reader<br>Students</center></html>");
         topReadStudents.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         topReadStudents.setMaximumSize(new java.awt.Dimension(110, 70));
         topReadStudents.setMinimumSize(new java.awt.Dimension(110, 70));
@@ -498,11 +475,10 @@ public final class MainForm extends MainFrame {
 
         statisticsBar.add(statisticsPanel);
 
-        tabbPane.addTab(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.statisticsbar"), new javax.swing.ImageIcon(getClass().getResource("/resources/img/statistics64.png")), statisticsBar); // NOI18N
+        tabbPane.addTab("Statistics", new javax.swing.ImageIcon(getClass().getResource("/resources/img/statistics64.png")), statisticsBar); // NOI18N
 
-        settingsBar.setFloatable(false);
         settingsBar.setRollover(true);
-        tabbPane.addTab(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("userpanel.tabbpane.settingsbar"), new javax.swing.ImageIcon(getClass().getResource("/resources/img/settings64.png")), settingsBar); // NOI18N
+        tabbPane.addTab("Settings", new javax.swing.ImageIcon(getClass().getResource("/resources/img/settings64.png")), settingsBar); // NOI18N
 
         currentUserPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -566,11 +542,9 @@ public final class MainForm extends MainFrame {
 
         tabbPane.getAccessibleContext().setAccessibleName("tabbpane");
 
-        fileMenu.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("mainform.topmenubar.filemenu")
-        );
+        fileMenu.setText("File");
 
-        closeOperation.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("mainform.topmenubar.filemenu.closeoperation")
-        );
+        closeOperation.setText("Close");
         closeOperation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeOperationActionPerformed(evt);
@@ -580,12 +554,11 @@ public final class MainForm extends MainFrame {
 
         topMenuBar.add(fileMenu);
 
-        settingsMenu.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("mainform.topmenubar.settingsmenu")
-        );
+        settingsMenu.setText("Settings");
         settingsMenu.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
         databaseMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        databaseMenuItem.setText(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("mainform.topmenubar.settingsmenu.databasemenuitem"));
+        databaseMenuItem.setText("Database");
         databaseMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 databaseMenuItemActionPerformed(evt);
@@ -704,15 +677,15 @@ public final class MainForm extends MainFrame {
     }//GEN-LAST:event_bookTypeButtonActionPerformed
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
-        SimpleDate.getInstance().setTimeStart();
+        SimpleDate.INSTANCE.setTimeStart();
     }//GEN-LAST:event_formMouseEntered
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        SimpleDate.getInstance().setTimeStart();
+        SimpleDate.INSTANCE.setTimeStart();
     }//GEN-LAST:event_formKeyPressed
 
     private void desktopPaneMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desktopPaneMouseEntered
-        SimpleDate.getInstance().setTimeStart();
+        SimpleDate.INSTANCE.setTimeStart();
     }//GEN-LAST:event_desktopPaneMouseEntered
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -783,7 +756,7 @@ public final class MainForm extends MainFrame {
     }
 
     public void returnLoginForm() {
-        SimpleDate.getInstance().setLoginWin(true);
+        SimpleDate.INSTANCE.setLoginWin(true);
         this.setVisible(false);
         LoginForm.INSTANCE.setVisible(true);
     }

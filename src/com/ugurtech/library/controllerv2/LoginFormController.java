@@ -41,23 +41,23 @@ public class LoginFormController {
         currentUserModel.setUserPassword(String.valueOf(loginForm.getUserPaswordField().getPassword()));
         if (loginService.checkUser(currentUserModel)) {
             loginForm.getInfolabel().setText("");
-            MainForm.getInstance().getUserLabel().setText(currentUserModel.getFirstName() + " " + currentUserModel.getLastName());
-            MainForm.getInstance().setVisible(true);
+            MainForm.INSTANCE.getUserLabel().setText(currentUserModel.getFirstName() + " " + currentUserModel.getLastName());
+            MainForm.INSTANCE.setVisible(true);
             loginForm.setVisible(false);
             loginForm.getUserNameField().setText("");
             loginForm.getUserPaswordField().setText("");
-            SimpleDate.getInstance().setLoginWin(false);
-            SimpleDate.getInstance().setSessionTime(currentUserModel.getSessionTime());
-            SimpleDate.getInstance().setTimeStart();
+            SimpleDate.INSTANCE.setLoginWin(false);
+            SimpleDate.INSTANCE.setSessionTime(currentUserModel.getSessionTime());
+            SimpleDate.INSTANCE.setTimeStart();
         } else {
-            loginForm.getInfolabel().setText(Internationalization.getInstance().getLable("loginform.infolabel"));
+            loginForm.getInfolabel().setText(Internationalization.INSTANCE.getLable("loginform.infolabel"));
         }
     }
 
     public void loginExit() {
-        SimpleDate.getInstance().interrupt();
+        SimpleDate.INSTANCE.interrupt();
         loginForm.dispose();
-        MainForm.getInstance().dispose();
+        MainForm.INSTANCE.dispose();
     }
 
     private void initView() {
@@ -103,5 +103,8 @@ public class LoginFormController {
         else{
             new FirstStepFormController(new FirstStepForm(), new FirstStepModel()).getClass();
         }
+    }
+    private void setLanguage(){
+    loginForm.getLoginButton().setText(Internationalization.INSTANCE.getLable(""));
     }
 }

@@ -17,6 +17,7 @@ public class CurrentUserModel extends PersonModel {
     private String language;
     private String region;
     private long sessionTime;
+
     public static final CurrentUserModel INSTANCE = new CurrentUserModel();
     
     private CurrentUserModel(){}

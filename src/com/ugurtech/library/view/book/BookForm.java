@@ -447,7 +447,7 @@ public final class BookForm extends JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
    
     private void authorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorButtonActionPerformed
-        MainForm.getInstance().addDesktopPane(AuthorForm.getInstance());
+        MainForm.INSTANCE.addDesktopPane(AuthorForm.getInstance());
     }//GEN-LAST:event_authorButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
@@ -456,11 +456,11 @@ public final class BookForm extends JInternalFrame {
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void publisherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publisherButtonActionPerformed
-        MainForm.getInstance().addDesktopPane(PublisherForm.getInstance());
+        MainForm.INSTANCE.addDesktopPane(PublisherForm.getInstance());
     }//GEN-LAST:event_publisherButtonActionPerformed
 
     private void typeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeButtonActionPerformed
-        MainForm.getInstance().addDesktopPane(BookTypeForm.getInstance());
+        MainForm.INSTANCE.addDesktopPane(BookTypeForm.getInstance());
     }//GEN-LAST:event_typeButtonActionPerformed
 
     private void booksTypeComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_booksTypeComboBoxPopupMenuWillBecomeVisible

@@ -243,7 +243,7 @@ public final class UserDetailsForm extends JInternalFrame {
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        MainForm.getInstance().returnLoginForm();
+        MainForm.INSTANCE.returnLoginForm();
     }//GEN-LAST:event_updateButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

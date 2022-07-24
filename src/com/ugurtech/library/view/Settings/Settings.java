@@ -48,8 +48,7 @@ public class Settings extends JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle(com.ugurtech.library.service.localization.Internationalization.getInstance().getLable("Settings")
-        );
+        setTitle("Settings");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 

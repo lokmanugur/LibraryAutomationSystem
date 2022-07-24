@@ -4,6 +4,7 @@
  */
 package com.ugurtech.library.service.date;
 
+import com.ugurtech.library.modelv2.CurrentUserModel;
 import com.ugurtech.library.service.localization.Internationalization;
 import com.ugurtech.library.view.MainForm;
 import java.text.SimpleDateFormat;
@@ -14,32 +15,24 @@ import java.text.SimpleDateFormat;
  */
 public class SimpleDate extends Thread {
 
-    private static SimpleDate simpleDate;
-    private final String localDateFormat = Internationalization.getInstance().getLable("simple.date.format");
-    private final String localTimeFormat = Internationalization.getInstance().getLable("simple.time.format");
+    public static final SimpleDate INSTANCE = new SimpleDate();
+    private final String localDateFormat = Internationalization.INSTANCE.getLable("simple.date.format");
+    private final String localTimeFormat = Internationalization.INSTANCE.getLable("simple.time.format");
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(localDateFormat);
     private final SimpleDateFormat simpleTimeFormat = new SimpleDateFormat(localTimeFormat);
-    private long startTime;
     private long sessionTime;
+    private long startTime;
     private long currentTime;
-    private long timeCount;
     private boolean loginWin = false;
     private String time;
     private String date;
-
+    private final int second = 1000;
+    private final int minute = 60;
+    
     private SimpleDate() {
         this.startTime = System.currentTimeMillis();
         this.currentTime = System.currentTimeMillis();
-    }
-
-    public static SimpleDate getInstance() {
-        if (simpleDate == null) {
-            simpleDate = new SimpleDate();
-            simpleDate.start();
-            return simpleDate;
-        } else {
-            return simpleDate;
-        }
+        this.start();
     }
 
     @Override
@@ -49,11 +42,11 @@ public class SimpleDate extends Thread {
                 currentTime = System.currentTimeMillis();
                 time = simpleTimeFormat.format(currentTime);
                 date = simpleDateFormat.format(currentTime);
-                MainForm.getInstance().getDateLabel().setText(date);
-                MainForm.getInstance().getTimeLabel().setText(time);
+                MainForm.INSTANCE.getDateLabel().setText(date);
+                MainForm.INSTANCE.getTimeLabel().setText(time);
                 SimpleDate.sleep(1000);
                 if (currentTime - startTime >= sessionTime && !loginWin) {
-                    MainForm.getInstance().returnLoginForm();
+                    MainForm.INSTANCE.returnLoginForm();
                 }
             } catch (InterruptedException ex) {
                 SimpleDate.currentThread().interrupt();
@@ -66,7 +59,7 @@ public class SimpleDate extends Thread {
     }
 
     public void setSessionTime(long sessionTime) {
-        this.sessionTime = sessionTime * 1000;
+        this.sessionTime = sessionTime*second*minute;
     }
 
     public void setLoginWin(boolean loginWin) {

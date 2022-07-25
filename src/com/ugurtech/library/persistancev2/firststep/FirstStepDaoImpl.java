@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class FirstStepDaoImpl extends DaoAbstract implements FirstStepDao {
 
     private static final String INSERT_PERSON = "INSERT INTO person (firstname,lastname,birthdate,address,phone,createddate) VALUES (?, ?, ?, ?, ?,?)";
-    private static final String INSERT_SYSTEM_USER = "INSERT INTO sysuser (personid,usertypeid,countryid,languageid,username,userpassword,createddate) VALUES (?,?,?,?,?,?,?)";
+    private static final String INSERT_SYSTEM_USER = "INSERT INTO sysuser (personid,usertypeid,countryid,languageid,username,userpassword,sessiontime,createddate) VALUES (?,?,?,?,?,?,?,?)";
 
 
     @Override
@@ -55,7 +55,8 @@ public class FirstStepDaoImpl extends DaoAbstract implements FirstStepDao {
             preparedStatement.setInt(4, v.getLanguageId());
             preparedStatement.setString(5, v.getUserName());
             preparedStatement.setString(6, v.getPassword());
-            preparedStatement.setLong(7, date);
+            preparedStatement.setInt(7, v.getSessionTime());
+            preparedStatement.setLong(8, date);
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {

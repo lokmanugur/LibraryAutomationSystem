@@ -16,6 +16,7 @@ public class FirstStepModel {
     private String address;
     private int countryId;
     private int languageId;
+    private int sessionTime;
     private long createDate;
     private long macId;
 
@@ -98,6 +99,16 @@ public class FirstStepModel {
     public void setLanguageId(int languageId) {
         this.languageId = languageId;
     }
+
+    public int getSessionTime() {
+        return sessionTime;
+    }
+
+    public void setSessionTime(int sessionTime) {
+        this.sessionTime = sessionTime;
+    }
+    
+    
 
     public long getCreateDate() {
         return createDate;

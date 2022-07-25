@@ -74,10 +74,10 @@ public class UserFormController {
         boolean check = String.valueOf(userForm.getPasswordTextField().getPassword()).equals(String.valueOf(userForm.getPassMatchTextField().getPassword()));
         if(check){
             userForm.getCheckLabel().setForeground(Color.BLACK);
-            userForm.getCheckLabel().setText(Internationalization.INSTANCE.getLable("userformcontroller.password.match"));
+            userForm.getCheckLabel().setText(Internationalization.getInstance().getLable("userformcontroller.password.match"));
         }else{
             userForm.getCheckLabel().setForeground(Color.RED);
-            userForm.getCheckLabel().setText(Internationalization.INSTANCE.getLable("userformcontroller.password.dont.match"));
+            userForm.getCheckLabel().setText(Internationalization.getInstance().getLable("userformcontroller.password.dont.match"));
         }
         return check;
     }

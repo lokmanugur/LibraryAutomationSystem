@@ -31,8 +31,10 @@ public class LoginDaoImpl extends DaoAbstract implements LoginDao{
             + "p.lastname as Soyadı,u.usertypename as Kullanıcı_Tipi,s.createddate as Oluşturma_Tarihi,"
             + "s.lastupdate as Son_Güncelleme_tarihi "
             + "FROM sysuser s, usertype u,person p ";
-    private static final String USER_LOGIN = "SELECT s.sysuserid,s.personid,s.username,s.userpassword,p.firstname,p.lastname,p.phone,p.address,p.birthdate,s.createddate,s.lastupdate,s.sessiontime "
-                + "FROM sysuser s, person p ";
+    private static final String USER_LOGIN = "SELECT s.sysuserid,s.personid,s.username,s.userpassword,s.createddate,s.lastupdate,s.sessiontime,"
+            + "p.firstname,p.lastname,p.phone,p.address,p.birthdate,"
+            + "c.abbriviation,l.abbriviation "
+            + "FROM sysuser s, person p,country c, language l ";
     private static final String EXIST_USERS = "SELECT * FROM sysuser";
     
     @Override
@@ -76,7 +78,7 @@ public class LoginDaoImpl extends DaoAbstract implements LoginDao{
             StringBuilder query = new StringBuilder(USER_LOGIN);
             query.append("WHERE s.username = '").append(currentUser.getUserName()).append("' ");
             query.append("AND s.userpassword = '").append(currentUser.getUserPassword()).append("' ");
-            query.append("AND s.personid = p.personid AND s.deleted=0");
+            query.append("AND s.personid = p.personid AND s.deleted=0 AND s.languageid=l.languageid AND s.countryid=c.countryid ");
 
         try {
             ResultSet resultSet;
@@ -94,6 +96,8 @@ public class LoginDaoImpl extends DaoAbstract implements LoginDao{
                 currentUser.setCreatedDate(resultSet.getDate("createddate").getTime());
                 currentUser.setLastUpdate(resultSet.getDate("lastupdate").getTime());
                 currentUser.setSessionTime(resultSet.getInt("sessiontime"));
+                currentUser.setRegion(resultSet.getString(13));
+                currentUser.setLanguage(resultSet.getString(14));
                 return true;
             } else {
                 return false;

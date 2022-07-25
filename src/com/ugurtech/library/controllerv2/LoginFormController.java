@@ -8,13 +8,14 @@ package com.ugurtech.library.controllerv2;
 import com.ugurtech.library.modelv2.CurrentUserModel;
 import com.ugurtech.library.modelv2.requestmodels.FirstStepModel;
 import com.ugurtech.library.view.LoginForm;
-import com.ugurtech.library.view.MainForm;
 import com.ugurtech.library.persistancev2.login.LoginDaoImpl;
 import com.ugurtech.library.service.date.SimpleDate;
 import com.ugurtech.library.service.localization.Internationalization;
 import com.ugurtech.library.service.login.LoginService;
 import com.ugurtech.library.service.login.LoginServiceImpl;
+import com.ugurtech.library.view.MainForm;
 import com.ugurtech.library.view.user.FirstStepForm;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -26,11 +27,14 @@ public class LoginFormController {
     private final LoginForm loginForm;
     private final LoginService loginService;
     private final CurrentUserModel currentUserModel;
+    private SimpleDate simpleDate;
 
     public LoginFormController(LoginForm loginForm, CurrentUserModel currentUserModel) {
         this.currentUserModel = currentUserModel;
         loginService = new LoginServiceImpl(new LoginDaoImpl());
         this.loginForm = loginForm;
+        Internationalization.getInstance().setLocaleCountry(null, null);
+        simpleDate = SimpleDate.getInstance();
         initView();
         initController();
         firstStep();
@@ -40,24 +44,30 @@ public class LoginFormController {
         currentUserModel.setUserName(loginForm.getUserNameField().getText());
         currentUserModel.setUserPassword(String.valueOf(loginForm.getUserPaswordField().getPassword()));
         if (loginService.checkUser(currentUserModel)) {
+            Internationalization.getInstance().setLocaleCountry(currentUserModel.getLanguage(), currentUserModel.getRegion());
+            simpleDate.setSimpleDateFormat(new SimpleDateFormat(Internationalization.getInstance().getLable("simple.date.format")));
+            initView();
+            setLanguage();
             loginForm.getInfolabel().setText("");
-            MainForm.INSTANCE.getUserLabel().setText(currentUserModel.getFirstName() + " " + currentUserModel.getLastName());
-            MainForm.INSTANCE.setVisible(true);
+            MainForm.getInstance().getUserLabel().setText(currentUserModel.getFirstName() + " " + currentUserModel.getLastName());
+            MainForm.getInstance().setVisible(true);
+            MainFormController.getInstance();
             loginForm.setVisible(false);
             loginForm.getUserNameField().setText("");
             loginForm.getUserPaswordField().setText("");
-            SimpleDate.INSTANCE.setLoginWin(false);
-            SimpleDate.INSTANCE.setSessionTime(currentUserModel.getSessionTime());
-            SimpleDate.INSTANCE.setTimeStart();
+            simpleDate.setLoginWin(false);
+            simpleDate.setSessionTime(currentUserModel.getSessionTime());
+            simpleDate.setTimeStart();
         } else {
-            loginForm.getInfolabel().setText(Internationalization.INSTANCE.getLable("loginform.infolabel"));
+            loginForm.getInfolabel().setText(Internationalization.getInstance().getLable("loginform.infolabel"));
         }
+
     }
 
     public void loginExit() {
-        SimpleDate.INSTANCE.interrupt();
+        simpleDate.interrupt();
         loginForm.dispose();
-        MainForm.INSTANCE.dispose();
+        MainForm.getInstance().dispose();
     }
 
     private void initView() {
@@ -84,6 +94,7 @@ public class LoginFormController {
                 enterKey(evt);
             }
         });
+
     }
 
     private void enterKey(java.awt.event.KeyEvent evt) {
@@ -98,13 +109,16 @@ public class LoginFormController {
     }
 
     private void firstStep() {
-        if(loginService.checkExistUsers()){
-            loginForm.setVisible(true);}
-        else{
+        if (loginService.checkExistUsers()) {
+            loginForm.setVisible(true);
+        } else {
             new FirstStepFormController(new FirstStepForm(), new FirstStepModel()).getClass();
         }
     }
-    private void setLanguage(){
-    loginForm.getLoginButton().setText(Internationalization.INSTANCE.getLable(""));
+
+    private void setLanguage() {
+        loginForm.getLoginButton().setText(Internationalization.getInstance().getLable("loginform.button"));
+        loginForm.getUserNameLable().setText(Internationalization.getInstance().getLable("loginform.usernamelabel"));
+        loginForm.getPasswordLable().setText(Internationalization.getInstance().getLable("loginform.passwordlabel"));
     }
 }

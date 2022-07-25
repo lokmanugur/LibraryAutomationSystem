@@ -85,6 +85,6 @@ public class UserInfoMessages {
     
     private void setPassMatchLabel(JLabel label){
         label.setForeground(Color.RED);
-        label.setText(Internationalization.INSTANCE.getLable("message.for.blanck.fields"));
+        label.setText(Internationalization.getInstance().getLable("message.for.blanck.fields"));
     }
 }

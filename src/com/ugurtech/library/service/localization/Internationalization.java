@@ -15,25 +15,33 @@ import java.util.ResourceBundle;
  */
 public class Internationalization {
 
-    public static final Internationalization INSTANCE = new Internationalization();
+    private static Internationalization INSTANCE;
     private static final String BASE_NAME = "resources/localization/MessagesBundle";
     private Locale languageCountry;
-    private final ResourceBundle messages;
-    
+    private ResourceBundle messages;
 
-    private Internationalization() {
-       // setLocaleCountry("en", "US");
-        if (languageCountry == null) {
-            languageCountry = Locale.getDefault();
-        } else {}
-        messages = ResourceBundle.getBundle(BASE_NAME, languageCountry);
+    public static Internationalization getInstance() {
+
+        if (INSTANCE == null) {
+            return INSTANCE = new Internationalization();
+        } else {
+            return INSTANCE;
+        }
     }
+
+    private Internationalization() {     }
 
     public String getLable(String label) {
         return messages.getString(label);
     }
 
     public void setLocaleCountry(String language, String country) {
-        this.languageCountry = new Locale(language, country);
+        if (language == null || country == null) {
+            languageCountry = Locale.getDefault();
+        } else {
+            this.languageCountry = new Locale(language, country);
+        }
+        messages = ResourceBundle.getBundle(BASE_NAME, languageCountry);
+        System.out.println(languageCountry.getCountry() + " " + languageCountry.getLanguage());
     }
 }

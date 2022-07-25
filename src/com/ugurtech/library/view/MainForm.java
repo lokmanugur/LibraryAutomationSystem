@@ -1,29 +1,27 @@
 package com.ugurtech.library.view;
 
 import com.ugurtech.library.service.date.SimpleDate;
-import com.ugurtech.library.view.book.AuthorForm;
-import com.ugurtech.library.view.book.AuthorSearchForm;
-import com.ugurtech.library.view.database.DatabaseUI;
-import com.ugurtech.library.view.student.StudentSearchForm;
-import com.ugurtech.library.view.student.StudentForm;
-import com.ugurtech.library.view.school.SchoolSearchForm;
-import com.ugurtech.library.view.user.UserTableForm;
-import com.ugurtech.library.view.user.UserForm;
-import com.ugurtech.library.view.book.BookForm;
-import com.ugurtech.library.view.book.BookSearch;
-import com.ugurtech.library.view.book.BookTypeForm;
-import com.ugurtech.library.view.book.PublisherForm;
-import com.ugurtech.library.view.bookborrowing.BorrowedBooksTable;
-import com.ugurtech.library.view.person.PersonForm;
-import com.ugurtech.library.view.person.PersonSearchForm;
-import com.ugurtech.library.view.user.UserDetailsForm;
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JToolBar;
 
 public final class MainForm extends MainFrame {
     // private String dPaneimage="/img/MEBLogo.png"; 
 
-    public static final MainForm INSTANCE = new MainForm();
+    private static MainForm INSTANCE;
 
+    public static MainForm getInstance(){
+        if(INSTANCE == null)
+            return INSTANCE = new MainForm();
+        else
+            return INSTANCE;
+    }
+    
     private MainForm() {
         initComponents();
         setDesktopPane(desktopPane);
@@ -76,27 +74,6 @@ public final class MainForm extends MainFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Library Automaion System");
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                formMouseEntered(evt);
-            }
-        });
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
-        addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                formKeyPressed(evt);
-            }
-        });
-
-        desktopPane.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                desktopPaneMouseEntered(evt);
-            }
-        });
 
         userPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -114,11 +91,6 @@ public final class MainForm extends MainFrame {
         publisherButton.setMinimumSize(new java.awt.Dimension(110, 70));
         publisherButton.setPreferredSize(new java.awt.Dimension(110, 70));
         publisherButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        publisherButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                publisherButtonActionPerformed(evt);
-            }
-        });
 
         authorTableButton.setText("<html><center>Author<br>Table</center></html>");
         authorTableButton.setFocusable(false);
@@ -127,11 +99,6 @@ public final class MainForm extends MainFrame {
         authorTableButton.setMinimumSize(new java.awt.Dimension(110, 70));
         authorTableButton.setPreferredSize(new java.awt.Dimension(110, 70));
         authorTableButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        authorTableButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                authorTableButtonActionPerformed(evt);
-            }
-        });
 
         authorButton.setText("<html><center>Add<br>Author</center></html>");
         authorButton.setFocusable(false);
@@ -140,11 +107,6 @@ public final class MainForm extends MainFrame {
         authorButton.setMinimumSize(new java.awt.Dimension(110, 70));
         authorButton.setPreferredSize(new java.awt.Dimension(110, 70));
         authorButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        authorButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                authorButtonActionPerformed(evt);
-            }
-        });
 
         bookTypeButton.setText("<html><center>Books Type<br>Table</center></html>");
         bookTypeButton.setFocusable(false);
@@ -153,11 +115,6 @@ public final class MainForm extends MainFrame {
         bookTypeButton.setMinimumSize(new java.awt.Dimension(110, 70));
         bookTypeButton.setPreferredSize(new java.awt.Dimension(110, 70));
         bookTypeButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bookTypeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookTypeButtonActionPerformed(evt);
-            }
-        });
 
         bookTable.setText("<html><center>Books<br>Table</center></html>");
         bookTable.setFocusable(false);
@@ -166,11 +123,6 @@ public final class MainForm extends MainFrame {
         bookTable.setMinimumSize(new java.awt.Dimension(110, 70));
         bookTable.setPreferredSize(new java.awt.Dimension(110, 70));
         bookTable.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bookTable.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookTableActionPerformed(evt);
-            }
-        });
 
         addBook.setText("<html><center>Add<br>Book</center></html>");
         addBook.setFocusable(false);
@@ -179,11 +131,6 @@ public final class MainForm extends MainFrame {
         addBook.setMinimumSize(new java.awt.Dimension(110, 70));
         addBook.setPreferredSize(new java.awt.Dimension(110, 70));
         addBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        addBook.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addBookActionPerformed(evt);
-            }
-        });
 
         takenBooksTableButton.setText("<html><center>Borrowed<br>Book Table</center></html>");
         takenBooksTableButton.setFocusable(false);
@@ -192,11 +139,6 @@ public final class MainForm extends MainFrame {
         takenBooksTableButton.setMinimumSize(new java.awt.Dimension(110, 70));
         takenBooksTableButton.setPreferredSize(new java.awt.Dimension(110, 70));
         takenBooksTableButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        takenBooksTableButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                takenBooksTableButtonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout bookPanelLayout = new javax.swing.GroupLayout(bookPanel);
         bookPanel.setLayout(bookPanelLayout);
@@ -247,11 +189,6 @@ public final class MainForm extends MainFrame {
         studentTable.setMinimumSize(new java.awt.Dimension(110, 70));
         studentTable.setPreferredSize(new java.awt.Dimension(110, 70));
         studentTable.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        studentTable.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                studentTableActionPerformed(evt);
-            }
-        });
 
         studentForm.setText("<html><center>Add<br>Student</center></html>");
         studentForm.setFocusable(false);
@@ -260,11 +197,6 @@ public final class MainForm extends MainFrame {
         studentForm.setMinimumSize(new java.awt.Dimension(110, 70));
         studentForm.setPreferredSize(new java.awt.Dimension(110, 70));
         studentForm.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        studentForm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                studentFormActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout studentPanelLayout = new javax.swing.GroupLayout(studentPanel);
         studentPanel.setLayout(studentPanelLayout);
@@ -302,11 +234,6 @@ public final class MainForm extends MainFrame {
         schoolForm.setMinimumSize(new java.awt.Dimension(110, 70));
         schoolForm.setPreferredSize(new java.awt.Dimension(110, 70));
         schoolForm.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        schoolForm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                schoolFormActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout schoolPanelLayout = new javax.swing.GroupLayout(schoolPanel);
         schoolPanel.setLayout(schoolPanelLayout);
@@ -334,11 +261,6 @@ public final class MainForm extends MainFrame {
         userForm.setMinimumSize(new java.awt.Dimension(110, 70));
         userForm.setPreferredSize(new java.awt.Dimension(110, 70));
         userForm.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        userForm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userFormActionPerformed(evt);
-            }
-        });
 
         personTableButton.setText("<html><center>Person<br>Table<center><html>");
         personTableButton.setFocusable(false);
@@ -347,11 +269,6 @@ public final class MainForm extends MainFrame {
         personTableButton.setMinimumSize(new java.awt.Dimension(110, 70));
         personTableButton.setPreferredSize(new java.awt.Dimension(110, 70));
         personTableButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        personTableButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                personTableButtonActionPerformed(evt);
-            }
-        });
 
         userDetails.setText("<html><center>User<br>Details</center></html>");
         userDetails.setFocusable(false);
@@ -360,11 +277,6 @@ public final class MainForm extends MainFrame {
         userDetails.setMinimumSize(new java.awt.Dimension(110, 70));
         userDetails.setPreferredSize(new java.awt.Dimension(110, 70));
         userDetails.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        userDetails.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userDetailsActionPerformed(evt);
-            }
-        });
 
         userTable.setText("<html><center>User<br>Table</center></html>");
         userTable.setFocusable(false);
@@ -373,11 +285,6 @@ public final class MainForm extends MainFrame {
         userTable.setMinimumSize(new java.awt.Dimension(110, 70));
         userTable.setPreferredSize(new java.awt.Dimension(110, 70));
         userTable.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        userTable.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTableActionPerformed(evt);
-            }
-        });
 
         personFormButton.setText("<html><center>Add<br>Person</center></html>");
         personFormButton.setFocusable(false);
@@ -386,11 +293,6 @@ public final class MainForm extends MainFrame {
         personFormButton.setMinimumSize(new java.awt.Dimension(110, 70));
         personFormButton.setPreferredSize(new java.awt.Dimension(110, 70));
         personFormButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        personFormButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                personFormButtonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout userPanel2Layout = new javax.swing.GroupLayout(userPanel2);
         userPanel2.setLayout(userPanel2Layout);
@@ -432,21 +334,11 @@ public final class MainForm extends MainFrame {
         topReadBooks.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         topReadBooks.setMaximumSize(new java.awt.Dimension(110, 70));
         topReadBooks.setMinimumSize(new java.awt.Dimension(110, 70));
-        topReadBooks.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                topReadBooksActionPerformed(evt);
-            }
-        });
 
         topReadStudents.setText("<html><center>Top Reader<br>Students</center></html>");
         topReadStudents.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         topReadStudents.setMaximumSize(new java.awt.Dimension(110, 70));
         topReadStudents.setMinimumSize(new java.awt.Dimension(110, 70));
-        topReadStudents.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                topReadStudentsActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout statisticsPanelLayout = new javax.swing.GroupLayout(statisticsPanel);
         statisticsPanel.setLayout(statisticsPanelLayout);
@@ -488,11 +380,6 @@ public final class MainForm extends MainFrame {
         userLabel.setAlignmentX(0.5F);
         userLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         userLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        userLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                userLabelMouseClicked(evt);
-            }
-        });
 
         dateLabel.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         dateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -545,11 +432,6 @@ public final class MainForm extends MainFrame {
         fileMenu.setText("File");
 
         closeOperation.setText("Close");
-        closeOperation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeOperationActionPerformed(evt);
-            }
-        });
         fileMenu.add(closeOperation);
 
         topMenuBar.add(fileMenu);
@@ -559,11 +441,6 @@ public final class MainForm extends MainFrame {
 
         databaseMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         databaseMenuItem.setText("Database");
-        databaseMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                databaseMenuItemActionPerformed(evt);
-            }
-        });
         settingsMenu.add(databaseMenuItem);
 
         topMenuBar.add(settingsMenu);
@@ -594,99 +471,6 @@ public final class MainForm extends MainFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    private void bookTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookTableActionPerformed
-        addDesktopPane(BookSearch.getInstance());
-    }//GEN-LAST:event_bookTableActionPerformed
-    private void addBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookActionPerformed
-        addDesktopPane(BookForm.getInstance());
-    }//GEN-LAST:event_addBookActionPerformed
-    private void studentFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentFormActionPerformed
-        addDesktopPane(StudentForm.getInstance());
-    }//GEN-LAST:event_studentFormActionPerformed
-    private void studentTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentTableActionPerformed
-        addDesktopPane(StudentSearchForm.getInstance());
-    }//GEN-LAST:event_studentTableActionPerformed
-    private void schoolFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schoolFormActionPerformed
-        addDesktopPane(SchoolSearchForm.getInstance());
-    }//GEN-LAST:event_schoolFormActionPerformed
-    private void userFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userFormActionPerformed
-        addDesktopPane(UserForm.getInstance());
-    }//GEN-LAST:event_userFormActionPerformed
-    private void userTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTableActionPerformed
-        addDesktopPane(UserTableForm.getInstance());
-    }//GEN-LAST:event_userTableActionPerformed
-    private void databaseMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_databaseMenuItemActionPerformed
-        addDesktopPane(DatabaseUI.getInstance());
-    }//GEN-LAST:event_databaseMenuItemActionPerformed
-
-    private void topReadBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topReadBooksActionPerformed
-        //addDesktopPane(UserForm.getInstance());
-    }//GEN-LAST:event_topReadBooksActionPerformed
-
-    private void topReadStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topReadStudentsActionPerformed
-        //addDesktopPane(new FirstStepFormController(new FirstStepForm(), new FirstStepModel()).getFirstStepForm());
-    }//GEN-LAST:event_topReadStudentsActionPerformed
-
-    private void closeOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeOperationActionPerformed
-        this.dispose();
-        LoginForm.INSTANCE.dispose();
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    }//GEN-LAST:event_closeOperationActionPerformed
-
-    private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userLabelMouseClicked
-        if (evt.getClickCount() == 2 && !evt.isConsumed()) {
-            returnLoginForm();
-            evt.consume();
-        }
-    }//GEN-LAST:event_userLabelMouseClicked
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        System.out.println("window closing method work at MainForm");
-    }//GEN-LAST:event_formWindowClosing
-
-    private void authorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorButtonActionPerformed
-        addDesktopPane(AuthorForm.getInstance());
-    }//GEN-LAST:event_authorButtonActionPerformed
-
-    private void publisherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publisherButtonActionPerformed
-        addDesktopPane(PublisherForm.getInstance());
-    }//GEN-LAST:event_publisherButtonActionPerformed
-
-    private void authorTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorTableButtonActionPerformed
-        addDesktopPane(AuthorSearchForm.getInstance());
-    }//GEN-LAST:event_authorTableButtonActionPerformed
-
-    private void userDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userDetailsActionPerformed
-        addDesktopPane(UserDetailsForm.getInstance());
-    }//GEN-LAST:event_userDetailsActionPerformed
-
-    private void personFormButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personFormButtonActionPerformed
-        addDesktopPane(PersonForm.getInstance());
-    }//GEN-LAST:event_personFormButtonActionPerformed
-
-    private void personTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personTableButtonActionPerformed
-        addDesktopPane(PersonSearchForm.getInstance());
-    }//GEN-LAST:event_personTableButtonActionPerformed
-
-    private void takenBooksTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_takenBooksTableButtonActionPerformed
-        addDesktopPane(BorrowedBooksTable.getInstance());
-    }//GEN-LAST:event_takenBooksTableButtonActionPerformed
-
-    private void bookTypeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookTypeButtonActionPerformed
-        addDesktopPane(BookTypeForm.getInstance());
-    }//GEN-LAST:event_bookTypeButtonActionPerformed
-
-    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
-        SimpleDate.INSTANCE.setTimeStart();
-    }//GEN-LAST:event_formMouseEntered
-
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        SimpleDate.INSTANCE.setTimeStart();
-    }//GEN-LAST:event_formKeyPressed
-
-    private void desktopPaneMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desktopPaneMouseEntered
-        SimpleDate.INSTANCE.setTimeStart();
-    }//GEN-LAST:event_desktopPaneMouseEntered
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBook;
@@ -756,9 +540,297 @@ public final class MainForm extends MainFrame {
     }
 
     public void returnLoginForm() {
-        SimpleDate.INSTANCE.setLoginWin(true);
+        SimpleDate.getInstance().setLoginWin(true);
         this.setVisible(false);
         LoginForm.INSTANCE.setVisible(true);
+    }
+
+    public JButton getAddBook() {
+        return addBook;
+    }
+
+    public void setAddBook(JButton addBook) {
+        this.addBook = addBook;
+    }
+
+    public JButton getAuthorButton() {
+        return authorButton;
+    }
+
+    public void setAuthorButton(JButton authorButton) {
+        this.authorButton = authorButton;
+    }
+
+    public JButton getAuthorTableButton() {
+        return authorTableButton;
+    }
+
+    public void setAuthorTableButton(JButton authorTableButton) {
+        this.authorTableButton = authorTableButton;
+    }
+
+    public JToolBar getBookBar() {
+        return bookBar;
+    }
+
+    public void setBookBar(JToolBar bookBar) {
+        this.bookBar = bookBar;
+    }
+
+    public JPanel getBookPanel() {
+        return bookPanel;
+    }
+
+    public void setBookPanel(JPanel bookPanel) {
+        this.bookPanel = bookPanel;
+    }
+
+    public JButton getBookTable() {
+        return bookTable;
+    }
+
+    public void setBookTable(JButton bookTable) {
+        this.bookTable = bookTable;
+    }
+
+    public JButton getBookTypeButton() {
+        return bookTypeButton;
+    }
+
+    public void setBookTypeButton(JButton bookTypeButton) {
+        this.bookTypeButton = bookTypeButton;
+    }
+
+    public JMenuItem getCloseOperation() {
+        return closeOperation;
+    }
+
+    public void setCloseOperation(JMenuItem closeOperation) {
+        this.closeOperation = closeOperation;
+    }
+
+    public JPanel getCurrentUserPanel() {
+        return currentUserPanel;
+    }
+
+    public void setCurrentUserPanel(JPanel currentUserPanel) {
+        this.currentUserPanel = currentUserPanel;
+    }
+
+    public JMenuItem getDatabaseMenuItem() {
+        return databaseMenuItem;
+    }
+
+    public void setDatabaseMenuItem(JMenuItem databaseMenuItem) {
+        this.databaseMenuItem = databaseMenuItem;
+    }
+
+    public JMenu getFileMenu() {
+        return fileMenu;
+    }
+
+    public void setFileMenu(JMenu fileMenu) {
+        this.fileMenu = fileMenu;
+    }
+
+    public JButton getPersonFormButton() {
+        return personFormButton;
+    }
+
+    public void setPersonFormButton(JButton personFormButton) {
+        this.personFormButton = personFormButton;
+    }
+
+    public JButton getPersonTableButton() {
+        return personTableButton;
+    }
+
+    public void setPersonTableButton(JButton personTableButton) {
+        this.personTableButton = personTableButton;
+    }
+
+    public JButton getPublisherButton() {
+        return publisherButton;
+    }
+
+    public void setPublisherButton(JButton publisherButton) {
+        this.publisherButton = publisherButton;
+    }
+
+    public JToolBar getSchoolBar() {
+        return schoolBar;
+    }
+
+    public void setSchoolBar(JToolBar schoolBar) {
+        this.schoolBar = schoolBar;
+    }
+
+    public JButton getSchoolForm() {
+        return schoolForm;
+    }
+
+    public void setSchoolForm(JButton schoolForm) {
+        this.schoolForm = schoolForm;
+    }
+
+    public JPanel getSchoolPanel() {
+        return schoolPanel;
+    }
+
+    public void setSchoolPanel(JPanel schoolPanel) {
+        this.schoolPanel = schoolPanel;
+    }
+
+    public JToolBar getSettingsBar() {
+        return settingsBar;
+    }
+
+    public void setSettingsBar(JToolBar settingsBar) {
+        this.settingsBar = settingsBar;
+    }
+
+    public JMenu getSettingsMenu() {
+        return settingsMenu;
+    }
+
+    public void setSettingsMenu(JMenu settingsMenu) {
+        this.settingsMenu = settingsMenu;
+    }
+
+    public JToolBar getStatisticsBar() {
+        return statisticsBar;
+    }
+
+    public void setStatisticsBar(JToolBar statisticsBar) {
+        this.statisticsBar = statisticsBar;
+    }
+
+    public JPanel getStatisticsPanel() {
+        return statisticsPanel;
+    }
+
+    public void setStatisticsPanel(JPanel statisticsPanel) {
+        this.statisticsPanel = statisticsPanel;
+    }
+
+    public JToolBar getStudentBar() {
+        return studentBar;
+    }
+
+    public void setStudentBar(JToolBar studentBar) {
+        this.studentBar = studentBar;
+    }
+
+    public JButton getStudentForm() {
+        return studentForm;
+    }
+
+    public void setStudentForm(JButton studentForm) {
+        this.studentForm = studentForm;
+    }
+
+    public JPanel getStudentPanel() {
+        return studentPanel;
+    }
+
+    public void setStudentPanel(JPanel studentPanel) {
+        this.studentPanel = studentPanel;
+    }
+
+    public JButton getStudentTable() {
+        return studentTable;
+    }
+
+    public void setStudentTable(JButton studentTable) {
+        this.studentTable = studentTable;
+    }
+
+    public JTabbedPane getTabbPane() {
+        return tabbPane;
+    }
+
+    public void setTabbPane(JTabbedPane tabbPane) {
+        this.tabbPane = tabbPane;
+    }
+
+    public JButton getTakenBooksTableButton() {
+        return takenBooksTableButton;
+    }
+
+    public void setTakenBooksTableButton(JButton takenBooksTableButton) {
+        this.takenBooksTableButton = takenBooksTableButton;
+    }
+
+    public JMenuBar getTopMenuBar() {
+        return topMenuBar;
+    }
+
+    public void setTopMenuBar(JMenuBar topMenuBar) {
+        this.topMenuBar = topMenuBar;
+    }
+
+    public JButton getTopReadBooks() {
+        return topReadBooks;
+    }
+
+    public void setTopReadBooks(JButton topReadBooks) {
+        this.topReadBooks = topReadBooks;
+    }
+
+    public JButton getTopReadStudents() {
+        return topReadStudents;
+    }
+
+    public void setTopReadStudents(JButton topReadStudents) {
+        this.topReadStudents = topReadStudents;
+    }
+
+    public JToolBar getUserBar() {
+        return userBar;
+    }
+
+    public void setUserBar(JToolBar userBar) {
+        this.userBar = userBar;
+    }
+
+    public JButton getUserDetails() {
+        return userDetails;
+    }
+
+    public void setUserDetails(JButton userDetails) {
+        this.userDetails = userDetails;
+    }
+
+    public JButton getUserForm() {
+        return userForm;
+    }
+
+    public void setUserForm(JButton userForm) {
+        this.userForm = userForm;
+    }
+
+    public JPanel getUserPanel() {
+        return userPanel;
+    }
+
+    public void setUserPanel(JPanel userPanel) {
+        this.userPanel = userPanel;
+    }
+
+    public JPanel getUserPanel2() {
+        return userPanel2;
+    }
+
+    public void setUserPanel2(JPanel userPanel2) {
+        this.userPanel2 = userPanel2;
+    }
+
+    public JButton getUserTable() {
+        return userTable;
+    }
+
+    public void setUserTable(JButton userTable) {
+        this.userTable = userTable;
     }
 
 }

@@ -6,6 +6,7 @@ package com.ugurtech.library.controllerv2;
 
 import com.ugurtech.library.modelv2.MainModel;
 import com.ugurtech.library.service.date.SimpleDate;
+import com.ugurtech.library.service.localization.Internationalization;
 import com.ugurtech.library.view.LoginForm;
 import com.ugurtech.library.view.MainForm;
 import com.ugurtech.library.view.book.AuthorForm;
@@ -31,219 +32,152 @@ import com.ugurtech.library.view.user.UserTableForm;
  */
 public class MainFormController {
 
-    private static MainFormController mainFormController;
-    private final MainForm mainForm = MainForm.getInstance();
-    private final MainModel mainModel=null;
+    private final MainForm mainForm;
+    private final MainModel mainModel = null;
 
-    public static MainFormController getInstance(){
-        if(mainFormController == null)
-            return mainFormController = new MainFormController();
-        else
-            return mainFormController;
-    }
-    
-    private MainFormController(){
+    public MainFormController(MainForm mainForm) {
+        this.mainForm = mainForm;
         initView();
         initController();
-    }
-
-    public MainForm getMainForm() {
-        return mainForm;
+        
     }
 
     private void initView() {
-        mainForm.addMouseListener(new java.awt.event.MouseAdapter() {
+
+        setLenguage();
+    }
+
+    private void initController() {
+                mainForm.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                formMouseEntered(evt);
+                SimpleDate.getInstance().setTimeStart();
             }
         });
         mainForm.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
+                System.out.println("window closing method work at MainForm");
             }
         });
         mainForm.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                formKeyPressed(evt);
+                SimpleDate.getInstance().setTimeStart();
             }
         });
 
         mainForm.getDesktopPane().addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                desktopPaneMouseEntered(evt);
+                SimpleDate.getInstance().setTimeStart();
             }
         });
         mainForm.getPublisherButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            publisherButtonActionPerformed(evt);
+            mainForm.addDesktopPane(PublisherForm.getInstance());
         });
         mainForm.getAuthorTableButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            authorTableButtonActionPerformed(evt);
+            mainForm.addDesktopPane(AuthorSearchForm.getInstance());
         });
         mainForm.getAuthorButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            authorButtonActionPerformed(evt);
+            mainForm.addDesktopPane(AuthorForm.getInstance());
         });
         mainForm.getBookTypeButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            bookTypeButtonActionPerformed(evt);
+            mainForm.addDesktopPane(BookTypeForm.getInstance());
         });
         mainForm.getBookTable().addActionListener((java.awt.event.ActionEvent evt) -> {
-            bookTableActionPerformed(evt);
+            mainForm.addDesktopPane(BookSearch.getInstance());
         });
         mainForm.getAddBook().addActionListener((java.awt.event.ActionEvent evt) -> {
-            addBookActionPerformed(evt);
+            mainForm.addDesktopPane(BookForm.getInstance());
         });
         mainForm.getTakenBooksTableButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            takenBooksTableButtonActionPerformed(evt);
+            mainForm.addDesktopPane(BorrowedBooksTable.getInstance());
         });
         mainForm.getStudentTable().addActionListener((java.awt.event.ActionEvent evt) -> {
-            studentTableActionPerformed(evt);
+            mainForm.addDesktopPane(StudentSearchForm.getInstance());
         });
         mainForm.getStudentForm().addActionListener((java.awt.event.ActionEvent evt) -> {
-            studentFormActionPerformed(evt);
+            mainForm.addDesktopPane(StudentForm.getInstance());
         });
         mainForm.getSchoolForm().addActionListener((java.awt.event.ActionEvent evt) -> {
-            schoolFormActionPerformed(evt);
+            mainForm.addDesktopPane(SchoolSearchForm.getInstance());
         });
         mainForm.getUserForm().addActionListener((java.awt.event.ActionEvent evt) -> {
-            userFormActionPerformed(evt);
+            mainForm.addDesktopPane(UserForm.getInstance());
         });
         mainForm.getPersonTableButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            personTableButtonActionPerformed(evt);
+            mainForm.addDesktopPane(PersonSearchForm.getInstance());
         });
         mainForm.getUserDetails().addActionListener((java.awt.event.ActionEvent evt) -> {
-            userDetailsActionPerformed(evt);
+            mainForm.addDesktopPane(UserDetailsForm.getInstance());
         });
         mainForm.getUserTable().addActionListener((java.awt.event.ActionEvent evt) -> {
-            userTableActionPerformed(evt);
+            mainForm.addDesktopPane(UserTableForm.getInstance());
         });
         mainForm.getPersonFormButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            personFormButtonActionPerformed(evt);
+            mainForm.addDesktopPane(PersonForm.getInstance());
         });
         mainForm.getTopReadBooks().addActionListener((java.awt.event.ActionEvent evt) -> {
-            topReadBooksActionPerformed(evt);
+            //addDesktopPane(UserForm.getInstance());
         });
         mainForm.getTopReadStudents().addActionListener((java.awt.event.ActionEvent evt) -> {
-            topReadStudentsActionPerformed(evt);
+            //addDesktopPane(new FirstStepFormController(new FirstStepForm(), new FirstStepModel()).getFirstStepForm());
         });
         mainForm.getUserLabel().addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                userLabelMouseClicked(evt);
+                if (evt.getClickCount() == 2 && !evt.isConsumed()) {
+                    mainForm.returnLoginForm();
+                    evt.consume();
+                }
             }
         });
         mainForm.getCloseOperation().addActionListener((java.awt.event.ActionEvent evt) -> {
-            closeOperationActionPerformed(evt);
+            mainForm.dispose();
+            LoginForm.INSTANCE.dispose();
+            mainForm.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         });
         mainForm.getDatabaseMenuItem().addActionListener((java.awt.event.ActionEvent evt) -> {
-            databaseMenuItemActionPerformed(evt);
+            mainForm.addDesktopPane(DatabaseUI.getInstance());
         });
     }
 
-    private void initController() {
+    private void setLenguage() {
+        mainForm.getTabbPane().setTitleAt(0, Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar"));
+        mainForm.getPublisherButton().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.publisherbutton"));
+        mainForm.getAuthorTableButton().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.authortablebutton"));
+        mainForm.getAuthorButton().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.authorbutton"));
+        mainForm.getBookTypeButton().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.booktypebutton"));
+        mainForm.getBookTable().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.booktable"));
+        mainForm.getAddBook().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.addbook"));
+        mainForm.getTakenBooksTableButton().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.takenbooktablebutton"));
 
-    }
-
-    private void bookTableActionPerformed(java.awt.event.ActionEvent evt) {
-        mainForm.addDesktopPane(BookSearch.getInstance());
-    }
-
-    private void addBookActionPerformed(java.awt.event.ActionEvent evt) {
-        mainForm.addDesktopPane(BookForm.getInstance());
-    }
-
-    private void studentFormActionPerformed(java.awt.event.ActionEvent evt) {
-        mainForm.addDesktopPane(StudentForm.getInstance());
-    }
-
-    private void studentTableActionPerformed(java.awt.event.ActionEvent evt) {
-        mainForm.addDesktopPane(StudentSearchForm.getInstance());
-    }
-
-    private void schoolFormActionPerformed(java.awt.event.ActionEvent evt) {
-        mainForm.addDesktopPane(SchoolSearchForm.getInstance());
-    }
-
-    private void userFormActionPerformed(java.awt.event.ActionEvent evt) {
-        mainForm.addDesktopPane(UserForm.getInstance());
-    }
-
-    private void userTableActionPerformed(java.awt.event.ActionEvent evt) {
-        mainForm.addDesktopPane(UserTableForm.getInstance());
-    }
-
-    private void databaseMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-        mainForm.addDesktopPane(DatabaseUI.getInstance());
-    }
-
-    private void topReadBooksActionPerformed(java.awt.event.ActionEvent evt) {
-        //addDesktopPane(UserForm.getInstance());
-    }
-
-    private void topReadStudentsActionPerformed(java.awt.event.ActionEvent evt) {
-        //addDesktopPane(new FirstStepFormController(new FirstStepForm(), new FirstStepModel()).getFirstStepForm());
-    }
-
-    private void closeOperationActionPerformed(java.awt.event.ActionEvent evt) {
-        mainForm.dispose();
-        LoginForm.INSTANCE.dispose();
-        mainForm.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    }
-
-    private void userLabelMouseClicked(java.awt.event.MouseEvent evt) {
-        if (evt.getClickCount() == 2 && !evt.isConsumed()) {
-            mainForm.returnLoginForm();
-            evt.consume();
-        }
-    }
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {
-        System.out.println("window closing method work at MainForm");
-    }
-
-    private void authorButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        mainForm.addDesktopPane(AuthorForm.getInstance());
-    }
-
-    private void publisherButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        mainForm.addDesktopPane(PublisherForm.getInstance());
-    }
-
-    private void authorTableButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        mainForm.addDesktopPane(AuthorSearchForm.getInstance());
-    }
-
-    private void userDetailsActionPerformed(java.awt.event.ActionEvent evt) {
-        mainForm.addDesktopPane(UserDetailsForm.getInstance());
-    }
-
-    private void personFormButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        mainForm.addDesktopPane(PersonForm.getInstance());
-    }
-
-    private void personTableButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        mainForm.addDesktopPane(PersonSearchForm.getInstance());
-    }
-
-    private void takenBooksTableButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        mainForm.addDesktopPane(BorrowedBooksTable.getInstance());
-    }
-
-    private void bookTypeButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        mainForm.addDesktopPane(BookTypeForm.getInstance());
-    }
-
-    private void formMouseEntered(java.awt.event.MouseEvent evt) {
-        SimpleDate.getInstance().setTimeStart();
-    }
-
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {
-        SimpleDate.getInstance().setTimeStart();
-    }
-
-    private void desktopPaneMouseEntered(java.awt.event.MouseEvent evt) {
-        SimpleDate.getInstance().setTimeStart();
+        mainForm.getTabbPane().setTitleAt(1, Internationalization.getInstance().getLable("userpanel.tabbpane.studentbar"));
+        mainForm.getStudentTable().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.studentbar.studentpanel.studenttable"));
+        mainForm.getStudentForm().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.studentbar.studentpanel.studentform"));
+        
+        mainForm.getTabbPane().setTitleAt(2, Internationalization.getInstance().getLable("userpanel.tabbpane.schoolbar"));
+        mainForm.getSchoolForm().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.schoolbar.schoolpanel.schoolform"));
+        
+        mainForm.getTabbPane().setTitleAt(3, Internationalization.getInstance().getLable("userpanel.tabbpane.userbar"));
+        mainForm.getUserForm().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.userform"));
+        mainForm.getPersonTableButton().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.persontablebutton"));
+        mainForm.getUserDetails().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.userdetail"));
+        mainForm.getUserTable().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.usertable"));
+        mainForm.getPersonFormButton().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.personformbutton"));
+        
+        mainForm.getTabbPane().setTitleAt(4, Internationalization.getInstance().getLable("userpanel.tabbpane.statisticsbar"));
+        mainForm.getTopReadBooks().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.statisticsbar.statisticspanel.topreadbooks"));
+        mainForm.getTopReadStudents().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.statisticsbar.statisticspanel.topreadstudents"));
+        
+        mainForm.getTabbPane().setTitleAt(5, Internationalization.getInstance().getLable("userpanel.tabbpane.settingsbar"));
+        
+        mainForm.setTitle(Internationalization.getInstance().getLable("mainform.topmenubar.label"));
+        mainForm.getFileMenu().setText(Internationalization.getInstance().getLable("mainform.topmenubar.filemenu"));
+        mainForm.getCloseOperation().setText(Internationalization.getInstance().getLable("mainform.topmenubar.filemenu.closeoperation"));
+        mainForm.getSettingsMenu().setText(Internationalization.getInstance().getLable("mainform.topmenubar.settingsmenu"));
+        mainForm.getDatabaseMenuItem().setText(Internationalization.getInstance().getLable("mainform.topmenubar.settingsmenu.databasemenuitem"));
+        
     }
 }

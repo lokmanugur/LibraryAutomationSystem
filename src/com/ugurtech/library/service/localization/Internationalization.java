@@ -42,6 +42,5 @@ public class Internationalization {
             this.languageCountry = new Locale(language, country);
         }
         messages = ResourceBundle.getBundle(BASE_NAME, languageCountry);
-        System.out.println(languageCountry.getCountry() + " " + languageCountry.getLanguage());
     }
 }

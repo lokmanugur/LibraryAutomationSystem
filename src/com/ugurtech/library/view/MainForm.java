@@ -1,5 +1,6 @@
 package com.ugurtech.library.view;
 
+import com.ugurtech.library.controllerv2.MainFormController;
 import com.ugurtech.library.service.date.SimpleDate;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,9 +13,8 @@ import javax.swing.JToolBar;
 
 public final class MainForm extends MainFrame {
     // private String dPaneimage="/img/MEBLogo.png"; 
-
     private static MainForm INSTANCE;
-
+    private final MainFormController mainFormController;
     public static MainForm getInstance(){
         if(INSTANCE == null)
             return INSTANCE = new MainForm();
@@ -25,6 +25,7 @@ public final class MainForm extends MainFrame {
     private MainForm() {
         initComponents();
         setDesktopPane(desktopPane);
+        mainFormController = new MainFormController(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -73,7 +74,7 @@ public final class MainForm extends MainFrame {
         databaseMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Library Automaion System");
+        setTitle("Library Automation System");
 
         userPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 

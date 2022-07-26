@@ -45,13 +45,12 @@ public class LoginFormController {
         currentUserModel.setUserPassword(String.valueOf(loginForm.getUserPaswordField().getPassword()));
         if (loginService.checkUser(currentUserModel)) {
             Internationalization.getInstance().setLocaleCountry(currentUserModel.getLanguage(), currentUserModel.getRegion());
-            simpleDate.setSimpleDateFormat(new SimpleDateFormat(Internationalization.getInstance().getLable("simple.date.format")));
             initView();
             setLanguage();
             loginForm.getInfolabel().setText("");
-            MainForm.getInstance().getUserLabel().setText(currentUserModel.getFirstName() + " " + currentUserModel.getLastName());
+            MainForm.getInstance().getUserLabel().setText(currentUserModel.getFirstName() + " " + currentUserModel.getLastName()+" ");
             MainForm.getInstance().setVisible(true);
-            MainFormController.getInstance();
+            simpleDate.setSimpleDateFormat(Internationalization.getInstance().getLable("simple.date.format"));
             loginForm.setVisible(false);
             loginForm.getUserNameField().setText("");
             loginForm.getUserPaswordField().setText("");

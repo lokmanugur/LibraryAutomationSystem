@@ -15,19 +15,18 @@ import com.ugurtech.library.service.login.LoginService;
 import com.ugurtech.library.service.login.LoginServiceImpl;
 import com.ugurtech.library.view.MainForm;
 import com.ugurtech.library.view.user.FirstStepForm;
-import java.text.SimpleDateFormat;
 
 /**
  *
  * @author ugur
  *
  */
-public class LoginFormController {
+public class LoginFormController implements Controller {
 
     private final LoginForm loginForm;
     private final LoginService loginService;
     private final CurrentUserModel currentUserModel;
-    private SimpleDate simpleDate;
+    private final SimpleDate simpleDate;
 
     public LoginFormController(LoginForm loginForm, CurrentUserModel currentUserModel) {
         this.currentUserModel = currentUserModel;
@@ -40,6 +39,26 @@ public class LoginFormController {
         firstStep();
     }
 
+    @Override
+    public void add() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void updade() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void delete() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void get() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public void userEnter() {
         currentUserModel.setUserName(loginForm.getUserNameField().getText());
         currentUserModel.setUserPassword(String.valueOf(loginForm.getUserPaswordField().getPassword()));
@@ -48,7 +67,7 @@ public class LoginFormController {
             initView();
             setLanguage();
             loginForm.getInfolabel().setText("");
-            MainForm.getInstance().getUserLabel().setText(currentUserModel.getFirstName() + " " + currentUserModel.getLastName()+" ");
+            MainForm.getInstance().getUserLabel().setText(currentUserModel.getFirstName() + " " + currentUserModel.getLastName() + " ");
             MainForm.getInstance().setVisible(true);
             simpleDate.setSimpleDateFormat(Internationalization.getInstance().getLable("simple.date.format"));
             loginForm.setVisible(false);
@@ -69,7 +88,19 @@ public class LoginFormController {
         MainForm.getInstance().dispose();
     }
 
-    private void initView() {
+    @Override
+    public final void initView() {
+    }
+
+    private void enterKey(java.awt.event.KeyEvent evt) {
+        loginForm.getInfolabel().setText("");
+        if (evt.getKeyCode() == 10) {
+            userEnter();
+        }
+    }
+
+    @Override
+    public final void initController() {
         loginForm.getUserPaswordField().addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -93,18 +124,6 @@ public class LoginFormController {
                 enterKey(evt);
             }
         });
-
-    }
-
-    private void enterKey(java.awt.event.KeyEvent evt) {
-        loginForm.getInfolabel().setText("");
-        if (evt.getKeyCode() == 10) {
-            userEnter();
-        }
-    }
-
-    private void initController() {
-
     }
 
     private void firstStep() {

@@ -30,25 +30,26 @@ import com.ugurtech.library.view.user.UserTableForm;
  *
  * @author Teacher
  */
-public class MainFormController {
+public class MainFormController implements Controller {
 
     private final MainForm mainForm;
-    private final MainModel mainModel = null;
+    private MainModel mainModel;
 
     public MainFormController(MainForm mainForm) {
         this.mainForm = mainForm;
         initView();
         initController();
-        
     }
 
-    private void initView() {
+    @Override
+    public final void initView() {
 
         setLenguage();
     }
 
-    private void initController() {
-                mainForm.addMouseListener(new java.awt.event.MouseAdapter() {
+    @Override
+    public final void initController() {
+        mainForm.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 SimpleDate.getInstance().setTimeStart();
@@ -156,28 +157,48 @@ public class MainFormController {
         mainForm.getTabbPane().setTitleAt(1, Internationalization.getInstance().getLable("userpanel.tabbpane.studentbar"));
         mainForm.getStudentTable().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.studentbar.studentpanel.studenttable"));
         mainForm.getStudentForm().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.studentbar.studentpanel.studentform"));
-        
+
         mainForm.getTabbPane().setTitleAt(2, Internationalization.getInstance().getLable("userpanel.tabbpane.schoolbar"));
         mainForm.getSchoolForm().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.schoolbar.schoolpanel.schoolform"));
-        
+
         mainForm.getTabbPane().setTitleAt(3, Internationalization.getInstance().getLable("userpanel.tabbpane.userbar"));
         mainForm.getUserForm().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.userform"));
         mainForm.getPersonTableButton().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.persontablebutton"));
         mainForm.getUserDetails().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.userdetail"));
         mainForm.getUserTable().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.usertable"));
         mainForm.getPersonFormButton().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.personformbutton"));
-        
+
         mainForm.getTabbPane().setTitleAt(4, Internationalization.getInstance().getLable("userpanel.tabbpane.statisticsbar"));
         mainForm.getTopReadBooks().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.statisticsbar.statisticspanel.topreadbooks"));
         mainForm.getTopReadStudents().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.statisticsbar.statisticspanel.topreadstudents"));
-        
+
         mainForm.getTabbPane().setTitleAt(5, Internationalization.getInstance().getLable("userpanel.tabbpane.settingsbar"));
-        
+
         mainForm.setTitle(Internationalization.getInstance().getLable("mainform.topmenubar.label"));
         mainForm.getFileMenu().setText(Internationalization.getInstance().getLable("mainform.topmenubar.filemenu"));
         mainForm.getCloseOperation().setText(Internationalization.getInstance().getLable("mainform.topmenubar.filemenu.closeoperation"));
         mainForm.getSettingsMenu().setText(Internationalization.getInstance().getLable("mainform.topmenubar.settingsmenu"));
         mainForm.getDatabaseMenuItem().setText(Internationalization.getInstance().getLable("mainform.topmenubar.settingsmenu.databasemenuitem"));
-        
+
+    }
+
+    @Override
+    public void add() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void updade() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void delete() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void get() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -33,7 +33,7 @@ import javax.swing.WindowConstants;
  *
  * @author Teacher
  */
-public class FirstStepFormController {
+public class FirstStepFormController implements Controller {
 
     private final FirstStepForm firstStepForm;
     private FirstStepModel firstStepModel;
@@ -48,6 +48,26 @@ public class FirstStepFormController {
         initView();
         initController();
         this.firstStepForm.setVisible(true);
+    }
+    
+    @Override
+    public void add() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void updade() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void delete() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void get() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public FirstStepForm getFirstStepForm() {
@@ -75,7 +95,8 @@ public class FirstStepFormController {
         }
     }
 
-    private void initController() {
+    @Override
+    public final void initController() {
         firstStepForm.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         firstStepForm.getPassMatchTextField().addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
@@ -116,7 +137,8 @@ public class FirstStepFormController {
         });
     }
 
-    private void initView() {
+    @Override
+    public final void initView() {
         for (UserTypeModel userTypeModel : userTypeService.getAll()) {
             firstStepForm.getUserTypeComboBox().addItem(userTypeModel);
         }
@@ -166,5 +188,4 @@ public class FirstStepFormController {
         firstStepForm.getCancelButton().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.cancelbutton"));
         firstStepForm.getLabelSessionTime().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelsession"));
     }
-
 }

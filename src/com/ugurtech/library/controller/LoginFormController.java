@@ -44,7 +44,7 @@ public class LoginFormController{
             SimpleDate.getInstance().setSessionTime(sysUser.getSessionTime());
             SimpleDate.getInstance().setTimeStart();
         } else {
-            loginForm.getInfolabel().setText(Internationalization.getInstance().getLable("loginform.infolabel"));
+            loginForm.getInfolabel().setText(Internationalization.getInstance().setLanguage("loginform.infolabel"));
         }
     }
     

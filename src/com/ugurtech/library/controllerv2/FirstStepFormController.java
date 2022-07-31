@@ -18,7 +18,6 @@ import com.ugurtech.library.service.firstStep.FirstStepService;
 import com.ugurtech.library.service.firstStep.FirstStepServiceImpl;
 import com.ugurtech.library.service.language.LanguageService;
 import com.ugurtech.library.service.language.LanguageServiceImpl;
-import com.ugurtech.library.service.localization.Internationalization;
 import com.ugurtech.library.service.usertype.UserTypeService;
 import com.ugurtech.library.service.usertype.UserTypeServiceImpl;
 import com.ugurtech.library.service.validation.UserInfoMessages;
@@ -33,7 +32,7 @@ import javax.swing.WindowConstants;
  *
  * @author Teacher
  */
-public class FirstStepFormController implements Controller {
+public class FirstStepFormController extends AbstractController {
 
     private final FirstStepForm firstStepForm;
     private FirstStepModel firstStepModel;
@@ -48,26 +47,6 @@ public class FirstStepFormController implements Controller {
         initView();
         initController();
         this.firstStepForm.setVisible(true);
-    }
-    
-    @Override
-    public void add() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void updade() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void delete() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void get() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public FirstStepForm getFirstStepForm() {
@@ -86,17 +65,17 @@ public class FirstStepFormController implements Controller {
         boolean check = String.valueOf(firstStepForm.getPasswordTextField().getPassword()).equals(String.valueOf(firstStepForm.getPassMatchTextField().getPassword()));
         if (check) {
             firstStepForm.getLabelCheckPassword().setForeground(Color.BLACK);
-            firstStepForm.getLabelCheckPassword().setText(Internationalization.getInstance().getLable("userformcontroller.password.match"));
+            firstStepForm.getLabelCheckPassword().setText(setLanguage("userformcontroller.password.match"));
             firstStepForm.getSaveButton().setEnabled(true);
         } else {
             firstStepForm.getLabelCheckPassword().setForeground(Color.RED);
-            firstStepForm.getLabelCheckPassword().setText(Internationalization.getInstance().getLable("userformcontroller.password.dont.match"));
+            firstStepForm.getLabelCheckPassword().setText(setLanguage("userformcontroller.password.dont.match"));
             firstStepForm.getSaveButton().setEnabled(false);
         }
     }
 
     @Override
-    public final void initController() {
+     final void initController() {
         firstStepForm.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         firstStepForm.getPassMatchTextField().addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
@@ -138,25 +117,25 @@ public class FirstStepFormController implements Controller {
     }
 
     @Override
-    public final void initView() {
-        for (UserTypeModel userTypeModel : userTypeService.getAll()) {
+    final void initView() {
+        userTypeService.getAll().forEach(userTypeModel -> {
             firstStepForm.getUserTypeComboBox().addItem(userTypeModel);
-        }
+        });
 
-        for (CountryModel countryModel : countryService.getAll()) {
+        countryService.getAll().forEach(countryModel->{
             firstStepForm.getCountryComboBox().addItem(countryModel);
-        }
+        }); 
         
-        for (LanguageModel languageModel : languageService.getAll()) {
+        languageService.getAll().forEach(languageModel->{
             firstStepForm.getLanguageComboBox().addItem(languageModel);
-        }
+        }); 
         
         firstStepForm.getSaveButton().setEnabled(false);
         setLanguage();
     }
 
     private void saveFirstUser() {
-        firstStepForm.getLabelCheckPassword().setText(Internationalization.getInstance().getLable("userformcontroller.password.match"));
+        firstStepForm.getLabelCheckPassword().setText(setLanguage("userformcontroller.password.match"));
         firstStepModel.setFirstName(UserInfoMessages.getInstance().emptyField(firstStepForm.getFirstNameTextField().getText(),firstStepForm.getLabelFirstName(),firstStepForm.getLabelCheckPassword()));
         firstStepModel.setLastName(UserInfoMessages.getInstance().emptyField(firstStepForm.getSecondNameTextField().getText(),firstStepForm.getLabelSecondName(),firstStepForm.getLabelCheckPassword()));
         firstStepModel.setPhone(UserInfoMessages.getInstance().emptyField( firstStepForm.getPhoneTextField().getText(),firstStepForm.getLabelPhone(),firstStepForm.getLabelCheckPassword()));
@@ -165,27 +144,28 @@ public class FirstStepFormController implements Controller {
         firstStepModel.setPassword(UserInfoMessages.getInstance().emptyField(String.valueOf(firstStepForm.getPasswordTextField().getPassword()),firstStepForm.getLabelPassword(),firstStepForm.getLabelCheckPassword()));
         firstStepModel.setBirtDate(UserInfoMessages.getInstance().emptyField(firstStepForm.getBirthDateChooser().getDate(),firstStepForm.getLabelBirthDate(),firstStepForm.getLabelCheckPassword()));
         firstStepModel.setSessionTime(firstStepForm.getSessionTimeTextField().getText()==null?5:Integer.valueOf(firstStepForm.getSessionTimeTextField().getText()));
-        if(Internationalization.getInstance().getLable("userformcontroller.password.match").equals(firstStepForm.getLabelCheckPassword().getText())) {
+        if(setLanguage("userformcontroller.password.match").equals(firstStepForm.getLabelCheckPassword().getText())) {
             firstStepService.add(firstStepModel);
-            UserInfoMessages.getInstance().showInfoMessages(Internationalization.getInstance().getLable("validation.message"));
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("validation.message"));
             System.exit(0);
         }else{
         }
     }
     private void setLanguage(){
-        firstStepForm.getLabelUserType().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelusertype"));
-        firstStepForm.getLabelUserName().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelfirstname"));
-        firstStepForm.getLabelSecondName().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelsecondname"));
-        firstStepForm.getLabelBirthDate().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelbirthdatechooser"));
-        firstStepForm.getLabelUserName().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelusename"));
-        firstStepForm.getLabelPhone().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelphone"));
-        firstStepForm.getLabelAddress().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labeladdress"));
-        firstStepForm.getLabelCountry().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelcountry"));
-        firstStepForm.getLabelLanguage().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labellanguage"));
-        firstStepForm.getLabelPassword().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelpassword"));
-        firstStepForm.getLabelRepeatPassword().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelrepeatpassword"));
-        firstStepForm.getSaveButton().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.savebutton"));
-        firstStepForm.getCancelButton().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.cancelbutton"));
-        firstStepForm.getLabelSessionTime().setText(Internationalization.getInstance().getLable("firststepform.adduserpanel.labelsession"));
+        firstStepForm.getLabelUserType().setText(setLanguage("firststepform.adduserpanel.labelusertype"));
+        firstStepForm.getLabelUserName().setText(setLanguage("firststepform.adduserpanel.labelfirstname"));
+        firstStepForm.getLabelSecondName().setText(setLanguage("firststepform.adduserpanel.labelsecondname"));
+        firstStepForm.getLabelBirthDate().setText(setLanguage("firststepform.adduserpanel.labelbirthdatechooser"));
+        firstStepForm.getLabelUserName().setText(setLanguage("firststepform.adduserpanel.labelusename"));
+        firstStepForm.getLabelPhone().setText(setLanguage("firststepform.adduserpanel.labelphone"));
+        firstStepForm.getLabelAddress().setText(setLanguage("firststepform.adduserpanel.labeladdress"));
+        firstStepForm.getLabelCountry().setText(setLanguage("firststepform.adduserpanel.labelcountry"));
+        firstStepForm.getLabelLanguage().setText(setLanguage("firststepform.adduserpanel.labellanguage"));
+        firstStepForm.getLabelPassword().setText(setLanguage("firststepform.adduserpanel.labelpassword"));
+        firstStepForm.getLabelRepeatPassword().setText(setLanguage("firststepform.adduserpanel.labelrepeatpassword"));
+        firstStepForm.getSaveButton().setText(setLanguage("firststepform.adduserpanel.savebutton"));
+        firstStepForm.getCancelButton().setText(setLanguage("firststepform.adduserpanel.cancelbutton"));
+        firstStepForm.getLabelSessionTime().setText(setLanguage("firststepform.adduserpanel.labelsession"));
     }
+
 }

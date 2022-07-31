@@ -18,7 +18,7 @@ import net.proteanit.sql.DbUtils;
  * @author ugur
  * 
  */
-public class BorrowedBookTableController implements Controller {
+public class BorrowedBookTableController extends AbstractController {
     
     private final BorrowedBooksTable borrowedBooksTable;
     private final BorrowedBookDao borrowedBookDao;
@@ -69,6 +69,11 @@ public class BorrowedBookTableController implements Controller {
     @Override
     public void get() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void getAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

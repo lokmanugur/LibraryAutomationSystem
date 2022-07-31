@@ -21,7 +21,7 @@ import com.ugurtech.library.view.user.FirstStepForm;
  * @author ugur
  *
  */
-public class LoginFormController implements Controller {
+public class LoginFormController extends AbstractController {
 
     private final LoginForm loginForm;
     private final LoginService loginService;
@@ -39,27 +39,7 @@ public class LoginFormController implements Controller {
         firstStep();
     }
 
-    @Override
-    public void add() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void updade() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void delete() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void get() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void userEnter() {
+    public void userLoginChecked() {
         currentUserModel.setUserName(loginForm.getUserNameField().getText());
         currentUserModel.setUserPassword(String.valueOf(loginForm.getUserPaswordField().getPassword()));
         if (loginService.checkUser(currentUserModel)) {
@@ -69,7 +49,7 @@ public class LoginFormController implements Controller {
             loginForm.getInfolabel().setText("");
             MainForm.getInstance().getUserLabel().setText(currentUserModel.getFirstName() + " " + currentUserModel.getLastName() + " ");
             MainForm.getInstance().setVisible(true);
-            simpleDate.setSimpleDateFormat(Internationalization.getInstance().getLable("simple.date.format"));
+            simpleDate.setSimpleDateFormat(setLanguage("simple.date.format"));
             loginForm.setVisible(false);
             loginForm.getUserNameField().setText("");
             loginForm.getUserPaswordField().setText("");
@@ -77,12 +57,12 @@ public class LoginFormController implements Controller {
             simpleDate.setSessionTime(currentUserModel.getSessionTime());
             simpleDate.setTimeStart();
         } else {
-            loginForm.getInfolabel().setText(Internationalization.getInstance().getLable("loginform.infolabel"));
+            loginForm.getInfolabel().setText(setLanguage("loginform.infolabel"));
         }
 
     }
 
-    public void loginExit() {
+    public void closeButtonClicked() {
         simpleDate.interrupt();
         loginForm.dispose();
         MainForm.getInstance().dispose();
@@ -92,10 +72,10 @@ public class LoginFormController implements Controller {
     public final void initView() {
     }
 
-    private void enterKey(java.awt.event.KeyEvent evt) {
+    private void textFieldKeyReleased(java.awt.event.KeyEvent evt) {
         loginForm.getInfolabel().setText("");
         if (evt.getKeyCode() == 10) {
-            userEnter();
+            userLoginChecked();
         }
     }
 
@@ -104,24 +84,24 @@ public class LoginFormController implements Controller {
         loginForm.getUserPaswordField().addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                enterKey(evt);
+                textFieldKeyReleased(evt);
             }
         });
 
         loginForm.getCloseButton().addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loginExit();
+                closeButtonClicked();
             }
         });
         loginForm.getLoginButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            userEnter();
+            userLoginChecked();
         });
 
         loginForm.getUserNameField().addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                enterKey(evt);
+                textFieldKeyReleased(evt);
             }
         });
     }
@@ -135,8 +115,9 @@ public class LoginFormController implements Controller {
     }
 
     private void setLanguage() {
-        loginForm.getLoginButton().setText(Internationalization.getInstance().getLable("loginform.button"));
-        loginForm.getUserNameLable().setText(Internationalization.getInstance().getLable("loginform.usernamelabel"));
-        loginForm.getPasswordLable().setText(Internationalization.getInstance().getLable("loginform.passwordlabel"));
+        loginForm.getLoginButton().setText(setLanguage("loginform.button"));
+        loginForm.getUserNameLable().setText(setLanguage("loginform.usernamelabel"));
+        loginForm.getPasswordLable().setText(setLanguage("loginform.passwordlabel"));
     }
+
 }

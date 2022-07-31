@@ -18,7 +18,7 @@ public class Internationalization {
     private static Internationalization INSTANCE;
     private static final String BASE_NAME = "resources/localization/MessagesBundle";
     private Locale languageCountry;
-    private ResourceBundle messages;
+    private static ResourceBundle messages;
 
     public static Internationalization getInstance() {
 
@@ -31,7 +31,7 @@ public class Internationalization {
 
     private Internationalization() {     }
 
-    public String getLable(String label) {
+    public static String setLanguage(String label) {
         return messages.getString(label);
     }
 
@@ -42,5 +42,5 @@ public class Internationalization {
             this.languageCountry = new Locale(language, country);
         }
         messages = ResourceBundle.getBundle(BASE_NAME, languageCountry);
-    }
+    }   
 }

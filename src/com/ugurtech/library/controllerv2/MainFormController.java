@@ -6,7 +6,6 @@ package com.ugurtech.library.controllerv2;
 
 import com.ugurtech.library.modelv2.MainModel;
 import com.ugurtech.library.service.date.SimpleDate;
-import com.ugurtech.library.service.localization.Internationalization;
 import com.ugurtech.library.view.LoginForm;
 import com.ugurtech.library.view.MainForm;
 import com.ugurtech.library.view.book.AuthorForm;
@@ -30,7 +29,7 @@ import com.ugurtech.library.view.user.UserTableForm;
  *
  * @author Teacher
  */
-public class MainFormController implements Controller {
+public class MainFormController extends AbstractController {
 
     private final MainForm mainForm;
     private MainModel mainModel;
@@ -145,40 +144,40 @@ public class MainFormController implements Controller {
     }
 
     private void setLenguage() {
-        mainForm.getTabbPane().setTitleAt(0, Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar"));
-        mainForm.getPublisherButton().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.publisherbutton"));
-        mainForm.getAuthorTableButton().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.authortablebutton"));
-        mainForm.getAuthorButton().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.authorbutton"));
-        mainForm.getBookTypeButton().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.booktypebutton"));
-        mainForm.getBookTable().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.booktable"));
-        mainForm.getAddBook().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.addbook"));
-        mainForm.getTakenBooksTableButton().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.bookbar.bookpanel.takenbooktablebutton"));
+        mainForm.getTabbPane().setTitleAt(0, setLanguage("userpanel.tabbpane.bookbar"));
+        mainForm.getPublisherButton().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.publisherbutton"));
+        mainForm.getAuthorTableButton().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.authortablebutton"));
+        mainForm.getAuthorButton().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.authorbutton"));
+        mainForm.getBookTypeButton().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.booktypebutton"));
+        mainForm.getBookTable().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.booktable"));
+        mainForm.getAddBook().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.addbook"));
+        mainForm.getTakenBooksTableButton().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.takenbooktablebutton"));
 
-        mainForm.getTabbPane().setTitleAt(1, Internationalization.getInstance().getLable("userpanel.tabbpane.studentbar"));
-        mainForm.getStudentTable().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.studentbar.studentpanel.studenttable"));
-        mainForm.getStudentForm().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.studentbar.studentpanel.studentform"));
+        mainForm.getTabbPane().setTitleAt(1, setLanguage("userpanel.tabbpane.studentbar"));
+        mainForm.getStudentTable().setText(setLanguage("userpanel.tabbpane.studentbar.studentpanel.studenttable"));
+        mainForm.getStudentForm().setText(setLanguage("userpanel.tabbpane.studentbar.studentpanel.studentform"));
 
-        mainForm.getTabbPane().setTitleAt(2, Internationalization.getInstance().getLable("userpanel.tabbpane.schoolbar"));
-        mainForm.getSchoolForm().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.schoolbar.schoolpanel.schoolform"));
+        mainForm.getTabbPane().setTitleAt(2, setLanguage("userpanel.tabbpane.schoolbar"));
+        mainForm.getSchoolForm().setText(setLanguage("userpanel.tabbpane.schoolbar.schoolpanel.schoolform"));
 
-        mainForm.getTabbPane().setTitleAt(3, Internationalization.getInstance().getLable("userpanel.tabbpane.userbar"));
-        mainForm.getUserForm().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.userform"));
-        mainForm.getPersonTableButton().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.persontablebutton"));
-        mainForm.getUserDetails().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.userdetail"));
-        mainForm.getUserTable().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.usertable"));
-        mainForm.getPersonFormButton().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.userbar.userpanel2.personformbutton"));
+        mainForm.getTabbPane().setTitleAt(3, setLanguage("userpanel.tabbpane.userbar"));
+        mainForm.getUserForm().setText(setLanguage("userpanel.tabbpane.userbar.userpanel2.userform"));
+        mainForm.getPersonTableButton().setText(setLanguage("userpanel.tabbpane.userbar.userpanel2.persontablebutton"));
+        mainForm.getUserDetails().setText(setLanguage("userpanel.tabbpane.userbar.userpanel2.userdetail"));
+        mainForm.getUserTable().setText(setLanguage("userpanel.tabbpane.userbar.userpanel2.usertable"));
+        mainForm.getPersonFormButton().setText(setLanguage("userpanel.tabbpane.userbar.userpanel2.personformbutton"));
 
-        mainForm.getTabbPane().setTitleAt(4, Internationalization.getInstance().getLable("userpanel.tabbpane.statisticsbar"));
-        mainForm.getTopReadBooks().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.statisticsbar.statisticspanel.topreadbooks"));
-        mainForm.getTopReadStudents().setText(Internationalization.getInstance().getLable("userpanel.tabbpane.statisticsbar.statisticspanel.topreadstudents"));
+        mainForm.getTabbPane().setTitleAt(4, setLanguage("userpanel.tabbpane.statisticsbar"));
+        mainForm.getTopReadBooks().setText(setLanguage("userpanel.tabbpane.statisticsbar.statisticspanel.topreadbooks"));
+        mainForm.getTopReadStudents().setText(setLanguage("userpanel.tabbpane.statisticsbar.statisticspanel.topreadstudents"));
 
-        mainForm.getTabbPane().setTitleAt(5, Internationalization.getInstance().getLable("userpanel.tabbpane.settingsbar"));
+        mainForm.getTabbPane().setTitleAt(5, setLanguage("userpanel.tabbpane.settingsbar"));
 
-        mainForm.setTitle(Internationalization.getInstance().getLable("mainform.topmenubar.label"));
-        mainForm.getFileMenu().setText(Internationalization.getInstance().getLable("mainform.topmenubar.filemenu"));
-        mainForm.getCloseOperation().setText(Internationalization.getInstance().getLable("mainform.topmenubar.filemenu.closeoperation"));
-        mainForm.getSettingsMenu().setText(Internationalization.getInstance().getLable("mainform.topmenubar.settingsmenu"));
-        mainForm.getDatabaseMenuItem().setText(Internationalization.getInstance().getLable("mainform.topmenubar.settingsmenu.databasemenuitem"));
+        mainForm.setTitle(setLanguage("mainform.topmenubar.label"));
+        mainForm.getFileMenu().setText(setLanguage("mainform.topmenubar.filemenu"));
+        mainForm.getCloseOperation().setText(setLanguage("mainform.topmenubar.filemenu.closeoperation"));
+        mainForm.getSettingsMenu().setText(setLanguage("mainform.topmenubar.settingsmenu"));
+        mainForm.getDatabaseMenuItem().setText(setLanguage("mainform.topmenubar.settingsmenu.databasemenuitem"));
 
     }
 
@@ -200,5 +199,10 @@ public class MainFormController implements Controller {
     @Override
     public void get() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void getAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

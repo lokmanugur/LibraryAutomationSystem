@@ -57,7 +57,7 @@ public class BorrowedBookTableController extends AbstractController {
     }
 
     @Override
-    public void updade() {
+    public void update() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

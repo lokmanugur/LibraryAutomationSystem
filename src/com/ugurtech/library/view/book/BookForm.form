@@ -8,6 +8,9 @@
     <Property name="resizable" type="boolean" value="true"/>
     <Property name="title" type="java.lang.String" value="Kitap Kay&#x131;t Formu"/>
   </Properties>
+  <AccessibilityProperties>
+    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Book Save Form"/>
+  </AccessibilityProperties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -28,7 +31,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="bookPanel" max="32767" attributes="0"/>
+              <Component id="panelMain" max="32767" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -37,14 +40,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="bookPanel" min="-2" max="-2" attributes="0"/>
+              <Component id="panelMain" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="bookPanel">
+    <Container class="javax.swing.JPanel" name="panelMain">
       <Properties>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[487, 268]"/>
@@ -57,10 +60,10 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jPanel2" max="32767" attributes="0"/>
-                      <Component id="jPanel3" max="32767" attributes="0"/>
-                      <Component id="jPanel1" max="32767" attributes="0"/>
-                      <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
+                      <Component id="panelBookType" max="32767" attributes="0"/>
+                      <Component id="panelBook" max="32767" attributes="0"/>
+                      <Component id="panelAuthor" max="32767" attributes="0"/>
+                      <Component id="panelButtons" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -70,20 +73,20 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="panelBook" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="panelBookType" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanel1" max="32767" attributes="0"/>
+                  <Component id="panelAuthor" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                  <Component id="panelButtons" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanel1">
+        <Container class="javax.swing.JPanel" name="panelAuthor">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -102,13 +105,13 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabel1" min="-2" pref="99" max="-2" attributes="0"/>
-                          <Component id="authorNameLabel" min="-2" pref="99" max="-2" attributes="0"/>
+                          <Component id="labelAuthorList" min="-2" pref="99" max="-2" attributes="0"/>
+                          <Component id="labelSelectAuthor" min="-2" pref="99" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="authorComboBox" max="32767" attributes="0"/>
-                          <Component id="jScrollPane1" pref="324" max="32767" attributes="0"/>
+                          <Component id="scrollPaneAuthor" pref="324" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -131,13 +134,13 @@
                               <Component id="authorRemoveButton" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
-                              <Component id="jLabel1" min="-2" pref="73" max="-2" attributes="0"/>
+                              <Component id="scrollPaneAuthor" pref="0" max="32767" attributes="0"/>
+                              <Component id="labelAuthorList" min="-2" pref="73" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="authorNameLabel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="labelSelectAuthor" alignment="0" max="32767" attributes="0"/>
                           <Component id="authorComboBox" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="authorAddButton" alignment="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -147,7 +150,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+            <Container class="javax.swing.JScrollPane" name="scrollPaneAuthor">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
@@ -161,18 +164,18 @@
                     </Property>
                   </Properties>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;AuthorModel&gt;"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="labelAuthorList">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="Yazarlar:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="authorNameLabel">
+            <Component class="javax.swing.JLabel" name="labelSelectAuthor">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="Yazar Ekle:"/>
@@ -185,11 +188,8 @@
                   <StringArray count="0"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="popupMenuWillBecomeVisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="authorComboBoxPopupMenuWillBecomeVisible"/>
-              </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;AuthorModel&gt;"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="authorButton">
@@ -198,9 +198,6 @@
                   <Image iconType="3" name="/resources/img/poem.png"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="authorButtonActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="authorRemoveButton">
               <Properties>
@@ -209,9 +206,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="-"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="authorRemoveButtonActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="authorAddButton">
               <Properties>
@@ -220,13 +214,10 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="+"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="authorAddButtonActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel2">
+        <Container class="javax.swing.JPanel" name="panelBookType">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -245,12 +236,12 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="typrNameLabel" max="32767" attributes="0"/>
-                          <Component id="typrNameLabel1" max="32767" attributes="0"/>
+                          <Component id="labelSelectBookType" max="32767" attributes="0"/>
+                          <Component id="labelBookTypeList" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jScrollPane3" pref="329" max="32767" attributes="0"/>
+                          <Component id="scrollPaneBookType" pref="329" max="32767" attributes="0"/>
                           <Component id="booksTypeComboBox" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -269,8 +260,8 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jScrollPane3" pref="0" max="32767" attributes="0"/>
-                              <Component id="typrNameLabel1" pref="75" max="32767" attributes="0"/>
+                              <Component id="scrollPaneBookType" pref="0" max="32767" attributes="0"/>
+                              <Component id="labelBookTypeList" pref="75" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="typeButton" min="-2" pref="35" max="-2" attributes="0"/>
@@ -282,7 +273,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="booksTypeComboBox" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="typrNameLabel" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="labelSelectBookType" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                           <Component id="booksTypeAddButton" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -298,15 +289,11 @@
                   <Connection code="true" type="code"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="popupMenuWillBecomeVisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="booksTypeComboBoxPopupMenuWillBecomeVisible"/>
-              </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="booksTypeComboBox.getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {&#xa;    public void keyReleased(java.awt.event.KeyEvent evt) {&#xa;        typeComboBoxKeyReleased(evt);&#xa;    }&#xa;});"/>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;BookTypeModel&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="typrNameLabel">
+            <Component class="javax.swing.JLabel" name="labelSelectBookType">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="Kitap T&#xfc;r&#xfc; Ekle:"/>
@@ -318,11 +305,8 @@
                   <Image iconType="3" name="/resources/img/separation.png"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="typeButtonActionPerformed"/>
-              </Events>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+            <Container class="javax.swing.JScrollPane" name="scrollPaneBookType">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
@@ -335,16 +319,13 @@
                       <StringArray count="0"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bookTypeListMouseClicked"/>
-                  </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;BookTypeModel&gt;"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="typrNameLabel1">
+            <Component class="javax.swing.JLabel" name="labelBookTypeList">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="Kitap T&#xfc;r&#xfc;:"/>
@@ -357,9 +338,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="+"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="booksTypeAddButtonActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="booksTypeRemoveButton">
               <Properties>
@@ -368,13 +346,10 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="-"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="booksTypeRemoveButtonActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel3">
+        <Container class="javax.swing.JPanel" name="panelBook">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -393,11 +368,11 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="bookCountLabel" max="32767" attributes="0"/>
-                          <Component id="authorNameLabel1" alignment="1" max="32767" attributes="0"/>
-                          <Component id="bookNameLabel" alignment="1" max="32767" attributes="0"/>
-                          <Component id="isbnLabel" alignment="1" max="32767" attributes="0"/>
-                          <Component id="pressDateLable" alignment="0" pref="114" max="32767" attributes="0"/>
+                          <Component id="labelBookQuantity" max="32767" attributes="0"/>
+                          <Component id="labelPublisher" alignment="1" max="32767" attributes="0"/>
+                          <Component id="labelBookName" alignment="1" max="32767" attributes="0"/>
+                          <Component id="labelIsbn" alignment="1" max="32767" attributes="0"/>
+                          <Component id="labelPressDate" alignment="0" pref="114" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -421,28 +396,28 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="isbnTextField" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="isbnLabel" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="labelIsbn" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="bookNameTextField" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="bookNameLabel" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="labelBookName" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="publisherButton" alignment="0" max="32767" attributes="0"/>
                           <Component id="publicsherComboBox" alignment="0" max="32767" attributes="0"/>
-                          <Component id="authorNameLabel1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="labelPublisher" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="pressDateLable" max="32767" attributes="0"/>
+                          <Component id="labelPressDate" max="32767" attributes="0"/>
                           <Component id="pressDateChooser" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="bookCountTextField" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="bookCountLabel" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="labelBookQuantity" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -452,13 +427,13 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="isbnTextField">
             </Component>
-            <Component class="javax.swing.JLabel" name="isbnLabel">
+            <Component class="javax.swing.JLabel" name="labelIsbn">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="ISBN:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="bookNameLabel">
+            <Component class="javax.swing.JLabel" name="labelBookName">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="Kitap Ad&#x131;:"/>
@@ -473,20 +448,17 @@
                   <StringArray count="0"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="popupMenuWillBecomeVisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="publicsherComboBoxPopupMenuWillBecomeVisible"/>
-              </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;PublisherModel&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="authorNameLabel1">
+            <Component class="javax.swing.JLabel" name="labelPublisher">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="Yay&#x131;n Evi:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="pressDateLable">
+            <Component class="javax.swing.JLabel" name="labelPressDate">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="Bas&#x131;m Tarihi:"/>
@@ -498,13 +470,10 @@
                   <Image iconType="3" name="/resources/img/advertisement.png"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="publisherButtonActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="bookCountTextField">
             </Component>
-            <Component class="javax.swing.JLabel" name="bookCountLabel">
+            <Component class="javax.swing.JLabel" name="labelBookQuantity">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="Say&#x131;:"/>
@@ -517,7 +486,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel4">
+        <Container class="javax.swing.JPanel" name="panelButtons">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -531,9 +500,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
-                      <Component id="cancelButton" min="-2" pref="79" max="-2" attributes="0"/>
+                      <Component id="buttonCancel" min="-2" pref="79" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
-                      <Component id="saveButton" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="buttonSave" min="-2" pref="70" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -541,28 +510,22 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="cancelButton" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="saveButton" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="buttonCancel" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="buttonSave" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="cancelButton">
+            <Component class="javax.swing.JButton" name="buttonCancel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x130;ptal Et"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelButtonActionPerformed"/>
-              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="saveButton">
+            <Component class="javax.swing.JButton" name="buttonSave">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Kaydet"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveButtonActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -5,121 +5,180 @@
  */
 package com.ugurtech.library.controllerv2;
 
-import com.ugurtech.library.model.BookModel;
+import com.ugurtech.library.view.MainForm;
+import com.ugurtech.library.view.book.AuthorForm;
 import com.ugurtech.library.view.book.BookForm;
-import com.ugurtech.library.model.AuthorModel;
-import com.ugurtech.library.model.BookTypeModel;
-import com.ugurtech.library.model.PublisherModel;
-import com.ugurtech.library.persistance.book.BookDao;
-import com.ugurtech.library.persistance.book.BookDaoImpl;
-import java.util.ArrayList;
-import java.util.List;
+import com.ugurtech.library.view.book.BookTypeForm;
+import com.ugurtech.library.view.book.PublisherForm;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
  * @author ugur
  */
 public final class BookFormController extends AbstractController {
-    
-    private final BookForm bookForm;
-    private final BookDao bookDao;
-    private BookModel bookModel;
-    private List<BookTypeModel> bookTypeModel;
-    private List<AuthorModel> authorModel;
-    private List<PublisherModel> publisherModel;
-    
-    public BookFormController(BookForm booksForm){
-        
-        this.bookDao = new BookDaoImpl();
-        this.bookForm = booksForm;
-        this.bookTypeModel = new ArrayList<>();
-        this.authorModel = new ArrayList<>();
-        this.publisherModel = new ArrayList<>();
 
+    private final BookForm bookForm;
+
+    public BookFormController(BookForm bookForm) {
+        this.bookForm = bookForm;
         initView();
         initController();
-    }
-    
-
-    
-    public void addBooks(){
-        this.bookModel = new BookModel();
-        List<AuthorModel> authorList = new ArrayList<>();
-        List<BookTypeModel> bookTypeList = new ArrayList<>();
-        bookModel.setIsbn(Long.parseLong(bookForm.getIsbnTextField().getText()));
-        bookModel.setBookName(bookForm.getBookNameTextField().getText());
-        bookModel.setPressDate(bookForm.getPressDateChooser().getDate()==null?null:bookForm.getPressDateChooser().getDate().getTime());
-        
-        for(int i=0;i<bookForm.getBooksTypeDefaultListModel().getSize();i++){
-            bookTypeList.add((BookTypeModel)bookForm.getBooksTypeDefaultListModel().getElementAt(i));
-        }
-        bookModel.setBooksType(bookTypeList);
-        
-        for(int i=0;i<bookForm.getAuthorDefaultModel().getSize();i++){
-            authorList.add((AuthorModel)bookForm.getAuthorDefaultModel().getElementAt(i));
-        }
-        bookModel.setAuthor(authorList);
-        
-        publisherModel.stream()
-                .filter(pm -> (bookForm.getPublicsherComboBox().getSelectedItem().toString().equals(pm.getPublisherName())))
-                .forEachOrdered(pm -> {bookModel.setPublisherId(pm.getPublisherId());});
-        
-        this.bookDao.addBook(bookModel);
-    }
-    
-    public void allBooksType(){
-        bookForm.getBooksTypeComboBox().removeAllItems();
-        bookTypeModel.clear();
-        bookTypeModel = bookDao.getAllBooksType();
-        bookTypeModel.forEach(btm -> {
-            bookForm.getBooksTypeComboBox().addItem(btm.getTypeName());
-        });
-    }
-    
-    public void addFromBooksTypeComboBoxToBooksTypeList(){ 
-        bookTypeModel.stream()
-                .filter(btm -> (btm.getTypeName().equals(bookForm.getBooksTypeComboBox().getSelectedItem())))
-                .forEachOrdered(btm -> {bookForm.getBooksTypeDefaultListModel().addElement(btm);});       
-    }
-    
-    public void removeBooksTypeFromBooksTypeList(){
-        if(!bookForm.getBookTypeList().isSelectionEmpty()){
-        bookForm.getBooksTypeDefaultListModel().remove(bookForm.getBookTypeList().getSelectedIndex());}
-    }
-    
-    public void allAuthors(){
-        bookForm.getAuthorComboBox().removeAllItems();
-        authorModel.clear();
-        authorModel = bookDao.allAuthors();
-        authorModel.forEach(am -> {bookForm.getAuthorComboBox().addItem(am.getFirstName()+" "+am.getLastName());});
-    }
-    
-    public void addFromAuthorComboBaxToAuthorList(){
-        authorModel.stream()
-                .filter(am -> ((am.getFirstName()+" "+am.getLastName()).equals(bookForm.getAuthorComboBox().getSelectedItem())))
-                .forEachOrdered(am -> {bookForm.getAuthorDefaultModel().addElement(am);});
-    }
-    
-    public void removeAuthorFromAuthorList(){
-        if(!bookForm.getAuthorTypeList().isSelectionEmpty()){
-        bookForm.getAuthorDefaultModel().remove(bookForm.getAuthorTypeList().getSelectedIndex());
-        }
-    }
-    
-    public void allPublisher(){
-        bookForm.getPublicsherComboBox().removeAllItems();
-        publisherModel.clear();
-        publisherModel = bookDao.allPublisher();
-        publisherModel.forEach(pm->{bookForm.getPublicsherComboBox().addItem(pm.getPublisherName());});
     }
 
     @Override
     void initView() {
-
+        AutoCompleteDecorator.decorate(bookForm.getBooksTypeComboBox());
+        AutoCompleteDecorator.decorate(bookForm.getAuthorComboBox());
+        AutoCompleteDecorator.decorate(bookForm.getPublicsherComboBox());
     }
 
     @Override
     void initController() {
 
+        bookForm.getAuthorComboBox().addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                //allAuthors(); method removed
+            }
+        });
+
+        bookForm.getAuthorButton().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MainForm.getInstance().addDesktopPane(AuthorForm.getInstance());
+            }
+        });
+
+        bookForm.getAuthorRemoveButton().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // removeAuthorFromAuthorList(); method removed
+            }
+        });
+
+        bookForm.getAuthorAddButton().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                //booksController.addFromAuthorComboBaxToAuthorList(); method removed
+            }
+        });
+
+        bookForm.getBooksTypeComboBox().addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                //booksController.allBooksType(); method removed
+            }
+        });
+
+        bookForm.getBooksTypeComboBox().getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == 10) {
+                    // booksController.addFromBooksTypeComboBoxToBooksTypeList(); method removed
+                }
+            }
+        });
+
+        bookForm.getTypeButton().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MainForm.getInstance().addDesktopPane(BookTypeForm.getInstance());
+            }
+        });
+
+        bookForm.getBookTypeList().addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    evt.consume();
+                    // booksController.removeBooksTypeFromBooksTypeList(); method removed
+                }
+            }
+        });
+
+        bookForm.getBooksTypeAddButton().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // booksController.addFromBooksTypeComboBoxToBooksTypeList(); method removed
+            }
+        });
+
+        bookForm.getBooksTypeRemoveButton().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                //booksController.removeBooksTypeFromBooksTypeList(); method removed
+            }
+        });
+
+        bookForm.getPublicsherComboBox().addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                //booksController.allPublisher(); method removed
+            }
+        });
+
+        bookForm.getPublisherButton().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MainForm.getInstance().addDesktopPane(PublisherForm.getInstance());
+            }
+        });
+
+        bookForm.getButtonCancel().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearAllFields();
+                bookForm.dispose();
+            }
+        });
+
+        bookForm.getButtonSave().addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               // booksController.addBooks(); method removed
+                clearAllFields();
+            }
+        });
+}
+
+@Override
+    void get() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    void getAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.        
+    }
+
+    @Override
+    void add() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.    
+    }
+
+    @Override
+    void delete() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.    
+    }
+
+    @Override
+    void update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.    
+    }
+
+    public void clearAllFields(){
+        bookForm.getAuthorComboBox().removeAllItems();
+        bookForm.getBookTypeList().removeAll();
+        bookForm.getBookNameTextField().setText(null);
+        bookForm.getAuthorList().removeAll();
+        bookForm.getBooksTypeComboBox().removeAllItems();
+        bookForm.getIsbnTextField().setText(null);
+        bookForm.getPressDateChooser().setDate(null);
+        bookForm.getPublicsherComboBox().removeAllItems();
     }
 }

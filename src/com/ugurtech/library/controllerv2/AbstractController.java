@@ -15,11 +15,12 @@ public abstract class AbstractController {
     
     abstract void initView();
     abstract void initController();
-    void getAll(){}
+    abstract void get();
+    abstract void getAll();
     void add(){}
-    void updade(){}
+    void update(){}
     void delete(){}
-    void get(){}
+
     String setLanguage(String strng){
         return LanguageImpl.setLanguage(Internationalization::setLanguage, strng);
     }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ugurtech.library.modelv2.responsmodels;
+package com.ugurtech.library.modelv2;
 
 /**
  *

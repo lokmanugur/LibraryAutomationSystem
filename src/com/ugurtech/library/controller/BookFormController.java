@@ -12,7 +12,6 @@ import com.ugurtech.library.model.BookTypeModel;
 import com.ugurtech.library.model.PublisherModel;
 import com.ugurtech.library.persistance.book.BookDao;
 import com.ugurtech.library.persistance.book.BookDaoImpl;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +67,7 @@ public final class BookFormController {
         bookTypeModel.clear();
         bookTypeModel = bookDao.getAllBooksType();
         bookTypeModel.forEach(btm -> {
-            bookForm.getBooksTypeComboBox().addItem(btm.getTypeName());
+           // bookForm.getBooksTypeComboBox().addItem(btm.getTypeName());
         });
     }
     
@@ -87,7 +86,7 @@ public final class BookFormController {
         bookForm.getAuthorComboBox().removeAllItems();
         authorModel.clear();
         authorModel = bookDao.allAuthors();
-        authorModel.forEach(am -> {bookForm.getAuthorComboBox().addItem(am.getFirstName()+" "+am.getLastName());});
+        //authorModel.forEach(am -> {bookForm.getAuthorComboBox().addItem(am.getFirstName()+" "+am.getLastName());});
     }
     
     public void addFromAuthorComboBaxToAuthorList(){
@@ -106,6 +105,6 @@ public final class BookFormController {
         bookForm.getPublicsherComboBox().removeAllItems();
         publisherModel.clear();
         publisherModel = bookDao.allPublisher();
-        publisherModel.forEach(pm->{bookForm.getPublicsherComboBox().addItem(pm.getPublisherName());});
+       // publisherModel.forEach(pm->{bookForm.getPublicsherComboBox().addItem(pm);});
     }
 }

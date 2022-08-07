@@ -5,6 +5,7 @@
  */
 package com.ugurtech.library.modelv2.responsmodels;
 
+import com.ugurtech.library.modelv2.DateModel;
 import java.util.Objects;
 
 

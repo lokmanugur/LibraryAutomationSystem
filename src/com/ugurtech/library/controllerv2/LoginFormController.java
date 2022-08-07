@@ -120,4 +120,14 @@ public class LoginFormController extends AbstractController {
         loginForm.getPasswordLable().setText(setLanguage("loginform.passwordlabel"));
     }
 
+    @Override
+    void get() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    void getAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

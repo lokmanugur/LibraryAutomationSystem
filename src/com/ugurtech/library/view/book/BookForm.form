@@ -379,7 +379,7 @@
                           <Component id="bookCountTextField" min="-2" pref="75" max="-2" attributes="0"/>
                           <Component id="bookNameTextField" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="publicsherComboBox" min="-2" pref="300" max="-2" attributes="0"/>
+                              <Component id="publisherComboBox" min="-2" pref="300" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="publisherButton" min="-2" pref="42" max="-2" attributes="0"/>
                           </Group>
@@ -406,7 +406,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="publisherButton" alignment="0" max="32767" attributes="0"/>
-                          <Component id="publicsherComboBox" alignment="0" max="32767" attributes="0"/>
+                          <Component id="publisherComboBox" alignment="0" max="32767" attributes="0"/>
                           <Component id="labelPublisher" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -441,7 +441,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="bookNameTextField">
             </Component>
-            <Component class="javax.swing.JComboBox" name="publicsherComboBox">
+            <Component class="javax.swing.JComboBox" name="publisherComboBox">
               <Properties>
                 <Property name="editable" type="boolean" value="true"/>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">

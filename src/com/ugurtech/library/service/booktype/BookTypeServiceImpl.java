@@ -6,6 +6,7 @@
 package com.ugurtech.library.service.booktype;
 
 import com.ugurtech.library.modelv2.BookTypeModel;
+import com.ugurtech.library.persistancev2.booktype.BookTypeDao;
 import java.util.List;
 
 /**
@@ -13,10 +14,16 @@ import java.util.List;
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
 public class BookTypeServiceImpl implements BookTypeService{
+    
+    private final BookTypeDao bookTypeDao;
+
+    public BookTypeServiceImpl(BookTypeDao bookTypeDao) {
+        this.bookTypeDao = bookTypeDao;
+    }
 
     @Override
     public List<BookTypeModel> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return bookTypeDao.getAll();
     }
 
     @Override

@@ -21,7 +21,7 @@ public abstract class AbstractController {
     void update(){}
     void delete(){}
 
-    String setLanguage(String strng){
+    protected String setLanguage(String strng){
         return LanguageImpl.setLanguage(Internationalization::setLanguage, strng);
     }
 }

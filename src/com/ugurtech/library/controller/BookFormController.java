@@ -45,18 +45,18 @@ public final class BookFormController {
         bookModel.setBookName(bookForm.getBookNameTextField().getText());
         bookModel.setPressDate(bookForm.getPressDateChooser().getDate()==null?null:bookForm.getPressDateChooser().getDate().getTime());
         
-        for(int i=0;i<bookForm.getBooksTypeDefaultListModel().getSize();i++){
-            bookTypeList.add((BookTypeModel)bookForm.getBooksTypeDefaultListModel().getElementAt(i));
-        }
-        bookModel.setBooksType(bookTypeList);
-        
-        for(int i=0;i<bookForm.getAuthorDefaultModel().getSize();i++){
-            authorList.add((AuthorModel)bookForm.getAuthorDefaultModel().getElementAt(i));
-        }
+//        for(int i=0;i<bookForm.getBooksTypeDefaultListModel().getSize();i++){
+//            bookTypeList.add((BookTypeModel)bookForm.getBooksTypeDefaultListModel().getElementAt(i));
+//        }
+//        bookModel.setBooksType(bookTypeList);
+//        
+//        for(int i=0;i<bookForm.getAuthorDefaultModel().getSize();i++){
+//            authorList.add((AuthorModel)bookForm.getAuthorDefaultModel().getElementAt(i));
+//        }
         bookModel.setAuthor(authorList);
         
         publisherModel.stream()
-                .filter(pm -> (bookForm.getPublicsherComboBox().getSelectedItem().toString().equals(pm.getPublisherName())))
+                .filter(pm -> (bookForm.getPublisherComboBox().getSelectedItem().toString().equals(pm.getPublisherName())))
                 .forEachOrdered(pm -> {bookModel.setPublisherId(pm.getPublisherId());});
         
         this.bookDao.addBook(bookModel);
@@ -72,39 +72,39 @@ public final class BookFormController {
     }
     
     public void addFromBooksTypeComboBoxToBooksTypeList(){ 
-        bookTypeModel.stream()
-                .filter(btm -> (btm.getTypeName().equals(bookForm.getBooksTypeComboBox().getSelectedItem())))
-                .forEachOrdered(btm -> {bookForm.getBooksTypeDefaultListModel().addElement(btm);});       
-    }
+//        bookTypeModel.stream()
+//                .filter(btm -> (btm.getTypeName().equals(bookForm.getBooksTypeComboBox().getSelectedItem())))
+//                .forEachOrdered(btm -> {bookForm.getBooksTypeDefaultListModel().addElement(btm);});       
+//    }
+//    
+//    public void removeBooksTypeFromBooksTypeList(){
+//        if(!bookForm.getBookTypeList().isSelectionEmpty()){
+//        bookForm.getBooksTypeDefaultListModel().remove(bookForm.getBookTypeList().getSelectedIndex());}
+//    }
     
-    public void removeBooksTypeFromBooksTypeList(){
-        if(!bookForm.getBookTypeList().isSelectionEmpty()){
-        bookForm.getBooksTypeDefaultListModel().remove(bookForm.getBookTypeList().getSelectedIndex());}
-    }
+//    public void allAuthors(){
+//        bookForm.getAuthorComboBox().removeAllItems();
+//        authorModel.clear();
+//        authorModel = bookDao.allAuthors();
+//        //authorModel.forEach(am -> {bookForm.getAuthorComboBox().addItem(am.getFirstName()+" "+am.getLastName());});
+//    }
     
-    public void allAuthors(){
-        bookForm.getAuthorComboBox().removeAllItems();
-        authorModel.clear();
-        authorModel = bookDao.allAuthors();
-        //authorModel.forEach(am -> {bookForm.getAuthorComboBox().addItem(am.getFirstName()+" "+am.getLastName());});
-    }
-    
-    public void addFromAuthorComboBaxToAuthorList(){
-        authorModel.stream()
-                .filter(am -> ((am.getFirstName()+" "+am.getLastName()).equals(bookForm.getAuthorComboBox().getSelectedItem())))
-                .forEachOrdered(am -> {bookForm.getAuthorDefaultModel().addElement(am);});
-    }
-    
-    public void removeAuthorFromAuthorList(){
-        if(!bookForm.getAuthorTypeList().isSelectionEmpty()){
-        bookForm.getAuthorDefaultModel().remove(bookForm.getAuthorTypeList().getSelectedIndex());
-        }
-    }
-    
-    public void allPublisher(){
-        bookForm.getPublicsherComboBox().removeAllItems();
-        publisherModel.clear();
-        publisherModel = bookDao.allPublisher();
-       // publisherModel.forEach(pm->{bookForm.getPublicsherComboBox().addItem(pm);});
+//    public void addFromAuthorComboBaxToAuthorList(){
+//        authorModel.stream()
+//                .filter(am -> ((am.getFirstName()+" "+am.getLastName()).equals(bookForm.getAuthorComboBox().getSelectedItem())))
+//                .forEachOrdered(am -> {bookForm.getAuthorDefaultModel().addElement(am);});
+//    }
+//    
+//    public void removeAuthorFromAuthorList(){
+//        if(!bookForm.getAuthorTypeList().isSelectionEmpty()){
+//        bookForm.getAuthorDefaultModel().remove(bookForm.getAuthorTypeList().getSelectedIndex());
+//        }
+//    }
+//    
+//    public void allPublisher(){
+//        bookForm.getPublicsherComboBox().removeAllItems();
+//        publisherModel.clear();
+//        publisherModel = bookDao.allPublisher();
+//       // publisherModel.forEach(pm->{bookForm.getPublicsherComboBox().addItem(pm);});
     }
 }

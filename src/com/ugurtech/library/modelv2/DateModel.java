@@ -13,6 +13,14 @@ public class DateModel {
     private long createdDate;
     private long lastUpdate;
 
+    public DateModel(long createdDate, long lastUpdate) {
+        this.createdDate = createdDate;
+        this.lastUpdate = lastUpdate;
+    }
+
+    public DateModel() {
+    }
+
     public long getCreatedDate() {
         return createdDate;
     }

@@ -18,6 +18,17 @@ public class PublisherModel extends DateModel {
     private String phone;
     private String address;
 
+    public PublisherModel(int publisherId, String publisherName, String phone, String address,long cratedDate,long lastUpdate) {
+        super(cratedDate, lastUpdate);
+        this.publisherId = publisherId;
+        this.publisherName = publisherName;
+        this.phone = phone;
+        this.address = address;
+    }
+
+    public PublisherModel() {
+    }
+    
     public int getPublisherId() {
         return publisherId;
     }

@@ -5,7 +5,7 @@
  */
 package com.ugurtech.library.view.book;
 import com.toedter.calendar.JDateChooser;
-import com.ugurtech.library.controller.BookFormController;
+import com.ugurtech.library.controllerv2.BookFormController;
 import com.ugurtech.library.modelv2.AuthorModel;
 import com.ugurtech.library.modelv2.BookTypeModel;
 import com.ugurtech.library.modelv2.PublisherModel;
@@ -26,7 +26,7 @@ import javax.swing.JTextField;
  */
 public final class BookForm extends JInternalFrame {
     
-    private final BookFormController booksController;
+    private BookFormController booksController;
     private static BookForm bookForm;
 //    private DefaultListModel bookTypeDefaultListModel;
 //    private DefaultListModel authorDefaultModel;
@@ -47,7 +47,6 @@ public final class BookForm extends JInternalFrame {
             return bookForm = new BookForm();
         else
             return bookForm;
-        
     }
 
     /**
@@ -83,7 +82,7 @@ public final class BookForm extends JInternalFrame {
         labelIsbn = new javax.swing.JLabel();
         labelBookName = new javax.swing.JLabel();
         bookNameTextField = new javax.swing.JTextField();
-        publicsherComboBox = new javax.swing.JComboBox<>();
+        publisherComboBox = new javax.swing.JComboBox<>();
         labelPublisher = new javax.swing.JLabel();
         labelPressDate = new javax.swing.JLabel();
         publisherButton = new javax.swing.JButton();
@@ -231,7 +230,7 @@ public final class BookForm extends JInternalFrame {
         labelBookName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelBookName.setText("Kitap Adı:");
 
-        publicsherComboBox.setEditable(true);
+        publisherComboBox.setEditable(true);
 
         labelPublisher.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelPublisher.setText("Yayın Evi:");
@@ -261,7 +260,7 @@ public final class BookForm extends JInternalFrame {
                     .addComponent(bookCountTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bookNameTextField)
                     .addGroup(panelBookLayout.createSequentialGroup()
-                        .addComponent(publicsherComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(publisherComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(publisherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(isbnTextField)
@@ -282,7 +281,7 @@ public final class BookForm extends JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(publisherButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(publicsherComboBox)
+                    .addComponent(publisherComboBox)
                     .addComponent(labelPublisher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -398,8 +397,8 @@ public final class BookForm extends JInternalFrame {
     private javax.swing.JPanel panelButtons;
     private javax.swing.JPanel panelMain;
     private com.toedter.calendar.JDateChooser pressDateChooser;
-    private javax.swing.JComboBox<PublisherModel> publicsherComboBox;
     private javax.swing.JButton publisherButton;
+    private javax.swing.JComboBox<PublisherModel> publisherComboBox;
     private javax.swing.JScrollPane scrollPaneAuthor;
     private javax.swing.JScrollPane scrollPaneBookType;
     private javax.swing.JButton typeButton;
@@ -645,12 +644,12 @@ public final class BookForm extends JInternalFrame {
         this.pressDateChooser = pressDateChooser;
     }
 
-    public JComboBox<PublisherModel> getPublicsherComboBox() {
-        return publicsherComboBox;
+    public JComboBox<PublisherModel> getPublisherComboBox() {
+        return publisherComboBox;
     }
 
-    public void setPublicsherComboBox(JComboBox<PublisherModel> publicsherComboBox) {
-        this.publicsherComboBox = publicsherComboBox;
+    public void setPublisherComboBox(JComboBox<PublisherModel> publisherComboBox) {
+        this.publisherComboBox = publisherComboBox;
     }
 
     public JButton getPublisherButton() {

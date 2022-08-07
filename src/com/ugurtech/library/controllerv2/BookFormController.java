@@ -5,6 +5,16 @@
  */
 package com.ugurtech.library.controllerv2;
 
+import com.ugurtech.library.persistancev2.author.AuthorDaoImpl;
+import com.ugurtech.library.persistancev2.booktype.BookTypeDao;
+import com.ugurtech.library.persistancev2.booktype.BookTypeDaoImpl;
+import com.ugurtech.library.persistancev2.publisher.PublisherDaoImpl;
+import com.ugurtech.library.service.author.AuthorService;
+import com.ugurtech.library.service.author.AuthorServiceImpl;
+import com.ugurtech.library.service.booktype.BookTypeService;
+import com.ugurtech.library.service.booktype.BookTypeServiceImpl;
+import com.ugurtech.library.service.publisher.PublisherService;
+import com.ugurtech.library.service.publisher.PublisherServiceImpl;
 import com.ugurtech.library.view.MainForm;
 import com.ugurtech.library.view.book.AuthorForm;
 import com.ugurtech.library.view.book.BookForm;
@@ -19,6 +29,9 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 public final class BookFormController extends AbstractController {
 
     private final BookForm bookForm;
+    private final PublisherService publisherService = new PublisherServiceImpl(new PublisherDaoImpl());
+    private final BookTypeService bookTypeService = new BookTypeServiceImpl(new BookTypeDaoImpl());
+    private final AuthorService authorService = new AuthorServiceImpl(new AuthorDaoImpl());
 
     public BookFormController(BookForm bookForm) {
         this.bookForm = bookForm;
@@ -27,10 +40,11 @@ public final class BookFormController extends AbstractController {
     }
 
     @Override
-    void initView() {
+    void initView(){
         AutoCompleteDecorator.decorate(bookForm.getBooksTypeComboBox());
         AutoCompleteDecorator.decorate(bookForm.getAuthorComboBox());
-        AutoCompleteDecorator.decorate(bookForm.getPublicsherComboBox());
+        AutoCompleteDecorator.decorate(bookForm.getPublisherComboBox());    
+        getAll();               
     }
 
     @Override
@@ -113,7 +127,7 @@ public final class BookFormController extends AbstractController {
             }
         });
 
-        bookForm.getPublicsherComboBox().addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+        bookForm.getPublisherComboBox().addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
 
@@ -122,6 +136,7 @@ public final class BookFormController extends AbstractController {
 
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 //booksController.allPublisher(); method removed
+               getAll();
             }
         });
 
@@ -146,14 +161,15 @@ public final class BookFormController extends AbstractController {
         });
 }
 
-@Override
+    @Override
     void get() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     void getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.        
+        bookForm.getPublisherComboBox().removeAllItems();
+        publisherService.getAll().forEach(publisherModel ->{bookForm.getPublisherComboBox().addItem(publisherModel);});
     }
 
     @Override
@@ -179,6 +195,6 @@ public final class BookFormController extends AbstractController {
         bookForm.getBooksTypeComboBox().removeAllItems();
         bookForm.getIsbnTextField().setText(null);
         bookForm.getPressDateChooser().setDate(null);
-        bookForm.getPublicsherComboBox().removeAllItems();
+        bookForm.getPublisherComboBox().removeAllItems();
     }
 }

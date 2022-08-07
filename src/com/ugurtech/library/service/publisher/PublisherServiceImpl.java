@@ -6,17 +6,24 @@
 package com.ugurtech.library.service.publisher;
 
 import com.ugurtech.library.modelv2.PublisherModel;
+import com.ugurtech.library.persistancev2.publisher.PublisherDao;
 import java.util.List;
 
 /**
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public class PubliherServiceImpl implements PublisherService{
+public class PublisherServiceImpl implements PublisherService{
+    
+    private final PublisherDao publisherDao;
 
+    public PublisherServiceImpl(PublisherDao publisherDao) {
+        this.publisherDao = publisherDao;
+    }
+       
     @Override
     public List<PublisherModel> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return publisherDao.getAll();
     }
 
     @Override

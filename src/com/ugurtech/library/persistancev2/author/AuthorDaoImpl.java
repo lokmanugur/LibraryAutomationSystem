@@ -13,10 +13,12 @@ import java.util.List;
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
 public class AuthorDaoImpl implements AuthorDao {
+    
+    public static final String ALL_AUTHOR_QUERY ="SELECT * FROM author";
 
     @Override
     public List<AuthorModel> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return authorList;
     }
 
     @Override

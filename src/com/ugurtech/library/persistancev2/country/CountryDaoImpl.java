@@ -20,10 +20,13 @@ import java.util.logging.Logger;
 public class CountryDaoImpl extends DaoAbstract implements CountryDao {
     public static final String ALL_COUNTRY_QUERY="SELECT * FROM country";
     
+    List<CountryModel> countryList = new ArrayList<>();
+    
     @Override
-    public List<CountryModel> getAll() {
-        
-        List<CountryModel> countryList = new ArrayList<>();
+    public List<CountryModel> getAll() {    
+        if(!countryList.isEmpty()){
+            countryList.clear();
+        }
         ResultSet resultSet = createResultSet(ALL_COUNTRY_QUERY);
         try {
             while(resultSet.next())

@@ -14,6 +14,12 @@ public class AuthorModel extends PersonModel {
     private int authorId;
     private int personId;
 
+    public AuthorModel(int authorId, int personId,String firstName,String lastName) {
+        super(firstName, lastName);
+        this.authorId = authorId;
+        this.personId = personId;
+    }
+
     public int getAuthorId() {
         return authorId;
     }
@@ -61,10 +67,7 @@ public class AuthorModel extends PersonModel {
         if (this.authorId != other.authorId) {
             return false;
         }
-        if (this.personId != other.personId) {
-            return false;
-        }
-        return true;
+        return this.personId == other.personId;
     }
     
 }

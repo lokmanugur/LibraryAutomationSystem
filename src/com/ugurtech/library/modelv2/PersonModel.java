@@ -19,6 +19,24 @@ public class PersonModel extends DateModel {
     private String address;
     private String phone;
 
+    public PersonModel(int personId, String firstName, String lastName, Date birthDate, String address, String phone, long createdDate, long lastUpdate) {
+        super(createdDate, lastUpdate);
+        this.personId = personId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.address = address;
+        this.phone = phone;
+    }
+
+    public PersonModel(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public PersonModel() {
+    }
+
     public int getPersonId() {
         return personId;
     }

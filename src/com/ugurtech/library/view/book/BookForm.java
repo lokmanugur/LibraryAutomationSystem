@@ -9,7 +9,6 @@ import com.ugurtech.library.controllerv2.BookFormController;
 import com.ugurtech.library.modelv2.AuthorModel;
 import com.ugurtech.library.modelv2.BookTypeModel;
 import com.ugurtech.library.modelv2.PublisherModel;
-import com.ugurtech.library.view.MainForm;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -26,19 +25,19 @@ import javax.swing.JTextField;
  */
 public final class BookForm extends JInternalFrame {
     
-    private BookFormController booksController;
     private static BookForm bookForm;
-//    private DefaultListModel bookTypeDefaultListModel;
-//    private DefaultListModel authorDefaultModel;
+    
+    private DefaultListModel bookTypeDefaultListModel;
+    private DefaultListModel authorDefaultModel;
     
     private BookForm() {
         initComponents();
-        booksController = new BookFormController(this);
+         new BookFormController(this).getClass();
 
-//        bookTypeDefaultListModel = new DefaultListModel();
-//        authorDefaultModel = new DefaultListModel();
-//        bookTypeList.setModel(bookTypeDefaultListModel);
-//        authorList.setModel(authorDefaultModel);
+        bookTypeDefaultListModel = new DefaultListModel();
+        authorDefaultModel = new DefaultListModel();
+        bookTypeList.setModel(bookTypeDefaultListModel);
+        authorList.setModel(authorDefaultModel);
         setLocation(getWidth()/2, getHeight()/100);
     }
     
@@ -683,5 +682,22 @@ public final class BookForm extends JInternalFrame {
     public void setTypeButton(JButton typeButton) {
         this.typeButton = typeButton;
     }
+
+    public DefaultListModel getBookTypeDefaultListModel() {
+        return bookTypeDefaultListModel;
+    }
+
+    public void setBookTypeDefaultListModel(DefaultListModel bookTypeDefaultListModel) {
+        this.bookTypeDefaultListModel = bookTypeDefaultListModel;
+    }
+
+    public DefaultListModel getAuthorDefaultModel() {
+        return authorDefaultModel;
+    }
+
+    public void setAuthorDefaultModel(DefaultListModel authorDefaultModel) {
+        this.authorDefaultModel = authorDefaultModel;
+    }
+    
 
 }

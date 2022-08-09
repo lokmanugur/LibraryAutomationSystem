@@ -92,10 +92,7 @@ public class PublisherModel extends DateModel {
         if (!Objects.equals(this.phone, other.phone)) {
             return false;
         }
-        if (!Objects.equals(this.address, other.address)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.address, other.address);
     }
 
     @Override

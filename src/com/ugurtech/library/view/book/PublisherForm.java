@@ -7,6 +7,9 @@ package com.ugurtech.library.view.book;
 import com.ugurtech.library.controller.PublisherController;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -39,18 +42,18 @@ public final class PublisherForm extends JInternalFrame {
     private void initComponents() {
 
         aracKayitPanel = new javax.swing.JPanel();
-        labelAracAdi = new javax.swing.JLabel();
+        labelPublisher = new javax.swing.JLabel();
         publisherNameTextField = new javax.swing.JTextField();
         phoneTextField = new javax.swing.JTextField();
-        labelAracAdi1 = new javax.swing.JLabel();
-        labelAracAdi2 = new javax.swing.JLabel();
+        labelPhone = new javax.swing.JLabel();
+        labelAddress = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         addressTextArea = new javax.swing.JTextArea();
         saveButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        labelSearch = new javax.swing.JLabel();
         publisherSearchTextField = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         publisherTable = new javax.swing.JTable();
@@ -66,15 +69,15 @@ public final class PublisherForm extends JInternalFrame {
         aracKayitPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         aracKayitPanel.setToolTipText(""); // NOI18N
 
-        labelAracAdi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelAracAdi.setText("Yayıncı Kuruluş:");
+        labelPublisher.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelPublisher.setText("Yayıncı Kuruluş:");
 
-        labelAracAdi1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelAracAdi1.setText("Telefon:");
+        labelPhone.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelPhone.setText("Telefon:");
 
-        labelAracAdi2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelAracAdi2.setText("Adres:");
-        labelAracAdi2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        labelAddress.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelAddress.setText("Adres:");
+        labelAddress.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         addressTextArea.setColumns(20);
         addressTextArea.setRows(5);
@@ -108,8 +111,8 @@ public final class PublisherForm extends JInternalFrame {
             }
         });
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("Ara:");
+        labelSearch.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelSearch.setText("Ara:");
 
         publisherSearchTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -124,16 +127,16 @@ public final class PublisherForm extends JInternalFrame {
             .addGroup(aracKayitPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(aracKayitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(labelAracAdi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelAracAdi1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(labelPublisher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(aracKayitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(phoneTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
                     .addComponent(publisherNameTextField)
                     .addComponent(publisherSearchTextField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(labelAracAdi2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addGroup(aracKayitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(aracKayitPanelLayout.createSequentialGroup()
@@ -154,12 +157,12 @@ public final class PublisherForm extends JInternalFrame {
                 .addGroup(aracKayitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(aracKayitPanelLayout.createSequentialGroup()
                         .addGroup(aracKayitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelAracAdi2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(aracKayitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(aracKayitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(publisherSearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(aracKayitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -168,27 +171,25 @@ public final class PublisherForm extends JInternalFrame {
                             .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(aracKayitPanelLayout.createSequentialGroup()
                         .addGroup(aracKayitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelAracAdi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(publisherNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(aracKayitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelAracAdi1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(65, 65, 65)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         publisherTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
 
             }
         ));
+        publisherTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(publisherTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -246,12 +247,12 @@ public final class PublisherForm extends JInternalFrame {
     private javax.swing.JPanel aracKayitPanel;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton deleteButton;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel labelAracAdi;
-    private javax.swing.JLabel labelAracAdi1;
-    private javax.swing.JLabel labelAracAdi2;
+    private javax.swing.JLabel labelAddress;
+    private javax.swing.JLabel labelPhone;
+    private javax.swing.JLabel labelPublisher;
+    private javax.swing.JLabel labelSearch;
     private javax.swing.JTextField phoneTextField;
     private javax.swing.JTextField publisherNameTextField;
     private javax.swing.JTextField publisherSearchTextField;
@@ -260,21 +261,12 @@ public final class PublisherForm extends JInternalFrame {
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 
-        
-    public JTable getPublisherTable() {
-        return publisherTable;
+    public static PublisherForm getPublisherForm() {
+        return publisherForm;
     }
 
-    public void setPublisherTable(JTable publisherTable) {
-        this.publisherTable = publisherTable;
-    }
-    
-    public JButton getSaveButton() {
-        return saveButton;
-    }
-
-    public void setSaveButton(JButton SaveButton) {
-        this.saveButton = SaveButton;
+    public static void setPublisherForm(PublisherForm publisherForm) {
+        PublisherForm.publisherForm = publisherForm;
     }
 
     public JTextArea getAddressTextArea() {
@@ -285,12 +277,76 @@ public final class PublisherForm extends JInternalFrame {
         this.addressTextArea = addressTextArea;
     }
 
+    public JPanel getAracKayitPanel() {
+        return aracKayitPanel;
+    }
+
+    public void setAracKayitPanel(JPanel aracKayitPanel) {
+        this.aracKayitPanel = aracKayitPanel;
+    }
+
     public JButton getCancelButton() {
-        return updateButton;
+        return cancelButton;
     }
 
     public void setCancelButton(JButton cancelButton) {
-        this.updateButton = cancelButton;
+        this.cancelButton = cancelButton;
+    }
+
+    public JButton getDeleteButton() {
+        return deleteButton;
+    }
+
+    public void setDeleteButton(JButton deleteButton) {
+        this.deleteButton = deleteButton;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JScrollPane getjScrollPane2() {
+        return jScrollPane2;
+    }
+
+    public void setjScrollPane2(JScrollPane jScrollPane2) {
+        this.jScrollPane2 = jScrollPane2;
+    }
+
+    public JLabel getLabelAddress() {
+        return labelAddress;
+    }
+
+    public void setLabelAddress(JLabel labelAddress) {
+        this.labelAddress = labelAddress;
+    }
+
+    public JLabel getLabelPhone() {
+        return labelPhone;
+    }
+
+    public void setLabelPhone(JLabel labelPhone) {
+        this.labelPhone = labelPhone;
+    }
+
+    public JLabel getLabelPublisher() {
+        return labelPublisher;
+    }
+
+    public void setLabelPublisher(JLabel labelPublisher) {
+        this.labelPublisher = labelPublisher;
+    }
+
+    public JLabel getLabelSearch() {
+        return labelSearch;
+    }
+
+    public void setLabelSearch(JLabel labelSearch) {
+        this.labelSearch = labelSearch;
     }
 
     public JTextField getPhoneTextField() {
@@ -316,6 +372,29 @@ public final class PublisherForm extends JInternalFrame {
     public void setPublisherSearchTextField(JTextField publisherSearchTextField) {
         this.publisherSearchTextField = publisherSearchTextField;
     }
-    
-    
+
+    public JTable getPublisherTable() {
+        return publisherTable;
+    }
+
+    public void setPublisherTable(JTable publisherTable) {
+        this.publisherTable = publisherTable;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton;
+    }
+
+    public void setSaveButton(JButton saveButton) {
+        this.saveButton = saveButton;
+    }
+
+    public JButton getUpdateButton() {
+        return updateButton;
+    }
+
+    public void setUpdateButton(JButton updateButton) {
+        this.updateButton = updateButton;
+    }
+
 }

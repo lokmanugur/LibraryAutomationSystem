@@ -21,10 +21,10 @@ import java.util.logging.Logger;
 public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
 
     public static final String ALL_PUBLISHER_QUERY = "SELECT * FROM publisher";
-
+    private final List<PublisherModel> publisherList = new ArrayList<>();
     @Override
     public List<PublisherModel> getAll() {
-        List<PublisherModel> publisherList = new ArrayList<>();
+
         ResultSet resultSet = createResultSet(ALL_PUBLISHER_QUERY);
         try {
             while (resultSet.next()) {

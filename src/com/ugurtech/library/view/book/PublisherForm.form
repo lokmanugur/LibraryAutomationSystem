@@ -69,9 +69,9 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="labelAracAdi" alignment="1" max="32767" attributes="0"/>
-                      <Component id="labelAracAdi1" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jLabel1" max="32767" attributes="0"/>
+                      <Component id="labelPublisher" alignment="1" max="32767" attributes="0"/>
+                      <Component id="labelPhone" alignment="1" max="32767" attributes="0"/>
+                      <Component id="labelSearch" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -80,7 +80,7 @@
                       <Component id="publisherSearchTextField" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="22" max="32767" attributes="0"/>
-                  <Component id="labelAracAdi2" min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="labelAddress" min="-2" pref="52" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Group type="102" attributes="0">
@@ -105,13 +105,13 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="labelAracAdi2" min="-2" pref="98" max="-2" attributes="0"/>
+                              <Component id="labelAddress" min="-2" pref="98" max="-2" attributes="0"/>
                               <Component id="jScrollPane1" min="-2" pref="92" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel1" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                                  <Component id="labelSearch" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                                   <Component id="publisherSearchTextField" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                               <Component id="cancelButton" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
@@ -124,13 +124,13 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="labelAracAdi" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="labelPublisher" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="publisherNameTextField" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="phoneTextField" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="labelAracAdi1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="labelPhone" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                       </Group>
@@ -141,7 +141,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="labelAracAdi">
+        <Component class="javax.swing.JLabel" name="labelPublisher">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Yay&#x131;nc&#x131; Kurulu&#x15f;:"/>
@@ -151,13 +151,13 @@
         </Component>
         <Component class="javax.swing.JTextField" name="phoneTextField">
         </Component>
-        <Component class="javax.swing.JLabel" name="labelAracAdi1">
+        <Component class="javax.swing.JLabel" name="labelPhone">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Telefon:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelAracAdi2">
+        <Component class="javax.swing.JLabel" name="labelAddress">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Adres:"/>
@@ -211,7 +211,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="labelSearch">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Ara:"/>
@@ -234,13 +234,13 @@
         <Component class="javax.swing.JTable" name="publisherTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="0" rowCount="4"/>
+              <Table columnCount="0" rowCount="0"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0"/>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
             </Property>
           </Properties>
         </Component>

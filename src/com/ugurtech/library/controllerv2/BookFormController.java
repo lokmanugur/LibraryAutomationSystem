@@ -6,7 +6,6 @@
 package com.ugurtech.library.controllerv2;
 
 import com.ugurtech.library.persistancev2.author.AuthorDaoImpl;
-import com.ugurtech.library.persistancev2.booktype.BookTypeDao;
 import com.ugurtech.library.persistancev2.booktype.BookTypeDaoImpl;
 import com.ugurtech.library.persistancev2.publisher.PublisherDaoImpl;
 import com.ugurtech.library.service.author.AuthorService;
@@ -40,11 +39,11 @@ public final class BookFormController extends AbstractController {
     }
 
     @Override
-    void initView(){
+    void initView() {
         AutoCompleteDecorator.decorate(bookForm.getBooksTypeComboBox());
         AutoCompleteDecorator.decorate(bookForm.getAuthorComboBox());
-        AutoCompleteDecorator.decorate(bookForm.getPublisherComboBox());    
-        getAll();               
+        AutoCompleteDecorator.decorate(bookForm.getPublisherComboBox());
+        getAll();
     }
 
     @Override
@@ -70,13 +69,17 @@ public final class BookFormController extends AbstractController {
 
         bookForm.getAuthorRemoveButton().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                // removeAuthorFromAuthorList(); method removed
+                if (bookForm.getAuthorList().isSelectionEmpty()) {
+
+                } else {
+                    bookForm.getAuthorDefaultModel().remove(bookForm.getAuthorList().getSelectedIndex());
+                }
             }
         });
 
         bookForm.getAuthorAddButton().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //booksController.addFromAuthorComboBaxToAuthorList(); method removed
+                bookForm.getAuthorDefaultModel().addElement(bookForm.getAuthorComboBox().getSelectedItem());
             }
         });
 
@@ -117,13 +120,17 @@ public final class BookFormController extends AbstractController {
 
         bookForm.getBooksTypeAddButton().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                // booksController.addFromBooksTypeComboBoxToBooksTypeList(); method removed
+                bookForm.getBookTypeDefaultListModel().addElement(bookForm.getBooksTypeComboBox().getSelectedItem());
             }
         });
 
         bookForm.getBooksTypeRemoveButton().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //booksController.removeBooksTypeFromBooksTypeList(); method removed
+                if (bookForm.getBookTypeList().isSelectionEmpty()) {
+
+                } else {
+                    bookForm.getBookTypeDefaultListModel().remove(bookForm.getBookTypeList().getSelectedIndex());
+                }
             }
         });
 
@@ -136,7 +143,7 @@ public final class BookFormController extends AbstractController {
 
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 //booksController.allPublisher(); method removed
-               getAll();
+                getAll();
             }
         });
 
@@ -155,11 +162,11 @@ public final class BookFormController extends AbstractController {
 
         bookForm.getButtonSave().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-               // booksController.addBooks(); method removed
+                // booksController.addBooks(); method removed
                 clearAllFields();
             }
         });
-}
+    }
 
     @Override
     void get() {
@@ -169,7 +176,11 @@ public final class BookFormController extends AbstractController {
     @Override
     void getAll() {
         bookForm.getPublisherComboBox().removeAllItems();
-        publisherService.getAll().forEach(publisherModel ->{bookForm.getPublisherComboBox().addItem(publisherModel);});
+        bookForm.getAuthorComboBox().removeAllItems();
+        bookForm.getBooksTypeComboBox().removeAllItems();
+        publisherService.getAll().forEach(publisherModel -> bookForm.getPublisherComboBox().addItem(publisherModel));
+        authorService.getAll().forEach(authorModel -> bookForm.getAuthorComboBox().addItem(authorModel));
+        bookTypeService.getAll().forEach(bookTypeModel -> bookForm.getBooksTypeComboBox().addItem(bookTypeModel));
     }
 
     @Override
@@ -187,7 +198,7 @@ public final class BookFormController extends AbstractController {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.    
     }
 
-    public void clearAllFields(){
+    public void clearAllFields() {
         bookForm.getAuthorComboBox().removeAllItems();
         bookForm.getBookTypeList().removeAll();
         bookForm.getBookNameTextField().setText(null);

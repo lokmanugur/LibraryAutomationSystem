@@ -16,6 +16,16 @@ public class BookTypeModel extends DateModel {
     private String typeName;
     private String abbrivation;
 
+    public BookTypeModel(int bookTypeId, String typeName, String abbrivation, long createdDate, long lastUpdate) {
+        super(createdDate, lastUpdate);
+        this.bookTypeId = bookTypeId;
+        this.typeName = typeName;
+        this.abbrivation = abbrivation;
+    }
+
+    public BookTypeModel() {
+    }
+
     public int getBookTypeId() {
         return bookTypeId;
     }

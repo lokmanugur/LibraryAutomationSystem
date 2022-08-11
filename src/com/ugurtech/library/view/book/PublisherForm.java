@@ -4,7 +4,7 @@
  */
 package com.ugurtech.library.view.book;
 
-import com.ugurtech.library.controller.PublisherController;
+import com.ugurtech.library.controllerv2.PublisherController;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -27,7 +27,7 @@ public final class PublisherForm extends JInternalFrame {
       initComponents();
       publisherController = new PublisherController(this);
       setLocation(getWidth()/2,getHeight()/10);
-      publisherController.fillAllPublisher();
+     // publisherController.fillAllPublisher();
     }
     
     public static PublisherForm getInstance(){
@@ -84,41 +84,15 @@ public final class PublisherForm extends JInternalFrame {
         jScrollPane1.setViewportView(addressTextArea);
 
         saveButton.setText("Kaydet");
-        saveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveButtonActionPerformed(evt);
-            }
-        });
 
         updateButton.setText("Güncelle");
-        updateButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButtonActionPerformed(evt);
-            }
-        });
 
         cancelButton.setText("İptal");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
-            }
-        });
 
         deleteButton.setText("Sil");
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
-            }
-        });
 
         labelSearch.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelSearch.setText("Ara:");
-
-        publisherSearchTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                publisherSearchTextFieldKeyReleased(evt);
-            }
-        });
 
         javax.swing.GroupLayout aracKayitPanelLayout = new javax.swing.GroupLayout(aracKayitPanel);
         aracKayitPanel.setLayout(aracKayitPanelLayout);
@@ -213,28 +187,6 @@ public final class PublisherForm extends JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        publisherController.addPublisher();
-        clearAllField();
-    }//GEN-LAST:event_saveButtonActionPerformed
-
-    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        publisherController.updatePublisher();
-    }//GEN-LAST:event_updateButtonActionPerformed
-
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        publisherController.deletePublisher();
-    }//GEN-LAST:event_deleteButtonActionPerformed
-
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        this.dispose();
-        clearAllField();
-    }//GEN-LAST:event_cancelButtonActionPerformed
-
-    private void publisherSearchTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_publisherSearchTextFieldKeyReleased
-        publisherController.fillAllPublisher();
-    }//GEN-LAST:event_publisherSearchTextFieldKeyReleased
 
     public void clearAllField(){
         addressTextArea.setText(null);

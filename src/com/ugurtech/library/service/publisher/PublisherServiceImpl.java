@@ -7,6 +7,7 @@ package com.ugurtech.library.service.publisher;
 
 import com.ugurtech.library.modelv2.PublisherModel;
 import com.ugurtech.library.persistancev2.publisher.PublisherDao;
+import java.sql.ResultSet;
 import java.util.List;
 
 /**
@@ -28,22 +29,27 @@ public class PublisherServiceImpl implements PublisherService{
 
     @Override
     public PublisherModel get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return publisherDao.get(id);
     }
 
     @Override
     public void add(PublisherModel v) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         publisherDao.add(v);
     }
 
     @Override
     public void update(PublisherModel v) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        publisherDao.update(v);
     }
 
     @Override
     public void delete(PublisherModel v) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        publisherDao.delete(v);
+    }
+
+    @Override
+    public ResultSet search(String str) {
+       return publisherDao.search(str);
     }
     
 }

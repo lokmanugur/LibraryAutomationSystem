@@ -7,11 +7,14 @@ package com.ugurtech.library.persistancev2.publisher;
 
 import com.ugurtech.library.modelv2.PublisherModel;
 import com.ugurtech.library.persistancev2.Dao;
+import java.sql.ResultSet;
 
 /**
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
 public interface PublisherDao extends Dao<PublisherModel> {
+
+    public ResultSet search(String str);
     
 }

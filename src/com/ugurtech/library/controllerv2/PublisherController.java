@@ -11,7 +11,6 @@ import com.ugurtech.library.persistancev2.publisher.PublisherDaoImpl;
 import com.ugurtech.library.service.publisher.PublisherService;
 import com.ugurtech.library.service.publisher.PublisherServiceImpl;
 import com.ugurtech.library.view.book.PublisherForm;
-import java.util.List;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -24,7 +23,6 @@ public class PublisherController extends AbstractController {
     private final PublisherForm publisherForm;
     private PublisherModel publisherModel;
     private final PublisherService publisherService = new PublisherServiceImpl(new PublisherDaoImpl());
-    private List<PublisherModel> publisherList;
 
     public PublisherController(PublisherForm publisherForm) {
         this.publisherForm = publisherForm;
@@ -63,14 +61,6 @@ public class PublisherController extends AbstractController {
             }
         });
 
-    }
-
-    @Override
-    void get() {}
-
-    @Override
-    void getAll() {
-        publisherList = publisherService.getAll();
     }
 
     @Override
@@ -120,5 +110,9 @@ public class PublisherController extends AbstractController {
         publisherForm.getPublisherNameTextField().setText(null);
         publisherForm.getPhoneTextField().setText(null);
         publisherForm.getPublisherSearchTextField().setText(null);
+    }
+    
+    private void setLanguage(){
+        publisherForm.getl
     }
 }

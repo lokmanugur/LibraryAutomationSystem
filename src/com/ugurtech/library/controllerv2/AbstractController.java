@@ -15,7 +15,7 @@ public abstract class AbstractController {
     
     abstract void initView();
     abstract void initController();
-    abstract void getAll();
+    void getAll(){}
     void get(){}
     void add(){}
     void update(){}

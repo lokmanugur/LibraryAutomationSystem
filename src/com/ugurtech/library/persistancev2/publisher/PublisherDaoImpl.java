@@ -6,8 +6,7 @@
 package com.ugurtech.library.persistancev2.publisher;
 
 import com.ugurtech.library.modelv2.PublisherModel;
-import com.ugurtech.library.persistance.DaoAbstract;
-import com.ugurtech.library.persistance.book.BookDaoImpl;
+import com.ugurtech.library.persistancev2.DaoAbstract;
 import com.ugurtech.library.service.validation.UserInfoMessages;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,15 +34,16 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
             + "address as Adres,"
             + "lastupdate as Son_Güncelleme_Tarihi FROM publisher ";
 
-    private final List<PublisherModel> publisherList;
+    private final List<PublisherModel> publisherList = new ArrayList<>();
 
     public PublisherDaoImpl() {
-        publisherList = new ArrayList<>();
     }
 
     @Override
     public List<PublisherModel> getAll() {
 
+        if(!publisherList.isEmpty())
+            publisherList.clear();
         ResultSet resultSet = createResultSet(ALL_PUBLISHER_QUERY);
         try {
             while (resultSet.next()) {
@@ -109,7 +109,7 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
             UserInfoMessages.getInstance().updateMessage(affectedRow);
         } catch (SQLException ex) {
             UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Update Error");
-            Logger.getLogger(BookDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PublisherModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -140,7 +140,7 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
         return createResultSet(query.toString());
     }
     
-    public String getID(int id) {
+    private String getID(int id) {
         StringBuilder query = new StringBuilder(PUBLISHER_SINGLE_QUERY);
         query.append(" WHERE");
         query.append(" publisherid=").append(id).append(" AND deleted=0");

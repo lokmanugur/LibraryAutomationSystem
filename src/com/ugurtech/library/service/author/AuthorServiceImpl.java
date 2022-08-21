@@ -6,12 +6,14 @@
 package com.ugurtech.library.service.author;
 
 import com.ugurtech.library.modelv2.AuthorModel;
-import com.ugurtech.library.persistancev2.author.AuthorDao;
+import com.ugurtech.library.persistancev2.author.*;
+import java.sql.ResultSet;
 import java.util.List;
 
 /**
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
+ * 
  */
 public class AuthorServiceImpl implements AuthorService{
     
@@ -28,22 +30,27 @@ public class AuthorServiceImpl implements AuthorService{
 
     @Override
     public AuthorModel get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return authorDao.get(id);
     }
 
     @Override
     public void add(AuthorModel v) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        authorDao.add(v);
     }
 
     @Override
     public void update(AuthorModel v) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        authorDao.update(v);
     }
 
     @Override
     public void delete(AuthorModel v) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        authorDao.delete(v);
+    }
+
+    @Override
+    public ResultSet search(String string) {
+       return authorDao.search(string);
     }
     
 }

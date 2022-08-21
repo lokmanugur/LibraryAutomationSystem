@@ -48,7 +48,6 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
     private static final String BOOK_TYPE = "SELECT booktypeid,typename,lastupdate FROM booktype";
     private static final String AUTHOR = "SELECT a.authorid,p.firstname,p.lastname FROM author a,person p  WHERE a.personid=p.personid";
     private static final String PUBLISHER = "SELECT * FROM publisher";
-    private static final String GET_BOOK = "";
     
     
     

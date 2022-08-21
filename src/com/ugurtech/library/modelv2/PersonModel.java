@@ -5,8 +5,6 @@
  */
 package com.ugurtech.library.modelv2;
 
-import java.util.Date;
-
 /**
  *
  * @author ugur
@@ -15,11 +13,11 @@ public class PersonModel extends DateModel {
     private int personId;
     private String firstName;
     private String lastName;
-    private Date birthDate;
+    private long birthDate;
     private String address;
     private String phone;
 
-    public PersonModel(int personId, String firstName, String lastName, Date birthDate, String address, String phone, long createdDate, long lastUpdate) {
+    public PersonModel(int personId, String firstName, String lastName, long birthDate, String address, String phone, long createdDate, long lastUpdate) {
         super(createdDate, lastUpdate);
         this.personId = personId;
         this.firstName = firstName;
@@ -61,11 +59,11 @@ public class PersonModel extends DateModel {
         this.lastName = lastName;
     }
 
-    public Date getBirthDate() {
+    public long getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(long birthDate) {
         this.birthDate = birthDate;
     }
 

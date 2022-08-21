@@ -31,7 +31,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jPanel1" max="32767" attributes="0"/>
+              <Component id="panelSave" max="32767" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -40,26 +40,26 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <Component id="panelSave" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="panelSave">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="firstNameLabel" alignment="1" max="32767" attributes="0"/>
-                      <Component id="lastNameLabel" alignment="1" max="32767" attributes="0"/>
-                      <Component id="birthDateLabel" alignment="1" pref="119" max="32767" attributes="0"/>
-                      <Component id="phoneLabel" alignment="1" max="32767" attributes="0"/>
-                      <Component id="addressLabel" alignment="1" max="32767" attributes="0"/>
+                      <Component id="labelFirstName" alignment="1" max="32767" attributes="0"/>
+                      <Component id="labelLastName" alignment="1" max="32767" attributes="0"/>
+                      <Component id="labelPhone" alignment="1" max="32767" attributes="0"/>
+                      <Component id="labelAddress" alignment="1" max="32767" attributes="0"/>
+                      <Component id="labelBirthDate" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -69,12 +69,12 @@
                           <Component id="saveButton" min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane2" max="32767" attributes="0"/>
-                      <Component id="phoneTextField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="textFieldPhone" alignment="0" max="32767" attributes="0"/>
                       <Component id="birthDateChooser" alignment="0" max="32767" attributes="0"/>
-                      <Component id="lastNameTextField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="firstNameTextField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="textFieldLastName" alignment="0" max="32767" attributes="0"/>
+                      <Component id="textFieldFirstName" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -83,27 +83,27 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="firstNameTextField" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="firstNameLabel" max="32767" attributes="0"/>
+                      <Component id="textFieldFirstName" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="labelFirstName" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="lastNameTextField" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="lastNameLabel" max="32767" attributes="0"/>
+                      <Component id="textFieldLastName" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="labelLastName" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="birthDateChooser" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="birthDateLabel" max="32767" attributes="0"/>
+                      <Component id="labelBirthDate" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="phoneTextField" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="phoneLabel" max="32767" attributes="0"/>
+                      <Component id="textFieldPhone" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="labelPhone" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="addressLabel" max="32767" attributes="0"/>
+                      <Component id="labelAddress" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
@@ -120,32 +120,32 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="firstNameLabel">
+        <Component class="javax.swing.JLabel" name="labelFirstName">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Ad&#x131;:"/>
             <Property name="horizontalTextPosition" type="int" value="10"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="firstNameTextField">
+        <Component class="javax.swing.JTextField" name="textFieldFirstName">
         </Component>
-        <Component class="javax.swing.JLabel" name="lastNameLabel">
+        <Component class="javax.swing.JLabel" name="labelLastName">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Soyad:"/>
             <Property name="horizontalTextPosition" type="int" value="10"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="lastNameTextField">
+        <Component class="javax.swing.JTextField" name="textFieldLastName">
         </Component>
-        <Component class="javax.swing.JLabel" name="birthDateLabel">
+        <Component class="javax.swing.JLabel" name="labelBirthDate">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Do&#x11f;um y&#x131;l&#x131;"/>
             <Property name="horizontalTextPosition" type="int" value="10"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="addressLabel">
+        <Component class="javax.swing.JLabel" name="labelAddress">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Adres:"/>
@@ -157,30 +157,24 @@
             <Property name="verticalTextPosition" type="int" value="1"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="phoneLabel">
+        <Component class="javax.swing.JLabel" name="labelPhone">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="Telefon:"/>
             <Property name="horizontalTextPosition" type="int" value="10"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="phoneTextField">
+        <Component class="javax.swing.JTextField" name="textFieldPhone">
         </Component>
         <Component class="javax.swing.JButton" name="cancelButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x130;ptal"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelButtonActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="saveButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Kaydet"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveButtonActionPerformed"/>
-          </Events>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="birthDateChooser">
           <AuxValues>
@@ -194,7 +188,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="addressTextArea">
+            <Component class="javax.swing.JTextArea" name="textAreaAddress">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>

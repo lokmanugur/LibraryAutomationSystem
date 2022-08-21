@@ -5,7 +5,7 @@
 package com.ugurtech.library.persistancev2.firststep;
 
 import com.ugurtech.library.modelv2.requestmodels.FirstStepModel;
-import com.ugurtech.library.persistance.DaoAbstract;
+import com.ugurtech.library.persistancev2.DaoAbstract;
 import com.ugurtech.library.service.validation.UserInfoMessages;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

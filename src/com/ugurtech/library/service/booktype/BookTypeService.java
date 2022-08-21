@@ -7,11 +7,14 @@ package com.ugurtech.library.service.booktype;
 
 import com.ugurtech.library.modelv2.BookTypeModel;
 import com.ugurtech.library.service.Service;
+import java.sql.ResultSet;
 
 /**
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
 public interface BookTypeService extends Service<BookTypeModel> {
+
+    public ResultSet search(String text);
     
 }

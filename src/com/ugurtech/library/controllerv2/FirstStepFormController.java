@@ -168,14 +168,4 @@ public class FirstStepFormController extends AbstractController {
         firstStepForm.getLabelSessionTime().setText(setLanguage("firststepform.adduserpanel.labelsession"));
     }
 
-    @Override
-    void get() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    void getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

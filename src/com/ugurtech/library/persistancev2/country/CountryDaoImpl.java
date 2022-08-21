@@ -5,7 +5,7 @@
 package com.ugurtech.library.persistancev2.country;
 
 import com.ugurtech.library.modelv2.responsmodels.CountryModel;
-import com.ugurtech.library.persistance.DaoAbstract;
+import com.ugurtech.library.persistancev2.DaoAbstract;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

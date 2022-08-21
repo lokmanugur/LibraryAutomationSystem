@@ -12,12 +12,13 @@ package com.ugurtech.library.modelv2;
  */
 public class AuthorModel extends PersonModel {
     private int authorId;
-    private int personId;
 
-    public AuthorModel(int authorId, int personId,String firstName,String lastName) {
+    public AuthorModel() {
+    }
+
+    public AuthorModel(int authorId,String firstName,String lastName) {
         super(firstName, lastName);
         this.authorId = authorId;
-        this.personId = personId;
     }
 
     public int getAuthorId() {
@@ -26,16 +27,6 @@ public class AuthorModel extends PersonModel {
 
     public void setAuthorId(int authorId) {
         this.authorId = authorId;
-    }
-
-    @Override
-    public int getPersonId() {
-        return personId;
-    }
-
-    @Override
-    public void setPersonId(int personId) {
-        this.personId = personId;
     }
     
     @Override
@@ -48,7 +39,6 @@ public class AuthorModel extends PersonModel {
     public int hashCode() {
         int hash = 3;
         hash = 89 * hash + this.authorId;
-        hash = 89 * hash + this.personId;
         return hash;
     }
 
@@ -67,7 +57,7 @@ public class AuthorModel extends PersonModel {
         if (this.authorId != other.authorId) {
             return false;
         }
-        return this.personId == other.personId;
+        return true;
     }
     
 }

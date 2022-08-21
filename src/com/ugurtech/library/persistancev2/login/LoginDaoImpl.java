@@ -5,7 +5,7 @@
 package com.ugurtech.library.persistancev2.login;
 
 import com.ugurtech.library.modelv2.CurrentUserModel;
-import com.ugurtech.library.persistance.DaoAbstract;
+import com.ugurtech.library.persistancev2.DaoAbstract;
 import com.ugurtech.library.persistancev2.firststep.FirstStepDaoImpl;
 import com.ugurtech.library.service.validation.UserInfoMessages;
 import java.sql.ResultSet;
@@ -90,7 +90,7 @@ public class LoginDaoImpl extends DaoAbstract implements LoginDao{
                 currentUser.setFirstName(resultSet.getString("firstname"));
                 currentUser.setLastName(resultSet.getString("lastname"));
                 currentUser.setUserPassword(resultSet.getString("userpassword"));
-                currentUser.setBirthDate(resultSet.getDate("birthdate"));
+                currentUser.setBirthDate(resultSet.getDate("birthdate").getTime());
                 currentUser.setPhone(resultSet.getString("phone"));
                 currentUser.setAddress(resultSet.getString("address"));
                 currentUser.setCreatedDate(resultSet.getDate("createddate").getTime());

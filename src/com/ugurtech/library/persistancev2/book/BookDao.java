@@ -3,18 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ugurtech.library.persistancev2.booktype;
+package com.ugurtech.library.persistancev2.book;
 
-import com.ugurtech.library.modelv2.BookTypeModel;
+import com.ugurtech.library.modelv2.BookModel;
 import com.ugurtech.library.persistancev2.Dao;
-import java.sql.ResultSet;
 
 /**
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public interface BookTypeDao extends Dao<BookTypeModel> {
-
-    public ResultSet search(String text);
+public interface BookDao extends Dao<BookModel>{
     
 }

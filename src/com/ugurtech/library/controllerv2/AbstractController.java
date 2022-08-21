@@ -12,15 +12,27 @@ import com.ugurtech.library.service.localization.LanguageImpl;
  * @author Teacher
  */
 public abstract class AbstractController {
-    
+
     abstract void initView();
+
     abstract void initController();
-    void getAll(){}
-    void get(){}
-    void add(){}
-    void update(){}
-    void delete(){}
-    protected String setLanguage(String strng){
+
+    void getAll() {
+    }
+
+    void get() {
+    }
+
+    void add() {
+    }
+
+    void update() {
+    }
+
+    void delete() {
+    }
+
+    protected String setLanguage(String strng) {
         return LanguageImpl.setLanguage(Internationalization::setLanguage, strng);
     }
 }

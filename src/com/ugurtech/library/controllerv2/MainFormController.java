@@ -8,12 +8,12 @@ import com.ugurtech.library.modelv2.MainModel;
 import com.ugurtech.library.service.date.SimpleDate;
 import com.ugurtech.library.view.LoginForm;
 import com.ugurtech.library.view.MainForm;
-import com.ugurtech.library.view.book.AuthorForm;
-import com.ugurtech.library.view.book.AuthorSearchForm;
+import com.ugurtech.library.view.author.AuthorForm;
+import com.ugurtech.library.view.author.AuthorSearchForm;
 import com.ugurtech.library.view.book.BookForm;
 import com.ugurtech.library.view.book.BookSearch;
-import com.ugurtech.library.view.book.BookTypeForm;
-import com.ugurtech.library.view.book.PublisherForm;
+import com.ugurtech.library.view.booktype.BookTypeForm;
+import com.ugurtech.library.view.publisher.PublisherForm;
 import com.ugurtech.library.view.bookborrowing.BorrowedBooksTable;
 import com.ugurtech.library.view.database.DatabaseUI;
 import com.ugurtech.library.view.person.PersonForm;
@@ -179,30 +179,5 @@ public class MainFormController extends AbstractController {
         mainForm.getSettingsMenu().setText(setLanguage("mainform.topmenubar.settingsmenu"));
         mainForm.getDatabaseMenuItem().setText(setLanguage("mainform.topmenubar.settingsmenu.databasemenuitem"));
 
-    }
-
-    @Override
-    public void add() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void delete() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void get() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

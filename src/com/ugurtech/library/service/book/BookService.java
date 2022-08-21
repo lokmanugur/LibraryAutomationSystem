@@ -3,18 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ugurtech.library.service.author;
+package com.ugurtech.library.service.book;
 
-import com.ugurtech.library.modelv2.AuthorModel;
+import com.ugurtech.library.modelv2.BookModel;
 import com.ugurtech.library.service.Service;
-import java.sql.ResultSet;
 
 /**
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public interface AuthorService extends Service<AuthorModel> {
-
-    public ResultSet search(String string);
+public interface BookService extends Service<BookModel>{
     
 }

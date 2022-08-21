@@ -10,7 +10,7 @@ import com.ugurtech.library.modelv2.PublisherModel;
 import com.ugurtech.library.persistancev2.publisher.PublisherDaoImpl;
 import com.ugurtech.library.service.publisher.PublisherService;
 import com.ugurtech.library.service.publisher.PublisherServiceImpl;
-import com.ugurtech.library.view.book.PublisherForm;
+import com.ugurtech.library.view.publisher.PublisherForm;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -36,6 +36,7 @@ public class PublisherController extends AbstractController {
 
     @Override
     final void initView() {
+        setLanguage();
         search();
     }
 
@@ -67,7 +68,7 @@ public class PublisherController extends AbstractController {
     void add() {
         publisherModel = new PublisherModel();
         if (publisherForm.getPublisherNameTextField().getText().equals("")) {
-            UserInfoMessages.getInstance().showInfoMessages("Lütfen Yaıncı Kuruluş: alanını doldurunuz.");
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("publisherform.fill.publishername"));
         } else {
             publisherModel.setPublisherName(publisherForm.getPublisherNameTextField().getText());
             publisherModel.setPhone(publisherForm.getPhoneTextField().getText());
@@ -81,19 +82,19 @@ public class PublisherController extends AbstractController {
     @Override
     void delete() {
         if (publisherForm.getPublisherTable().getSelectedRow() == -1) {
-            UserInfoMessages.getInstance().showInfoMessages("Lütfen silmek istediğiniz veriyi seçin");
-        } else if (UserInfoMessages.getInstance().showApproveMessages("Seçilen satırı silmek istediğinize eminmisiniz?", "Silme İşlemi Onay Formu")) {
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.delete.unselectedrow"));
+        } else if (UserInfoMessages.getInstance().showApproveMessages(setLanguage("table.option.approve"), setLanguage("table.option.approve.form.title"))) {
             publisherService.delete(publisherService.get((Integer)(publisherForm.getPublisherTable().getModel().getValueAt(publisherForm.getPublisherTable().getSelectedRow(),0))));
             
         }
         search();
     }
-
+    
     @Override
     void update() {
         this.publisherModel = new PublisherModel();
         if (publisherForm.getPublisherTable().getSelectedRow() == -1) {
-            UserInfoMessages.getInstance().showInfoMessages("Lütfen Güncellemek istediğiniz satırı seçin.");
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.update.unselectedrow"));
         } else {
             publisherModel.setPublisherId((int)publisherForm.getPublisherTable().getModel().getValueAt(publisherForm.getPublisherTable().getSelectedRow(), 0));
             publisherModel.setPublisherName((String) publisherForm.getPublisherTable().getModel().getValueAt(publisherForm.getPublisherTable().getSelectedRow(), 1));
@@ -113,6 +114,14 @@ public class PublisherController extends AbstractController {
     }
     
     private void setLanguage(){
-        publisherForm.getl
+        publisherForm.setTitle(setLanguage("publisherform.title"));
+        publisherForm.getLabelPublisher().setText(setLanguage("publisherform.panelpublisher.labelpublisher"));
+        publisherForm.getLabelPhone().setText(setLanguage("publisherform.panelpublisher.labelphone"));
+        publisherForm.getLabelAddress().setText(setLanguage("publisherform.panelpublisher.labeladdress"));
+        publisherForm.getLabelSearch().setText(setLanguage("publisherform.panelpublisher.labelsearch"));
+        publisherForm.getSaveButton().setText(setLanguage("publisherform.panelpublisher.savebutton"));
+        publisherForm.getUpdateButton().setText(setLanguage("publisherform.panelpublisher.updatebutton"));
+        publisherForm.getCancelButton().setText(setLanguage("publisherform.panelpublisher.cancelbutton"));
+        publisherForm.getDeleteButton().setText(setLanguage("publisherform.panelpublisher.deletebutton"));
     }
 }

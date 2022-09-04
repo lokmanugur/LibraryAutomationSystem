@@ -7,7 +7,7 @@ package com.ugurtech.library.controller;
 
 import com.ugurtech.library.persistance.personbook.PersonBookDao;
 import com.ugurtech.library.persistance.personbook.PersonBookDaoImpl;
-import com.ugurtech.library.view.bookborrowing.TakenBackForm;
+import com.ugurtech.library.aa_presentation.view.borrowbook.FinishBorrowedBookForm;
 import com.ugurtech.library.model.TakenBackBookModel;
 
 /**
@@ -16,10 +16,10 @@ import com.ugurtech.library.model.TakenBackBookModel;
  */
 public class TakenBackFormController {
 
-    private final TakenBackForm takenBackForm;
+    private final FinishBorrowedBookForm takenBackForm;
     private TakenBackBookModel takenBackBookModel;
     private final PersonBookDao personBookDao;
-    public TakenBackFormController(TakenBackForm takenBackFrom) {
+    public TakenBackFormController(FinishBorrowedBookForm takenBackFrom) {
         this.takenBackForm = takenBackFrom;
         this.personBookDao=new PersonBookDaoImpl();
         

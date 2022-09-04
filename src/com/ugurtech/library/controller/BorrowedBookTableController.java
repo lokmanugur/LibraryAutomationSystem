@@ -7,7 +7,7 @@ package com.ugurtech.library.controller;
 
 import com.ugurtech.library.persistance.borrowedbook.BorrowedBookDao;
 import com.ugurtech.library.persistance.borrowedbook.BorrowedBookDaoImpl;
-import com.ugurtech.library.view.bookborrowing.BorrowedBooksTable;
+import com.ugurtech.library.aa_presentation.view.borrowbook.BookBorrowedDetailForm;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -20,10 +20,10 @@ import net.proteanit.sql.DbUtils;
  */
 public final class BorrowedBookTableController {
     
-    private final BorrowedBooksTable borrowedBooksTable;
+    private final BookBorrowedDetailForm borrowedBooksTable;
     private final BorrowedBookDao borrowedBookDao;
     
-    public BorrowedBookTableController(BorrowedBooksTable borrowedBooksTable) {
+    public BorrowedBookTableController(BookBorrowedDetailForm borrowedBooksTable) {
         this.borrowedBooksTable = borrowedBooksTable;
         this.borrowedBookDao=new BorrowedBookDaoImpl();
         fillAllBorrowedBooks();

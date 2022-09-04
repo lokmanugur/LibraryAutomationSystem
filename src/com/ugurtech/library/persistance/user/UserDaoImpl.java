@@ -8,7 +8,7 @@ package com.ugurtech.library.persistance.user;
 
 import com.ugurtech.library.persistance.DaoAbstract;
 import com.ugurtech.library.persistance.person.PersonDaoImpl;
-import com.ugurtech.library.service.validation.UserInfoMessages;
+import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.PersonModel;
 import com.ugurtech.library.model.CurrentUserModel;
 import com.ugurtech.library.model.UserModel;

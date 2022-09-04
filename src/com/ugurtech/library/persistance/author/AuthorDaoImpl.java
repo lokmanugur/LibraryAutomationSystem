@@ -6,7 +6,7 @@
 package com.ugurtech.library.persistance.author;
 
 import com.ugurtech.library.persistance.DaoAbstract;
-import com.ugurtech.library.service.validation.UserInfoMessages;
+import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.AuthorModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -5,14 +5,14 @@
  */
 package com.ugurtech.library.controller;
 
-import com.ugurtech.library.view.user.UserForm;
+import com.ugurtech.library.aa_presentation.view.user.UserForm;
 import com.ugurtech.library.persistance.user.UserDaoImpl;
 import com.ugurtech.library.persistance.user.UserDao;
-import com.ugurtech.library.service.validation.UserInfoMessages;
+import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.PersonModel;
 import com.ugurtech.library.model.UserModel;
 import com.ugurtech.library.model.UserTypeModel;
-import com.ugurtech.library.service.localization.Internationalization;
+import com.ugurtech.library.ab_application.af_lib.localization.Internationalization;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;

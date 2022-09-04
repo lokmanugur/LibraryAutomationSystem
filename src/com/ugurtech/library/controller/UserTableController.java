@@ -7,8 +7,8 @@ package com.ugurtech.library.controller;
 
 import com.ugurtech.library.persistance.user.UserDao;
 import com.ugurtech.library.persistance.user.UserDaoImpl;
-import com.ugurtech.library.service.validation.UserInfoMessages;
-import com.ugurtech.library.view.user.UserTableForm;
+import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
+import com.ugurtech.library.aa_presentation.view.user.UserTableForm;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;

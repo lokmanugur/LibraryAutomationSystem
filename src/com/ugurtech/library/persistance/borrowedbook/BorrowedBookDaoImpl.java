@@ -15,16 +15,20 @@ import java.util.Map;
  */
 public class BorrowedBookDaoImpl extends DaoAbstract implements BorrowedBookDao{
     
-    private static final String BORROWED_BOOK_SEARCH_QUERY= "SELECT b.bookid as Kitap_No,b.isbn as ISBN,b.bookname as Kitap_Adı,p.firstname as Adı," +
-                        "p.lastname as Soyadı,s.studentnumber as Öğrenci_No," +
-                        "p.phone as Telefon,p.address as Adres," +
-                        "pb.startdate Kitap_Aldığı_Tarih," +
-                        "pb.finishdate as Kitap_Teslim_Edilecek_Tarih," +
-                        "pb.bringbackdate as Kitap_Teslim_Edilen_Tarih " +
-                        "FROM personbook pb " +
-                        "LEFT JOIN person p on pb.personid=p.personid " +
-                        "LEFT JOIN book b on pb.bookid=b.bookid " +
-                        "LEFT JOIN student s on p.personid=s.personid WHERE pb.personbookid NOT NULL ";
+    private static final String BORROWED_BOOK_SEARCH_QUERY= "SELECT "
+            + "b.bookid as Kitap_No,"
+            + "b.isbn as ISBN,"
+            + "b.bookname as Kitap_Adı,"
+            + "p.firstname as Adı," +
+              "p.lastname as Soyadı,s.studentnumber as Öğrenci_No," +
+              "p.phone as Telefon,p.address as Adres," +
+              "pb.startdate Kitap_Aldığı_Tarih," +
+              "pb.deadline as Kitap_Teslim_Edilecek_Tarih," +
+              "pb.finishdate as Kitap_Teslim_Edilen_Tarih " +
+              "FROM personbook pb " +
+            "LEFT JOIN person p on pb.personid=p.personid " +
+            "LEFT JOIN book b on pb.bookid=b.bookid " +
+            "LEFT JOIN student s on p.personid=s.personid WHERE pb.personbookid NOT NULL ";
     @Override
     public ResultSet filtersAllBorrowedBooks(Map<String, String> filters) {
         StringBuilder query = new StringBuilder(BORROWED_BOOK_SEARCH_QUERY);
@@ -40,17 +44,17 @@ public class BorrowedBookDaoImpl extends DaoAbstract implements BorrowedBookDao{
                     break;
                   case "İade Edilen Kitaplar":
                       query.append("AND ");
-                      query.append("pb.bringbackdate NOT NULL ");
+                      query.append("pb.finishdate NOT NULL ");
                     break;
                   case "Okuyucuda Bulunan Kitaplar":
                       query.append("AND ");
-                      query.append("pb.bringbackdate IS NULL ");
+                      query.append("pb.finishdate IS NULL ");
                     break;
                   case "İade Zamanı Aşan Kitaplar":
                       query.append("AND ");
-                      query.append("pb.bringbackdate IS NULL ");
+                      query.append("pb.finishdate IS NULL ");
                       query.append("AND ");
-                      query.append("date()>pb.finishdate ");
+                      query.append("date()>pb.deadline ");
                     break;
                   default:
                     // code block

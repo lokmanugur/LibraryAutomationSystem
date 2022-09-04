@@ -5,8 +5,8 @@
  */
 package com.ugurtech.library.persistance;
 
-import com.ugurtech.library.database.SQLiteDatabase;
-import com.ugurtech.library.service.validation.UserInfoMessages;
+import com.ugurtech.library.ac_dataaccesslayer.database.SQLiteDatabase;
+import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

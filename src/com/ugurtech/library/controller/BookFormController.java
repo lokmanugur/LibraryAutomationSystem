@@ -6,7 +6,7 @@
 package com.ugurtech.library.controller;
 
 import com.ugurtech.library.model.BookModel;
-import com.ugurtech.library.view.book.BookForm;
+import com.ugurtech.library.aa_presentation.view.book.BookForm;
 import com.ugurtech.library.model.AuthorModel;
 import com.ugurtech.library.model.BookTypeModel;
 import com.ugurtech.library.model.PublisherModel;
@@ -41,7 +41,7 @@ public final class BookFormController {
         this.bookModel = new BookModel();
         List<AuthorModel> authorList = new ArrayList<>();
         List<BookTypeModel> bookTypeList = new ArrayList<>();
-        bookModel.setIsbn(Long.parseLong(bookForm.getIsbnTextField().getText()));
+        bookModel.setIsbn(Long.parseLong(bookForm.getTextFieldIsbn().getText()));
         bookModel.setBookName(bookForm.getBookNameTextField().getText());
         bookModel.setPressDate(bookForm.getPressDateChooser().getDate()==null?null:bookForm.getPressDateChooser().getDate().getTime());
         

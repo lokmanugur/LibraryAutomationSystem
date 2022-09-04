@@ -8,7 +8,7 @@ package com.ugurtech.library.controller;
 import com.ugurtech.library.persistance.author.AuthorDao;
 import com.ugurtech.library.persistance.author.AuthorDaoImpl;
 import com.ugurtech.library.model.AuthorModel;
-import com.ugurtech.library.view.author.AuthorForm;
+import com.ugurtech.library.aa_presentation.view.author.AuthorForm;
 
 /**
  *

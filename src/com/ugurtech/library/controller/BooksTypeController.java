@@ -7,8 +7,8 @@ package com.ugurtech.library.controller;
 
 import com.ugurtech.library.persistance.booktype.BookTypeDaoImpl;
 import com.ugurtech.library.model.BookTypeModel;
-import com.ugurtech.library.view.booktype.BookTypeForm;
-import com.ugurtech.library.service.validation.UserInfoMessages;
+import com.ugurtech.library.aa_presentation.view.booktype.BookTypeSearchForm;
+import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
 import net.proteanit.sql.DbUtils;
 import com.ugurtech.library.persistance.booktype.BookTypeDao;
 
@@ -18,10 +18,10 @@ import com.ugurtech.library.persistance.booktype.BookTypeDao;
  */
 public class BooksTypeController {
     
-    private final BookTypeForm booksTypeForm;
+    private final BookTypeSearchForm booksTypeForm;
     private BookTypeModel booksTypeModel;
     private final BookTypeDao booksTypeDao;
-    public BooksTypeController(BookTypeForm bookTypeForm) {
+    public BooksTypeController(BookTypeSearchForm bookTypeForm) {
         this.booksTypeForm = bookTypeForm;
         this.booksTypeDao = new BookTypeDaoImpl();
     }

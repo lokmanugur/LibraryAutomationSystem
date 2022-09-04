@@ -7,9 +7,9 @@ package com.ugurtech.library.controller;
 
 import com.ugurtech.library.persistance.person.PersonDao;
 import com.ugurtech.library.persistance.person.PersonDaoImpl;
-import com.ugurtech.library.service.validation.UserInfoMessages;
+import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.PersonModel;
-import com.ugurtech.library.view.person.PersonForm;
+import com.ugurtech.library.aa_presentation.view.person.PersonForm;
 import java.sql.Date;
 
 /**

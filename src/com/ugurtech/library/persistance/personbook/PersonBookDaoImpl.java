@@ -7,7 +7,7 @@ package com.ugurtech.library.persistance.personbook;
 
 import com.ugurtech.library.persistance.DaoAbstract;
 import com.ugurtech.library.persistance.personbook.PersonBookDao;
-import com.ugurtech.library.service.validation.UserInfoMessages;
+import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.BookBorrowingModel;
 import com.ugurtech.library.model.PersonBookBorrowingModel;
 import com.ugurtech.library.model.PersonBookModel;

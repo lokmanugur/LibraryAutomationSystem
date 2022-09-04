@@ -5,12 +5,11 @@
  */
 package com.ugurtech.library.controller;
 
-import com.ugurtech.library.persistance.student.StudentDao;
-import com.ugurtech.library.persistance.student.StudentDaoImpl;
+import com.ugurtech.library.ac_dataaccesslayer.student.StudentDao;
+import com.ugurtech.library.ac_dataaccesslayer.student.StudentDaoImpl;
 import com.ugurtech.library.model.SchoolModel;
 import com.ugurtech.library.model.StudentModel;
-import com.ugurtech.library.view.student.StudentForm;
-import java.sql.Date;
+import com.ugurtech.library.aa_presentation.view.student.StudentForm;
 import java.util.List;
 
 /**
@@ -29,24 +28,24 @@ public class StudentController {
         
     }
 
-    public void getAllSchool() {
-        studentForm.getSchoolComboBox().removeAllItems();
-        schoolList = studentDao.getAllSchool();
-        schoolList.forEach(value->studentForm.getSchoolComboBox().addItem(value.getSchoolName()));
-    }
-
-    public void addStudent() {
-        this.studentModel= new StudentModel();
-        studentModel.setFirstName(studentForm.getFirstNameTextField().getText());
-        studentModel.setLastName(studentForm.getLastNameTextField().getText());
-        studentModel.setStudenNumber(studentForm.getStudentNumberTextField().getText());
-        studentModel.setStudentClass(studentForm.getStudentClassTextField().getText());
-        schoolList.stream()
-                .filter(sm -> (sm.getSchoolName().equals(studentForm.getSchoolComboBox().getSelectedItem().toString())))
-                .forEachOrdered(sm -> {studentModel.setStudentSchool(sm.getSchoolId());});
-        studentModel.setBirthDate(new Date(studentForm.getBirthDateChooser().getDate().getTime()));
-        studentModel.setPhone(studentForm.getPhoneTextField().getText());
-        studentModel.setAddress(studentForm.getAddressTextArea().getText());
-        studentDao.addStudent(studentModel);
-    }  
+//    public void getAllSchool() {
+//        studentForm.getSchoolComboBox().removeAllItems();
+//       // schoolList = studentDao.getAllSchool();
+//        schoolList.forEach(value->studentForm.getSchoolComboBox().addItem(value.getSchoolName()));
+//    }
+//
+//    public void addStudent() {
+//        this.studentModel= new StudentModel();
+//        studentModel.setFirstName(studentForm.getFirstNameTextField().getText());
+//        studentModel.setLastName(studentForm.getLastNameTextField().getText());
+//        studentModel.setStudenNumber(studentForm.getStudentNumberTextField().getText());
+////        studentModel.setStudentClass(studentForm.getStudentClassTextField().getText());
+//        schoolList.stream()
+//                .filter(sm -> (sm.getSchoolName().equals(studentForm.getSchoolComboBox().getSelectedItem().toString())))
+//                .forEachOrdered(sm -> {studentModel.setStudentSchool(sm.getSchoolId());});
+//        studentModel.setBirthDate(new Date(studentForm.getBirthDateChooser().getDate().getTime()));
+//        studentModel.setPhone(studentForm.getPhoneTextField().getText());
+//        studentModel.setAddress(studentForm.getAddressTextArea().getText());
+//  //      studentDao.addStudent(studentModel);
+//    }  
 }

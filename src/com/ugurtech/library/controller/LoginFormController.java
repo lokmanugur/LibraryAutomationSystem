@@ -6,11 +6,11 @@
 package com.ugurtech.library.controller;
 
 import com.ugurtech.library.model.CurrentUserModel;
-import com.ugurtech.library.view.LoginForm;
-import com.ugurtech.library.view.MainForm;
+import com.ugurtech.library.aa_presentation.view.LoginForm;
+import com.ugurtech.library.aa_presentation.view.MainForm;
 import com.ugurtech.library.persistance.user.UserDaoImpl;
-import com.ugurtech.library.service.date.SimpleDate;
-import com.ugurtech.library.service.localization.Internationalization;
+import com.ugurtech.library.ab_application.af_lib.date.SessionTimeCounter;
+import com.ugurtech.library.ab_application.af_lib.localization.Internationalization;
 
 /**
  *
@@ -40,16 +40,16 @@ public class LoginFormController{
             loginForm.setVisible(false);
             loginForm.getUserNameField().setText("");
             loginForm.getUserPaswordField().setText("");
-            SimpleDate.getInstance().setLoginWin(false);
-            SimpleDate.getInstance().setSessionTime(sysUser.getSessionTime());
-            SimpleDate.getInstance().setTimeStart();
+            SessionTimeCounter.getInstance().setLoginWin(false);
+            SessionTimeCounter.getInstance().setSessionTime(sysUser.getSessionTime());
+            SessionTimeCounter.getInstance().setStartTime();
         } else {
             loginForm.getInfolabel().setText(Internationalization.getInstance().setLanguage("loginform.infolabel"));
         }
     }
     
     public void loginExit(){
-        SimpleDate.getInstance().interrupt();
+        SessionTimeCounter.getInstance().interrupt();
         if(!userDao.isClosed()){
         } else {
             userDao.closeConnection();

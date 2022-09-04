@@ -6,7 +6,7 @@
 package com.ugurtech.library.persistance.book;
 
 import com.ugurtech.library.persistance.DaoAbstract;
-import com.ugurtech.library.service.validation.UserInfoMessages;
+import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.AuthorModel;
 import com.ugurtech.library.model.BookModel;
 import com.ugurtech.library.model.BookTypeModel;

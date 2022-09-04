@@ -7,7 +7,7 @@ package com.ugurtech.library.persistance.school;
 
 import com.ugurtech.library.persistance.DaoAbstract;
 import com.ugurtech.library.persistance.school.SchoolDao;
-import com.ugurtech.library.service.validation.UserInfoMessages;
+import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.SchoolModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -6,7 +6,7 @@
 package com.ugurtech.library.controller;
 
 import com.ugurtech.library.model.CurrentUserModel;
-import com.ugurtech.library.view.user.UserDetailsForm;
+import com.ugurtech.library.aa_presentation.view.user.UserDetailsForm;
 
 /**
  *

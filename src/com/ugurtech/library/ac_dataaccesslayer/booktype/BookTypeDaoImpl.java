@@ -9,11 +9,11 @@ import com.ugurtech.library.ab_application.af_lib.sql.DbUtils;
 import com.ugurtech.library.ad_model.BookTypeModel;
 import com.ugurtech.library.ac_dataaccesslayer.DaoAbstract;
 import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
+import com.ugurtech.library.ac_dataaccesslayer.enumeration.Tables;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,9 +29,9 @@ public class BookTypeDaoImpl extends DaoAbstract implements BookTypeDao {
     public static final String BOOKTYPE_DELETE_QUERY = "DELETE FROM booktype WHERE booktype.booktypeid=?";
     public static final String BOOKTYPE_UPDATE_QUERY = "UPDATE booktype SET typename=?,abbreviation=? WHERE booktypeid=?";
     public static final String BOOKTYPE_SEARCH_QUERY = "SELECT "
-            + getTableTitle(TableNames.booktype+".booktypeid")+ ","
-            + getTableTitle(TableNames.booktype+".typename")+ ","
-            + getTableTitle(TableNames.booktype+".abbreviation")
+            + getTableTitle(Tables.booktype+".booktypeid")+ ","
+            + getTableTitle(Tables.booktype+".typename")+ ","
+            + getTableTitle(Tables.booktype+".abbreviation")
             + " FROM booktype ";
 
 

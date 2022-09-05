@@ -9,6 +9,7 @@ import com.ugurtech.library.ab_application.af_lib.sql.DbUtils;
 import com.ugurtech.library.ad_model.AuthorModel;
 import com.ugurtech.library.ac_dataaccesslayer.DaoAbstract;
 import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
+import com.ugurtech.library.ac_dataaccesslayer.enumeration.Tables;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,19 +33,19 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
     public static final String PERSON_DELETE_QUERY = "DELETE FROM person WHERE personid=?";
 
     public static final String AUTHOR_SEARCH_QUERY2 = "SELECT "
-            + getTableTitle(TableNames.author + ".authorid") + ","
-            + getTableTitle(TableNames.person + ".personid") + ","
-            + getTableTitle(TableNames.person + ".firstname") + ","
-            + getTableTitle(TableNames.person + ".lastname") + ","
-            + getTableTitle(TableNames.person + ".birthdate") + ""
+            + getTableTitle(Tables.author + ".authorid") + ","
+            + getTableTitle(Tables.person + ".personid") + ","
+            + getTableTitle(Tables.person + ".firstname") + ","
+            + getTableTitle(Tables.person + ".lastname") + ","
+            + getTableTitle(Tables.person + ".birthdate") + ""
             + " FROM author,person ";
     public static final String AUTHOR_SEARCH_QUERY = "SELECT "
-            + getTableTitle(TableNames.author + ".authorid") + ","
-            + getTableTitle(TableNames.person + ".firstname") + ","
-            + getTableTitle(TableNames.person + ".lastname") + ","
-            + getTableTitle(TableNames.person + ".birthdate") + ","
-            + getTableTitle(TableNames.person + ".createddate") + ","
-            + getTableTitle(TableNames.person + ".lastupdate") + ""
+            + getTableTitle(Tables.author + ".authorid") + ","
+            + getTableTitle(Tables.person + ".firstname") + ","
+            + getTableTitle(Tables.person + ".lastname") + ","
+            + getTableTitle(Tables.person + ".birthdate") + ","
+            + getTableTitle(Tables.person + ".createddate") + ","
+            + getTableTitle(Tables.person + ".lastupdate") + ""
             + " FROM author,person ";
 
     private final List<AuthorModel> authorList;
@@ -163,12 +164,12 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
         query.setLength(0);
         query.append(AUTHOR_SEARCH_QUERY);
         query.append(" WHERE");
-        query.append(" (").append(setLanguage(TableNames.author + ".authorid")).append(" LIKE '").append(string).append("%'");
-        query.append(" or ").append(setLanguage(TableNames.person + ".firstname")).append(" LIKE '").append(string).append("%'");
-        query.append(" or ").append(setLanguage(TableNames.person + ".lastname")).append(" LIKE '").append(string).append("%'");
-        query.append(" or ").append(setLanguage(TableNames.person + ".birthdate")).append(" LIKE '").append(string).append("%' ");
-        query.append(" or ").append(setLanguage(TableNames.person + ".createddate")).append(" LIKE '").append(string).append("%'");
-        query.append(" or ").append(setLanguage(TableNames.person + ".lastupdate")).append(" LIKE '").append(string).append("%' ");
+        query.append(" (").append(setLanguage(Tables.author + ".authorid")).append(" LIKE '").append(string).append("%'");
+        query.append(" or ").append(setLanguage(Tables.person + ".firstname")).append(" LIKE '").append(string).append("%'");
+        query.append(" or ").append(setLanguage(Tables.person + ".lastname")).append(" LIKE '").append(string).append("%'");
+        query.append(" or ").append(setLanguage(Tables.person + ".birthdate")).append(" LIKE '").append(string).append("%' ");
+        query.append(" or ").append(setLanguage(Tables.person + ".createddate")).append(" LIKE '").append(string).append("%'");
+        query.append(" or ").append(setLanguage(Tables.person + ".lastupdate")).append(" LIKE '").append(string).append("%' ");
         query.append(") AND author.personid=person.personid");
         return  DbUtils.resultSetToTableModel(createResultSet(query.toString()),
                 setLanguage("person.birthdate"),

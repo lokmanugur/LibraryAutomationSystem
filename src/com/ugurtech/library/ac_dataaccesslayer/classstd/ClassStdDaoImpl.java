@@ -8,6 +8,7 @@ package com.ugurtech.library.ac_dataaccesslayer.classstd;
 import com.ugurtech.library.ab_application.af_lib.sql.DbUtils;
 import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
 import com.ugurtech.library.ac_dataaccesslayer.DaoAbstract;
+import com.ugurtech.library.ac_dataaccesslayer.enumeration.Tables;
 import com.ugurtech.library.ad_model.ClassModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,8 +29,8 @@ public static final String CLSS_INSERT_QUERY = "INSERT INTO clss (classname) VAL
     public static final String CLSS_DELETE_QUERY = "DELETE FROM clss WHERE classid=?";
     public static final String CLSS_UPDATE_QUERY = "UPDATE clss SET classname=? WHERE classid=?";
     public static final String CLSS_SEARCH_QUERY = "SELECT "
-            + getTableTitle(TableNames.clss+".classid")+ ","
-            + getTableTitle(TableNames.clss+".classname")
+            + getTableTitle(Tables.clss+".classid")+ ","
+            + getTableTitle(Tables.clss+".classname")
             + " FROM clss ";
 
 

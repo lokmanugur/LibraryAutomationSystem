@@ -11,6 +11,7 @@ import com.ugurtech.library.ad_model.BookModel;
 import com.ugurtech.library.ad_model.BookTypeModel;
 import com.ugurtech.library.ac_dataaccesslayer.DaoAbstract;
 import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
+import com.ugurtech.library.ac_dataaccesslayer.enumeration.Tables;
 import com.ugurtech.library.ad_model.PublisherModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,12 +30,12 @@ import javax.swing.table.TableModel;
 public class BookDaoImpl extends DaoAbstract implements BookDao {
 
     public static final String BOOK_SERACH_QUERY = "SELECT "
-            + getTableTitle(TableNames.book + ".bookid") + ","
-            + getTableTitle(TableNames.book + ".isbn") + ","
-            + getTableTitle(TableNames.book + ".bookname") + ","
-            + getTableTitle(TableNames.publisher + ".publishername") + ","
-            + getTableTitle(TableNames.book + ".publishdate") + ","
-            + getTableTitle(TableNames.book + ".lastupdate") + ","
+            + getTableTitle(Tables.book + ".bookid") + ","
+            + getTableTitle(Tables.book + ".isbn") + ","
+            + getTableTitle(Tables.book + ".bookname") + ","
+            + getTableTitle(Tables.publisher + ".publishername") + ","
+            + getTableTitle(Tables.book + ".publishdate") + ","
+            + getTableTitle(Tables.book + ".lastupdate") + ","
             + "group_concat(DISTINCT booktype.typename) as " + setLanguage("booktype.name") + ","
             + "group_concat(DISTINCT (person.firstname || ' ' || person.lastname)) as " + setLanguage("author.name") + ","
             + "CASE WHEN book.bookborrowed=0 THEN '" + setLanguage("bookborrowed.no") + "' "
@@ -75,15 +76,15 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
         query.setLength(0);
         query.append(BOOK_SERACH_QUERY);
         query.append(" WHERE ");
-        query.append("  (").append(setLanguage(TableNames.book + ".bookid")).append(" LIKE '").append(srch).append("%'");
-        query.append(" OR ").append(setLanguage(TableNames.book + ".isbn")).append(" LIKE '").append(srch).append("%'");
-        query.append(" OR ").append(setLanguage(TableNames.book + ".bookname")).append(" LIKE '").append(srch).append("%'");
-        query.append(" OR ").append(setLanguage(TableNames.publisher + ".publishername")).append(" LIKE '").append(srch).append("%'");
+        query.append("  (").append(setLanguage(Tables.book + ".bookid")).append(" LIKE '").append(srch).append("%'");
+        query.append(" OR ").append(setLanguage(Tables.book + ".isbn")).append(" LIKE '").append(srch).append("%'");
+        query.append(" OR ").append(setLanguage(Tables.book + ".bookname")).append(" LIKE '").append(srch).append("%'");
+        query.append(" OR ").append(setLanguage(Tables.publisher + ".publishername")).append(" LIKE '").append(srch).append("%'");
         query.append(")");
         if (selInd == 1) {
-            query.append(" AND ").append(setLanguage(TableNames.book + ".publishdate")).append(" BETWEEN ").append(firstD).append(" AND ").append(lastD);
+            query.append(" AND ").append(setLanguage(Tables.book + ".publishdate")).append(" BETWEEN ").append(firstD).append(" AND ").append(lastD);
         } else if (selInd == 2) {
-            query.append(" AND ").append(setLanguage(TableNames.book + ".lastupdate")).append(" BETWEEN ").append(firstD).append(" AND ").append(lastD);
+            query.append(" AND ").append(setLanguage(Tables.book + ".lastupdate")).append(" BETWEEN ").append(firstD).append(" AND ").append(lastD);
         }
         query.append(" GROUP BY book.bookid");
         ResultSet rs = createResultSet(query.toString());

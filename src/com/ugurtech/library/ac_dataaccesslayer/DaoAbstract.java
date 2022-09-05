@@ -125,15 +125,6 @@ public abstract class DaoAbstract {
         return str + " as " + setLanguage(str);
     }
 
-    protected enum TableNames {
-        author, book, bookauthor, booktype, booktypebook, borrowedbook, country, language, person, personbook, publisher, school, student, sysuser, usertype,clss;
-
-        @Override
-        public String toString() {
-            return this.name();
-        }
-    }
-
     protected String getExistID(int id, String... strQuery) {
         String string ="";
         for (String str : strQuery) {

@@ -32,14 +32,14 @@ public class UserInfoMessages {
      * false value
      */
     public boolean showApproveMessages(String message, String title) {
-        return JOptionPane.OK_OPTION == JOptionPane.showOptionDialog(null, message, title, JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null, new String[]{"Evet", "Hayır"}, "default");
+        return JOptionPane.OK_OPTION == JOptionPane.showOptionDialog(null, message, title, 
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null, new String[]{"Evet", "Hayır"}, "default");
 
     }
 
     public void showInfoMessages(String message) {
         JOptionPane.showMessageDialog(null, message);
     }
-
     /**
      *
      * @param numberOfRow indicate effected number of row
@@ -50,7 +50,7 @@ public class UserInfoMessages {
     }
 
     public void deletedMessage(int numberOfRow) {
-        JOptionPane.showMessageDialog(null,numberOfRow+"Veri silindi.", "Veri Silme Bilgilendirme Formu", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null,numberOfRow+" Veri silindi.", "Veri Silme Bilgilendirme Formu", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void updateMessage(int numberOfRow) {

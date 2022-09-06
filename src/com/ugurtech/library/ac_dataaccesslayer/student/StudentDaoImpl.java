@@ -85,7 +85,18 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
 
     @Override
     public void delete(StudentModel v) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            PreparedStatement preparedStatement = createPrepareStatement(PERSON_DELETE_QUERY);
+            preparedStatement.setInt(1, v.getStudentId());
+            preparedStatement.executeUpdate();
+            preparedStatement = createPrepareStatement(STUDENT_DELETE_QUERY);
+            preparedStatement.setInt(1, v.getStudentId());
+            int effectedRow = preparedStatement.executeUpdate();
+            UserInfoMessages.getInstance().deletedMessage(effectedRow);
+        } catch (SQLException ex) {
+            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Error Delete");
+            Logger.getLogger(StudentDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

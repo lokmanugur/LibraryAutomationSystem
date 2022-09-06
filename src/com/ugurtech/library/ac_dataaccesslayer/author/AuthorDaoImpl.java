@@ -144,14 +144,15 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
 
     @Override
     public void delete(AuthorModel v) {
-        PreparedStatement preparedStatementAuthor = createPrepareStatement(AUTHOR_DELETE_QUERY);
-        PreparedStatement preparedStatementPerson = createPrepareStatement(PERSON_DELETE_QUERY);
+        PreparedStatement preparedStatement = createPrepareStatement(AUTHOR_DELETE_QUERY);
         try {
-            preparedStatementPerson.setInt(1, v.getPersonId());
-            int effactedRow = preparedStatementPerson.executeUpdate();
-            preparedStatementAuthor.setInt(1,v.getAuthorId());
-            if(effactedRow>0)
-            preparedStatementAuthor.executeUpdate();
+            preparedStatement.setInt(1, v.getPersonId());
+            int effactedRow = preparedStatement.executeUpdate();
+            
+            preparedStatement = createPrepareStatement(PERSON_DELETE_QUERY);
+            preparedStatement.setInt(1,v.getAuthorId());
+            if(effactedRow>0){
+            preparedStatement.executeUpdate();}
             UserInfoMessages.getInstance().deletedMessage(effactedRow);
         } catch (SQLException ex) {
             UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Delete Error");

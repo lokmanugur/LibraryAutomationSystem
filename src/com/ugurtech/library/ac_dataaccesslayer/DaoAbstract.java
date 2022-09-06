@@ -120,6 +120,10 @@ public abstract class DaoAbstract {
     protected static String setLanguage(String strng) {
         return LanguageImpl.setLanguage(Internationalization::setLanguage, strng);
     }
+    
+    protected static<V> String setLanguage(V v) {
+        return LanguageImpl.setLanguage(Internationalization::setLanguage, v.toString());
+    }
 
     protected static <V> String getTableTitle(V tableColumn) {
         return tableColumn + " as " + setLanguage(tableColumn.toString());

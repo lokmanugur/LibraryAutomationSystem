@@ -5,6 +5,7 @@
  */
 package com.ugurtech.library.ac_dataaccesslayer.student;
 
+import com.ugurtech.library.ab_application.af_lib.sql.DbUtils;
 import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
 import com.ugurtech.library.ac_dataaccesslayer.DaoAbstract;
 import com.ugurtech.library.ac_dataaccesslayer.enumeration.Tables;
@@ -28,6 +29,8 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
     public static final String PERSON_INSERT_QUERY = "INSERT INTO person(firstname,lastname,birthdate,phone,address,createddate) VALUES(?,?,?,?,?,?)";
     public static final String STUDENT_INSERT_QUERY = "INSERT INTO student(personid,schoolid,classid,studentnumber) VALUES(?,?,?,?)";
     public static final String STUDENT_UPDATE_QUERY = "UPDATE student SET classid=?,schoolid=?,studentnumber=? WHERE studentid = ?";
+    public static final String STUDENT_DELETE_QUERY = "DELETE FROM student WHERE studentid=?";
+    public static final String PERSON_DELETE_QUERY = "DELETE FROM person WHERE personid=(SELECT personid FROM student WHERE studentid=?)";
     public static final String PERSON_UPDATE_QUERY = "UPDATE person SET firstname=?,lastname=?,birthdate=?, phone=?,address=?,lastupdate=? WHERE personid=(SELECT personid FROM student WHERE studentid=?)";
     
     public static final String STUDENT_SEARCH_QUERY = "SELECT "
@@ -35,7 +38,13 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
             +getTableTitle(Tables.Student.studentnumber)+","
             +getTableTitle(Tables.Person.firstname)+","
             +getTableTitle(Tables.Person.lastname)+","
-            +getTableTitle(Tables.Clss.classname)+",";
+            +getTableTitle(Tables.Clss.classname)+","
+            +getTableTitle(Tables.Person.phone)+","
+            +getTableTitle(Tables.Person.address)+","
+            +getTableTitle(Tables.Person.createddate)+","
+            +getTableTitle(Tables.Person.lastupdate)
+            +" FROM "+Tables.person+","+Tables.student+","+Tables.clss;
+            
 
 
     @Override
@@ -86,6 +95,17 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
 
     @Override
     public TableModel search(String searchText) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query="";
+        query+=STUDENT_SEARCH_QUERY;
+        query+=" WHERE (";
+        query+=setLanguage(Tables.Student.studentid)+" LIKE '"+searchText+"%' OR ";
+        query+=setLanguage(Tables.Student.studentnumber)+" LIKE '"+searchText+"%' OR ";
+        query+=setLanguage(Tables.Person.firstname)+" LIKE '"+searchText+"%' OR ";
+        query+=setLanguage(Tables.Person.lastname)+" LIKE '"+searchText+"%' OR ";
+        query+=setLanguage(Tables.Clss.classname)+" LIKE '"+searchText+"%' OR ";
+        query+=setLanguage(Tables.Person.phone)+" LIKE '"+searchText+"%' OR ";
+        query+=setLanguage(Tables.Person.address)+" LIKE '"+searchText+"%') AND ";
+        query+=Tables.Person.personid +"="+Tables.Student.personid+" AND "+Tables.Student.classid+"="+Tables.Clss.classid;
+        return DbUtils.resultSetToTableModel(createResultSet(query), setLanguage(Tables.Person.createddate),setLanguage(Tables.Person.lastupdate));
     }
 }

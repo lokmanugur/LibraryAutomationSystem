@@ -15,6 +15,7 @@ import com.ugurtech.library.aa_presentation.view.booktype.BookTypeSearchForm;
 /**
  *
  * @author ugur
+ * 
  */
 public final class BookTypeSearchFormController extends BookTypeController implements Initialize {
 

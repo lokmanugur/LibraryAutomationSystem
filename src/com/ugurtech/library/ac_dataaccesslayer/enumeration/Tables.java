@@ -12,7 +12,7 @@ public enum Tables {
     author, book, bookauthor, booktype, booktypebook, borrowedbook, country, language, person, personbook, publisher, school, student, sysuser, usertype, clss;
 
     public enum Author {
-        authorid, personid;
+       author, authorid, personid;
 
         @Override
         public String toString() {
@@ -21,7 +21,7 @@ public enum Tables {
     }
 
     public enum Bookauthor {
-        bookauthorid, bookid, authorid;
+      bookauthor, bookauthorid, bookid, authorid;
 
         @Override
         public String toString() {
@@ -30,7 +30,7 @@ public enum Tables {
     }
 
     public enum Booktypebook {
-        booktypebookid, bookid, booktypeid;
+      booktypebook, booktypebookid, bookid, booktypeid;
 
         @Override
         public String toString() {
@@ -39,7 +39,7 @@ public enum Tables {
     }
 
     public enum Borrowedbook {
-        borrowedbookid, bookid;
+       borrowedbook, borrowedbookid, bookid;
 
         @Override
         public String toString() {
@@ -48,7 +48,7 @@ public enum Tables {
     }
 
     public enum Clss {
-        clssid, classname;
+       clss, classid, classname;
 
         @Override
         public String toString() {
@@ -57,7 +57,7 @@ public enum Tables {
     }
 
     public enum Country {
-        countryid, countryname, abbriviation;
+       country, countryid, countryname, abbriviation;
 
         @Override
         public String toString() {
@@ -66,7 +66,7 @@ public enum Tables {
     }
 
     public enum Language {
-        languageid, languagename, abbriviation;
+       language, languageid, languagename, abbriviation;
 
         @Override
         public String toString() {
@@ -75,7 +75,7 @@ public enum Tables {
     }
 
     public enum Person {
-        personid, firstname, lastname, birtdate, address, phone, createddate, lastupdate;
+       person, personid, firstname, lastname, birtdate, address, phone, createddate, lastupdate;
 
         @Override
         public String toString() {
@@ -84,7 +84,7 @@ public enum Tables {
     }
 
     public enum PersonBook {
-        personbookid, personid, bookid, startdate, deadline, finishdate, lastupdate;
+       personbook, personbookid, personid, bookid, startdate, deadline, finishdate, lastupdate;
 
         @Override
         public String toString() {
@@ -93,7 +93,7 @@ public enum Tables {
     }
 
     public enum Publisher {
-        publisherid, publishername, phone, address;
+      publisher, publisherid, publishername, phone, address;
 
         @Override
         public String toString() {
@@ -102,7 +102,7 @@ public enum Tables {
     }
 
     public enum School {
-        schoolid, schoolname, phone, address;
+       school, schoolid, schoolname, phone, address;
 
         @Override
         public String toString() {
@@ -111,7 +111,7 @@ public enum Tables {
     }
 
     public enum Student {
-        studentid, personid, schoolid, classid, studentnumber;
+       student, studentid, personid, schoolid, classid, studentnumber;
 
         @Override
         public String toString() {
@@ -120,7 +120,7 @@ public enum Tables {
     }
 
     public enum SysUser {
-        sysuserid, personid, usertypeid, countryid, languageid, username, userpassword, createddate, lastupdate, sessiontime;
+       sysuser, sysuserid, personid, usertypeid, countryid, languageid, username, userpassword, createddate, lastupdate, sessiontime;
 
         @Override
         public String toString() {
@@ -129,7 +129,7 @@ public enum Tables {
     }
 
     public enum UserType {
-        usertypeid, usertypename;
+       usertype, usertypeid, usertypename;
 
         @Override
         public String toString() {

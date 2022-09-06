@@ -9,6 +9,7 @@ import com.ugurtech.library.aa_presentation.controller.Initialize;
 import com.ugurtech.library.aa_presentation.view.MainForm;
 import com.ugurtech.library.aa_presentation.view.student.StudentForm;
 import com.ugurtech.library.aa_presentation.view.student.StudentSearchForm;
+import java.util.Locale;
 
 /**
  *
@@ -26,7 +27,7 @@ public final class StudentSearchFormController extends StudentController impleme
 
     @Override
     public void initView() {
-
+        search();
     }
 
     @Override
@@ -44,6 +45,7 @@ public final class StudentSearchFormController extends StudentController impleme
             write();
         });
         studentSearchForm.getTextFieldSearch().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 search();
             }
@@ -57,7 +59,7 @@ public final class StudentSearchFormController extends StudentController impleme
     private void update() {
         MainForm.getInstance().addDesktopPane(StudentForm.INSTANCE);
         StudentForm.INSTANCE.getStudentFormController().modelToForm(
-                get((int)studentSearchForm.getTableSearch().getValueAt(studentSearchForm.getTableSearch().getSelectedRow(), 0)));
+        get((int)studentSearchForm.getTableSearch().getValueAt(studentSearchForm.getTableSearch().getSelectedRow(), 0)));
     }
 
     private void delete() {
@@ -69,7 +71,7 @@ public final class StudentSearchFormController extends StudentController impleme
     }
 
     private void search() {
-        search(studentSearchForm.getTextFieldSearch().getText());
+       studentSearchForm.getTableSearch().setModel(search(studentSearchForm.getTextFieldSearch().getText()));
     }
 
 }

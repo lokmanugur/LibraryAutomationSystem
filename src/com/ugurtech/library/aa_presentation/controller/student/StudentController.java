@@ -19,7 +19,7 @@ import javax.swing.table.TableModel;
  */
 public class StudentController implements Controller<StudentModel>{
 
-    private StudentService studentService = new StudentServiceImpl(new StudentDaoImpl());
+    private final StudentService studentService = new StudentServiceImpl(new StudentDaoImpl());
     
     @Override
     public List<StudentModel> getAll() {

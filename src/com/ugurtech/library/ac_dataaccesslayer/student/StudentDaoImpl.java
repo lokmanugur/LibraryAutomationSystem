@@ -7,7 +7,6 @@ package com.ugurtech.library.ac_dataaccesslayer.student;
 
 import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
 import com.ugurtech.library.ac_dataaccesslayer.DaoAbstract;
-import com.ugurtech.library.ac_dataaccesslayer.enumeration.Student;
 import com.ugurtech.library.ac_dataaccesslayer.enumeration.Tables;
 import com.ugurtech.library.ad_model.StudentModel;
 import java.sql.PreparedStatement;
@@ -32,12 +31,11 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
     public static final String PERSON_UPDATE_QUERY = "UPDATE person SET firstname=?,lastname=?,birthdate=?, phone=?,address=?,lastupdate=? WHERE personid=(SELECT personid FROM student WHERE studentid=?)";
     
     public static final String STUDENT_SEARCH_QUERY = "SELECT "
-            +getTableTitle(Tables.student+"."+Student.studentid)+","
-            +getTableTitle(Tables.student+".studentnumber")+","
-            +getTableTitle(Tables.person+".firstname")+","
-            +getTableTitle(Tables.person+".lastname")+","
-            +getTableTitle(Tables.clss+".class")+","
-            ;
+            +getTableTitle(Tables.Student.studentid)+","
+            +getTableTitle(Tables.Student.studentnumber)+","
+            +getTableTitle(Tables.Person.firstname)+","
+            +getTableTitle(Tables.Person.lastname)+","
+            +getTableTitle(Tables.Clss.classname)+",";
 
 
     @Override

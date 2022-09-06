@@ -121,8 +121,8 @@ public abstract class DaoAbstract {
         return LanguageImpl.setLanguage(Internationalization::setLanguage, strng);
     }
 
-    protected static String getTableTitle(String str) {
-        return str + " as " + setLanguage(str);
+    protected static <V> String getTableTitle(V tableColumn) {
+        return tableColumn + " as " + setLanguage(tableColumn.toString());
     }
 
     protected String getExistID(int id, String... strQuery) {

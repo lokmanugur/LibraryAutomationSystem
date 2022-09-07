@@ -32,11 +32,22 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
     public static final String PERSON_UPDATE_QUERY = "UPDATE person SET firstname=?,lastname=?,birthdate=?, phone=?,address=?,lastupdate=? WHERE personid=(SELECT personid FROM student WHERE studentid=?)";
     public static final String STUDENT_DELETE_QUERY = "DELETE FROM student WHERE studentid=?";
     public static final String PERSON_DELETE_QUERY = "DELETE FROM person WHERE personid=(SELECT personid FROM student WHERE studentid=?)";
-   
-    
     public static final String STUDENT_SEARCH_QUERY = "SELECT "
             +getTableTitle(Tables.Student.studentid)+","
-            +Tables.Student.personid+","
+            +getTableTitle(Tables.Student.studentnumber)+","
+            +getTableTitle(Tables.Person.firstname)+","
+            +getTableTitle(Tables.Person.lastname)+","
+            +getTableTitle(Tables.Clss.classname)+","
+            +getTableTitle(Tables.School.schoolname)+","
+            +getTableTitle(Tables.Person.phone)+","
+            +getTableTitle(Tables.Person.address)+","
+            +getTableTitle(Tables.Person.createddate)+","
+            +getTableTitle(Tables.Person.lastupdate)
+            +" FROM "+Tables.person+","+Tables.student+","+Tables.clss+","+Tables.school
+            +" WHERE "+Tables.Student.personid +"="+Tables.Person.personid+" AND "+Tables.Student.schoolid+"="+Tables.School.schoolid+" AND "+Tables.Student.classid+"="+Tables.Clss.classid;
+       
+    public static final String STUDENT_GET_QUERY = "SELECT "
+            +getTableTitle(Tables.Student.studentid)+","
             +Tables.Student.schoolid+","
             +Tables.Student.classid+","
             +getTableTitle(Tables.Student.studentnumber)+","
@@ -45,18 +56,9 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
             +getTableTitle(Tables.Person.lastname)+","
             +getTableTitle(Tables.Person.birthdate)+","
             +getTableTitle(Tables.Person.phone)+","
-            +getTableTitle(Tables.Person.address)+","
-            +getTableTitle(Tables.Person.createddate)+","
-            +getTableTitle(Tables.Person.lastupdate)+","
-            +getTableTitle(Tables.Clss.classid)+","
-            +getTableTitle(Tables.Clss.classname)+","
-            +getTableTitle(Tables.School.schoolid)+","
-            +getTableTitle(Tables.School.schoolname)+","
-            +getTableTitle(Tables.School.phone)+","
-            +getTableTitle(Tables.School.address)
+            +getTableTitle(Tables.Person.address)
             +" FROM "+Tables.person+","+Tables.student+","+Tables.clss+","+Tables.school
-            +" WHERE "+Tables.Student.personid +"="+Tables.Person.personid+" AND "+Tables.Student.schoolid+"="+Tables.School.schoolid+" AND "+Tables.Student.classid+"="+Tables.Clss.classid;
-            
+            +" WHERE "+Tables.Student.personid +"="+Tables.Person.personid+" AND "+Tables.Student.schoolid+"="+Tables.School.schoolid+" AND "+Tables.Student.classid+"="+Tables.Clss.classid;       
 
 
     @Override
@@ -113,7 +115,7 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
     @Override
     public StudentModel get(int id) {
                 StudentModel studentModel = null;
-        ResultSet resultSet = createResultSet(getExistID(id, STUDENT_SEARCH_QUERY," AND ",Tables.Student.studentid+"="));
+        ResultSet resultSet = createResultSet(getExistID(id, STUDENT_GET_QUERY," AND ",Tables.Student.studentid+"="));
         try {
             studentModel = new StudentModel();
             if (resultSet.next()) {

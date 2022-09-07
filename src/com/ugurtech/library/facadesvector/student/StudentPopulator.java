@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ugurtech.library.facades.student;
+package com.ugurtech.library.facadesvector.student;
 
 import com.ugurtech.library.ad_model.StudentModel;
 import com.ugurtech.library.facades.Populator;

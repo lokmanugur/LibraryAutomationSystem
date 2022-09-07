@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ugurtech.library.facades;
+package com.ugurtech.library.facadesvector;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Vector;
 
 /**
  *
@@ -20,7 +19,7 @@ public class PopulatingConverter<SOURCE, TARGET> {
     
     private final Class<TARGET> targetClass;
     
-    private final Vector<Populator> populators = new Vector<>();
+    private final List<Populator> populators = new ArrayList<>();
     public PopulatingConverter(Class<TARGET> targetClass) {
         this.targetClass = targetClass;
     }
@@ -37,8 +36,8 @@ public class PopulatingConverter<SOURCE, TARGET> {
         return target;
     }
     
-    public Vector<TARGET> convertAll(List<SOURCE> objectsToConvert) {
-        Vector<TARGET> convertedList = new Vector<>();
+    public List<TARGET> convertAll(List<SOURCE> objectsToConvert) {
+        List<TARGET> convertedList = new ArrayList<>();
         objectsToConvert.forEach(objectToConvert -> {
             convertedList.add(convert(objectToConvert));
         });

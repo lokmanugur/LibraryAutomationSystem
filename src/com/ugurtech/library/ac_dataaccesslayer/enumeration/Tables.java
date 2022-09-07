@@ -75,7 +75,7 @@ public enum Tables {
     }
 
     public enum Person {
-       person, personid, firstname, lastname, birtdate, address, phone, createddate, lastupdate;
+       person, personid, firstname, lastname, birthdate, address, phone, createddate, lastupdate;
 
         @Override
         public String toString() {

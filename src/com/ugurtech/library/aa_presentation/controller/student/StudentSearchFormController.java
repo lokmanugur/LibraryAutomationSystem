@@ -9,7 +9,6 @@ import com.ugurtech.library.aa_presentation.controller.Initialize;
 import com.ugurtech.library.aa_presentation.view.MainForm;
 import com.ugurtech.library.aa_presentation.view.student.StudentForm;
 import com.ugurtech.library.aa_presentation.view.student.StudentSearchForm;
-import java.util.Locale;
 
 /**
  *

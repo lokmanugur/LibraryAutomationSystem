@@ -13,17 +13,8 @@ public class StudentModel extends PersonModel {
 
     private int studentId;
     private String studentNumber;
-    private int studentSchool;
     private ClassModel studentClass;
     private SchoolModel schoolModel;
-
-    public int getStudentSchool() {
-        return studentSchool;
-    }
-
-    public void setStudentSchool(int studentSchool) {
-        this.studentSchool = studentSchool;
-    }
     
     public int getStudentId() {
         return studentId;
@@ -56,7 +47,31 @@ public class StudentModel extends PersonModel {
     public void setSchoolModel(SchoolModel schoolModel) {
         this.schoolModel = schoolModel;
     }
-    
-    
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final StudentModel other = (StudentModel) obj;
+        return this.studentId == other.studentId;
+    }
+
+    @Override
+    public String toString() {
+        return studentNumber;
+    }
+    
 }

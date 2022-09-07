@@ -29,21 +29,33 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
     public static final String PERSON_INSERT_QUERY = "INSERT INTO person(firstname,lastname,birthdate,phone,address,createddate) VALUES(?,?,?,?,?,?)";
     public static final String STUDENT_INSERT_QUERY = "INSERT INTO student(personid,schoolid,classid,studentnumber) VALUES(?,?,?,?)";
     public static final String STUDENT_UPDATE_QUERY = "UPDATE student SET classid=?,schoolid=?,studentnumber=? WHERE studentid = ?";
+    public static final String PERSON_UPDATE_QUERY = "UPDATE person SET firstname=?,lastname=?,birthdate=?, phone=?,address=?,lastupdate=? WHERE personid=(SELECT personid FROM student WHERE studentid=?)";
     public static final String STUDENT_DELETE_QUERY = "DELETE FROM student WHERE studentid=?";
     public static final String PERSON_DELETE_QUERY = "DELETE FROM person WHERE personid=(SELECT personid FROM student WHERE studentid=?)";
-    public static final String PERSON_UPDATE_QUERY = "UPDATE person SET firstname=?,lastname=?,birthdate=?, phone=?,address=?,lastupdate=? WHERE personid=(SELECT personid FROM student WHERE studentid=?)";
+   
     
     public static final String STUDENT_SEARCH_QUERY = "SELECT "
             +getTableTitle(Tables.Student.studentid)+","
+            +Tables.Student.personid+","
+            +Tables.Student.schoolid+","
+            +Tables.Student.classid+","
             +getTableTitle(Tables.Student.studentnumber)+","
+            +getTableTitle(Tables.Person.personid)+","
             +getTableTitle(Tables.Person.firstname)+","
             +getTableTitle(Tables.Person.lastname)+","
-            +getTableTitle(Tables.Clss.classname)+","
+            +getTableTitle(Tables.Person.birthdate)+","
             +getTableTitle(Tables.Person.phone)+","
             +getTableTitle(Tables.Person.address)+","
             +getTableTitle(Tables.Person.createddate)+","
-            +getTableTitle(Tables.Person.lastupdate)
-            +" FROM "+Tables.person+","+Tables.student+","+Tables.clss;
+            +getTableTitle(Tables.Person.lastupdate)+","
+            +getTableTitle(Tables.Clss.classid)+","
+            +getTableTitle(Tables.Clss.classname)+","
+            +getTableTitle(Tables.School.schoolid)+","
+            +getTableTitle(Tables.School.schoolname)+","
+            +getTableTitle(Tables.School.phone)+","
+            +getTableTitle(Tables.School.address)
+            +" FROM "+Tables.person+","+Tables.student+","+Tables.clss+","+Tables.school
+            +" WHERE "+Tables.Student.personid +"="+Tables.Person.personid+" AND "+Tables.Student.schoolid+"="+Tables.School.schoolid+" AND "+Tables.Student.classid+"="+Tables.Clss.classid;
             
 
 
@@ -74,13 +86,45 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
     }
 
     @Override
-    public void update(StudentModel studentModel) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(StudentModel v) {
+        PreparedStatement preparedStatement = createPrepareStatement(PERSON_UPDATE_QUERY);
+        try {
+            preparedStatement.setString(1, v.getFirstName());
+            preparedStatement.setString(2, v.getLastName());
+            preparedStatement.setLong(3, v.getBirthDate());
+            preparedStatement.setString(4, v.getPhone());
+            preparedStatement.setString(5, v.getAddress());
+            preparedStatement.setLong(6, new Date().getTime());
+            preparedStatement.setInt(7, v.getStudentId());
+            int effectedRow = preparedStatement.executeUpdate();
+            if(effectedRow>0){
+            preparedStatement=createPrepareStatement(STUDENT_UPDATE_QUERY);
+            preparedStatement.setInt(1, v.getStudentClass().getClassId());
+            preparedStatement.setInt(2, v.getSchoolModel().getSchoolId());
+            preparedStatement.setString(3, v.getStudentNumber());
+            preparedStatement.executeUpdate();}
+            UserInfoMessages.getInstance().updateMessage(effectedRow);
+        } catch (SQLException ex) {
+            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Update Error");
+            Logger.getLogger(StudentDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public StudentModel get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                StudentModel studentModel = null;
+        ResultSet resultSet = createResultSet(getExistID(id, STUDENT_SEARCH_QUERY," AND ",Tables.Student.studentid+"="));
+        try {
+            studentModel = new StudentModel();
+            if (resultSet.next()) {
+                studentModel.setStudentId(resultSet.getInt(1));
+                studentModel.setStudentNumber(resultSet.getString(2));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return studentModel;
     }
 
     @Override
@@ -108,15 +152,17 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
     public TableModel search(String searchText) {
         String query="";
         query+=STUDENT_SEARCH_QUERY;
-        query+=" WHERE (";
+        query+=" AND ";
+        query+="(";
         query+=setLanguage(Tables.Student.studentid)+" LIKE '"+searchText+"%' OR ";
         query+=setLanguage(Tables.Student.studentnumber)+" LIKE '"+searchText+"%' OR ";
         query+=setLanguage(Tables.Person.firstname)+" LIKE '"+searchText+"%' OR ";
         query+=setLanguage(Tables.Person.lastname)+" LIKE '"+searchText+"%' OR ";
         query+=setLanguage(Tables.Clss.classname)+" LIKE '"+searchText+"%' OR ";
+        query+=setLanguage(Tables.School.schoolname)+" LIKE '"+searchText+"%' OR ";
         query+=setLanguage(Tables.Person.phone)+" LIKE '"+searchText+"%' OR ";
-        query+=setLanguage(Tables.Person.address)+" LIKE '"+searchText+"%') AND ";
-        query+=Tables.Person.personid +"="+Tables.Student.personid+" AND "+Tables.Student.classid+"="+Tables.Clss.classid;
+        query+=setLanguage(Tables.Person.address)+" LIKE '"+searchText+"%'";
+        query+=")";
         return DbUtils.resultSetToTableModel(createResultSet(query), setLanguage(Tables.Person.createddate),setLanguage(Tables.Person.lastupdate));
     }
 }

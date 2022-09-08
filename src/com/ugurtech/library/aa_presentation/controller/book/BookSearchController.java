@@ -8,9 +8,7 @@ package com.ugurtech.library.aa_presentation.controller.book;
 import com.ugurtech.library.aa_presentation.controller.Initialize;
 import com.ugurtech.library.aa_presentation.view.MainForm;
 import com.ugurtech.library.aa_presentation.view.book.BookForm;
-import com.ugurtech.library.ab_application.af_lib.writetofile.TableToExcelImpl;
 import com.ugurtech.library.aa_presentation.view.book.BookSearchForm;
-import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
 
 /**
  *
@@ -37,13 +35,14 @@ public final class BookSearchController extends BookController implements Initia
     @Override
     public void initController() {
         bookSearchForm.getTextFieldSearch().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 search();
             }
         });
 
         bookSearchForm.getButtonWriteFile().addActionListener((java.awt.event.ActionEvent evt) -> {
-            new TableToExcelImpl(bookSearchForm.getBooksTable(), "Kitaplar Tablosu").writeToTable();
+            write();
         });
 
         bookSearchForm.getButtonDelete().addActionListener((java.awt.event.ActionEvent evt) -> {
@@ -67,17 +66,16 @@ public final class BookSearchController extends BookController implements Initia
     }
 
     protected void update() {
-       MainForm.getInstance().addDesktopPane(BookForm.getInstance());
-       BookForm.getInstance().setBookModel(getUpdate((Integer) (bookSearchForm.getBooksTable().getModel().getValueAt(bookSearchForm.getBooksTable().getSelectedRow(), 0))));
-       BookForm.getInstance().getBookFormController().modelToForm();
+        if (updateUnSelectRowMessage(bookSearchForm.getBooksTable().getSelectedRow())) {
+            MainForm.getInstance().addDesktopPane(BookForm.getInstance());
+            BookForm.getInstance().setBookModel(getUpdate((Integer) (bookSearchForm.getBooksTable().getModel().getValueAt(bookSearchForm.getBooksTable().getSelectedRow(), 0))));
+            BookForm.getInstance().getBookFormController().modelToForm();
+        }
     }
 
     protected void delete() {
-        if (bookSearchForm.getBooksTable().getSelectedRow() == -1) {
-            UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.delete.unselectedrow"));
-        } else if (UserInfoMessages.getInstance().showApproveMessages(setLanguage("table.option.approve"), setLanguage("table.option.approve.form.title"))) {
+        if (deleteApproveMessage(bookSearchForm.getBooksTable().getSelectedRow())) {
             delete((Integer) (bookSearchForm.getBooksTable().getModel().getValueAt(bookSearchForm.getBooksTable().getSelectedRow(), 0)));
-
         }
         search();
     }
@@ -90,14 +88,18 @@ public final class BookSearchController extends BookController implements Initia
                         bookSearchForm.getDateChooserLast().getDate() == null ? 0 : bookSearchForm.getDateChooserLast().getDate().getTime()));
     }
 
-    private void setLanguage() {
-
-    }
-
     private void fillDateColumnToSelectionComboBox() {
         bookSearchForm.getComboBoxDate().removeAll();
         bookSearchForm.getComboBoxDate().addItem("");
         bookSearchForm.getComboBoxDate().addItem(setLanguage("book.publishdate"));
         bookSearchForm.getComboBoxDate().addItem(setLanguage("book.lastupdate"));
+    }
+
+    private void write() {
+        write(bookSearchForm.getBooksTable(), "Kitaplar Tablosu");
+    }
+
+    private void setLanguage() {
+
     }
 }

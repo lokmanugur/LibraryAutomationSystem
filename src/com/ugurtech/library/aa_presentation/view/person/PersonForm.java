@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 package com.ugurtech.library.aa_presentation.view.person;
-import com.ugurtech.library.controller.PersonController;
 import com.toedter.calendar.JDateChooser;
+import com.ugurtech.library.aa_presentation.controller.person.PersonFormController;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -17,19 +18,12 @@ import javax.swing.JTextField;
  */
 public final class PersonForm extends JInternalFrame {
 
-    private static PersonForm personForm;
-    private final PersonController personController;
+    public static PersonForm INSTANCE = new PersonForm();
+    private final PersonFormController personFormController;
     private PersonForm() {
         initComponents();
-        personController = new PersonController(this);
+        personFormController = new PersonFormController(this);
         setLocation(getWidth()/2, getHeight()/10);
-    }
-    
-    public static PersonForm getInstance(){
-        if(personForm==null)
-            return personForm= new PersonForm();
-        else
-            return personForm;
     }
 
     /**
@@ -42,67 +36,57 @@ public final class PersonForm extends JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        firstNameLabel = new javax.swing.JLabel();
-        firstNameTextField = new javax.swing.JTextField();
-        lastNameLabel = new javax.swing.JLabel();
-        lastNameTextField = new javax.swing.JTextField();
-        birthDateLabel = new javax.swing.JLabel();
-        addressLabel = new javax.swing.JLabel();
-        phoneLabel = new javax.swing.JLabel();
-        phoneTextField = new javax.swing.JTextField();
-        cancelButton = new javax.swing.JButton();
-        saveButton = new javax.swing.JButton();
-        birthDateChooser = new JDateChooser();
+        labelFirstName = new javax.swing.JLabel();
+        textFieldName = new javax.swing.JTextField();
+        labelLastName = new javax.swing.JLabel();
+        textFieldSurname = new javax.swing.JTextField();
+        labelBirtDate = new javax.swing.JLabel();
+        labelAddress = new javax.swing.JLabel();
+        labelPhone = new javax.swing.JLabel();
+        textFieldPhone = new javax.swing.JTextField();
+        buttonCancel = new javax.swing.JButton();
+        buttonSave = new javax.swing.JButton();
+        DateChooserBirth = new JDateChooser();
         jScrollPane2 = new javax.swing.JScrollPane();
-        addressTextArea = new javax.swing.JTextArea();
+        textAreaAddress = new javax.swing.JTextArea();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Kişi Kayıt Formu");
+        setTitle("Person Add Form");
         setMinimumSize(new java.awt.Dimension(527, 388));
 
-        firstNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        firstNameLabel.setText("Adı:");
-        firstNameLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        labelFirstName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelFirstName.setText("Name");
+        labelFirstName.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        lastNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lastNameLabel.setText("Soyad:");
-        lastNameLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        labelLastName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelLastName.setText("Surname");
+        labelLastName.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        birthDateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        birthDateLabel.setText("Doğum yılı:");
-        birthDateLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        labelBirtDate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelBirtDate.setText("Birth Date");
+        labelBirtDate.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        addressLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        addressLabel.setText("Adres:");
-        addressLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        addressLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        addressLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        addressLabel.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        labelAddress.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelAddress.setText("Address");
+        labelAddress.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        labelAddress.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        labelAddress.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        labelAddress.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
-        phoneLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        phoneLabel.setText("Telefon:");
-        phoneLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        labelPhone.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelPhone.setText("Phone");
+        labelPhone.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        cancelButton.setText("Reset");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
-            }
-        });
+        buttonCancel.setText("Cancel");
 
-        saveButton.setText("Kaydet");
-        saveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveButtonActionPerformed(evt);
-            }
-        });
+        buttonSave.setText("Save");
 
-        addressTextArea.setColumns(20);
-        addressTextArea.setRows(5);
-        jScrollPane2.setViewportView(addressTextArea);
+        textAreaAddress.setColumns(20);
+        textAreaAddress.setRows(5);
+        jScrollPane2.setViewportView(textAreaAddress);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -111,21 +95,21 @@ public final class PersonForm extends JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(firstNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lastNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(birthDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                    .addComponent(phoneLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(labelFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelLastName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelBirtDate, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                    .addComponent(labelPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonCancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(birthDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonSave))
+                    .addComponent(textFieldSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DateChooserBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2))
                 .addContainerGap())
         );
@@ -134,30 +118,30 @@ public final class PersonForm extends JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(firstNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lastNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(textFieldSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLastName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(birthDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(birthDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(DateChooserBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelBirtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(phoneLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(textFieldPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(buttonCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -178,95 +162,126 @@ public final class PersonForm extends JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        getAccessibleContext().setAccessibleName("");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        personController.insertPerson();
-    }//GEN-LAST:event_saveButtonActionPerformed
-
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        clearAllForm();
-    }//GEN-LAST:event_cancelButtonActionPerformed
-    
-    public void clearAllForm(){
-        addressTextArea.setText(null);
-        birthDateChooser.getDateEditor().setDate(null);
-        firstNameTextField.setText(null);
-        lastNameTextField.setText(null);
-        phoneTextField.setText(null);
-    }
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel addressLabel;
-    private javax.swing.JTextArea addressTextArea;
-    private com.toedter.calendar.JDateChooser birthDateChooser;
-    private javax.swing.JLabel birthDateLabel;
-    private javax.swing.JButton cancelButton;
-    private javax.swing.JLabel firstNameLabel;
-    private javax.swing.JTextField firstNameTextField;
+    private com.toedter.calendar.JDateChooser DateChooserBirth;
+    private javax.swing.JButton buttonCancel;
+    private javax.swing.JButton buttonSave;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lastNameLabel;
-    private javax.swing.JTextField lastNameTextField;
-    private javax.swing.JLabel phoneLabel;
-    private javax.swing.JTextField phoneTextField;
-    private javax.swing.JButton saveButton;
+    private javax.swing.JLabel labelAddress;
+    private javax.swing.JLabel labelBirtDate;
+    private javax.swing.JLabel labelFirstName;
+    private javax.swing.JLabel labelLastName;
+    private javax.swing.JLabel labelPhone;
+    private javax.swing.JTextArea textAreaAddress;
+    private javax.swing.JTextField textFieldName;
+    private javax.swing.JTextField textFieldPhone;
+    private javax.swing.JTextField textFieldSurname;
     // End of variables declaration//GEN-END:variables
 
-    public JTextArea getAddressTextArea() {
-        return addressTextArea;
+    public PersonFormController getPersonFormController() {
+        return personFormController;
     }
 
-    public void setAddressTextArea(JTextArea addressTextArea) {
-        this.addressTextArea = addressTextArea;
+    public JDateChooser getDateChooserBirth() {
+        return DateChooserBirth;
     }
 
-    public JButton getCancelButton() {
-        return cancelButton;
+    public void setDateChooserBirth(JDateChooser DateChooserBirth) {
+        this.DateChooserBirth = DateChooserBirth;
     }
 
-    public void setCancelButton(JButton cancelButton) {
-        this.cancelButton = cancelButton;
+    public JButton getButtonCancel() {
+        return buttonCancel;
     }
 
-    public JTextField getFirstNameTextField() {
-        return firstNameTextField;
+    public void setButtonCancel(JButton buttonCancel) {
+        this.buttonCancel = buttonCancel;
     }
 
-    public void setFirstNameTextField(JTextField firstNameTextField) {
-        this.firstNameTextField = firstNameTextField;
+    public JButton getButtonSave() {
+        return buttonSave;
     }
 
-    public JTextField getLastNameTextField() {
-        return lastNameTextField;
+    public void setButtonSave(JButton buttonSave) {
+        this.buttonSave = buttonSave;
     }
 
-    public void setLastNameTextField(JTextField lastNameTextField) {
-        this.lastNameTextField = lastNameTextField;
+    public JLabel getLabelAddress() {
+        return labelAddress;
     }
 
-    public JTextField getPhoneTextField() {
-        return phoneTextField;
+    public void setLabelAddress(JLabel labelAddress) {
+        this.labelAddress = labelAddress;
     }
 
-    public void setPhoneTextField(JTextField phoneTextField) {
-        this.phoneTextField = phoneTextField;
+    public JLabel getLabelBirtDate() {
+        return labelBirtDate;
     }
 
-    public JButton getSaveButton() {
-        return saveButton;
+    public void setLabelBirtDate(JLabel labelBirtDate) {
+        this.labelBirtDate = labelBirtDate;
     }
 
-    public void setSaveButton(JButton saveButton) {
-        this.saveButton = saveButton;
+    public JLabel getLabelFirstName() {
+        return labelFirstName;
     }
 
-    public JDateChooser getBirthDateChooser() {
-        return birthDateChooser;
+    public void setLabelFirstName(JLabel labelFirstName) {
+        this.labelFirstName = labelFirstName;
     }
 
-    public void setBirthDateChooser(JDateChooser birthDateChooser) {
-        this.birthDateChooser = birthDateChooser;
+    public JLabel getLabelLastName() {
+        return labelLastName;
     }
 
+    public void setLabelLastName(JLabel labelLastName) {
+        this.labelLastName = labelLastName;
+    }
+
+    public JLabel getLabelPhone() {
+        return labelPhone;
+    }
+
+    public void setLabelPhone(JLabel labelPhone) {
+        this.labelPhone = labelPhone;
+    }
+
+    public JTextArea getTextAreaAddress() {
+        return textAreaAddress;
+    }
+
+    public void setTextAreaAddress(JTextArea textAreaAddress) {
+        this.textAreaAddress = textAreaAddress;
+    }
+
+    public JTextField getTextFieldName() {
+        return textFieldName;
+    }
+
+    public void setTextFieldName(JTextField textFieldName) {
+        this.textFieldName = textFieldName;
+    }
+
+    public JTextField getTextFieldPhone() {
+        return textFieldPhone;
+    }
+
+    public void setTextFieldPhone(JTextField textFieldPhone) {
+        this.textFieldPhone = textFieldPhone;
+    }
+
+    public JTextField getTextFieldSurname() {
+        return textFieldSurname;
+    }
+
+    public void setTextFieldSurname(JTextField textFieldSurname) {
+        this.textFieldSurname = textFieldSurname;
+    }
+    
 }

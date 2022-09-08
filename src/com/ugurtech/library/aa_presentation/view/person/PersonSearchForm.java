@@ -1,10 +1,12 @@
 package com.ugurtech.library.aa_presentation.view.person;
 
-import com.ugurtech.library.controller.PersonSearchFormController;
-import com.ugurtech.library.ab_application.af_lib.writetofile.TableToExcelImpl;
+
+import com.ugurtech.library.aa_presentation.controller.person.PersonSearchFormController;
+import javax.swing.JButton;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.JInternalFrame;
 /**
  *
  * @author lokman uğur
@@ -12,7 +14,7 @@ import javax.swing.JInternalFrame;
  */
 public final class PersonSearchForm extends JInternalFrame {
 
-    private static PersonSearchForm personSearchForm;
+    public static PersonSearchForm INSTANCE = new PersonSearchForm();
     private final PersonSearchFormController personSearchFormController;
 
     
@@ -20,17 +22,7 @@ public final class PersonSearchForm extends JInternalFrame {
         initComponents();
         this.personSearchFormController = new PersonSearchFormController(this);
         setLocation(getWidth()/10,getHeight()/10);
-        personSearchFormController.fillAllPerson();
-    } 
-
-    public static PersonSearchForm getInstance(){
-        if(personSearchForm == null)
-            return personSearchForm = new PersonSearchForm();
-        else
-            return personSearchForm;
     }
-
-
  /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,122 +32,24 @@ public final class PersonSearchForm extends JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelToolBar = new javax.swing.JPanel();
-        panelSearch = new javax.swing.JPanel();
-        firstNameTextField = new javax.swing.JTextField();
-        labelID = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        lastNameTextField = new javax.swing.JTextField();
-        panelOut = new javax.swing.JPanel();
-        writeFlileButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        personTable = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
-        updateButton = new javax.swing.JButton();
-        deleteButton = new javax.swing.JButton();
+        tableSearch = new javax.swing.JTable();
+        panelSearch = new javax.swing.JPanel();
+        textFieldSearch = new javax.swing.JTextField();
+        labelSearch = new javax.swing.JLabel();
+        buttonUpdate = new javax.swing.JButton();
+        buttonDelete = new javax.swing.JButton();
+        buttonWrite = new javax.swing.JButton();
+        buttonAdd = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Kayıtlı Kişiler Tablosu");
+        setTitle("Person Details Table");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        panelSearch.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Ara", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
-
-        firstNameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                firstNameTextFieldKeyReleased(evt);
-            }
-        });
-
-        labelID.setText("Adı:");
-
-        jLabel1.setText("Soyadı:");
-
-        lastNameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                lastNameTextFieldKeyReleased(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelSearchLayout = new javax.swing.GroupLayout(panelSearch);
-        panelSearch.setLayout(panelSearchLayout);
-        panelSearchLayout.setHorizontalGroup(
-            panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSearchLayout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addComponent(labelID)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelSearchLayout.setVerticalGroup(
-            panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSearchLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        panelOut.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Çıktı", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
-
-        writeFlileButton.setText("Exelle Yaz");
-        writeFlileButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                writeFlileButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelOutLayout = new javax.swing.GroupLayout(panelOut);
-        panelOut.setLayout(panelOutLayout);
-        panelOutLayout.setHorizontalGroup(
-            panelOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelOutLayout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(writeFlileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panelOutLayout.setVerticalGroup(
-            panelOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelOutLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(writeFlileButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout panelToolBarLayout = new javax.swing.GroupLayout(panelToolBar);
-        panelToolBar.setLayout(panelToolBarLayout);
-        panelToolBarLayout.setHorizontalGroup(
-            panelToolBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelToolBarLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panelSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelToolBarLayout.setVerticalGroup(
-            panelToolBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelToolBarLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelToolBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        personTable.setModel(new javax.swing.table.DefaultTableModel(
+        tableSearch.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -165,64 +59,66 @@ public final class PersonSearchForm extends JInternalFrame {
         )
         {public boolean isCellEditable(int row, int column){return false;}}
     );
-    jScrollPane1.setViewportView(personTable);
+    jScrollPane1.setViewportView(tableSearch);
 
-    updateButton.setText("Güncelle");
-    updateButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            updateButtonActionPerformed(evt);
-        }
-    });
+    labelSearch.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    labelSearch.setText("Search");
 
-    deleteButton.setText("Sil");
-    deleteButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            deleteButtonActionPerformed(evt);
-        }
-    });
+    buttonUpdate.setText("Update");
 
-    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-    jPanel1.setLayout(jPanel1Layout);
-    jPanel1Layout.setHorizontalGroup(
-        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(128, 128, 128))
+    buttonDelete.setText("Delete");
+
+    buttonWrite.setText("WriteExcel");
+
+    buttonAdd.setText("Add");
+
+    javax.swing.GroupLayout panelSearchLayout = new javax.swing.GroupLayout(panelSearch);
+    panelSearch.setLayout(panelSearchLayout);
+    panelSearchLayout.setHorizontalGroup(
+        panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(panelSearchLayout.createSequentialGroup()
+            .addGap(16, 16, 16)
+            .addComponent(labelSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(textFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+            .addComponent(buttonAdd)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(buttonUpdate)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(buttonDelete)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(buttonWrite)
+            .addGap(51, 51, 51))
     );
-    jPanel1Layout.setVerticalGroup(
-        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(0, 12, Short.MAX_VALUE))
+    panelSearchLayout.setVerticalGroup(
+        panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(panelSearchLayout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(textFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonWrite, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap(7, Short.MAX_VALUE))
     );
-
-    updateButton.setVisible(false);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addComponent(jScrollPane1)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(panelToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addContainerGap())
-        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(panelSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(panelToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE))
     );
 
     getAccessibleContext().setAccessibleName("Menu Hareket");
@@ -230,66 +126,76 @@ public final class PersonSearchForm extends JInternalFrame {
     pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        personSearchFormController.deletePerson();
-    }//GEN-LAST:event_deleteButtonActionPerformed
-
-    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-
-    }//GEN-LAST:event_updateButtonActionPerformed
-
-    private void writeFlileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_writeFlileButtonActionPerformed
-        new TableToExcelImpl(personTable, title).writeToTable();
-    }//GEN-LAST:event_writeFlileButtonActionPerformed
-
-    private void firstNameTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_firstNameTextFieldKeyReleased
-        personSearchFormController.fillAllPerson();
-    }//GEN-LAST:event_firstNameTextFieldKeyReleased
-
-    private void lastNameTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lastNameTextFieldKeyReleased
-        personSearchFormController.fillAllPerson();
-    }//GEN-LAST:event_lastNameTextFieldKeyReleased
-
-
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton deleteButton;
-    private javax.swing.JTextField firstNameTextField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton buttonAdd;
+    private javax.swing.JButton buttonDelete;
+    private javax.swing.JButton buttonUpdate;
+    private javax.swing.JButton buttonWrite;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelID;
-    private javax.swing.JTextField lastNameTextField;
-    private javax.swing.JPanel panelOut;
+    private javax.swing.JLabel labelSearch;
     private javax.swing.JPanel panelSearch;
-    private javax.swing.JPanel panelToolBar;
-    private javax.swing.JTable personTable;
-    private javax.swing.JButton updateButton;
-    private javax.swing.JButton writeFlileButton;
+    private javax.swing.JTable tableSearch;
+    private javax.swing.JTextField textFieldSearch;
     // End of variables declaration//GEN-END:variables
 
-    public JTextField getFirstNameTextField() {
-        return firstNameTextField;
+    public JButton getButtonAdd() {
+        return buttonAdd;
     }
 
-    public void setFirstNameTextField(JTextField firstNameTextField) {
-        this.firstNameTextField = firstNameTextField;
+    public void setButtonAdd(JButton buttonAdd) {
+        this.buttonAdd = buttonAdd;
     }
 
-    public JTextField getLastNameTextField() {
-        return lastNameTextField;
+    public JButton getButtonDelete() {
+        return buttonDelete;
     }
 
-    public void setLastNameTextField(JTextField lastNameTextField) {
-        this.lastNameTextField = lastNameTextField;
+    public void setButtonDelete(JButton buttonDelete) {
+        this.buttonDelete = buttonDelete;
     }
 
-    public JTable getPersonTable() {
-        return personTable;
+    public JButton getButtonUpdate() {
+        return buttonUpdate;
     }
 
-    public void setPersonTable(JTable personTable) {
-        this.personTable = personTable;
+    public void setButtonUpdate(JButton buttonUpdate) {
+        this.buttonUpdate = buttonUpdate;
     }
 
+    public JButton getButtonWrite() {
+        return buttonWrite;
+    }
+
+    public void setButtonWrite(JButton buttonWrite) {
+        this.buttonWrite = buttonWrite;
+    }
+
+    public JLabel getLabelSearch() {
+        return labelSearch;
+    }
+
+    public void setLabelSearch(JLabel labelSearch) {
+        this.labelSearch = labelSearch;
+    }
+
+    public JTable getTableSearch() {
+        return tableSearch;
+    }
+
+    public void setTableSearch(JTable tableSearch) {
+        this.tableSearch = tableSearch;
+    }
+
+    public JTextField getTextFieldSearch() {
+        return textFieldSearch;
+    }
+
+    public void setTextFieldSearch(JTextField textFieldSearch) {
+        this.textFieldSearch = textFieldSearch;
+    }
+
+    public PersonSearchFormController getPersonSearchFormController() {
+        return personSearchFormController;
+    }
+    
 }

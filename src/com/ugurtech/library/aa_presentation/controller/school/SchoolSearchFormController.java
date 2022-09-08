@@ -9,7 +9,6 @@ import com.ugurtech.library.aa_presentation.controller.Initialize;
 import com.ugurtech.library.aa_presentation.view.MainForm;
 import com.ugurtech.library.aa_presentation.view.school.SchoolForm;
 import com.ugurtech.library.aa_presentation.view.school.SchoolSearchForm;
-import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
 import com.ugurtech.library.ab_application.af_lib.writetofile.TableToExcelImpl;
 
 /**
@@ -68,25 +67,21 @@ public final class SchoolSearchFormController extends SchoolController implement
     }
 
     private void update() {
-        MainForm.getInstance().addDesktopPane(SchoolForm.INSTANCE);
-        if (schoolSearchForm.getTableSchool().getSelectedRow() == -1) {
-            UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.update.unselectedrow"));
-        } else {
+        if (updateUnSelectRowMessage(schoolSearchForm.getTableSchool().getSelectedRow())) {
+            MainForm.getInstance().addDesktopPane(SchoolForm.INSTANCE);
             SchoolForm.INSTANCE.setSchoolModel(get((int) schoolSearchForm.getTableSchool().getModel().getValueAt(schoolSearchForm.getTableSchool().getSelectedRow(), 0)));
             SchoolForm.INSTANCE.getSchoolFormController().modelToForm();
         }
     }
 
     private void delete() {
-        if (schoolSearchForm.getTableSchool().getSelectedRow() == -1) {
-            UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.delete.unselectedrow"));
-        } else if (UserInfoMessages.getInstance().showApproveMessages(setLanguage("table.option.approve"), setLanguage("table.option.approve.form.title"))) {
+        if (deleteApproveMessage(schoolSearchForm.getTableSchool().getSelectedRow())) {
             delete((int) schoolSearchForm.getTableSchool().getModel().getValueAt(schoolSearchForm.getTableSchool().getSelectedRow(), 0));
         }
         search();
     }
 
     private void writeExel() {
-        new TableToExcelImpl(schoolSearchForm.getTableSchool(), setLanguage("authorsearchform.title")).writeToTable();
+        write(schoolSearchForm.getTableSchool(), schoolSearchForm.getTitle());
     }
 }

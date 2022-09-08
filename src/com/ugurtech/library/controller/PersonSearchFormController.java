@@ -28,24 +28,24 @@ public class PersonSearchFormController {
         this.personDao=new PersonDaoImpl();
     }
 
-    public void fillAllPerson() {
-        Map<String,String> filters=new HashMap<>();
-        Optional.ofNullable(personSearchForm.getFirstNameTextField().getText())
-                .filter(value->!value.isEmpty())
-                .ifPresent(value->filters.put("firstName", value));
-        Optional.ofNullable(personSearchForm.getLastNameTextField().getText())
-                .filter(value->!value.isEmpty())
-                .ifPresent(value->filters.put("lastName", value));
-        personSearchForm.getPersonTable().setModel(DbUtils.resultSetToTableModel(personDao.fillAllPerson(filters)));
-    }
-
-    public void deletePerson() {
-        if (personSearchForm.getPersonTable().getSelectedRow() == -1) {
-            UserInfoMessages.getInstance().showInfoMessages("Lütfen silmek istediğiniz satırı seçin");
-        } else if (UserInfoMessages.getInstance().showApproveMessages("Seçilen satırı silmek istediğinize eminmisiniz?", "Silme İşlemi Onay Formu")) {
-            personDao.deletePerson((int) personSearchForm.getPersonTable().getModel().getValueAt(personSearchForm.getPersonTable().getSelectedRow(), 0));
-        }
-        fillAllPerson();
-    }
+//    public void fillAllPerson() {
+//        Map<String,String> filters=new HashMap<>();
+//        Optional.ofNullable(personSearchForm.getFirstNameTextField().getText())
+//                .filter(value->!value.isEmpty())
+//                .ifPresent(value->filters.put("firstName", value));
+//        Optional.ofNullable(personSearchForm.getLastNameTextField().getText())
+//                .filter(value->!value.isEmpty())
+//                .ifPresent(value->filters.put("lastName", value));
+//        personSearchForm.getPersonTable().setModel(DbUtils.resultSetToTableModel(personDao.fillAllPerson(filters)));
+//    }
+//
+//    public void deletePerson() {
+//        if (personSearchForm.getPersonTable().getSelectedRow() == -1) {
+//            UserInfoMessages.getInstance().showInfoMessages("Lütfen silmek istediğiniz satırı seçin");
+//        } else if (UserInfoMessages.getInstance().showApproveMessages("Seçilen satırı silmek istediğinize eminmisiniz?", "Silme İşlemi Onay Formu")) {
+//            personDao.deletePerson((int) personSearchForm.getPersonTable().getModel().getValueAt(personSearchForm.getPersonTable().getSelectedRow(), 0));
+//        }
+//        fillAllPerson();
+//    }
     
 }

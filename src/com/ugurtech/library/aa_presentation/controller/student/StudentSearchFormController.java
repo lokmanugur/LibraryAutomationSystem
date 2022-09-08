@@ -66,12 +66,13 @@ public final class StudentSearchFormController extends StudentController impleme
     }
 
     private void delete() {
-        deleteApproveMessage(1);
-        delete((int)studentSearchForm.getTableSearch().getValueAt(studentSearchForm.getTableSearch().getSelectedRow(), 0));
+        if(deleteApproveMessage(studentSearchForm.getTableSearch().getSelectedRow())){
+            delete((int)studentSearchForm.getTableSearch().getValueAt(studentSearchForm.getTableSearch().getSelectedRow(), 0));
+        }
     }
     
     private void write() {
-        
+        write(studentSearchForm.getTableSearch(),studentSearchForm.getTitle());
     }
 
     public void search() {

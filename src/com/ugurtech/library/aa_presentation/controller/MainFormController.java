@@ -4,7 +4,6 @@
  */
 package com.ugurtech.library.aa_presentation.controller;
 
-import com.ugurtech.library.ad_model.MainModel;
 import com.ugurtech.library.ab_application.af_lib.date.SessionTimeCounter;
 import com.ugurtech.library.aa_presentation.view.LoginForm;
 import com.ugurtech.library.aa_presentation.view.MainForm;
@@ -33,7 +32,6 @@ import com.ugurtech.library.aa_presentation.view.user.UserTableForm;
 public class MainFormController extends AbstractController implements Initialize {
 
     private final MainForm mainForm;
-    private MainModel mainModel;
 
     public MainFormController(MainForm mainForm) {
         this.mainForm = mainForm;
@@ -108,7 +106,7 @@ public class MainFormController extends AbstractController implements Initialize
             mainForm.addDesktopPane(UserForm.getInstance());
         });
         mainForm.getPersonTableButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            mainForm.addDesktopPane(PersonSearchForm.getInstance());
+            mainForm.addDesktopPane(PersonSearchForm.INSTANCE);
         });
         mainForm.getUserDetails().addActionListener((java.awt.event.ActionEvent evt) -> {
             mainForm.addDesktopPane(UserDetailsForm.getInstance());
@@ -117,7 +115,7 @@ public class MainFormController extends AbstractController implements Initialize
             mainForm.addDesktopPane(UserTableForm.getInstance());
         });
         mainForm.getPersonFormButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            mainForm.addDesktopPane(PersonForm.getInstance());
+            mainForm.addDesktopPane(PersonForm.INSTANCE);
         });
         mainForm.getGradeButton().addActionListener((e) -> {
             mainForm.addDesktopPane(ClassSearchForm.INSTANCE);

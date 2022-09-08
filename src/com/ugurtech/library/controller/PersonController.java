@@ -27,22 +27,22 @@ public class PersonController {
         this.personForm=personForm;
     }
 
-    public void insertPerson() {
-        personModel.setFirstName(personForm.getFirstNameTextField().getText());
-        personModel.setLastName(personForm.getLastNameTextField().getText());
-        personModel.setBirthDate(personForm.getBirthDateChooser().getDate()==null?null:new Date(personForm.getBirthDateChooser().getDate().getTime()));
-        personModel.setPhone(personForm.getPhoneTextField().getText());
-        personModel.setAddress(personForm.getAddressTextArea().getText());
-        if(checkField()){
-            personDao.insertPerson(personModel);
-            personForm.clearAllForm();
-        }else{UserInfoMessages.getInstance().showInfoMessages("Lütfen Ad,Soyad,Telefon ve Adres Alanlarını Boş Bırakmayın.");}
-    }
-    
-    public boolean checkField(){
-        return  !"".equals(personModel.getFirstName())&&
-                !"".equals(personModel.getLastName())&&
-                !"".equals(personModel.getAddress())&&
-                !"".equals(personModel.getPhone());
-    }
+//    public void insertPerson() {
+//        personModel.setFirstName(personForm.getFirstNameTextField().getText());
+//        personModel.setLastName(personForm.getLastNameTextField().getText());
+//        personModel.setBirthDate(personForm.getBirthDateChooser().getDate()==null?null:new Date(personForm.getBirthDateChooser().getDate().getTime()));
+//        personModel.setPhone(personForm.getPhoneTextField().getText());
+//        personModel.setAddress(personForm.getAddressTextArea().getText());
+//        if(checkField()){
+//            personDao.insertPerson(personModel);
+//            personForm.clearAllForm();
+//        }else{UserInfoMessages.getInstance().showInfoMessages("Lütfen Ad,Soyad,Telefon ve Adres Alanlarını Boş Bırakmayın.");}
+//    }
+//    
+//    public boolean checkField(){
+//        return  !"".equals(personModel.getFirstName())&&
+//                !"".equals(personModel.getLastName())&&
+//                !"".equals(personModel.getAddress())&&
+//                !"".equals(personModel.getPhone());
+//    }
 }

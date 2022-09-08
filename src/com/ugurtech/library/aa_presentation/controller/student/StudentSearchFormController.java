@@ -34,15 +34,19 @@ public final class StudentSearchFormController extends StudentController impleme
         studentSearchForm.getButtonAdd().addActionListener(e -> {
             add();
         });
-        studentSearchForm.getButtonAdd().addActionListener(e -> {
+        
+        studentSearchForm.getButtonUpdate().addActionListener(e -> {
             update();
         });
-        studentSearchForm.getButtonAdd().addActionListener(e -> {
+        
+        studentSearchForm.getButtonDelete().addActionListener(e -> {
             delete();
         });
-        studentSearchForm.getButtonAdd().addActionListener(e -> {
+        
+        studentSearchForm.getButtonWrite().addActionListener(e -> {
             write();
         });
+        
         studentSearchForm.getTextFieldSearch().addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -62,6 +66,7 @@ public final class StudentSearchFormController extends StudentController impleme
     }
 
     private void delete() {
+        deleteApproveMessage(1);
         delete((int)studentSearchForm.getTableSearch().getValueAt(studentSearchForm.getTableSearch().getSelectedRow(), 0));
     }
     
@@ -69,7 +74,7 @@ public final class StudentSearchFormController extends StudentController impleme
         
     }
 
-    private void search() {
+    public void search() {
        studentSearchForm.getTableSearch().setModel(search(studentSearchForm.getTextFieldSearch().getText()));
     }
 

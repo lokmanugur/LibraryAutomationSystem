@@ -8,7 +8,6 @@ import com.toedter.calendar.JDateChooser;
 import com.ugurtech.library.aa_presentation.controller.student.StudentFormController;
 import com.ugurtech.library.ad_model.ClassModel;
 import com.ugurtech.library.ad_model.SchoolModel;
-import com.ugurtech.library.ad_model.StudentModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -219,17 +218,6 @@ public class StudentForm extends JInternalFrame {
                 .addContainerGap())
         );
 
-        comboBoxSchool.getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                schoolComboBoxKeyReleased(evt);
-            }
-        });
-        comboBoxSchool.getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                schoolComboBoxKeyReleased(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -249,10 +237,7 @@ public class StudentForm extends JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void schoolComboBoxKeyReleased(java.awt.event.KeyEvent evt) {
-        if(evt.getKeyCode()==10){}
-    }    
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonCancel;
@@ -431,12 +416,12 @@ public class StudentForm extends JInternalFrame {
 
     @Override
     public void doDefaultCloseAction() {
-        studentFormController.setStudentModel(null);
+        studentFormController.clearFormFields();
         this.dispose();
     }
 
     public StudentFormController getStudentFormController() {
         return studentFormController;
     }
-
+   
 }

@@ -9,6 +9,7 @@ import com.ugurtech.library.aa_presentation.controller.Initialize;
 import com.ugurtech.library.aa_presentation.view.MainForm;
 import com.ugurtech.library.aa_presentation.view.classstd.ClassForm;
 import com.ugurtech.library.aa_presentation.view.student.StudentForm;
+import com.ugurtech.library.aa_presentation.view.student.StudentSearchForm;
 import com.ugurtech.library.ab_application.service.classstd.ClassStdService;
 import com.ugurtech.library.ab_application.service.classstd.ClassStdServiceImpl;
 import com.ugurtech.library.ab_application.service.school.SchoolService;
@@ -111,22 +112,28 @@ public final class StudentFormController extends StudentController implements In
         classStdService.getAll().forEach((ClassModel item) -> studentForm.getComboBoxClass().addItem(item));
     }
 
-    private void clearFormFields() {
+    public void clearFormFields() {
         studentForm.getTextFieldFirstName().setText("");
         studentForm.getTextFieldLastName().setText("");
         studentForm.getTextFieldStudentNo().setText("");
         studentForm.getDateChooserBirth().setDate(null);
         studentForm.getFormattedTextFieldPhone().setText("");
         studentForm.getTextAreaAddress().setText("");
+        fillAllClassToComboBox();
+        fillAllSchoolToComboBox();
+        StudentSearchForm.INSTANCE.getStudentSearchFormController().search();
     }
 
     private void add() {
         if (Objects.isNull(studentModel)) {
             add(formToModel(new StudentModel()));
+            clearFormFields();
             setStudentModel(null);
         } else {
             update(formToModel(studentModel));
+            clearFormFields();
             setStudentModel(null);
+            studentForm.dispose();
         }
     }
 
@@ -138,6 +145,7 @@ public final class StudentFormController extends StudentController implements In
         clearFormFields();
         setStudentModel(null);
         studentForm.dispose();
+        
     }
 
     public StudentModel getStudentModel() {
@@ -152,8 +160,8 @@ public final class StudentFormController extends StudentController implements In
         studentForm.getTextFieldFirstName().setText(studentModel.getFirstName());
         studentForm.getTextFieldLastName().setText(studentModel.getLastName());
         studentForm.getTextFieldStudentNo().setText(studentModel.getStudentNumber());
-        studentForm.getComboBoxClass().addItem(studentModel.getStudentClass());
-        studentForm.getComboBoxSchool().addItem(studentModel.getSchoolModel());
+        studentForm.getComboBoxClass().setSelectedItem(studentModel.getStudentClass());
+        studentForm.getComboBoxSchool().setSelectedItem(studentModel.getSchoolModel());
         studentForm.getDateChooserBirth().setDate(new Date(studentModel.getBirthDate()));
         studentForm.getFormattedTextFieldPhone().setText(studentModel.getPhone());
         studentForm.getTextAreaAddress().setText(studentModel.getAddress());

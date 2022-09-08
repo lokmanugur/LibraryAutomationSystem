@@ -5,6 +5,7 @@
  */
 package com.ugurtech.library.aa_presentation.controller.student;
 
+import com.ugurtech.library.aa_presentation.controller.AbstractController;
 import com.ugurtech.library.aa_presentation.controller.Controller;
 import com.ugurtech.library.ab_application.service.student.StudentService;
 import com.ugurtech.library.ab_application.service.student.StudentServiceImpl;
@@ -17,7 +18,7 @@ import javax.swing.table.TableModel;
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public class StudentController implements Controller<StudentModel>{
+public class StudentController extends AbstractController implements Controller<StudentModel>{
 
     private final StudentService studentService = new StudentServiceImpl(new StudentDaoImpl());
     

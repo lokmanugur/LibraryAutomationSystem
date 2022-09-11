@@ -139,6 +139,10 @@ public abstract class DaoAbstract {
         }
        return string;
     }
-    
+
+    public void getLogger(SQLException ex,String errorTitle,String className){
+        UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), errorTitle);
+        Logger.getLogger(className).log(Level.SEVERE, null, ex);
+    }    
 
 }

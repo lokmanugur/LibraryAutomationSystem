@@ -15,13 +15,15 @@ import java.util.Objects;
  *
  * @author ugur
  */
-public class PersonFormController extends PersonController implements Initialize {
+public final class PersonFormController extends PersonController implements Initialize {
 
     private final PersonForm personForm;
     private PersonModel personModel;
 
     public PersonFormController(PersonForm personForm) {
         this.personForm = personForm;
+        initView();
+        initController();
     }
 
     @Override
@@ -40,7 +42,7 @@ public class PersonFormController extends PersonController implements Initialize
         });
     }
 
-    private void clearAllFields() {
+    public void clearAllFields() {
         personForm.getTextFieldName().setText("");
         personForm.getTextFieldSurname().setText("");
         personForm.getTextFieldPhone().setText("");

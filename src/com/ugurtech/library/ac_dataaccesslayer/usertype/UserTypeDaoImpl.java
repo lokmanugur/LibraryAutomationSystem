@@ -18,15 +18,18 @@ import java.util.logging.Logger;
  * @author Teacher
  */
 public class UserTypeDaoImpl extends DaoAbstract implements UserTypeDao {
-    public static final String ALL_COUNTRY_QUERY="SELECT * FROM usertype";
-    
+
+    public static final String ALL_COUNTRY_QUERY = "SELECT * FROM usertype";
+
     @Override
     public List<UserTypeModel> getAll() {
-                List<UserTypeModel> userTypeList = new ArrayList<>();
+        List<UserTypeModel> userTypeList = null;
         ResultSet resultSet = createResultSet(ALL_COUNTRY_QUERY);
         try {
-            while(resultSet.next())
-            userTypeList.add(new UserTypeModel(resultSet.getInt("usertypeid"),resultSet.getString("usertypename")));
+            userTypeList = new ArrayList<>();
+            while (resultSet.next()) {
+                userTypeList.add(new UserTypeModel(resultSet.getInt("usertypeid"), resultSet.getString("usertypename")));
+            }
         } catch (SQLException ex) {
             Logger.getLogger(UserTypeDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -52,5 +55,5 @@ public class UserTypeDaoImpl extends DaoAbstract implements UserTypeDao {
     public void delete(UserTypeModel v) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

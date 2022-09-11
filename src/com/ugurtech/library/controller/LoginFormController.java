@@ -6,8 +6,8 @@
 package com.ugurtech.library.controller;
 
 import com.ugurtech.library.model.CurrentUserModel;
-import com.ugurtech.library.aa_presentation.view.LoginForm;
-import com.ugurtech.library.aa_presentation.view.MainForm;
+import com.ugurtech.library.aa_presentation.view.login.LoginForm;
+import com.ugurtech.library.aa_presentation.view.main.MainForm;
 import com.ugurtech.library.persistance.user.UserDaoImpl;
 import com.ugurtech.library.ab_application.af_lib.date.SessionTimeCounter;
 import com.ugurtech.library.ab_application.af_lib.localization.Internationalization;

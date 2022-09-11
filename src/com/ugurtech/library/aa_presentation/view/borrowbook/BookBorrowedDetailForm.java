@@ -6,7 +6,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JInternalFrame;
 import com.ugurtech.library.controller.BorrowedBookTableController;
-import com.ugurtech.library.aa_presentation.view.MainForm;
+import com.ugurtech.library.aa_presentation.view.main.MainForm;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;

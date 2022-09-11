@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ugurtech.library.aa_presentation.controller.firststep;
+package com.ugurtech.library.aa_presentation.controller.login;
 
 import com.ugurtech.library.aa_presentation.controller.AbstractController;
-import com.ugurtech.library.aa_presentation.controller.FirstStepFormController;
+import com.ugurtech.library.aa_presentation.controller.firststep.FirstStepFormController;
 import com.ugurtech.library.aa_presentation.controller.Initialize;
 import com.ugurtech.library.ad_model.CurrentUserModel;
 import com.ugurtech.library.ad_model.requestmodels.FirstStepModel;
-import com.ugurtech.library.aa_presentation.view.LoginForm;
+import com.ugurtech.library.aa_presentation.view.login.LoginForm;
 import com.ugurtech.library.ac_dataaccesslayer.login.LoginDaoImpl;
 import com.ugurtech.library.ab_application.af_lib.date.SessionTimeCounter;
 import com.ugurtech.library.ab_application.af_lib.localization.Internationalization;
 import com.ugurtech.library.ab_application.service.login.LoginService;
 import com.ugurtech.library.ab_application.service.login.LoginServiceImpl;
-import com.ugurtech.library.aa_presentation.view.MainForm;
+import com.ugurtech.library.aa_presentation.view.main.MainForm;
 import com.ugurtech.library.aa_presentation.view.user.FirstStepForm;
 
 /**

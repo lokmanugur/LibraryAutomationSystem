@@ -21,6 +21,7 @@ public class UserModel extends PersonModel {
     private String userPassword;
     private CountryModel countryModel;
     private LanguageModel languageModel;
+    private int sessionTime;
 
     public int getSysUserId() {
         return sysUserId;
@@ -68,6 +69,14 @@ public class UserModel extends PersonModel {
 
     public void setLanguageModel(LanguageModel languageModel) {
         this.languageModel = languageModel;
+    }
+
+    public int getSessionTime() {
+        return sessionTime;
+    }
+
+    public void setSessionTime(int sessionTime) {
+        this.sessionTime = sessionTime;
     }
     
     

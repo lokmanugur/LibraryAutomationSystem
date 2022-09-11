@@ -65,12 +65,24 @@ public final class PersonSearchForm extends JInternalFrame {
     labelSearch.setText("Search");
 
     buttonUpdate.setText("Update");
+    buttonUpdate.setMaximumSize(new java.awt.Dimension(80, 35));
+    buttonUpdate.setMinimumSize(new java.awt.Dimension(80, 35));
+    buttonUpdate.setPreferredSize(new java.awt.Dimension(80, 35));
 
     buttonDelete.setText("Delete");
+    buttonDelete.setMaximumSize(new java.awt.Dimension(80, 35));
+    buttonDelete.setMinimumSize(new java.awt.Dimension(80, 35));
+    buttonDelete.setPreferredSize(new java.awt.Dimension(80, 35));
 
     buttonWrite.setText("WriteExcel");
+    buttonWrite.setMaximumSize(new java.awt.Dimension(100, 35));
+    buttonWrite.setMinimumSize(new java.awt.Dimension(100, 35));
+    buttonWrite.setPreferredSize(new java.awt.Dimension(100, 35));
 
     buttonAdd.setText("Add");
+    buttonAdd.setMaximumSize(new java.awt.Dimension(80, 35));
+    buttonAdd.setMinimumSize(new java.awt.Dimension(80, 35));
+    buttonAdd.setPreferredSize(new java.awt.Dimension(80, 35));
 
     javax.swing.GroupLayout panelSearchLayout = new javax.swing.GroupLayout(panelSearch);
     panelSearch.setLayout(panelSearchLayout);
@@ -78,18 +90,18 @@ public final class PersonSearchForm extends JInternalFrame {
         panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(panelSearchLayout.createSequentialGroup()
             .addGap(16, 16, 16)
-            .addComponent(labelSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(labelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(textFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
-            .addComponent(buttonAdd)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+            .addComponent(buttonAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(buttonUpdate)
+            .addComponent(buttonUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(buttonDelete)
+            .addComponent(buttonDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(buttonWrite)
-            .addGap(51, 51, 51))
+            .addComponent(buttonWrite, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(25, 25, 25))
     );
     panelSearchLayout.setVerticalGroup(
         panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,9 +112,9 @@ public final class PersonSearchForm extends JInternalFrame {
                 .addComponent(labelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(buttonWrite, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonWrite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(7, Short.MAX_VALUE))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

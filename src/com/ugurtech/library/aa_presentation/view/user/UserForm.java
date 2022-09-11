@@ -4,14 +4,15 @@
  * and open the template in the editor.
  */
 package com.ugurtech.library.aa_presentation.view.user;
-import com.ugurtech.library.aa_presentation.view.person.PersonForm;
-import com.ugurtech.library.controller.UserFormController;
-import com.ugurtech.library.aa_presentation.view.MainForm;
+import com.ugurtech.library.aa_presentation.controller.user.UserFormController;
+import com.ugurtech.library.ad_model.PersonModel;
+import com.ugurtech.library.ad_model.responsmodels.CountryModel;
+import com.ugurtech.library.ad_model.responsmodels.LanguageModel;
+import com.ugurtech.library.ad_model.responsmodels.UserTypeModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -23,22 +24,15 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  */
 public final class UserForm extends JInternalFrame {
 
-    private static UserForm userForm;   
+    public static UserForm INSTANCE = new UserForm();   
     private final UserFormController userFormController;
     
     private UserForm() {
         initComponents();
         this.userFormController = new UserFormController(this);
-        AutoCompleteDecorator.decorate(personComboBox);
-        AutoCompleteDecorator.decorate(userTypeComboBox);
+        AutoCompleteDecorator.decorate(comboBoxUser);
+        AutoCompleteDecorator.decorate(comboBoxUserType);
         setLocation(getWidth()/2,getHeight()/10);
-    }
-    
-    public static UserForm getInstance(){
-        if(userForm==null)
-            return userForm = new UserForm();
-        else
-            return userForm;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,95 +44,78 @@ public final class UserForm extends JInternalFrame {
     private void initComponents() {
 
         addUserPanel = new javax.swing.JPanel();
-        labelKullaniciSifre = new javax.swing.JLabel();
-        saveButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
-        labelKullaniciSifreTekrar = new javax.swing.JLabel();
-        labelKullaniciAdi = new javax.swing.JLabel();
-        loginNameTextField = new javax.swing.JTextField();
-        passwordTextField = new javax.swing.JPasswordField();
-        passMatchTextField = new javax.swing.JPasswordField();
-        checkLabel = new javax.swing.JLabel();
-        personComboBox = new javax.swing.JComboBox();
-        labelPersonel = new javax.swing.JLabel();
-        userTypeComboBox = new javax.swing.JComboBox();
-        labelKullaniciTipi = new javax.swing.JLabel();
-        cancelButton1 = new javax.swing.JButton();
+        labelPassword = new javax.swing.JLabel();
+        buttonSave = new javax.swing.JButton();
+        buttonCancel = new javax.swing.JButton();
+        labelRepeatPassword = new javax.swing.JLabel();
+        labelUserName = new javax.swing.JLabel();
+        textFieldUserName = new javax.swing.JTextField();
+        textFieldPassword = new javax.swing.JPasswordField();
+        textFieldRepeatPassword = new javax.swing.JPasswordField();
+        labelInformUser = new javax.swing.JLabel();
+        comboBoxUser = new javax.swing.JComboBox<>();
+        labelUser = new javax.swing.JLabel();
+        comboBoxUserType = new javax.swing.JComboBox<>();
+        labelUserType = new javax.swing.JLabel();
+        buttonAddUser = new javax.swing.JButton();
+        comboBoxCountry = new javax.swing.JComboBox<>();
+        comboBoxLanguage = new javax.swing.JComboBox<>();
+        textFieldSession = new javax.swing.JTextField();
+        labelCountry = new javax.swing.JLabel();
+        labelLanguage = new javax.swing.JLabel();
+        labelSessionTime = new javax.swing.JLabel();
+        labelMinute = new javax.swing.JLabel();
+        buttonAddUserType = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Kullanıcı Ekleme Formu");
+        setTitle("User Add Form");
 
-        addUserPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Kulanıcı Ekle", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        addUserPanel.setBorder(null);
 
-        labelKullaniciSifre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelKullaniciSifre.setText("Şifresi:");
+        labelPassword.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelPassword.setText("Password");
 
-        saveButton.setText("Kaydet");
-        saveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveButtonActionPerformed(evt);
-            }
-        });
+        buttonSave.setText("Save");
 
-        cancelButton.setText("Reset");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
-            }
-        });
+        buttonCancel.setText("Cancel");
 
-        labelKullaniciSifreTekrar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelKullaniciSifreTekrar.setText("Şifresi Tekrar:");
+        labelRepeatPassword.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelRepeatPassword.setText("Repeat Password");
 
-        labelKullaniciAdi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelKullaniciAdi.setText("Kulanıcı Adı:");
+        labelUserName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelUserName.setText("User Name:");
 
-        passMatchTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                passMatchTextFieldKeyReleased(evt);
-            }
-        });
+        labelInformUser.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        labelInformUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        checkLabel.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        checkLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        comboBoxUser.setEditable(true);
+        comboBoxUser.setToolTipText("");
 
-        personComboBox.setEditable(true);
-        personComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                personComboBoxPopupMenuWillBecomeVisible(evt);
-            }
-        });
+        labelUser.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelUser.setText("User:");
 
-        labelPersonel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelPersonel.setText("Kullanıcı:");
+        comboBoxUserType.setEditable(true);
 
-        userTypeComboBox.setEditable(true);
-        userTypeComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                userTypeComboBoxPopupMenuWillBecomeVisible(evt);
-            }
-        });
+        labelUserType.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelUserType.setText("User Type:");
 
-        labelKullaniciTipi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelKullaniciTipi.setText("Kullanıcı Tipi:");
+        buttonAddUser.setText("+");
 
-        cancelButton1.setText("Kişi Ekle");
-        cancelButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButton1ActionPerformed(evt);
-            }
-        });
+        labelCountry.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelCountry.setText("Country:");
+
+        labelLanguage.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelLanguage.setText("Language:");
+
+        labelSessionTime.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelSessionTime.setText("Logout Time");
+
+        labelMinute.setText("Minute");
+
+        buttonAddUserType.setText("+");
 
         javax.swing.GroupLayout addUserPanelLayout = new javax.swing.GroupLayout(addUserPanel);
         addUserPanel.setLayout(addUserPanelLayout);
@@ -146,73 +123,88 @@ public final class UserForm extends JInternalFrame {
             addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addUserPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelPersonel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelKullaniciTipi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelKullaniciAdi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelKullaniciSifre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelKullaniciSifreTekrar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(labelUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelUserType, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelUserName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelRepeatPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(labelCountry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelLanguage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelSessionTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(checkLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(userTypeComboBox, 0, 280, Short.MAX_VALUE)
-                    .addComponent(personComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(loginNameTextField)
-                    .addComponent(passwordTextField)
-                    .addComponent(passMatchTextField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                    .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cancelButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(addUserPanelLayout.createSequentialGroup()
+                        .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelInformUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textFieldUserName)
+                    .addComponent(textFieldPassword)
+                    .addComponent(textFieldRepeatPassword)
+                    .addGroup(addUserPanelLayout.createSequentialGroup()
+                        .addComponent(textFieldSession, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelMinute, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxCountry, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboBoxLanguage, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addUserPanelLayout.createSequentialGroup()
+                        .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(comboBoxUserType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboBoxUser, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonAddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonAddUserType, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         addUserPanelLayout.setVerticalGroup(
             addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addUserPanelLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addUserPanelLayout.createSequentialGroup()
-                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(addUserPanelLayout.createSequentialGroup()
-                        .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(userTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelKullaniciTipi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(personComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cancelButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(labelPersonel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelKullaniciAdi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(loginNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelKullaniciSifre, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelKullaniciSifreTekrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passMatchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboBoxUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonAddUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(checkLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11))
+                .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(comboBoxUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonAddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboBoxCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboBoxLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textFieldSession, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelSessionTime, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelMinute, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelRepeatPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldRepeatPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(labelInformUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addGroup(addUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
-
-        personComboBox.getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                personComboBoxKeyReleased(evt);
-            }
-        });
-        userTypeComboBox.getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                userTypeComboBoxKeyReleased(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -233,179 +225,211 @@ public final class UserForm extends JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void passMatchTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passMatchTextFieldKeyReleased
-        userFormController.checkPassword();
-    }//GEN-LAST:event_passMatchTextFieldKeyReleased
-
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        clearTextField();
-    }//GEN-LAST:event_cancelButtonActionPerformed
-
-    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        userFormController.addUser();
-        UserTableForm.getInstance().updateUserTable();
-    }//GEN-LAST:event_saveButtonActionPerformed
-
-    private void cancelButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButton1ActionPerformed
-        MainForm.getInstance().addDesktopPane(PersonForm.INSTANCE);
-    }//GEN-LAST:event_cancelButton1ActionPerformed
-
-    private void personComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_personComboBoxPopupMenuWillBecomeVisible
-        userFormController.allPerson();
-    }//GEN-LAST:event_personComboBoxPopupMenuWillBecomeVisible
-
-    private void userTypeComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_userTypeComboBoxPopupMenuWillBecomeVisible
-        userFormController.allUserType();
-    }//GEN-LAST:event_userTypeComboBoxPopupMenuWillBecomeVisible
-
-    private void personComboBoxKeyReleased(java.awt.event.KeyEvent evt) {
-
-    }
-    
-    private void userTypeComboBoxKeyReleased(java.awt.event.KeyEvent evt){
-    
-    }
-    
-    public void clearTextField(){
-    
-        personComboBox.removeAllItems();
-        userTypeComboBox.removeAllItems();
-        loginNameTextField.setText(null);
-        passwordTextField.setText(null);
-        passMatchTextField.setText(null);
-        checkLabel.setText(null);
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addUserPanel;
-    private javax.swing.JButton cancelButton;
-    private javax.swing.JButton cancelButton1;
-    private javax.swing.JLabel checkLabel;
-    private javax.swing.JLabel labelKullaniciAdi;
-    private javax.swing.JLabel labelKullaniciSifre;
-    private javax.swing.JLabel labelKullaniciSifreTekrar;
-    private javax.swing.JLabel labelKullaniciTipi;
-    private javax.swing.JLabel labelPersonel;
-    private javax.swing.JTextField loginNameTextField;
-    private javax.swing.JPasswordField passMatchTextField;
-    private javax.swing.JPasswordField passwordTextField;
-    private javax.swing.JComboBox personComboBox;
-    private javax.swing.JButton saveButton;
-    private javax.swing.JComboBox userTypeComboBox;
+    private javax.swing.JButton buttonAddUser;
+    private javax.swing.JButton buttonAddUserType;
+    private javax.swing.JButton buttonCancel;
+    private javax.swing.JButton buttonSave;
+    private javax.swing.JComboBox<CountryModel> comboBoxCountry;
+    private javax.swing.JComboBox<LanguageModel> comboBoxLanguage;
+    private javax.swing.JComboBox<PersonModel> comboBoxUser;
+    private javax.swing.JComboBox<UserTypeModel> comboBoxUserType;
+    private javax.swing.JLabel labelCountry;
+    private javax.swing.JLabel labelInformUser;
+    private javax.swing.JLabel labelLanguage;
+    private javax.swing.JLabel labelMinute;
+    private javax.swing.JLabel labelPassword;
+    private javax.swing.JLabel labelRepeatPassword;
+    private javax.swing.JLabel labelSessionTime;
+    private javax.swing.JLabel labelUser;
+    private javax.swing.JLabel labelUserName;
+    private javax.swing.JLabel labelUserType;
+    private javax.swing.JPasswordField textFieldPassword;
+    private javax.swing.JPasswordField textFieldRepeatPassword;
+    private javax.swing.JTextField textFieldSession;
+    private javax.swing.JTextField textFieldUserName;
     // End of variables declaration//GEN-END:variables
 
-    public JButton getCancelButton() {
-        return cancelButton;
+    public JButton getButtonAddUser() {
+        return buttonAddUser;
     }
 
-    public void setCancelButton(JButton cancelButton) {
-        this.cancelButton = cancelButton;
+    public void setButtonAddUser(JButton buttonAddUser) {
+        this.buttonAddUser = buttonAddUser;
     }
 
-    public JTextField getLoginNameTextField() {
-        return loginNameTextField;
+    public JButton getButtonAddUserType() {
+        return buttonAddUserType;
     }
 
-    public void setLoginNameTextField(JTextField loginNameTextField) {
-        this.loginNameTextField = loginNameTextField;
+    public void setButtonAddUserType(JButton buttonAddUserType) {
+        this.buttonAddUserType = buttonAddUserType;
     }
 
-    public JPasswordField getPassMatchTextField() {
-        return passMatchTextField;
+    public JButton getButtonCancel() {
+        return buttonCancel;
     }
 
-    public void setPassMatchTextField(JPasswordField passMatchTextField) {
-        this.passMatchTextField = passMatchTextField;
+    public void setButtonCancel(JButton buttonCancel) {
+        this.buttonCancel = buttonCancel;
     }
 
-    public JPasswordField getPasswordTextField() {
-        return passwordTextField;
+    public JButton getButtonSave() {
+        return buttonSave;
     }
 
-    public void setPasswordTextField(JPasswordField passwordTextField) {
-        this.passwordTextField = passwordTextField;
+    public void setButtonSave(JButton buttonSave) {
+        this.buttonSave = buttonSave;
     }
 
-    public JComboBox getPersonComboBox() {
-        return personComboBox;
+    public JComboBox<CountryModel> getComboBoxCountry() {
+        return comboBoxCountry;
     }
 
-    public void setPersonComboBox(JComboBox personComboBox) {
-        this.personComboBox = personComboBox;
+    public void setComboBoxCountry(JComboBox<CountryModel> comboBoxCountry) {
+        this.comboBoxCountry = comboBoxCountry;
     }
 
-    public JButton getSaveButton() {
-        return saveButton;
+    public JComboBox<LanguageModel> getComboBoxLanguage() {
+        return comboBoxLanguage;
     }
 
-    public void setSaveButton(JButton saveButton) {
-        this.saveButton = saveButton;
+    public void setComboBoxLanguage(JComboBox<LanguageModel> comboBoxLanguage) {
+        this.comboBoxLanguage = comboBoxLanguage;
     }
 
-    public JComboBox getUserTypeComboBox() {
-        return userTypeComboBox;
+    public JComboBox<PersonModel> getComboBoxUser() {
+        return comboBoxUser;
     }
 
-    public void setUserTypeComboBox(JComboBox userTypeComboBox) {
-        this.userTypeComboBox = userTypeComboBox;
+    public void setComboBoxUser(JComboBox<PersonModel> comboBoxUser) {
+        this.comboBoxUser = comboBoxUser;
     }
 
-    public JPanel getAddUserPanel() {
-        return addUserPanel;
+    public JComboBox<UserTypeModel> getComboBoxUserType() {
+        return comboBoxUserType;
     }
 
-    public void setAddUserPanel(JPanel addUserPanel) {
-        this.addUserPanel = addUserPanel;
+    public void setComboBoxUserType(JComboBox<UserTypeModel> comboBoxUserType) {
+        this.comboBoxUserType = comboBoxUserType;
     }
 
-    public JLabel getLabelKullaniciAdi() {
-        return labelKullaniciAdi;
+    public JLabel getLabelCountry() {
+        return labelCountry;
     }
 
-    public void setLabelKullaniciAdi(JLabel labelKullaniciAdi) {
-        this.labelKullaniciAdi = labelKullaniciAdi;
+    public void setLabelCountry(JLabel labelCountry) {
+        this.labelCountry = labelCountry;
     }
 
-    public JLabel getLabelKullaniciSifre() {
-        return labelKullaniciSifre;
+    public JLabel getLabelInformUser() {
+        return labelInformUser;
     }
 
-    public void setLabelKullaniciSifre(JLabel labelKullaniciSifre) {
-        this.labelKullaniciSifre = labelKullaniciSifre;
+    public void setLabelInformUser(JLabel labelInformUser) {
+        this.labelInformUser = labelInformUser;
     }
 
-    public JLabel getLabelKullaniciSifreTekrar() {
-        return labelKullaniciSifreTekrar;
+    public JLabel getLabelLanguage() {
+        return labelLanguage;
     }
 
-    public void setLabelKullaniciSifreTekrar(JLabel labelKullaniciSifreTekrar) {
-        this.labelKullaniciSifreTekrar = labelKullaniciSifreTekrar;
+    public void setLabelLanguage(JLabel labelLanguage) {
+        this.labelLanguage = labelLanguage;
     }
 
-    public JLabel getLabelKullaniciTipi() {
-        return labelKullaniciTipi;
+    public JLabel getLabelMinute() {
+        return labelMinute;
     }
 
-    public void setLabelKullaniciTipi(JLabel labelKullaniciTipi) {
-        this.labelKullaniciTipi = labelKullaniciTipi;
+    public void setLabelMinute(JLabel labelMinute) {
+        this.labelMinute = labelMinute;
     }
 
-    public JLabel getLabelPersonel() {
-        return labelPersonel;
+    public JLabel getLabelPassword() {
+        return labelPassword;
     }
 
-    public void setLabelPersonel(JLabel labelPersonel) {
-        this.labelPersonel = labelPersonel;
+    public void setLabelPassword(JLabel labelPassword) {
+        this.labelPassword = labelPassword;
     }
 
-    public JLabel getCheckLabel() {
-        return checkLabel;
+    public JLabel getLabelRepeatPassword() {
+        return labelRepeatPassword;
     }
 
-    public void setCheckLabel(JLabel checkLabel) {
-        this.checkLabel = checkLabel;
+    public void setLabelRepeatPassword(JLabel labelRepeatPassword) {
+        this.labelRepeatPassword = labelRepeatPassword;
     }
-    
+
+    public JLabel getLabelSessionTime() {
+        return labelSessionTime;
+    }
+
+    public void setLabelSessionTime(JLabel labelSessionTime) {
+        this.labelSessionTime = labelSessionTime;
+    }
+
+    public JLabel getLabelUser() {
+        return labelUser;
+    }
+
+    public void setLabelUser(JLabel labelUser) {
+        this.labelUser = labelUser;
+    }
+
+    public JLabel getLabelUserName() {
+        return labelUserName;
+    }
+
+    public void setLabelUserName(JLabel labelUserName) {
+        this.labelUserName = labelUserName;
+    }
+
+    public JLabel getLabelUserType() {
+        return labelUserType;
+    }
+
+    public void setLabelUserType(JLabel labelUserType) {
+        this.labelUserType = labelUserType;
+    }
+
+    public JPasswordField getTextFieldPassword() {
+        return textFieldPassword;
+    }
+
+    public void setTextFieldPassword(JPasswordField textFieldPassword) {
+        this.textFieldPassword = textFieldPassword;
+    }
+
+    public JPasswordField getTextFieldRepeatPassword() {
+        return textFieldRepeatPassword;
+    }
+
+    public void setTextFieldRepeatPassword(JPasswordField textFieldRepeatPassword) {
+        this.textFieldRepeatPassword = textFieldRepeatPassword;
+    }
+
+    public JTextField getTextFieldSession() {
+        return textFieldSession;
+    }
+
+    public void setTextFieldSession(JTextField textFieldSession) {
+        this.textFieldSession = textFieldSession;
+    }
+
+    public JTextField getTextFieldUserName() {
+        return textFieldUserName;
+    }
+
+    public void setTextFieldUserName(JTextField textFieldUserName) {
+        this.textFieldUserName = textFieldUserName;
+    }
+
+    public UserFormController getUserFormController() {
+        return userFormController;
+    }
     
 }

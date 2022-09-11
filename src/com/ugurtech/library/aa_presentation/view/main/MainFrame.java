@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ugurtech.library.aa_presentation.view;
+package com.ugurtech.library.aa_presentation.view.main;
 
 import java.beans.PropertyVetoException;
 import java.util.Arrays;

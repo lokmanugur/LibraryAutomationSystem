@@ -20,6 +20,11 @@ public class LanguageModel {
         this.languagename = languagename;
         this.abbriviation = abbriviation;
     }
+
+    public LanguageModel(int languageid) {
+        this.languageid = languageid;
+    }
+    
     
     public int getLanguageid() {
         return languageid;

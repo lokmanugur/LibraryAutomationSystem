@@ -6,7 +6,7 @@
 package com.ugurtech.library.aa_presentation.controller.publisher;
 
 import com.ugurtech.library.aa_presentation.controller.Initialize;
-import com.ugurtech.library.aa_presentation.view.MainForm;
+import com.ugurtech.library.aa_presentation.view.main.MainForm;
 import com.ugurtech.library.aa_presentation.view.publisher.PublisherForm;
 import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
 import com.ugurtech.library.aa_presentation.view.publisher.PublisherSearchForm;

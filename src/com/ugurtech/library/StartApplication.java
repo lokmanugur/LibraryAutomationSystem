@@ -5,9 +5,9 @@
  */
 package com.ugurtech.library;
 
-import com.ugurtech.library.aa_presentation.controller.firststep.LoginFormController;
+import com.ugurtech.library.aa_presentation.controller.login.LoginFormController;
 import com.ugurtech.library.ad_model.CurrentUserModel;
-import com.ugurtech.library.aa_presentation.view.LoginForm;
+import com.ugurtech.library.aa_presentation.view.login.LoginForm;
 import javax.swing.*;
 
 /**

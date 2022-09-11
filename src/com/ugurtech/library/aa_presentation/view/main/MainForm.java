@@ -1,6 +1,7 @@
-package com.ugurtech.library.aa_presentation.view;
+package com.ugurtech.library.aa_presentation.view.main;
 
-import com.ugurtech.library.aa_presentation.controller.MainFormController;
+import com.ugurtech.library.aa_presentation.controller.main.MainFormController;
+import com.ugurtech.library.aa_presentation.view.login.LoginForm;
 import com.ugurtech.library.ab_application.af_lib.date.SessionTimeCounter;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -39,26 +40,20 @@ public final class MainForm extends MainFrame {
         bookPanel = new javax.swing.JPanel();
         publisherButton = new javax.swing.JButton();
         authorTableButton = new javax.swing.JButton();
-        authorButton = new javax.swing.JButton();
         bookTypeButton = new javax.swing.JButton();
         bookTable = new javax.swing.JButton();
-        addBook = new javax.swing.JButton();
         takenBooksTableButton = new javax.swing.JButton();
         studentBar = new javax.swing.JToolBar();
         studentPanel = new javax.swing.JPanel();
         studentTable = new javax.swing.JButton();
-        studentForm = new javax.swing.JButton();
-        gradeButton = new javax.swing.JButton();
         schoolBar = new javax.swing.JToolBar();
         schoolPanel = new javax.swing.JPanel();
         schoolForm = new javax.swing.JButton();
+        gradeButton = new javax.swing.JButton();
         userBar = new javax.swing.JToolBar();
         userPanel2 = new javax.swing.JPanel();
-        userForm = new javax.swing.JButton();
         personTableButton = new javax.swing.JButton();
-        userDetails = new javax.swing.JButton();
         userTable = new javax.swing.JButton();
-        personFormButton = new javax.swing.JButton();
         statisticsBar = new javax.swing.JToolBar();
         statisticsPanel = new javax.swing.JPanel();
         topReadBooks = new javax.swing.JButton();
@@ -103,14 +98,6 @@ public final class MainForm extends MainFrame {
         authorTableButton.setPreferredSize(new java.awt.Dimension(110, 70));
         authorTableButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        authorButton.setText("<html><center>Add<br>Author</center></html>");
-        authorButton.setFocusable(false);
-        authorButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        authorButton.setMaximumSize(new java.awt.Dimension(110, 70));
-        authorButton.setMinimumSize(new java.awt.Dimension(110, 70));
-        authorButton.setPreferredSize(new java.awt.Dimension(110, 70));
-        authorButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
         bookTypeButton.setText("<html><center>Books Type<br>Table</center></html>");
         bookTypeButton.setFocusable(false);
         bookTypeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -127,14 +114,6 @@ public final class MainForm extends MainFrame {
         bookTable.setPreferredSize(new java.awt.Dimension(110, 70));
         bookTable.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        addBook.setText("<html><center>Add<br>Book</center></html>");
-        addBook.setFocusable(false);
-        addBook.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        addBook.setMaximumSize(new java.awt.Dimension(110, 70));
-        addBook.setMinimumSize(new java.awt.Dimension(110, 70));
-        addBook.setPreferredSize(new java.awt.Dimension(110, 70));
-        addBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
         takenBooksTableButton.setText("<html><center>Borrowed<br>Book Table</center></html>");
         takenBooksTableButton.setFocusable(false);
         takenBooksTableButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -150,34 +129,28 @@ public final class MainForm extends MainFrame {
             .addGroup(bookPanelLayout.createSequentialGroup()
                 .addComponent(takenBooksTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(addBook, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
                 .addComponent(bookTable, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(bookTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(authorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
                 .addComponent(authorTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(publisherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addContainerGap(280, Short.MAX_VALUE))
         );
 
-        bookPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addBook, authorButton, authorTableButton, bookTable, bookTypeButton, publisherButton, takenBooksTableButton});
+        bookPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {authorTableButton, bookTable, bookTypeButton, publisherButton, takenBooksTableButton});
 
         bookPanelLayout.setVerticalGroup(
             bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(takenBooksTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(addBook, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(bookTable, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(bookTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(authorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(authorTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(publisherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        bookPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addBook, authorButton, authorTableButton, bookTable, bookTypeButton, publisherButton, takenBooksTableButton});
+        bookPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {authorTableButton, bookTable, bookTypeButton, publisherButton, takenBooksTableButton});
 
         bookBar.add(bookPanel);
 
@@ -194,48 +167,21 @@ public final class MainForm extends MainFrame {
         studentTable.setPreferredSize(new java.awt.Dimension(110, 70));
         studentTable.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        studentForm.setText("<html><center>Add<br>Student</center></html>");
-        studentForm.setFocusable(false);
-        studentForm.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        studentForm.setMaximumSize(new java.awt.Dimension(110, 70));
-        studentForm.setMinimumSize(new java.awt.Dimension(110, 70));
-        studentForm.setPreferredSize(new java.awt.Dimension(110, 70));
-        studentForm.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        gradeButton.setText("<html><center>Grade<br>Table</center></html>");
-        gradeButton.setFocusable(false);
-        gradeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        gradeButton.setMaximumSize(new java.awt.Dimension(110, 70));
-        gradeButton.setMinimumSize(new java.awt.Dimension(110, 70));
-        gradeButton.setPreferredSize(new java.awt.Dimension(110, 70));
-        gradeButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
         javax.swing.GroupLayout studentPanelLayout = new javax.swing.GroupLayout(studentPanel);
         studentPanel.setLayout(studentPanelLayout);
         studentPanelLayout.setHorizontalGroup(
             studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(studentPanelLayout.createSequentialGroup()
-                .addComponent(studentForm, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(studentTable, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(gradeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 702, Short.MAX_VALUE))
+                .addGap(0, 812, Short.MAX_VALUE))
         );
-
-        studentPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {studentForm, studentTable});
-
         studentPanelLayout.setVerticalGroup(
             studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(studentPanelLayout.createSequentialGroup()
-                .addGroup(studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(studentForm, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(studentTable, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gradeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(studentTable, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-
-        studentPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {studentForm, studentTable});
 
         studentBar.add(studentPanel);
 
@@ -251,17 +197,28 @@ public final class MainForm extends MainFrame {
         schoolForm.setPreferredSize(new java.awt.Dimension(110, 70));
         schoolForm.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        gradeButton.setText("<html><center>Grade<br>Table</center></html>");
+        gradeButton.setFocusable(false);
+        gradeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        gradeButton.setMaximumSize(new java.awt.Dimension(110, 70));
+        gradeButton.setMinimumSize(new java.awt.Dimension(110, 70));
+        gradeButton.setPreferredSize(new java.awt.Dimension(110, 70));
+        gradeButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
         javax.swing.GroupLayout schoolPanelLayout = new javax.swing.GroupLayout(schoolPanel);
         schoolPanel.setLayout(schoolPanelLayout);
         schoolPanelLayout.setHorizontalGroup(
             schoolPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(schoolPanelLayout.createSequentialGroup()
                 .addComponent(schoolForm, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 928, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(gradeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 818, Short.MAX_VALUE))
         );
         schoolPanelLayout.setVerticalGroup(
             schoolPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(schoolForm, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(gradeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         schoolBar.add(schoolPanel);
@@ -271,14 +228,6 @@ public final class MainForm extends MainFrame {
         userBar.setFloatable(false);
         userBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        userForm.setText("<html><center>Add<br>User</center></html>");
-        userForm.setFocusable(false);
-        userForm.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        userForm.setMaximumSize(new java.awt.Dimension(110, 70));
-        userForm.setMinimumSize(new java.awt.Dimension(110, 70));
-        userForm.setPreferredSize(new java.awt.Dimension(110, 70));
-        userForm.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
         personTableButton.setText("<html><center>Person<br>Table<center><html>");
         personTableButton.setFocusable(false);
         personTableButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -286,14 +235,6 @@ public final class MainForm extends MainFrame {
         personTableButton.setMinimumSize(new java.awt.Dimension(110, 70));
         personTableButton.setPreferredSize(new java.awt.Dimension(110, 70));
         personTableButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        userDetails.setText("<html><center>User<br>Details</center></html>");
-        userDetails.setFocusable(false);
-        userDetails.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        userDetails.setMaximumSize(new java.awt.Dimension(110, 70));
-        userDetails.setMinimumSize(new java.awt.Dimension(110, 70));
-        userDetails.setPreferredSize(new java.awt.Dimension(110, 70));
-        userDetails.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         userTable.setText("<html><center>User<br>Table</center></html>");
         userTable.setFocusable(false);
@@ -303,43 +244,27 @@ public final class MainForm extends MainFrame {
         userTable.setPreferredSize(new java.awt.Dimension(110, 70));
         userTable.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        personFormButton.setText("<html><center>Add<br>Person</center></html>");
-        personFormButton.setFocusable(false);
-        personFormButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        personFormButton.setMaximumSize(new java.awt.Dimension(110, 70));
-        personFormButton.setMinimumSize(new java.awt.Dimension(110, 70));
-        personFormButton.setPreferredSize(new java.awt.Dimension(110, 70));
-        personFormButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
         javax.swing.GroupLayout userPanel2Layout = new javax.swing.GroupLayout(userPanel2);
         userPanel2.setLayout(userPanel2Layout);
         userPanel2Layout.setHorizontalGroup(
             userPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userPanel2Layout.createSequentialGroup()
-                .addComponent(personFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(personTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(userForm, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
                 .addComponent(userTable, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(userDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(488, Short.MAX_VALUE))
+                .addContainerGap(598, Short.MAX_VALUE))
         );
 
-        userPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {personFormButton, personTableButton, userDetails, userForm, userTable});
+        userPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {personTableButton, userTable});
 
         userPanel2Layout.setVerticalGroup(
             userPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(personFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(personTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(userForm, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(userTable, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(userDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        userPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {personFormButton, personTableButton, userDetails, userForm, userTable});
+        userPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {personTableButton, userTable});
 
         userBar.add(userPanel2);
 
@@ -492,8 +417,6 @@ public final class MainForm extends MainFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addBook;
-    private javax.swing.JButton authorButton;
     private javax.swing.JButton authorTableButton;
     private javax.swing.JToolBar bookBar;
     private javax.swing.JPanel bookPanel;
@@ -506,7 +429,6 @@ public final class MainForm extends MainFrame {
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JButton gradeButton;
-    private javax.swing.JButton personFormButton;
     private javax.swing.JButton personTableButton;
     private javax.swing.JButton publisherButton;
     private javax.swing.JToolBar schoolBar;
@@ -517,7 +439,6 @@ public final class MainForm extends MainFrame {
     private javax.swing.JToolBar statisticsBar;
     private javax.swing.JPanel statisticsPanel;
     private javax.swing.JToolBar studentBar;
-    private javax.swing.JButton studentForm;
     private javax.swing.JPanel studentPanel;
     private javax.swing.JButton studentTable;
     private javax.swing.JTabbedPane tabbPane;
@@ -527,8 +448,6 @@ public final class MainForm extends MainFrame {
     private javax.swing.JButton topReadBooks;
     private javax.swing.JButton topReadStudents;
     private javax.swing.JToolBar userBar;
-    private javax.swing.JButton userDetails;
-    private javax.swing.JButton userForm;
     private javax.swing.JLabel userLabel;
     private javax.swing.JPanel userPanel;
     private javax.swing.JPanel userPanel2;
@@ -564,22 +483,6 @@ public final class MainForm extends MainFrame {
         SessionTimeCounter.getInstance().setLoginWin(true);
         this.setVisible(false);
         LoginForm.INSTANCE.setVisible(true);
-    }
-
-    public JButton getAddBook() {
-        return addBook;
-    }
-
-    public void setAddBook(JButton addBook) {
-        this.addBook = addBook;
-    }
-
-    public JButton getAuthorButton() {
-        return authorButton;
-    }
-
-    public void setAuthorButton(JButton authorButton) {
-        this.authorButton = authorButton;
     }
 
     public JButton getAuthorTableButton() {
@@ -652,14 +555,6 @@ public final class MainForm extends MainFrame {
 
     public void setFileMenu(JMenu fileMenu) {
         this.fileMenu = fileMenu;
-    }
-
-    public JButton getPersonFormButton() {
-        return personFormButton;
-    }
-
-    public void setPersonFormButton(JButton personFormButton) {
-        this.personFormButton = personFormButton;
     }
 
     public JButton getPersonTableButton() {
@@ -742,14 +637,6 @@ public final class MainForm extends MainFrame {
         this.studentBar = studentBar;
     }
 
-    public JButton getStudentForm() {
-        return studentForm;
-    }
-
-    public void setStudentForm(JButton studentForm) {
-        this.studentForm = studentForm;
-    }
-
     public JPanel getStudentPanel() {
         return studentPanel;
     }
@@ -812,22 +699,6 @@ public final class MainForm extends MainFrame {
 
     public void setUserBar(JToolBar userBar) {
         this.userBar = userBar;
-    }
-
-    public JButton getUserDetails() {
-        return userDetails;
-    }
-
-    public void setUserDetails(JButton userDetails) {
-        this.userDetails = userDetails;
-    }
-
-    public JButton getUserForm() {
-        return userForm;
-    }
-
-    public void setUserForm(JButton userForm) {
-        this.userForm = userForm;
     }
 
     public JPanel getUserPanel() {

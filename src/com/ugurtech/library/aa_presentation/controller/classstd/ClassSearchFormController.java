@@ -6,7 +6,7 @@
 package com.ugurtech.library.aa_presentation.controller.classstd;
 
 import com.ugurtech.library.aa_presentation.controller.Initialize;
-import com.ugurtech.library.aa_presentation.view.MainForm;
+import com.ugurtech.library.aa_presentation.view.main.MainForm;
 import com.ugurtech.library.aa_presentation.view.classstd.ClassForm;
 import com.ugurtech.library.aa_presentation.view.classstd.ClassSearchForm;
 import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;

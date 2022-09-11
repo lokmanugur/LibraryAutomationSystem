@@ -8,7 +8,6 @@ import com.ugurtech.library.ab_application.af_lib.localization.Internationalizat
 import com.ugurtech.library.ab_application.af_lib.localization.LanguageImpl;
 import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
 import com.ugurtech.library.ab_application.af_lib.writetofile.TableToExcelImpl;
-import javax.swing.JInternalFrame;
 import javax.swing.JTable;
 
 /**

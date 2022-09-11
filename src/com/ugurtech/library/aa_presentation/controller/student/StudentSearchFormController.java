@@ -6,7 +6,7 @@
 package com.ugurtech.library.aa_presentation.controller.student;
 
 import com.ugurtech.library.aa_presentation.controller.Initialize;
-import com.ugurtech.library.aa_presentation.view.MainForm;
+import com.ugurtech.library.aa_presentation.view.main.MainForm;
 import com.ugurtech.library.aa_presentation.view.student.StudentForm;
 import com.ugurtech.library.aa_presentation.view.student.StudentSearchForm;
 

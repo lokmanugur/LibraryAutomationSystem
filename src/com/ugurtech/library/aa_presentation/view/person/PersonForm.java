@@ -7,6 +7,7 @@ package com.ugurtech.library.aa_presentation.view.person;
 import com.toedter.calendar.JDateChooser;
 import com.ugurtech.library.aa_presentation.controller.person.PersonFormController;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
@@ -43,12 +44,12 @@ public final class PersonForm extends JInternalFrame {
         labelBirtDate = new javax.swing.JLabel();
         labelAddress = new javax.swing.JLabel();
         labelPhone = new javax.swing.JLabel();
-        textFieldPhone = new javax.swing.JTextField();
         buttonCancel = new javax.swing.JButton();
         buttonSave = new javax.swing.JButton();
         DateChooserBirth = new JDateChooser();
         jScrollPane2 = new javax.swing.JScrollPane();
         textAreaAddress = new javax.swing.JTextArea();
+        textFieldPhone = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -66,7 +67,7 @@ public final class PersonForm extends JInternalFrame {
         labelLastName.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
         labelBirtDate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelBirtDate.setText("Birth Date");
+        labelBirtDate.setText("Birthdate");
         labelBirtDate.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
         labelAddress.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -81,6 +82,9 @@ public final class PersonForm extends JInternalFrame {
         labelPhone.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
         buttonCancel.setText("Cancel");
+        buttonCancel.setMaximumSize(new java.awt.Dimension(80, 35));
+        buttonCancel.setMinimumSize(new java.awt.Dimension(80, 35));
+        buttonCancel.setPreferredSize(new java.awt.Dimension(80, 35));
 
         buttonSave.setText("Save");
 
@@ -88,29 +92,35 @@ public final class PersonForm extends JInternalFrame {
         textAreaAddress.setRows(5);
         jScrollPane2.setViewportView(textAreaAddress);
 
+        try {
+            textFieldPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("+90 ### ### ## ##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(labelFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelLastName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelBirtDate, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                    .addComponent(labelPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelPhone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelFirstName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelLastName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelBirtDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(buttonCancel)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonSave))
-                    .addComponent(textFieldSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DateChooserBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2))
+                        .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldSurname)
+                    .addComponent(textFieldName)
+                    .addComponent(DateChooserBirth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
+                    .addComponent(textFieldPhone))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -129,9 +139,9 @@ public final class PersonForm extends JInternalFrame {
                     .addComponent(DateChooserBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelBirtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(textFieldPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -140,7 +150,7 @@ public final class PersonForm extends JInternalFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buttonCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -151,7 +161,7 @@ public final class PersonForm extends JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -180,7 +190,7 @@ public final class PersonForm extends JInternalFrame {
     private javax.swing.JLabel labelPhone;
     private javax.swing.JTextArea textAreaAddress;
     private javax.swing.JTextField textFieldName;
-    private javax.swing.JTextField textFieldPhone;
+    private javax.swing.JFormattedTextField textFieldPhone;
     private javax.swing.JTextField textFieldSurname;
     // End of variables declaration//GEN-END:variables
 
@@ -268,11 +278,11 @@ public final class PersonForm extends JInternalFrame {
         this.textFieldName = textFieldName;
     }
 
-    public JTextField getTextFieldPhone() {
+    public JFormattedTextField getTextFieldPhone() {
         return textFieldPhone;
     }
 
-    public void setTextFieldPhone(JTextField textFieldPhone) {
+    public void setTextFieldPhone(JFormattedTextField textFieldPhone) {
         this.textFieldPhone = textFieldPhone;
     }
 
@@ -283,5 +293,12 @@ public final class PersonForm extends JInternalFrame {
     public void setTextFieldSurname(JTextField textFieldSurname) {
         this.textFieldSurname = textFieldSurname;
     }
+
+    @Override
+    public void doDefaultCloseAction() {
+        personFormController.clearAllFields();
+        super.doDefaultCloseAction();
+    }
+    
     
 }

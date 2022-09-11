@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.ugurtech.library.aa_presentation.controller;
+package com.ugurtech.library.aa_presentation.controller.firststep;
 
+import com.ugurtech.library.aa_presentation.controller.AbstractController;
+import com.ugurtech.library.aa_presentation.controller.Initialize;
 import com.ugurtech.library.ad_model.responsmodels.CountryModel;
 import com.ugurtech.library.ad_model.requestmodels.FirstStepModel;
 import com.ugurtech.library.ad_model.responsmodels.LanguageModel;
@@ -35,7 +37,7 @@ import javax.swing.WindowConstants;
 public class FirstStepFormController extends AbstractController implements Initialize {
 
     private final FirstStepForm firstStepForm;
-    private FirstStepModel firstStepModel;
+    private  FirstStepModel firstStepModel;
     private final CountryService countryService = new CountryServiceImpl(new CountryDaoImpl());
     private final LanguageService languageService = new LanguageServiceImpl(new LanguageDaoImpl());
     private final UserTypeService userTypeService = new UserTypeServiceImpl(new UserTypeDaoImpl());

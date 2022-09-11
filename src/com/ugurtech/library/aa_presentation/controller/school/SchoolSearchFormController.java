@@ -6,7 +6,7 @@
 package com.ugurtech.library.aa_presentation.controller.school;
 
 import com.ugurtech.library.aa_presentation.controller.Initialize;
-import com.ugurtech.library.aa_presentation.view.MainForm;
+import com.ugurtech.library.aa_presentation.view.main.MainForm;
 import com.ugurtech.library.aa_presentation.view.school.SchoolForm;
 import com.ugurtech.library.aa_presentation.view.school.SchoolSearchForm;
 import com.ugurtech.library.ab_application.af_lib.writetofile.TableToExcelImpl;

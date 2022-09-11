@@ -21,6 +21,12 @@ public class CountryModel {
         this.abbriviation = abbriviation;
     }
 
+    public CountryModel(int countryid) {
+        this.countryid = countryid;
+    }
+    
+    
+
     public CountryModel() {
     }
 

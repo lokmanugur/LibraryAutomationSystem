@@ -7,7 +7,7 @@ package com.ugurtech.library.aa_presentation.view.borrowbook;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JInternalFrame;
 import com.ugurtech.library.controller.BookBorrowingController;
-import com.ugurtech.library.aa_presentation.view.MainForm;
+import com.ugurtech.library.aa_presentation.view.main.MainForm;
 import com.ugurtech.library.aa_presentation.view.book.BookSearchForm;
 import com.ugurtech.library.aa_presentation.view.student.StudentForm;
 import javax.swing.DefaultListModel;

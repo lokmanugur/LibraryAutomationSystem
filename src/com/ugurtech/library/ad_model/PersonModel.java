@@ -10,6 +10,7 @@ package com.ugurtech.library.ad_model;
  * @author ugur
  */
 public class PersonModel extends DateModel {
+
     private int personId;
     private String firstName;
     private String lastName;
@@ -28,6 +29,12 @@ public class PersonModel extends DateModel {
     }
 
     public PersonModel(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public PersonModel(int personId,String firstName, String lastName) {
+        this.personId = personId;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -82,4 +89,35 @@ public class PersonModel extends DateModel {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 83 * hash + this.personId;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PersonModel other = (PersonModel) obj;
+        if (this.personId != other.personId) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
+    
 }

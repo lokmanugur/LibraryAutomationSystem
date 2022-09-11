@@ -1,4 +1,4 @@
-package com.ugurtech.library.aa_presentation.view;
+package com.ugurtech.library.aa_presentation.view.login;
 
 import java.awt.Color;
 import java.awt.Image;

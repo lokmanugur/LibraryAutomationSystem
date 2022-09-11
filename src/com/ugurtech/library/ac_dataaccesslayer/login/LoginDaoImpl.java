@@ -68,7 +68,7 @@ public class LoginDaoImpl extends DaoAbstract implements LoginDao{
         try {
             return createResultSet(SEARCH_SYSTEM_USER).next();
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Check User Error");
+            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Check Empty Database Error");
             Logger.getLogger(FirstStepDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }

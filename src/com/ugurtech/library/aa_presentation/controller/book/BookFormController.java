@@ -20,7 +20,7 @@ import com.ugurtech.library.ab_application.service.booktype.BookTypeService;
 import com.ugurtech.library.ab_application.service.booktype.BookTypeServiceImpl;
 import com.ugurtech.library.ab_application.service.publisher.PublisherService;
 import com.ugurtech.library.ab_application.service.publisher.PublisherServiceImpl;
-import com.ugurtech.library.aa_presentation.view.MainForm;
+import com.ugurtech.library.aa_presentation.view.main.MainForm;
 import com.ugurtech.library.aa_presentation.view.author.AuthorForm;
 import com.ugurtech.library.aa_presentation.view.book.BookForm;
 import com.ugurtech.library.aa_presentation.view.booktype.BookTypeForm;

@@ -16,10 +16,18 @@ import java.util.Objects;
 public class UserTypeModel extends DateModel {
     private int userTypeId;
     private String userTypeName;
+    private boolean authorSearchForm;
+    private boolean authorAddButton;
+    private boolean authorUpdateButton;
+    private boolean authorDeleteButton;
+    private boolean authorWriteButton;
 
     public UserTypeModel(int userTypeId, String userTypeName) {
         this.userTypeId = userTypeId;
         this.userTypeName = userTypeName;
+    }
+        public UserTypeModel(int userTypeId) {
+        this.userTypeId = userTypeId;
     }
     
     public int getUserTypeId() {
@@ -37,6 +45,48 @@ public class UserTypeModel extends DateModel {
     public void setUserTypeName(String userTypeName) {
         this.userTypeName = userTypeName;
     }
+
+    public boolean isAuthorSearchForm() {
+        return authorSearchForm;
+    }
+
+    public void setAuthorSearchForm(boolean authorSearchForm) {
+        this.authorSearchForm = authorSearchForm;
+    }
+
+    public boolean isAuthorAddButton() {
+        return authorAddButton;
+    }
+
+    public void setAuthorAddButton(boolean authorAddButton) {
+        this.authorAddButton = authorAddButton;
+    }
+
+    public boolean isAuthorUpdateButton() {
+        return authorUpdateButton;
+    }
+
+    public void setAuthorUpdateButton(boolean authorUpdateButton) {
+        this.authorUpdateButton = authorUpdateButton;
+    }
+
+    public boolean isAuthorDeleteButton() {
+        return authorDeleteButton;
+    }
+
+    public void setAuthorDeleteButton(boolean authorDeleteButton) {
+        this.authorDeleteButton = authorDeleteButton;
+    }
+
+    public boolean isAuthorWriteButton() {
+        return authorWriteButton;
+    }
+
+    public void setAuthorWriteButton(boolean authorWriteButton) {
+        this.authorWriteButton = authorWriteButton;
+    }
+   
+    
 
     @Override
     public int hashCode() {

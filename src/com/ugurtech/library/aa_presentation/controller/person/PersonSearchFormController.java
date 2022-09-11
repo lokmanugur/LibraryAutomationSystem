@@ -6,13 +6,14 @@
 package com.ugurtech.library.aa_presentation.controller.person;
 
 import com.ugurtech.library.aa_presentation.controller.Initialize;
-import com.ugurtech.library.aa_presentation.view.MainForm;
+import com.ugurtech.library.aa_presentation.view.main.MainForm;
 import com.ugurtech.library.aa_presentation.view.person.PersonForm;
 import com.ugurtech.library.aa_presentation.view.person.PersonSearchForm;
 
 /**
  *
  * @author ugur
+ * 
  */
 public final class PersonSearchFormController extends PersonController implements Initialize {
 

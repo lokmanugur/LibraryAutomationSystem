@@ -8,7 +8,7 @@ package com.ugurtech.library.controller;
 import com.ugurtech.library.persistance.user.UserDao;
 import com.ugurtech.library.persistance.user.UserDaoImpl;
 import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
-import com.ugurtech.library.aa_presentation.view.user.UserTableForm;
+import com.ugurtech.library.aa_presentation.view.user.UserSearchForm;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -20,35 +20,35 @@ import net.proteanit.sql.DbUtils;
  */
 public class UserTableController {
     
-    private final UserTableForm userTableForm;
+    private final UserSearchForm userTableForm;
     private final UserDao userDao;
 
-    public UserTableController(UserTableForm userTableForm) {
+    public UserTableController(UserSearchForm userTableForm) {
         this.userTableForm = userTableForm;
         userDao=new UserDaoImpl();
     }
 
-    public void fillAllUser() {
-        Map<String,String> filters = new HashMap<>();
-        Optional.ofNullable(userTableForm.getUserIdTextField().getText())
-                .filter(value->!value.isEmpty())
-                .ifPresent(value->filters.put("userId", value));
-        Optional.ofNullable(userTableForm.getUserNameTextField().getText())
-                .filter(value->!value.isEmpty())
-                .ifPresent(value->filters.put("userName", value));
-        userTableForm.getSysuserTable().setModel(DbUtils.resultSetToTableModel(userDao.fillAllUser(filters)));
-    }
-
-    public void deleteUser() {
-        if (userTableForm.getSysuserTable().getSelectedRow() == -1) {
-            UserInfoMessages.getInstance().showInfoMessages("Lütfen silmek istediğiniz veriyi seçin");
-        } else if (UserInfoMessages.getInstance().showApproveMessages("Seçilen satırı silmek istediğinize eminmisiniz?", "Silme İşlemi Onay Formu")) {
-            userDao.deleteUser((int) userTableForm.getSysuserTable().getModel().getValueAt(userTableForm.getSysuserTable().getSelectedRow(), 0));
-        }
-        fillAllUser();
-    }
-
-    public void updateUser() {
-    }
+//    public void fillAllUser() {
+//        Map<String,String> filters = new HashMap<>();
+//        Optional.ofNullable(userTableForm.getUserIdTextField().getText())
+//                .filter(value->!value.isEmpty())
+//                .ifPresent(value->filters.put("userId", value));
+//        Optional.ofNullable(userTableForm.getUserNameTextField().getText())
+//                .filter(value->!value.isEmpty())
+//                .ifPresent(value->filters.put("userName", value));
+//        userTableForm.getSysuserTable().setModel(DbUtils.resultSetToTableModel(userDao.fillAllUser(filters)));
+//    }
+//
+//    public void deleteUser() {
+//        if (userTableForm.getSysuserTable().getSelectedRow() == -1) {
+//            UserInfoMessages.getInstance().showInfoMessages("Lütfen silmek istediğiniz veriyi seçin");
+//        } else if (UserInfoMessages.getInstance().showApproveMessages("Seçilen satırı silmek istediğinize eminmisiniz?", "Silme İşlemi Onay Formu")) {
+//            userDao.deleteUser((int) userTableForm.getSysuserTable().getModel().getValueAt(userTableForm.getSysuserTable().getSelectedRow(), 0));
+//        }
+//        fillAllUser();
+//    }
+//
+//    public void updateUser() {
+//    }
     
 }

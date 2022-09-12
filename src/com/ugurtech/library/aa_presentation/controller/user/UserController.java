@@ -20,7 +20,7 @@ import javax.swing.table.TableModel;
  */
 public class UserController extends AbstractController implements Controller<UserModel> {
     
-    private UserService userService = new UserServiceImpl(new UserDaoImpl());
+    private final UserService userService = new UserServiceImpl(new UserDaoImpl());
     
     @Override
     public List<UserModel> getAll() {

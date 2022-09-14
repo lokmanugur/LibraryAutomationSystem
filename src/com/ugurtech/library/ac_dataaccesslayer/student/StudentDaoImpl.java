@@ -35,32 +35,32 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
     public static final String STUDENT_DELETE_QUERY = "DELETE FROM student WHERE studentid=?";
     public static final String PERSON_DELETE_QUERY = "DELETE FROM person WHERE personid=(SELECT personid FROM student WHERE studentid=?)";
     public static final String STUDENT_SEARCH_QUERY = "SELECT "
-            + getTableTitle(Tables.Student.studentid) + ","
-            + getTableTitle(Tables.Student.studentnumber) + ","
-            + getTableTitle(Tables.Person.firstname) + ","
-            + getTableTitle(Tables.Person.lastname) + ","
-            + getTableTitle(Tables.School.schoolname) + ","
-            + getTableTitle(Tables.Clss.classname) + ","
-            + getTableTitle(Tables.Person.phone) + ","
-            + getTableTitle(Tables.Person.address) + ","
-            + getTableTitle(Tables.Person.createddate) + ","
-            + getTableTitle(Tables.Person.lastupdate)
+            + columnNameAsColumnTitle(Tables.Student.studentid) + ","
+            + columnNameAsColumnTitle(Tables.Student.studentnumber) + ","
+            + columnNameAsColumnTitle(Tables.Person.firstname) + ","
+            + columnNameAsColumnTitle(Tables.Person.lastname) + ","
+            + columnNameAsColumnTitle(Tables.School.schoolname) + ","
+            + columnNameAsColumnTitle(Tables.Clss.classname) + ","
+            + columnNameAsColumnTitle(Tables.Person.phone) + ","
+            + columnNameAsColumnTitle(Tables.Person.address) + ","
+            + columnNameAsColumnTitle(Tables.Person.createddate) + ","
+            + columnNameAsColumnTitle(Tables.Person.lastupdate)
             + " FROM " + Tables.person + "," + Tables.student + "," + Tables.clss + "," + Tables.school
             + " WHERE " + Tables.Student.personid + "=" + Tables.Person.personid + " AND " + Tables.Student.schoolid + "=" + Tables.School.schoolid + " AND " + Tables.Student.classid + "=" + Tables.Clss.classid;
 
     public static final String STUDENT_GET_QUERY = "SELECT "
-            + getTableTitle(Tables.Student.studentid) + ","
-            + getTableTitle(Tables.School.schoolid) + ","
-            + getTableTitle(Tables.School.schoolname) + ","
-            + getTableTitle(Tables.Clss.classid) + ","
-            + getTableTitle(Tables.Clss.classname) + ","
-            + getTableTitle(Tables.Student.studentnumber) + ","
-            + getTableTitle(Tables.Person.personid) + ","
-            + getTableTitle(Tables.Person.firstname) + ","
-            + getTableTitle(Tables.Person.lastname) + ","
-            + getTableTitle(Tables.Person.birthdate) + ","
-            + getTableTitle(Tables.Person.phone) + ","
-            + getTableTitle(Tables.Person.address)
+            + columnNameAsColumnTitle(Tables.Student.studentid) + ","
+            + columnNameAsColumnTitle(Tables.School.schoolid) + ","
+            + columnNameAsColumnTitle(Tables.School.schoolname) + ","
+            + columnNameAsColumnTitle(Tables.Clss.classid) + ","
+            + columnNameAsColumnTitle(Tables.Clss.classname) + ","
+            + columnNameAsColumnTitle(Tables.Student.studentnumber) + ","
+            + columnNameAsColumnTitle(Tables.Person.personid) + ","
+            + columnNameAsColumnTitle(Tables.Person.firstname) + ","
+            + columnNameAsColumnTitle(Tables.Person.lastname) + ","
+            + columnNameAsColumnTitle(Tables.Person.birthdate) + ","
+            + columnNameAsColumnTitle(Tables.Person.phone) + ","
+            + columnNameAsColumnTitle(Tables.Person.address)
             + " FROM " + Tables.person + "," + Tables.student + "," + Tables.clss + "," + Tables.school
             + " WHERE " + Tables.Student.personid + "=" + Tables.Person.personid + " AND " + Tables.Student.schoolid + "=" + Tables.School.schoolid + " AND " + Tables.Student.classid + "=" + Tables.Clss.classid;
 
@@ -124,20 +124,20 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
             studentModel = new StudentModel();
             
             if (resultSet.next()) {
-                studentModel.setStudentId(resultSet.getInt(setLanguage(Tables.Student.studentid)));
+                studentModel.setStudentId(resultSet.getInt(columnTitle(Tables.Student.studentid)));
                 studentModel.setSchoolModel(new SchoolModel());
-                studentModel.getSchoolModel().setSchoolId(resultSet.getInt(setLanguage(Tables.School.schoolid)));
-                studentModel.getSchoolModel().setSchoolName(resultSet.getString(setLanguage(Tables.School.schoolname)));
+                studentModel.getSchoolModel().setSchoolId(resultSet.getInt(columnTitle(Tables.School.schoolid)));
+                studentModel.getSchoolModel().setSchoolName(resultSet.getString(columnTitle(Tables.School.schoolname)));
                 studentModel.setStudentClass(new ClassModel());
-                studentModel.getStudentClass().setClassId(resultSet.getInt(setLanguage(Tables.Clss.classid)));
-                studentModel.getStudentClass().setClassName(resultSet.getString(setLanguage(Tables.Clss.classname)));
-                studentModel.setStudentNumber(resultSet.getString(setLanguage(Tables.Student.studentnumber)));
-                studentModel.setPersonId(resultSet.getInt(setLanguage(Tables.Person.personid)));
-                studentModel.setFirstName(resultSet.getString(setLanguage(Tables.Person.firstname)));
-                studentModel.setLastName(resultSet.getString(setLanguage(Tables.Person.lastname)));
-                studentModel.setBirthDate(resultSet.getLong(setLanguage(Tables.Person.birthdate)));
-                studentModel.setPhone(resultSet.getString(setLanguage(Tables.Person.phone)));
-                studentModel.setAddress(resultSet.getString(setLanguage(Tables.Person.address)));                
+                studentModel.getStudentClass().setClassId(resultSet.getInt(columnTitle(Tables.Clss.classid)));
+                studentModel.getStudentClass().setClassName(resultSet.getString(columnTitle(Tables.Clss.classname)));
+                studentModel.setStudentNumber(resultSet.getString(columnTitle(Tables.Student.studentnumber)));
+                studentModel.setPersonId(resultSet.getInt(columnTitle(Tables.Person.personid)));
+                studentModel.setFirstName(resultSet.getString(columnTitle(Tables.Person.firstname)));
+                studentModel.setLastName(resultSet.getString(columnTitle(Tables.Person.lastname)));
+                studentModel.setBirthDate(resultSet.getLong(columnTitle(Tables.Person.birthdate)));
+                studentModel.setPhone(resultSet.getString(columnTitle(Tables.Person.phone)));
+                studentModel.setAddress(resultSet.getString(columnTitle(Tables.Person.address)));                
             }
         } catch (SQLException ex) {
             Logger.getLogger(StudentDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -173,15 +173,15 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
         query += STUDENT_SEARCH_QUERY;
         query += " AND ";
         query += "(";
-        query += setLanguage(Tables.Student.studentid) + " LIKE '" + searchText + "%' OR ";
-        query += setLanguage(Tables.Student.studentnumber) + " LIKE '" + searchText + "%' OR ";
-        query += setLanguage(Tables.Person.firstname) + " LIKE '" + searchText + "%' OR ";
-        query += setLanguage(Tables.Person.lastname) + " LIKE '" + searchText + "%' OR ";
-        query += setLanguage(Tables.Clss.classname) + " LIKE '" + searchText + "%' OR ";
-        query += setLanguage(Tables.School.schoolname) + " LIKE '" + searchText + "%' OR ";
-        query += setLanguage(Tables.Person.phone) + " LIKE '" + searchText + "%' OR ";
-        query += setLanguage(Tables.Person.address) + " LIKE '" + searchText + "%'";
+        query += columnTitle(Tables.Student.studentid) + " LIKE '" + searchText + "%' OR ";
+        query += columnTitle(Tables.Student.studentnumber) + " LIKE '" + searchText + "%' OR ";
+        query += columnTitle(Tables.Person.firstname) + " LIKE '" + searchText + "%' OR ";
+        query += columnTitle(Tables.Person.lastname) + " LIKE '" + searchText + "%' OR ";
+        query += columnTitle(Tables.Clss.classname) + " LIKE '" + searchText + "%' OR ";
+        query += columnTitle(Tables.School.schoolname) + " LIKE '" + searchText + "%' OR ";
+        query += columnTitle(Tables.Person.phone) + " LIKE '" + searchText + "%' OR ";
+        query += columnTitle(Tables.Person.address) + " LIKE '" + searchText + "%'";
         query += ")";
-        return DbUtils.resultSetToTableModel(createResultSet(query), setLanguage(Tables.Person.createddate), setLanguage(Tables.Person.lastupdate));
+        return DbUtils.resultSetToTableModel(createResultSet(query), columnTitle(Tables.Person.createddate), columnTitle(Tables.Person.lastupdate));
     }
 }

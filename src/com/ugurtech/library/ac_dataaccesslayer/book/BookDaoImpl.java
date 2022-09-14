@@ -30,17 +30,17 @@ import javax.swing.table.TableModel;
 public class BookDaoImpl extends DaoAbstract implements BookDao {
 
     public static final String BOOK_SERACH_QUERY = "SELECT "
-            + getTableTitle(Tables.book + ".bookid") + ","
-            + getTableTitle(Tables.book + ".isbn") + ","
-            + getTableTitle(Tables.book + ".bookname") + ","
-            + getTableTitle(Tables.publisher + ".publishername") + ","
-            + getTableTitle(Tables.book + ".publishdate") + ","
-            + getTableTitle(Tables.book + ".lastupdate") + ","
-            + "group_concat(DISTINCT booktype.typename) as " + setLanguage("booktype.name") + ","
-            + "group_concat(DISTINCT (person.firstname || ' ' || person.lastname)) as " + setLanguage("author.name") + ","
-            + "CASE WHEN book.bookborrowed=0 THEN '" + setLanguage("bookborrowed.no") + "' "
-            + "WHEN book.bookborrowed=1 THEN '" + setLanguage("bookborrowed.yes") + "' "
-            + "END as " + setLanguage("book.bookborrowed") + " "
+            + columnNameAsColumnTitle(Tables.book + ".bookid") + ","
+            + columnNameAsColumnTitle(Tables.book + ".isbn") + ","
+            + columnNameAsColumnTitle(Tables.book + ".bookname") + ","
+            + columnNameAsColumnTitle(Tables.publisher + ".publishername") + ","
+            + columnNameAsColumnTitle(Tables.book + ".publishdate") + ","
+            + columnNameAsColumnTitle(Tables.book + ".lastupdate") + ","
+            + "group_concat(DISTINCT booktype.typename) as " + columnTitle("booktype.name") + ","
+            + "group_concat(DISTINCT (person.firstname || ' ' || person.lastname)) as " + columnTitle("author.name") + ","
+            + "CASE WHEN book.bookborrowed=0 THEN '" + columnTitle("bookborrowed.no") + "' "
+            + "WHEN book.bookborrowed=1 THEN '" + columnTitle("bookborrowed.yes") + "' "
+            + "END as " + columnTitle("book.bookborrowed") + " "
             + "FROM book "
             + "left join booktypebook on book.bookid=booktypebook.bookid "
             + "left join booktype on booktypebook.booktypeid = booktype.booktypeid "
@@ -76,19 +76,19 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
         query.setLength(0);
         query.append(BOOK_SERACH_QUERY);
         query.append(" WHERE ");
-        query.append("  (").append(setLanguage(Tables.book + ".bookid")).append(" LIKE '").append(srch).append("%'");
-        query.append(" OR ").append(setLanguage(Tables.book + ".isbn")).append(" LIKE '").append(srch).append("%'");
-        query.append(" OR ").append(setLanguage(Tables.book + ".bookname")).append(" LIKE '").append(srch).append("%'");
-        query.append(" OR ").append(setLanguage(Tables.publisher + ".publishername")).append(" LIKE '").append(srch).append("%'");
+        query.append("  (").append(columnTitle(Tables.book + ".bookid")).append(" LIKE '").append(srch).append("%'");
+        query.append(" OR ").append(columnTitle(Tables.book + ".isbn")).append(" LIKE '").append(srch).append("%'");
+        query.append(" OR ").append(columnTitle(Tables.book + ".bookname")).append(" LIKE '").append(srch).append("%'");
+        query.append(" OR ").append(columnTitle(Tables.publisher + ".publishername")).append(" LIKE '").append(srch).append("%'");
         query.append(")");
         if (selInd == 1) {
-            query.append(" AND ").append(setLanguage(Tables.book + ".publishdate")).append(" BETWEEN ").append(firstD).append(" AND ").append(lastD);
+            query.append(" AND ").append(columnTitle(Tables.book + ".publishdate")).append(" BETWEEN ").append(firstD).append(" AND ").append(lastD);
         } else if (selInd == 2) {
-            query.append(" AND ").append(setLanguage(Tables.book + ".lastupdate")).append(" BETWEEN ").append(firstD).append(" AND ").append(lastD);
+            query.append(" AND ").append(columnTitle(Tables.book + ".lastupdate")).append(" BETWEEN ").append(firstD).append(" AND ").append(lastD);
         }
         query.append(" GROUP BY book.bookid");
         ResultSet rs = createResultSet(query.toString());
-        TableModel tableModel = DbUtils.resultSetToTableModel(rs, setLanguage("book.publishdate"), setLanguage("book.lastupdate"));
+        TableModel tableModel = DbUtils.resultSetToTableModel(rs, columnTitle("book.publishdate"), columnTitle("book.lastupdate"));
         return tableModel;
     }
 

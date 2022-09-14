@@ -46,13 +46,12 @@ public class DbUtils {
                     }else{newRow.addElement(rs.getObject(i));}
 		    
 		}
-
 		rows.addElement(newRow);
 	    }
 
 	    return new DefaultTableModel(rows, columnNames);
 	} catch (SQLException e) {
-
+            
 	    return null;
 	}
     }

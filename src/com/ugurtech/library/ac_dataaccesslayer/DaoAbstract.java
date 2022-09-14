@@ -117,16 +117,23 @@ public abstract class DaoAbstract {
         return efactedRow;
     }
 
-    protected static String setLanguage(String strng) {
-        return LanguageImpl.setLanguage(Internationalization::setLanguage, strng);
+    protected static String columnTitle(String columnName) {
+        return LanguageImpl.setLanguage(Internationalization::setLanguage, columnName);
+    }
+    protected static String columnValue(String columnValue) {
+        return LanguageImpl.setLanguage(Internationalization::setLanguage, columnValue);
     }
     
-    protected static<V> String setLanguage(V v) {
-        return LanguageImpl.setLanguage(Internationalization::setLanguage, v.toString());
+    protected static <V> String columnTitle(V columnName) {
+        return LanguageImpl.setLanguage(Internationalization::setLanguage, columnName.toString());
+    }
+    
+        protected static <V> String columnValue(V columnValue) {
+        return LanguageImpl.setLanguage(Internationalization::setLanguage, columnValue.toString());
     }
 
-    protected static <V> String getTableTitle(V tableColumn) {
-        return tableColumn + " as " + setLanguage(tableColumn.toString());
+    protected static <V> String columnNameAsColumnTitle(V columnName) {
+        return columnName + " as " + DaoAbstract.columnTitle(columnName.toString());
     }
 
     protected String getExistID(int id, String... strQuery) {

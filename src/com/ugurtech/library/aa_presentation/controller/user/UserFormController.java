@@ -22,9 +22,15 @@ import com.ugurtech.library.ac_dataaccesslayer.country.CountryDaoImpl;
 import com.ugurtech.library.ac_dataaccesslayer.language.LanguageDaoImpl;
 import com.ugurtech.library.ac_dataaccesslayer.person.PersonDaoImpl;
 import com.ugurtech.library.ac_dataaccesslayer.usertype.UserTypeDaoImpl;
+import com.ugurtech.library.ad_model.PersonModel;
+import com.ugurtech.library.ad_model.UserModel;
+import com.ugurtech.library.ad_model.responsmodels.CountryModel;
+import com.ugurtech.library.ad_model.responsmodels.LanguageModel;
+import com.ugurtech.library.ad_model.responsmodels.UserTypeModel;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Objects;
 
 /**
  *
@@ -34,6 +40,7 @@ import java.awt.event.KeyEvent;
 public final class UserFormController extends UserController implements Initialize {
 
     private final UserForm userForm;
+    private UserModel userModel;
     private final LanguageService languageService = new LanguageServiceImpl(new LanguageDaoImpl());
     private final CountryService countryService = new CountryServiceImpl(new CountryDaoImpl());
     private final UserTypeService userTypeService = new UserTypeServiceImpl(new UserTypeDaoImpl());
@@ -89,41 +96,50 @@ public final class UserFormController extends UserController implements Initiali
         });
 
         userForm.getTextFieldRepeatPassword().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 checkPassword();
             }
         });
 
         userForm.getComboBoxUser().addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            @Override
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
 
+            @Override
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
 
+            @Override
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 //fetch data from databese
             }
         });
 
         userForm.getComboBoxUserType().addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            @Override
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
 
+            @Override
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
 
+            @Override
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 //fetch data from databese
             }
         });
 
         userForm.getComboBoxUser().getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 //personComboBoxKeyReleased(evt);
             }
         });
         userForm.getComboBoxUserType().getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 //userTypeComboBoxKeyReleased(evt);
             }
@@ -131,20 +147,28 @@ public final class UserFormController extends UserController implements Initiali
     }
 
     private void save() {
-
+        if(Objects.isNull(userModel)){
+            add(formToModel(new UserModel()));
+        }else{
+            update(formToModel(userModel));
+            userForm.dispose();
+        }
+        
     }
 
     private void cancel() {
-
+        userForm.dispose();
+        clearTextField();
     }
 
-    public void clearTextField() {
+    public void clearTextField(){
         userForm.getComboBoxUser().removeAllItems();
         userForm.getComboBoxUserType().removeAllItems();
         userForm.getTextFieldUserName().setText(null);
         userForm.getTextFieldPassword().setText(null);
         userForm.getTextFieldRepeatPassword().setText(null);
         userForm.getLabelInformUser().setText(null);
+        userModel=null;
     }
 
     public void checkPassword() {
@@ -163,5 +187,27 @@ public final class UserFormController extends UserController implements Initiali
     public boolean checkFields() {
         return userForm.getComboBoxUserType().getSelectedItem() != null && userForm.getComboBoxUser().getSelectedItem() != null
                 && userForm.getTextFieldPassword().getPassword() != null && userForm.getTextFieldUserName().getText() != null;
+    }
+
+    public UserModel formToModel(UserModel userModel) {
+        userModel.setCountryModel((CountryModel)userForm.getComboBoxCountry().getSelectedItem());
+        userModel.setLanguageModel((LanguageModel)userForm.getComboBoxLanguage().getSelectedItem());
+        userModel.setUserTypeModel((UserTypeModel)userForm.getComboBoxUserType().getSelectedItem());
+        userModel.setPersonModel((PersonModel)userForm.getComboBoxUser().getSelectedItem());
+        userModel.setUserName(userForm.getTextFieldUserName().getText());
+        userModel.setUserPassword(String.copyValueOf(userForm.getTextFieldPassword().getPassword()));
+        userModel.setSessionTime(Integer.valueOf(userForm.getTextFieldSession().getText()));
+        return userModel;
+    }
+
+    public void modelToForm(UserModel userModel) {
+        userForm.getComboBoxUserType().addItem(userModel.getUserTypeModel());
+        userForm.getComboBoxUser().addItem(userModel.getPersonModel());
+        userForm.getComboBoxCountry().addItem(userModel.getCountryModel());
+        userForm.getComboBoxLanguage().addItem(userModel.getLanguageModel());
+        userForm.getTextFieldPassword().setText(userModel.getUserPassword());
+        userForm.getTextFieldSession().setText(String.valueOf(userModel.getSessionTime()));
+        userForm.getTextFieldUserName().setText(userModel.getUserName());
+        this.userModel=userModel;
     }
 }

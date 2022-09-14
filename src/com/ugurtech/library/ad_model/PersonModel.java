@@ -11,6 +11,7 @@ package com.ugurtech.library.ad_model;
  */
 public class PersonModel extends DateModel {
 
+    private PersonModel personModel;
     private int personId;
     private String firstName;
     private String lastName;
@@ -90,6 +91,14 @@ public class PersonModel extends DateModel {
         this.phone = phone;
     }
 
+    public PersonModel getPersonModel() {
+        return personModel;
+    }
+
+    public void setPersonModel(PersonModel personModel) {
+        this.personModel = personModel;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 5;

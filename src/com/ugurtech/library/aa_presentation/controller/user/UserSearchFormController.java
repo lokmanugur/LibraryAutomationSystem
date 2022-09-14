@@ -9,11 +9,12 @@ import com.ugurtech.library.aa_presentation.controller.Initialize;
 import com.ugurtech.library.aa_presentation.view.main.MainForm;
 import com.ugurtech.library.aa_presentation.view.user.UserForm;
 import com.ugurtech.library.aa_presentation.view.user.UserSearchForm;
+import com.ugurtech.library.ad_model.UserModel;
 
 /**
  *
  * @author ugur
- * 
+ *
  */
 public final class UserSearchFormController extends UserController implements Initialize {
 
@@ -27,12 +28,13 @@ public final class UserSearchFormController extends UserController implements In
 
     @Override
     public void initView() {
-
+        search();
     }
 
     @Override
     public void initController() {
         userSearchForm.getTextFieldSearch().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 search();
             }
@@ -54,8 +56,8 @@ public final class UserSearchFormController extends UserController implements In
             update();
         });
     }
-    
-    public void search(){
+
+    public void search() {
         userSearchForm.getTableSearch().setModel(search(userSearchForm.getTextFieldSearch().getText()));
     }
 
@@ -68,11 +70,16 @@ public final class UserSearchFormController extends UserController implements In
     }
 
     private void update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    private void delete() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int selectedRow = userSearchForm.getTableSearch().getSelectedRow();
+       if(updateUnSelectRowMessage(selectedRow)){
+           
+       }
     }
 
+    private void delete() {
+        int selectedRow = userSearchForm.getTableSearch().getSelectedRow();
+        if (deleteApproveMessage(selectedRow)) {
+            delete((int) userSearchForm.getTableSearch().getValueAt(selectedRow, 0));
+        }
+    }
 }

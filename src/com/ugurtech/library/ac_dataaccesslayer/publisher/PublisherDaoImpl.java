@@ -29,10 +29,10 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
     public static final String PUBLISHER_DELETE_QUERY = "DELETE FROM publisher WHERE publisherid=?";
     public static final String PUBLISHER_UPDATE_QUERY = "UPDATE publisher SET publishername=?,phone=?,address=? WHERE publisherid=?";
     public static final String PUBLISHER_SEARCH_QUERY = "SELECT "
-            + getTableTitle(Tables.publisher + ".publisherid") + ","
-            + getTableTitle(Tables.publisher + ".publishername") + ","
-            + getTableTitle(Tables.publisher + ".phone") + ","
-            + getTableTitle(Tables.publisher + ".address")
+            + columnNameAsColumnTitle(Tables.publisher + ".publisherid") + ","
+            + columnNameAsColumnTitle(Tables.publisher + ".publishername") + ","
+            + columnNameAsColumnTitle(Tables.publisher + ".phone") + ","
+            + columnNameAsColumnTitle(Tables.publisher + ".address")
             + " FROM publisher ";
 
     private List<PublisherModel> publisherList;
@@ -52,10 +52,10 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
         try {
             
             while (resultSet.next()) {
-                publisherList.add(new PublisherModel(resultSet.getInt(setLanguage(Tables.publisher + ".publisherid")),
-                                resultSet.getString(setLanguage(Tables.publisher + ".publishername")),
-                                resultSet.getString(setLanguage(Tables.publisher + ".phone")),
-                                resultSet.getString(setLanguage(Tables.publisher + ".address"))));
+                publisherList.add(new PublisherModel(resultSet.getInt(columnTitle(Tables.publisher + ".publisherid")),
+                                resultSet.getString(columnTitle(Tables.publisher + ".publishername")),
+                                resultSet.getString(columnTitle(Tables.publisher + ".phone")),
+                                resultSet.getString(columnTitle(Tables.publisher + ".address"))));
             }
         } catch (SQLException ex) {
             Logger.getLogger(PublisherDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -69,14 +69,14 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
         ResultSet resultSet = createResultSet(getExistID(id, 
                 PUBLISHER_SEARCH_QUERY, 
                 " WHERE ",
-                setLanguage(Tables.publisher + ".publisherid"), "="));
+                columnTitle(Tables.publisher + ".publisherid"), "="));
         try {
             publisherModel = new PublisherModel();
             if (resultSet.next()) {
-                publisherModel.setPublisherId(resultSet.getInt(setLanguage(Tables.publisher + ".publisherid")));
-                publisherModel.setPublisherName(resultSet.getString(setLanguage(Tables.publisher + ".publishername")));
-                publisherModel.setPhone(resultSet.getString(setLanguage(Tables.publisher + ".phone")));
-                publisherModel.setAddress(resultSet.getString(setLanguage(Tables.publisher + ".address")));
+                publisherModel.setPublisherId(resultSet.getInt(columnTitle(Tables.publisher + ".publisherid")));
+                publisherModel.setPublisherName(resultSet.getString(columnTitle(Tables.publisher + ".publishername")));
+                publisherModel.setPhone(resultSet.getString(columnTitle(Tables.publisher + ".phone")));
+                publisherModel.setAddress(resultSet.getString(columnTitle(Tables.publisher + ".address")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(PublisherDaoImpl.class.getName()).log(Level.SEVERE, null, ex);

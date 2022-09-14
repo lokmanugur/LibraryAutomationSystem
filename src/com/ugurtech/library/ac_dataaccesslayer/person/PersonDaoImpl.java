@@ -27,14 +27,14 @@ public class PersonDaoImpl extends DaoAbstract implements PersonDao {
     public static final String PERSON_UPDATE_QUERY = "UPDATE person SET firstname=?,lastname=?,birthdate=?,address=?,phone=?,lastupdate=? WHERE personid=?";
     public static final String PERSON_DELETE_QUERY = "DELETE FROM person WHERE personid=?";
     public static final String PERSON_SEARCH_QUERY = "SELECT "
-            + getTableTitle(Tables.Person.personid) + ","
-            + getTableTitle(Tables.Person.firstname) + ","
-            + getTableTitle(Tables.Person.lastname) + ","
-            + getTableTitle(Tables.Person.birthdate) + ","
-            + getTableTitle(Tables.Person.address) + ","
-            + getTableTitle(Tables.Person.phone) + ","
-            + getTableTitle(Tables.Person.createddate) + ","
-            + getTableTitle(Tables.Person.lastupdate)
+            + columnNameAsColumnTitle(Tables.Person.personid) + ","
+            + columnNameAsColumnTitle(Tables.Person.firstname) + ","
+            + columnNameAsColumnTitle(Tables.Person.lastname) + ","
+            + columnNameAsColumnTitle(Tables.Person.birthdate) + ","
+            + columnNameAsColumnTitle(Tables.Person.address) + ","
+            + columnNameAsColumnTitle(Tables.Person.phone) + ","
+            + columnNameAsColumnTitle(Tables.Person.createddate) + ","
+            + columnNameAsColumnTitle(Tables.Person.lastupdate)
             + " FROM " + Tables.person;
 
     @Override
@@ -43,13 +43,13 @@ public class PersonDaoImpl extends DaoAbstract implements PersonDao {
         query += PERSON_SEARCH_QUERY;
         query += " WHERE ";
         query += "(";
-        query += setLanguage(Tables.Person.personid) + " LIKE '" + searchText + "%' OR ";
-        query += setLanguage(Tables.Person.firstname) + " LIKE '" + searchText + "%' OR ";
-        query += setLanguage(Tables.Person.lastname) + " LIKE '" + searchText + "%' OR ";
-        query += setLanguage(Tables.Person.phone) + " LIKE '" + searchText + "%' OR ";
-        query += setLanguage(Tables.Person.address) + " LIKE '" + searchText + "%'";
+        query += columnTitle(Tables.Person.personid) + " LIKE '" + searchText + "%' OR ";
+        query += columnTitle(Tables.Person.firstname) + " LIKE '" + searchText + "%' OR ";
+        query += columnTitle(Tables.Person.lastname) + " LIKE '" + searchText + "%' OR ";
+        query += columnTitle(Tables.Person.phone) + " LIKE '" + searchText + "%' OR ";
+        query += columnTitle(Tables.Person.address) + " LIKE '" + searchText + "%'";
         query += ")";
-        return DbUtils.resultSetToTableModel(createResultSet(query), setLanguage(Tables.Person.birthdate), setLanguage(Tables.Person.createddate), setLanguage(Tables.Person.lastupdate));
+        return DbUtils.resultSetToTableModel(createResultSet(query), columnTitle(Tables.Person.birthdate), columnTitle(Tables.Person.createddate), columnTitle(Tables.Person.lastupdate));
     }
 
     @Override
@@ -61,9 +61,9 @@ public class PersonDaoImpl extends DaoAbstract implements PersonDao {
         try {
             personsList = new ArrayList<>();
             while(resultSet.next()){
-                personsList.add( new PersonModel(resultSet.getInt(setLanguage(Tables.Person.personid)),
-                        resultSet.getString(setLanguage(Tables.Person.firstname)),
-                        resultSet.getString(setLanguage(Tables.Person.lastname))));
+                personsList.add( new PersonModel(resultSet.getInt(columnTitle(Tables.Person.personid)),
+                        resultSet.getString(columnTitle(Tables.Person.firstname)),
+                        resultSet.getString(columnTitle(Tables.Person.lastname))));
             }
             
         } catch (SQLException ex) {
@@ -79,12 +79,12 @@ public class PersonDaoImpl extends DaoAbstract implements PersonDao {
         try {
             personModel = new PersonModel();
             if (resultSet.next()) {
-                personModel.setPersonId(resultSet.getInt(setLanguage(Tables.Person.personid)));
-                personModel.setFirstName(resultSet.getString(setLanguage(Tables.Person.firstname)));
-                personModel.setLastName(resultSet.getString(setLanguage(Tables.Person.lastname)));
-                personModel.setBirthDate(resultSet.getLong(setLanguage(Tables.Person.birthdate)));
-                personModel.setPhone(resultSet.getString(setLanguage(Tables.Person.phone)));
-                personModel.setAddress(resultSet.getString(setLanguage(Tables.Person.address)));
+                personModel.setPersonId(resultSet.getInt(columnTitle(Tables.Person.personid)));
+                personModel.setFirstName(resultSet.getString(columnTitle(Tables.Person.firstname)));
+                personModel.setLastName(resultSet.getString(columnTitle(Tables.Person.lastname)));
+                personModel.setBirthDate(resultSet.getLong(columnTitle(Tables.Person.birthdate)));
+                personModel.setPhone(resultSet.getString(columnTitle(Tables.Person.phone)));
+                personModel.setAddress(resultSet.getString(columnTitle(Tables.Person.address)));
             }
         } catch (SQLException ex) {
            getLogger(ex, "Get error Query",PersonDaoImpl.class.getName());

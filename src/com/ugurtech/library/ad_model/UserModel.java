@@ -13,9 +13,10 @@ import com.ugurtech.library.ad_model.responsmodels.CountryModel;
  *
  * @author ugur
  */
-public class UserModel extends PersonModel {
+public class UserModel {
     
     private int sysUserId;
+    private PersonModel personModel;
     private UserTypeModel userTypeModel;
     private String userName;
     private String userPassword;
@@ -29,6 +30,14 @@ public class UserModel extends PersonModel {
 
     public void setSysUserId(int sysUserId) {
         this.sysUserId = sysUserId;
+    }
+
+    public PersonModel getPersonModel() {
+        return personModel;
+    }
+
+    public void setPersonModel(PersonModel personModel) {
+        this.personModel = personModel;
     }
 
     public UserTypeModel getUserTypeModel() {
@@ -78,6 +87,4 @@ public class UserModel extends PersonModel {
     public void setSessionTime(int sessionTime) {
         this.sessionTime = sessionTime;
     }
-    
-    
 }

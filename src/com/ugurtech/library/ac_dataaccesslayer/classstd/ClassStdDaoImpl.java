@@ -29,8 +29,8 @@ public static final String CLSS_INSERT_QUERY = "INSERT INTO clss (classname) VAL
     public static final String CLSS_DELETE_QUERY = "DELETE FROM clss WHERE classid=?";
     public static final String CLSS_UPDATE_QUERY = "UPDATE clss SET classname=? WHERE classid=?";
     public static final String CLSS_SEARCH_QUERY = "SELECT "
-            + getTableTitle(Tables.clss+".classid")+ ","
-            + getTableTitle(Tables.clss+".classname")
+            + columnNameAsColumnTitle(Tables.clss+".classid")+ ","
+            + columnNameAsColumnTitle(Tables.clss+".classname")
             + " FROM clss ";
 
 

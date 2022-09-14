@@ -30,10 +30,10 @@ public class SchoolDaoImpl extends DaoAbstract implements SchoolDao {
     public static final String SCHOOL_UDATE_QUERY = "UPDATE school SET schoolname=?,address=?,phone=? WHERE schoolid=?";
     public static final String SCHOOL_DELETE_QUERY = "DELETE FROM school WHERE schoolid=?";
     public static final String SCHOOL_SEARCH_QUERY = "SELECT "
-            + getTableTitle(Tables.school + ".schoolid") + ","
-            + getTableTitle(Tables.school + ".schoolname") + ","
-            + getTableTitle(Tables.school + ".phone") + ","
-            + getTableTitle(Tables.school + ".address")
+            + columnNameAsColumnTitle(Tables.school + ".schoolid") + ","
+            + columnNameAsColumnTitle(Tables.school + ".schoolname") + ","
+            + columnNameAsColumnTitle(Tables.school + ".phone") + ","
+            + columnNameAsColumnTitle(Tables.school + ".address")
             + " FROM school ";
 
     private List<SchoolModel> schoolList;
@@ -43,10 +43,10 @@ public class SchoolDaoImpl extends DaoAbstract implements SchoolDao {
         String query = "";
         query += SCHOOL_SEARCH_QUERY;
         query += " WHERE";
-        query += " " + setLanguage(Tables.school + ".schoolid") + " LIKE '" + str + "%'";
-        query += " OR " + setLanguage(Tables.school + ".schoolname") + " LIKE '" + str + "%'";
-        query += " OR " + setLanguage(Tables.school + ".phone") + " LIKE '" + str + "%'";
-        query += " OR " + setLanguage(Tables.school + ".address") + " LIKE '" + str + "%'";
+        query += " " + columnTitle(Tables.school + ".schoolid") + " LIKE '" + str + "%'";
+        query += " OR " + columnTitle(Tables.school + ".schoolname") + " LIKE '" + str + "%'";
+        query += " OR " + columnTitle(Tables.school + ".phone") + " LIKE '" + str + "%'";
+        query += " OR " + columnTitle(Tables.school + ".address") + " LIKE '" + str + "%'";
         return DbUtils.resultSetToTableModel(createResultSet(query));
     }
 
@@ -64,10 +64,10 @@ public class SchoolDaoImpl extends DaoAbstract implements SchoolDao {
             SchoolModel schoolModel;
             while (resultSet.next()) {
                 schoolModel = new SchoolModel();
-                schoolModel.setSchoolId(resultSet.getInt(setLanguage(Tables.school + ".schoolid")));
-                schoolModel.setSchoolName(resultSet.getString(setLanguage(Tables.school + ".schoolname")));
-                schoolModel.setPhone(resultSet.getString(setLanguage(Tables.school + ".phone")));
-                schoolModel.setAddress(resultSet.getString(setLanguage(Tables.school + ".address")));
+                schoolModel.setSchoolId(resultSet.getInt(columnTitle(Tables.school + ".schoolid")));
+                schoolModel.setSchoolName(resultSet.getString(columnTitle(Tables.school + ".schoolname")));
+                schoolModel.setPhone(resultSet.getString(columnTitle(Tables.school + ".phone")));
+                schoolModel.setAddress(resultSet.getString(columnTitle(Tables.school + ".address")));
                 schoolList.add(schoolModel);
             }
         } catch (SQLException ex) {
@@ -83,14 +83,14 @@ public class SchoolDaoImpl extends DaoAbstract implements SchoolDao {
         ResultSet resultSet = createResultSet(getExistID(id,
                         SCHOOL_SEARCH_QUERY,
                         " WHERE ",
-                        setLanguage(Tables.school + ".schoolid"), "="));
+                        columnTitle(Tables.school + ".schoolid"), "="));
         try {
             schoolModel = new SchoolModel();
             if (resultSet.next()) {
-                schoolModel.setSchoolId(resultSet.getInt(setLanguage(Tables.school + ".schoolid")));
-                schoolModel.setSchoolName(resultSet.getString(setLanguage(Tables.school + ".schoolname")));
-                schoolModel.setPhone(resultSet.getString(setLanguage(Tables.school + ".phone")));
-                schoolModel.setAddress(resultSet.getString(setLanguage(Tables.school + ".address")));
+                schoolModel.setSchoolId(resultSet.getInt(columnTitle(Tables.school + ".schoolid")));
+                schoolModel.setSchoolName(resultSet.getString(columnTitle(Tables.school + ".schoolname")));
+                schoolModel.setPhone(resultSet.getString(columnTitle(Tables.school + ".phone")));
+                schoolModel.setAddress(resultSet.getString(columnTitle(Tables.school + ".address")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(SchoolDaoImpl.class.getName()).log(Level.SEVERE, null, ex);

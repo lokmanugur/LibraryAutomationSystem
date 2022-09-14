@@ -33,19 +33,19 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
     public static final String PERSON_DELETE_QUERY = "DELETE FROM person WHERE personid=?";
 
     public static final String AUTHOR_SEARCH_QUERY2 = "SELECT "
-            + getTableTitle(Tables.author + ".authorid") + ","
-            + getTableTitle(Tables.person + ".personid") + ","
-            + getTableTitle(Tables.person + ".firstname") + ","
-            + getTableTitle(Tables.person + ".lastname") + ","
-            + getTableTitle(Tables.person + ".birthdate") + ""
+            + columnNameAsColumnTitle(Tables.author + ".authorid") + ","
+            + columnNameAsColumnTitle(Tables.person + ".personid") + ","
+            + columnNameAsColumnTitle(Tables.person + ".firstname") + ","
+            + columnNameAsColumnTitle(Tables.person + ".lastname") + ","
+            + columnNameAsColumnTitle(Tables.person + ".birthdate") + ""
             + " FROM author,person ";
     public static final String AUTHOR_SEARCH_QUERY = "SELECT "
-            + getTableTitle(Tables.author + ".authorid") + ","
-            + getTableTitle(Tables.person + ".firstname") + ","
-            + getTableTitle(Tables.person + ".lastname") + ","
-            + getTableTitle(Tables.person + ".birthdate") + ","
-            + getTableTitle(Tables.person + ".createddate") + ","
-            + getTableTitle(Tables.person + ".lastupdate") + ""
+            + columnNameAsColumnTitle(Tables.author + ".authorid") + ","
+            + columnNameAsColumnTitle(Tables.person + ".firstname") + ","
+            + columnNameAsColumnTitle(Tables.person + ".lastname") + ","
+            + columnNameAsColumnTitle(Tables.person + ".birthdate") + ","
+            + columnNameAsColumnTitle(Tables.person + ".createddate") + ","
+            + columnNameAsColumnTitle(Tables.person + ".lastupdate") + ""
             + " FROM author,person ";
 
     private final List<AuthorModel> authorList;
@@ -70,9 +70,9 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
         try {
             while (resultSet.next()) {
                 authorList.add(new AuthorModel(
-                        resultSet.getInt(setLanguage("author.authorid")),
-                        resultSet.getString(setLanguage("person.firstname")),
-                        resultSet.getString(setLanguage("person.lastname"))));
+                        resultSet.getInt(columnTitle("author.authorid")),
+                        resultSet.getString(columnTitle("person.firstname")),
+                        resultSet.getString(columnTitle("person.lastname"))));
             }
         } catch (SQLException ex) {
             Logger.getLogger(AuthorDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -90,11 +90,11 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
                         " AND author.authorid ="));
         try {
             while (resultSet.next()) {
-                authorModel.setAuthorId(resultSet.getInt(setLanguage("author.authorid")));
-                authorModel.setPersonId(resultSet.getInt(setLanguage("person.personid")));
-                authorModel.setFirstName(resultSet.getString(setLanguage("person.firstname")));
-                authorModel.setLastName(resultSet.getString(setLanguage("person.lastname")));
-                authorModel.setBirthDate(resultSet.getLong(setLanguage("person.birthdate")));
+                authorModel.setAuthorId(resultSet.getInt(columnTitle("author.authorid")));
+                authorModel.setPersonId(resultSet.getInt(columnTitle("person.personid")));
+                authorModel.setFirstName(resultSet.getString(columnTitle("person.firstname")));
+                authorModel.setLastName(resultSet.getString(columnTitle("person.lastname")));
+                authorModel.setBirthDate(resultSet.getLong(columnTitle("person.birthdate")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(AuthorDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -165,16 +165,16 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
         query.setLength(0);
         query.append(AUTHOR_SEARCH_QUERY);
         query.append(" WHERE");
-        query.append(" (").append(setLanguage(Tables.author + ".authorid")).append(" LIKE '").append(string).append("%'");
-        query.append(" or ").append(setLanguage(Tables.person + ".firstname")).append(" LIKE '").append(string).append("%'");
-        query.append(" or ").append(setLanguage(Tables.person + ".lastname")).append(" LIKE '").append(string).append("%'");
-        query.append(" or ").append(setLanguage(Tables.person + ".birthdate")).append(" LIKE '").append(string).append("%' ");
-        query.append(" or ").append(setLanguage(Tables.person + ".createddate")).append(" LIKE '").append(string).append("%'");
-        query.append(" or ").append(setLanguage(Tables.person + ".lastupdate")).append(" LIKE '").append(string).append("%' ");
+        query.append(" (").append(columnTitle(Tables.author + ".authorid")).append(" LIKE '").append(string).append("%'");
+        query.append(" or ").append(columnTitle(Tables.person + ".firstname")).append(" LIKE '").append(string).append("%'");
+        query.append(" or ").append(columnTitle(Tables.person + ".lastname")).append(" LIKE '").append(string).append("%'");
+        query.append(" or ").append(columnTitle(Tables.person + ".birthdate")).append(" LIKE '").append(string).append("%' ");
+        query.append(" or ").append(columnTitle(Tables.person + ".createddate")).append(" LIKE '").append(string).append("%'");
+        query.append(" or ").append(columnTitle(Tables.person + ".lastupdate")).append(" LIKE '").append(string).append("%' ");
         query.append(") AND author.personid=person.personid");
         return  DbUtils.resultSetToTableModel(createResultSet(query.toString()),
-                setLanguage("person.birthdate"),
-                setLanguage("person.createddate"),
-                setLanguage("person.lastupdate"));
+                columnTitle("person.birthdate"),
+                columnTitle("person.createddate"),
+                columnTitle("person.lastupdate"));
     }
 }

@@ -29,9 +29,9 @@ public class BookTypeDaoImpl extends DaoAbstract implements BookTypeDao {
     public static final String BOOKTYPE_DELETE_QUERY = "DELETE FROM booktype WHERE booktype.booktypeid=?";
     public static final String BOOKTYPE_UPDATE_QUERY = "UPDATE booktype SET typename=?,abbreviation=? WHERE booktypeid=?";
     public static final String BOOKTYPE_SEARCH_QUERY = "SELECT "
-            + getTableTitle(Tables.booktype+".booktypeid")+ ","
-            + getTableTitle(Tables.booktype+".typename")+ ","
-            + getTableTitle(Tables.booktype+".abbreviation")
+            + columnNameAsColumnTitle(Tables.booktype+".booktypeid")+ ","
+            + columnNameAsColumnTitle(Tables.booktype+".typename")+ ","
+            + columnNameAsColumnTitle(Tables.booktype+".abbreviation")
             + " FROM booktype ";
 
 

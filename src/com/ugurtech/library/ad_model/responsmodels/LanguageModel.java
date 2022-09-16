@@ -24,6 +24,9 @@ public class LanguageModel {
     public LanguageModel(int languageid) {
         this.languageid = languageid;
     }
+
+    public LanguageModel() {
+    }
     
     
     public int getLanguageid() {

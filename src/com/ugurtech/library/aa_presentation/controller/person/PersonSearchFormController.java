@@ -68,6 +68,7 @@ public final class PersonSearchFormController extends PersonController implement
         if(deleteApproveMessage(personSearchForm.getTableSearch().getSelectedRow())){
             delete((int)personSearchForm.getTableSearch().getValueAt(personSearchForm.getTableSearch().getSelectedRow(), 0));
         }
+        search();
     }
 
     private void update() {

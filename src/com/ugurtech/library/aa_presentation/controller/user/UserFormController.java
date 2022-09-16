@@ -9,6 +9,7 @@ import com.ugurtech.library.aa_presentation.controller.Initialize;
 import com.ugurtech.library.aa_presentation.view.main.MainForm;
 import com.ugurtech.library.aa_presentation.view.person.PersonForm;
 import com.ugurtech.library.aa_presentation.view.user.UserForm;
+import com.ugurtech.library.aa_presentation.view.user.UserSearchForm;
 import com.ugurtech.library.aa_presentation.view.usertype.UserTypeForm;
 import com.ugurtech.library.ab_application.service.country.CountryService;
 import com.ugurtech.library.ab_application.service.country.CountryServiceImpl;
@@ -54,19 +55,33 @@ public final class UserFormController extends UserController implements Initiali
 
     @Override
     public void initView() {
-        userTypeService.getAll().forEach(userTypeModel -> {
-            userForm.getComboBoxUserType().addItem(userTypeModel);
-        });
+        fillAllUserTypeToComboBox();
+        fillAllCountryToComboBox();
+        fillAllLanguageToComboBox();
+        fillAllPersonToComboBox();
+    }
 
-        countryService.getAll().forEach(countryModel -> {
-            userForm.getComboBoxCountry().addItem(countryModel);
-        });
-
+    private void fillAllLanguageToComboBox() {
         languageService.getAll().forEach(languageModel -> {
             userForm.getComboBoxLanguage().addItem(languageModel);
         });
+    }
+
+    private void fillAllPersonToComboBox() {
         personService.getAll().forEach(personModel -> {
             userForm.getComboBoxUser().addItem(personModel);
+        });
+    }
+
+    private void fillAllCountryToComboBox() {
+        countryService.getAll().forEach(countryModel -> {
+            userForm.getComboBoxCountry().addItem(countryModel);
+        });
+    }
+
+    private void fillAllUserTypeToComboBox() {
+        userTypeService.getAll().forEach(userTypeModel -> {
+            userForm.getComboBoxUserType().addItem(userTypeModel);
         });
     }
 
@@ -113,7 +128,8 @@ public final class UserFormController extends UserController implements Initiali
 
             @Override
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                //fetch data from databese
+                userForm.getComboBoxUser().removeAllItems();
+                fillAllPersonToComboBox();
             }
         });
 
@@ -128,7 +144,8 @@ public final class UserFormController extends UserController implements Initiali
 
             @Override
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                //fetch data from databese
+                userForm.getComboBoxUserType().removeAllItems();
+                fillAllUserTypeToComboBox();
             }
         });
 
@@ -147,13 +164,16 @@ public final class UserFormController extends UserController implements Initiali
     }
 
     private void save() {
-        if(Objects.isNull(userModel)){
-            add(formToModel(new UserModel()));
-        }else{
-            update(formToModel(userModel));
-            userForm.dispose();
+        if (checkFields()) {
+            if (Objects.isNull(userModel)) {
+                add(formToModel(new UserModel()));
+            } else {
+                update(formToModel(userModel));
+                userForm.dispose();
+            }
+            clearTextField();
+            UserSearchForm.INSTANCE.getUserSearchFormController().search();
         }
-        
     }
 
     private void cancel() {
@@ -161,14 +181,17 @@ public final class UserFormController extends UserController implements Initiali
         clearTextField();
     }
 
-    public void clearTextField(){
-        userForm.getComboBoxUser().removeAllItems();
-        userForm.getComboBoxUserType().removeAllItems();
+    public void clearTextField() {
+        userForm.getComboBoxUser().setSelectedItem(null);
+        userForm.getComboBoxUserType().setSelectedItem(null);
+        userForm.getComboBoxCountry().setSelectedItem(null);
+        userForm.getComboBoxLanguage().setSelectedItem(null);
         userForm.getTextFieldUserName().setText(null);
+        userForm.getTextFieldSession().setText(null);
         userForm.getTextFieldPassword().setText(null);
         userForm.getTextFieldRepeatPassword().setText(null);
         userForm.getLabelInformUser().setText(null);
-        userModel=null;
+        userModel = null;
     }
 
     public void checkPassword() {
@@ -184,16 +207,16 @@ public final class UserFormController extends UserController implements Initiali
         }
     }
 
-    public boolean checkFields() {
+    private boolean checkFields() {
         return userForm.getComboBoxUserType().getSelectedItem() != null && userForm.getComboBoxUser().getSelectedItem() != null
                 && userForm.getTextFieldPassword().getPassword() != null && userForm.getTextFieldUserName().getText() != null;
     }
 
     public UserModel formToModel(UserModel userModel) {
-        userModel.setCountryModel((CountryModel)userForm.getComboBoxCountry().getSelectedItem());
-        userModel.setLanguageModel((LanguageModel)userForm.getComboBoxLanguage().getSelectedItem());
-        userModel.setUserTypeModel((UserTypeModel)userForm.getComboBoxUserType().getSelectedItem());
-        userModel.setPersonModel((PersonModel)userForm.getComboBoxUser().getSelectedItem());
+        userModel.setCountryModel((CountryModel) userForm.getComboBoxCountry().getSelectedItem());
+        userModel.setLanguageModel((LanguageModel) userForm.getComboBoxLanguage().getSelectedItem());
+        userModel.setUserTypeModel((UserTypeModel) userForm.getComboBoxUserType().getSelectedItem());
+        userModel.setPersonModel((PersonModel) userForm.getComboBoxUser().getSelectedItem());
         userModel.setUserName(userForm.getTextFieldUserName().getText());
         userModel.setUserPassword(String.copyValueOf(userForm.getTextFieldPassword().getPassword()));
         userModel.setSessionTime(Integer.valueOf(userForm.getTextFieldSession().getText()));
@@ -201,13 +224,13 @@ public final class UserFormController extends UserController implements Initiali
     }
 
     public void modelToForm(UserModel userModel) {
-        userForm.getComboBoxUserType().addItem(userModel.getUserTypeModel());
-        userForm.getComboBoxUser().addItem(userModel.getPersonModel());
-        userForm.getComboBoxCountry().addItem(userModel.getCountryModel());
-        userForm.getComboBoxLanguage().addItem(userModel.getLanguageModel());
+        userForm.getComboBoxUserType().setSelectedItem(userModel.getUserTypeModel());
+        userForm.getComboBoxUser().setSelectedItem(userModel.getPersonModel());
+        userForm.getComboBoxCountry().setSelectedItem(userModel.getCountryModel());
+        userForm.getComboBoxLanguage().setSelectedItem(userModel.getLanguageModel());
         userForm.getTextFieldPassword().setText(userModel.getUserPassword());
         userForm.getTextFieldSession().setText(String.valueOf(userModel.getSessionTime()));
         userForm.getTextFieldUserName().setText(userModel.getUserName());
-        this.userModel=userModel;
+        this.userModel = userModel;
     }
 }

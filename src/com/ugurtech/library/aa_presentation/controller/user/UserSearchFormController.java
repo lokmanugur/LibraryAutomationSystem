@@ -9,7 +9,6 @@ import com.ugurtech.library.aa_presentation.controller.Initialize;
 import com.ugurtech.library.aa_presentation.view.main.MainForm;
 import com.ugurtech.library.aa_presentation.view.user.UserForm;
 import com.ugurtech.library.aa_presentation.view.user.UserSearchForm;
-import com.ugurtech.library.ad_model.UserModel;
 
 /**
  *
@@ -72,7 +71,9 @@ public final class UserSearchFormController extends UserController implements In
     private void update() {
         int selectedRow = userSearchForm.getTableSearch().getSelectedRow();
        if(updateUnSelectRowMessage(selectedRow)){
-           
+           MainForm.getInstance().addDesktopPane(UserForm.INSTANCE);
+           UserForm.INSTANCE.getUserFormController().modelToForm(get((int)userSearchForm.getTableSearch().
+                   getValueAt(userSearchForm.getTableSearch().getSelectedRow(), 0)));
        }
     }
 
@@ -81,5 +82,6 @@ public final class UserSearchFormController extends UserController implements In
         if (deleteApproveMessage(selectedRow)) {
             delete((int) userSearchForm.getTableSearch().getValueAt(selectedRow, 0));
         }
+        search();
     }
 }

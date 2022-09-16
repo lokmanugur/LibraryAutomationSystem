@@ -32,6 +32,8 @@ public final class UserForm extends JInternalFrame {
         this.userFormController = new UserFormController(this);
         AutoCompleteDecorator.decorate(comboBoxUser);
         AutoCompleteDecorator.decorate(comboBoxUserType);
+        AutoCompleteDecorator.decorate(comboBoxCountry);
+        AutoCompleteDecorator.decorate(comboBoxLanguage);
         setLocation(getWidth()/2,getHeight()/10);
     }
     /**
@@ -431,5 +433,12 @@ public final class UserForm extends JInternalFrame {
     public UserFormController getUserFormController() {
         return userFormController;
     }
+
+    @Override
+    public void doDefaultCloseAction() {
+        userFormController.clearTextField();
+        super.doDefaultCloseAction();
+    }
+    
     
 }

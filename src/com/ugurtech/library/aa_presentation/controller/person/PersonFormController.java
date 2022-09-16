@@ -7,6 +7,7 @@ package com.ugurtech.library.aa_presentation.controller.person;
 
 import com.ugurtech.library.aa_presentation.controller.Initialize;
 import com.ugurtech.library.aa_presentation.view.person.PersonForm;
+import com.ugurtech.library.aa_presentation.view.person.PersonSearchForm;
 import com.ugurtech.library.ad_model.PersonModel;
 import java.util.Date;
 import java.util.Objects;
@@ -59,6 +60,7 @@ public final class PersonFormController extends PersonController implements Init
             personForm.dispose();
         }
         clearAllFields();
+        PersonSearchForm.INSTANCE.getPersonSearchFormController().search();
     }
 
     private void cancel() {

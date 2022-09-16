@@ -29,6 +29,9 @@ public class UserTypeModel extends DateModel {
         public UserTypeModel(int userTypeId) {
         this.userTypeId = userTypeId;
     }
+
+    public UserTypeModel() {
+    }
     
     public int getUserTypeId() {
         return userTypeId;
@@ -117,7 +120,5 @@ public class UserTypeModel extends DateModel {
     @Override
     public String toString() {
         return userTypeName;
-    }
-
-    
+    } 
 }

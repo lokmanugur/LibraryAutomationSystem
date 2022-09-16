@@ -9,8 +9,13 @@ import com.ugurtech.library.ab_application.af_lib.sql.DbUtils;
 import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
 import com.ugurtech.library.ac_dataaccesslayer.DaoAbstract;
 import com.ugurtech.library.ac_dataaccesslayer.enumeration.Tables;
+import com.ugurtech.library.ad_model.PersonModel;
 import com.ugurtech.library.ad_model.UserModel;
+import com.ugurtech.library.ad_model.responsmodels.CountryModel;
+import com.ugurtech.library.ad_model.responsmodels.LanguageModel;
+import com.ugurtech.library.ad_model.responsmodels.UserTypeModel;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -24,7 +29,7 @@ import javax.swing.table.TableModel;
 public class UserDaoImpl extends DaoAbstract implements UserDao {
 
     public static String USER_INSERT_QUERY = "INSERT INTO sysuser(personid,usertypeid,countryid,languageid,username,userpassword,sessiontime,createddate) VALUES(?,?,?,?,?,?,?,?)";
-    public static String USER_UPDATE_QUERY = "UPDATE user SET personid=?,usertypeid=?,countryid=?,languageid=?,username=?,userpassword=?,sessiontime=?,lastupdate=? WHERE sysuserid=?";
+    public static String USER_UPDATE_QUERY = "UPDATE sysuser SET personid=?,usertypeid=?,countryid=?,languageid=?,username=?,userpassword=?,sessiontime=?,lastupdate=? WHERE sysuserid=?";
     public static String USER_DELETE_QUERY = "DELETE FROM sysuser WHERE sysuserid=?";
     public static String USER_SEARCH_QUERY = "SELECT "
             +columnNameAsColumnTitle(Tables.SysUser.sysuserid)+","
@@ -32,6 +37,7 @@ public class UserDaoImpl extends DaoAbstract implements UserDao {
             +columnNameAsColumnTitle(Tables.Person.lastname)+","
             +columnNameAsColumnTitle(Tables.SysUser.username)+","
             +"CASE WHEN "+Tables.SysUser.userpassword+" NOT NULL"+" THEN '******' END AS "+columnValue(Tables.SysUser.userpassword)+","
+            +columnNameAsColumnTitle(Tables.UserType.usertypename)+","
             +columnNameAsColumnTitle(Tables.Country.countryname)+","
             +columnNameAsColumnTitle(Tables.Language.languagename)+","
             +columnNameAsColumnTitle(Tables.SysUser.sessiontime)+","
@@ -40,10 +46,40 @@ public class UserDaoImpl extends DaoAbstract implements UserDao {
             +" FROM "
             +Tables.sysuser+","
             +Tables.person+","
+            +Tables.usertype+","
             +Tables.country+","
             +Tables.language
             +" WHERE "
             +Tables.SysUser.personid+"="+Tables.Person.personid+" AND "
+            +Tables.SysUser.usertypeid+"="+Tables.UserType.usertypeid+" AND "
+            +Tables.SysUser.countryid+"="+Tables.Country.countryid+" AND "
+            +Tables.SysUser.languageid+"="+Tables.Language.languageid;
+    
+        public static String USER_SINGLE_SEARCH_QUERY = "SELECT "
+            +columnNameAsColumnTitle(Tables.SysUser.sysuserid)+","
+            +columnNameAsColumnTitle(Tables.Person.personid)+","
+            +columnNameAsColumnTitle(Tables.Person.firstname)+","
+            +columnNameAsColumnTitle(Tables.Person.lastname)+","
+            +columnNameAsColumnTitle(Tables.SysUser.username)+","
+            +columnNameAsColumnTitle(Tables.SysUser.userpassword)+","
+            +columnNameAsColumnTitle(Tables.UserType.usertypeid)+","
+            +columnNameAsColumnTitle(Tables.UserType.usertypename)+","
+            +columnNameAsColumnTitle(Tables.Country.countryid)+","
+            +columnNameAsColumnTitle(Tables.Country.countryname)+","
+            +columnNameAsColumnTitle(Tables.Language.languageid)+","
+            +columnNameAsColumnTitle(Tables.Language.languagename)+","
+            +columnNameAsColumnTitle(Tables.SysUser.sessiontime)+","
+            +columnNameAsColumnTitle(Tables.SysUser.createddate)+","
+            +columnNameAsColumnTitle(Tables.SysUser.lastupdate)
+            +" FROM "
+            +Tables.sysuser+","
+            +Tables.person+","
+            +Tables.usertype+","
+            +Tables.country+","
+            +Tables.language
+            +" WHERE "
+            +Tables.SysUser.personid+"="+Tables.Person.personid+" AND "
+            +Tables.SysUser.usertypeid+"="+Tables.UserType.usertypeid+" AND "
             +Tables.SysUser.countryid+"="+Tables.Country.countryid+" AND "
             +Tables.SysUser.languageid+"="+Tables.Language.languageid;
 
@@ -54,7 +90,6 @@ public class UserDaoImpl extends DaoAbstract implements UserDao {
         query+="(";
         query+=Tables.SysUser.sysuserid+" LIKE '"+searchText+"%' OR ";
         query+=Tables.SysUser.username+" LIKE '"+searchText+"%' OR ";
-        query+=Tables.SysUser.sessiontime+" LIKE '"+searchText+"%' OR ";
         query+=Tables.SysUser.sessiontime+" LIKE '"+searchText+"%' OR ";
         query+=Tables.Person.firstname+" LIKE '"+searchText+"%' OR ";
         query+=Tables.Person.lastname+" LIKE '"+searchText+"%' OR ";
@@ -71,7 +106,34 @@ public class UserDaoImpl extends DaoAbstract implements UserDao {
 
     @Override
     public UserModel get(int id) {
-        return null;
+        UserModel userModel = null;
+        ResultSet resultSet = createResultSet(getExistID(id, USER_SINGLE_SEARCH_QUERY, " AND ", columnTitle(Tables.SysUser.sysuserid)+"="));
+        try {
+            userModel = new UserModel();
+            userModel.setCountryModel(new CountryModel());
+            userModel.setLanguageModel(new LanguageModel());
+            userModel.setUserTypeModel(new UserTypeModel());
+            userModel.setPersonModel(new PersonModel());
+            while(resultSet.next()) {
+                userModel.setSysUserId(resultSet.getInt(columnTitle(Tables.SysUser.sysuserid)));
+                userModel.setUserName(resultSet.getString(columnTitle(Tables.SysUser.username)));
+                userModel.setUserPassword(resultSet.getString(columnTitle(Tables.SysUser.userpassword)));
+                userModel.setSessionTime(resultSet.getInt(columnTitle(Tables.SysUser.sessiontime)));
+                userModel.getPersonModel().setPersonId(resultSet.getInt(columnTitle(Tables.Person.personid)));
+                userModel.getPersonModel().setFirstName(resultSet.getString(columnTitle(Tables.Person.firstname)));
+                userModel.getPersonModel().setLastName(resultSet.getString(columnTitle(Tables.Person.lastname)));
+                userModel.getUserTypeModel().setUserTypeId(resultSet.getInt(columnTitle(Tables.UserType.usertypeid)));
+                userModel.getUserTypeModel().setUserTypeName(resultSet.getString(columnTitle(Tables.UserType.usertypename)));
+                userModel.getCountryModel().setCountryid(resultSet.getInt(columnTitle(Tables.Country.countryid)));
+                userModel.getCountryModel().setCountryName(resultSet.getString(columnTitle(Tables.Country.countryname)));
+                userModel.getLanguageModel().setLanguageid(resultSet.getInt(columnTitle(Tables.Language.languageid)));
+                userModel.getLanguageModel().setLanguagename(resultSet.getString(columnTitle(Tables.Language.languagename)));
+            }
+        } catch (SQLException ex) {
+            getLogger(ex, "Get User Error", UserDaoImpl.class.getName());
+        }
+
+        return userModel;
     }
 
     @Override

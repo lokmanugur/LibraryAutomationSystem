@@ -21,6 +21,7 @@ public class BookModel extends DateModel {
     private String bookName;
     private long pressDate;
     private int quantity;
+    private int stock;
     private String shelf;
 
     public int getBookId() {
@@ -94,6 +95,15 @@ public class BookModel extends DateModel {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+    
 
     public String getShelf() {
         return shelf;

@@ -5,8 +5,6 @@
  */
 package com.ugurtech.library.ad_model;
 
-import com.ugurtech.library.model.*;
-
 /**
  * @author ugur
  * 

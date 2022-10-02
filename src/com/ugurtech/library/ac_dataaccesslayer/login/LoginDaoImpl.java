@@ -6,13 +6,9 @@ package com.ugurtech.library.ac_dataaccesslayer.login;
 
 import com.ugurtech.library.ad_model.CurrentUserModel;
 import com.ugurtech.library.ac_dataaccesslayer.DaoAbstract;
-import com.ugurtech.library.ac_dataaccesslayer.firststep.FirstStepDaoImpl;
-import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -68,8 +64,7 @@ public class LoginDaoImpl extends DaoAbstract implements LoginDao{
         try {
             return createResultSet(SEARCH_SYSTEM_USER).next();
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Check Empty Database Error");
-            Logger.getLogger(FirstStepDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"Check Empty Databese Error",LoginDaoImpl.class.getName());
             return false;
         }
     }
@@ -91,11 +86,11 @@ public class LoginDaoImpl extends DaoAbstract implements LoginDao{
                 currentUser.setFirstName(resultSet.getString("firstname"));
                 currentUser.setLastName(resultSet.getString("lastname"));
                 currentUser.setUserPassword(resultSet.getString("userpassword"));
-                currentUser.setBirthDate(resultSet.getDate("birthdate").getTime());
+                currentUser.setBirthDate(resultSet.getLong("birthdate"));
                 currentUser.setPhone(resultSet.getString("phone"));
                 currentUser.setAddress(resultSet.getString("address"));
-                currentUser.setCreatedDate(resultSet.getDate("createddate").getTime());
-                currentUser.setLastUpdate(resultSet.getDate("lastupdate").getTime());
+                currentUser.setCreatedDate(resultSet.getLong("createddate"));
+                currentUser.setLastUpdate(resultSet.getLong("lastupdate"));
                 currentUser.setSessionTime(resultSet.getInt("sessiontime"));
                 currentUser.setRegion(resultSet.getString(13));
                 currentUser.setLanguage(resultSet.getString(14));
@@ -104,8 +99,7 @@ public class LoginDaoImpl extends DaoAbstract implements LoginDao{
                 return false;
             }
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Check User Error");
-            Logger.getLogger(LoginDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"Check User Error",LoginDaoImpl.class.getName());
             return false;
         }
     }

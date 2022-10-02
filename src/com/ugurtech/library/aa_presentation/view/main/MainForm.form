@@ -168,7 +168,11 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="takenBooksTableButton" linkSize="9" min="-2" pref="110" max="-2" attributes="0"/>
+                              <Component id="buttonBookBorrowed" linkSize="9" min="-2" pref="110" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Component id="buttonBookBorrow" min="-2" pref="110" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Component id="buttonBasket" min="-2" pref="110" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                               <Component id="bookTable" linkSize="9" min="-2" pref="110" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -177,17 +181,19 @@
                               <Component id="authorTableButton" linkSize="9" min="-2" pref="110" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                               <Component id="publisherButton" linkSize="9" min="-2" pref="110" max="-2" attributes="0"/>
-                              <EmptySpace pref="280" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="takenBooksTableButton" linkSize="10" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="buttonBookBorrowed" linkSize="10" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="bookTable" linkSize="10" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="bookTypeButton" linkSize="10" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="authorTableButton" linkSize="10" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="publisherButton" linkSize="10" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="buttonBookBorrow" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="buttonBasket" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -260,9 +266,43 @@
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="takenBooksTableButton">
+                    <Component class="javax.swing.JButton" name="buttonBookBorrowed">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Borrowed&lt;br&gt;Book Table&lt;/center&gt;&lt;/html&gt;"/>
+                        <Property name="focusable" type="boolean" value="false"/>
+                        <Property name="horizontalTextPosition" type="int" value="0"/>
+                        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[110, 70]"/>
+                        </Property>
+                        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[110, 70]"/>
+                        </Property>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[110, 70]"/>
+                        </Property>
+                        <Property name="verticalTextPosition" type="int" value="3"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="buttonBookBorrow">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Borrow&lt;br&gt;Book Table&lt;/center&gt;&lt;/html&gt;"/>
+                        <Property name="focusable" type="boolean" value="false"/>
+                        <Property name="horizontalTextPosition" type="int" value="0"/>
+                        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[110, 70]"/>
+                        </Property>
+                        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[110, 70]"/>
+                        </Property>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[110, 70]"/>
+                        </Property>
+                        <Property name="verticalTextPosition" type="int" value="3"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="buttonBasket">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Book&lt;br&gt;Basket&lt;/center&gt;&lt;/html&gt;"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">

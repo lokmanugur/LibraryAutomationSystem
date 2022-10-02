@@ -7,7 +7,6 @@ package com.ugurtech.library.ab_application.service.publisher;
 
 import com.ugurtech.library.ad_model.PublisherModel;
 import com.ugurtech.library.ac_dataaccesslayer.publisher.PublisherDao;
-import java.sql.ResultSet;
 import java.util.List;
 import javax.swing.table.TableModel;
 

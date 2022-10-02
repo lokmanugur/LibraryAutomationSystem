@@ -68,7 +68,7 @@ public final class BookSearchController extends BookController implements Initia
     protected void update() {
         if (updateUnSelectRowMessage(bookSearchForm.getBooksTable().getSelectedRow())) {
             MainForm.getInstance().addDesktopPane(BookForm.getInstance());
-            BookForm.getInstance().setBookModel(getUpdate((Integer) (bookSearchForm.getBooksTable().getModel().getValueAt(bookSearchForm.getBooksTable().getSelectedRow(), 0))));
+            BookForm.getInstance().setBookModel(get((Integer) (bookSearchForm.getBooksTable().getModel().getValueAt(bookSearchForm.getBooksTable().getSelectedRow(), 0))));
             BookForm.getInstance().getBookFormController().modelToForm();
         }
     }
@@ -96,7 +96,7 @@ public final class BookSearchController extends BookController implements Initia
     }
 
     private void write() {
-        write(bookSearchForm.getBooksTable(), "Kitaplar Tablosu");
+        write(bookSearchForm.getBooksTable(), bookSearchForm.getTitle());
     }
 
     private void setLanguage() {

@@ -5,7 +5,6 @@
  */
 package com.ugurtech.library.ad_model;
 
-import com.ugurtech.library.model.*;
 
 /**
  *
@@ -18,6 +17,21 @@ public class SchoolModel extends DateModel {
     private String phone;
     private String address;
 
+    public SchoolModel(int schoolId, String schoolName, String phone, String address) {
+        this.schoolId = schoolId;
+        this.schoolName = schoolName;
+        this.phone = phone;
+        this.address = address;
+    }
+
+    public SchoolModel(int schoolId, String schoolName) {
+        this.schoolId = schoolId;
+        this.schoolName = schoolName;
+    }
+
+    public SchoolModel() {
+    }
+    
     public int getSchoolId() {
         return schoolId;
     }

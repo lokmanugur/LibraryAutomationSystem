@@ -29,10 +29,10 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
     public static final String PUBLISHER_DELETE_QUERY = "DELETE FROM publisher WHERE publisherid=?";
     public static final String PUBLISHER_UPDATE_QUERY = "UPDATE publisher SET publishername=?,phone=?,address=? WHERE publisherid=?";
     public static final String PUBLISHER_SEARCH_QUERY = "SELECT "
-            + columnNameAsColumnTitle(Tables.publisher + ".publisherid") + ","
-            + columnNameAsColumnTitle(Tables.publisher + ".publishername") + ","
-            + columnNameAsColumnTitle(Tables.publisher + ".phone") + ","
-            + columnNameAsColumnTitle(Tables.publisher + ".address")
+            + columnNameAsColumnTitle(Tables.Publisher.publisherid) + ","
+            + columnNameAsColumnTitle(Tables.Publisher.publishername) + ","
+            + columnNameAsColumnTitle(Tables.Publisher.phone) + ","
+            + columnNameAsColumnTitle(Tables.Publisher.address)
             + " FROM publisher ";
 
     private List<PublisherModel> publisherList;
@@ -52,10 +52,11 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
         try {
             
             while (resultSet.next()) {
-                publisherList.add(new PublisherModel(resultSet.getInt(columnTitle(Tables.publisher + ".publisherid")),
-                                resultSet.getString(columnTitle(Tables.publisher + ".publishername")),
-                                resultSet.getString(columnTitle(Tables.publisher + ".phone")),
-                                resultSet.getString(columnTitle(Tables.publisher + ".address"))));
+                publisherList.add(new PublisherModel(
+                        resultSet.getInt(columnTitleWithoutPrime(Tables.Publisher.publisherid)),
+                      resultSet.getString(columnTitleWithoutPrime(Tables.Publisher.publishername)),
+                            resultSet.getString(columnTitleWithoutPrime(Tables.Publisher.phone)),
+                          resultSet.getString(columnTitleWithoutPrime(Tables.Publisher.address))));
             }
         } catch (SQLException ex) {
             Logger.getLogger(PublisherDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -69,14 +70,14 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
         ResultSet resultSet = createResultSet(getExistID(id, 
                 PUBLISHER_SEARCH_QUERY, 
                 " WHERE ",
-                columnTitle(Tables.publisher + ".publisherid"), "="));
+                columnTitleWithoutPrime(Tables.publisher + ".publisherid"), "="));
         try {
             publisherModel = new PublisherModel();
             if (resultSet.next()) {
-                publisherModel.setPublisherId(resultSet.getInt(columnTitle(Tables.publisher + ".publisherid")));
-                publisherModel.setPublisherName(resultSet.getString(columnTitle(Tables.publisher + ".publishername")));
-                publisherModel.setPhone(resultSet.getString(columnTitle(Tables.publisher + ".phone")));
-                publisherModel.setAddress(resultSet.getString(columnTitle(Tables.publisher + ".address")));
+                publisherModel.setPublisherId(resultSet.getInt(columnTitleWithoutPrime(Tables.publisher + ".publisherid")));
+                publisherModel.setPublisherName(resultSet.getString(columnTitleWithoutPrime(Tables.publisher + ".publishername")));
+                publisherModel.setPhone(resultSet.getString(columnTitleWithoutPrime(Tables.publisher + ".phone")));
+                publisherModel.setAddress(resultSet.getString(columnTitleWithoutPrime(Tables.publisher + ".address")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(PublisherDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,8 +96,7 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Insert Error");
-            Logger.getLogger(com.ugurtech.library.persistance.publisher.PublisherDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex, "Publisher add error ", PublisherDaoImpl.class.getName());
         }
     }
 
@@ -111,8 +111,7 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
             int affectedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().updateMessage(affectedRow);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Update Error");
-            Logger.getLogger(PublisherModel.class.getName()).log(Level.SEVERE, null, ex);
+                getLogger(ex, "Publisher update error ", PublisherDaoImpl.class.getName()); 
         }
     }
 
@@ -124,8 +123,7 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().deletedMessage(effactedRow);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Delete Error");
-            Logger.getLogger(com.ugurtech.library.persistance.publisher.PublisherDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex, "Publisher delete error ", PublisherDaoImpl.class.getName());
         }
     }
 

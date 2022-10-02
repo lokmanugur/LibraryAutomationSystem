@@ -9,14 +9,23 @@ package com.ugurtech.library.ac_dataaccesslayer.enumeration;
  * @author Teacher
  */
 public enum Tables {
-    author, book, bookauthor, booktype, booktypebook, borrowedbook, country, language, person, personbook, publisher, school, student, sysuser, usertype, clss;
-
+    author, book, bookauthor, booktype, booktypebook, borrowedbook, country, language, person, personbook, publisher, school, student, sysuser, usertype, clss,date;
+    
     public enum Author {
-       author, authorid, personid;
+       author, authorid, personid,name;
 
         @Override
         public String toString() {
             return Tables.author+"."+this.name();
+        }
+    }
+    
+    public enum Book{
+        book,bookid,isbn,publisherid,sysuserid,bookname,publishdate,quantity,stock,sherlf,lastupdate;
+        
+        @Override        
+        public String toString() {
+            return Tables.book+"."+this.name();
         }
     }
 
@@ -29,7 +38,7 @@ public enum Tables {
         }
     }
 
-    public enum Booktypebook {
+    public enum BookTypeBook {
       booktypebook, booktypebookid, bookid, booktypeid;
 
         @Override
@@ -38,12 +47,12 @@ public enum Tables {
         }
     }
 
-    public enum Borrowedbook {
-       borrowedbook, borrowedbookid, bookid;
+    public enum BookType {
+       booktypeid,typename,abbreviation;
 
         @Override
         public String toString() {
-            return Tables.borrowedbook+"."+this.name();
+            return Tables.booktype+"."+this.name();
         }
     }
 

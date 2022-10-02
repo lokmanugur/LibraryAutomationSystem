@@ -117,39 +117,46 @@ public abstract class DaoAbstract {
         return efactedRow;
     }
 
-    protected static String columnTitle(String columnName) {
-        return LanguageImpl.setLanguage(Internationalization::setLanguage, columnName);
+    protected static String columnTitleWithoutPrime(String columnName) {
+        String value = LanguageImpl.setLanguage(Internationalization::setLanguage, columnName).replaceAll("'", "");
+        return value;
     }
+
+    protected static <V> String columnTitleWithoutPrime(V columnName) {
+        String value = LanguageImpl.setLanguage(Internationalization::setLanguage, columnName.toString()).replaceAll("'", "");
+        return value;
+    }
+
     protected static String columnValue(String columnValue) {
         return LanguageImpl.setLanguage(Internationalization::setLanguage, columnValue);
     }
-    
-    protected static <V> String columnTitle(V columnName) {
-        return LanguageImpl.setLanguage(Internationalization::setLanguage, columnName.toString());
-    }
-    
-        protected static <V> String columnValue(V columnValue) {
+
+    protected static <V> String columnValue(V columnValue) {
         return LanguageImpl.setLanguage(Internationalization::setLanguage, columnValue.toString());
     }
 
+    protected static <V> String columnTitleWithPrime(V columnName) {
+        return LanguageImpl.setLanguage(Internationalization::setLanguage, columnName.toString());
+    }
+
     protected static <V> String columnNameAsColumnTitle(V columnName) {
-        return columnName + " as " + DaoAbstract.columnTitle(columnName.toString());
+        return columnName + " as " + LanguageImpl.setLanguage(Internationalization::setLanguage, columnName.toString());
     }
 
     protected String getExistID(int id, String... strQuery) {
-        String string ="";
+        String string = "";
         for (String str : strQuery) {
-            string +=str;
+            string += str;
         }
-        if(id>0){
-            string +=String.valueOf(id);
+        if (id > 0) {
+            string += String.valueOf(id);
         }
-       return string;
+        return string;
     }
 
-    public void getLogger(SQLException ex,String errorTitle,String className){
+    public void getLogger(SQLException ex, String errorTitle, String className) {
         UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), errorTitle);
         Logger.getLogger(className).log(Level.SEVERE, null, ex);
-    }    
+    }
 
 }

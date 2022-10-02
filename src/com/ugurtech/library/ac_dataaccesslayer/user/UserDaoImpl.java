@@ -96,7 +96,7 @@ public class UserDaoImpl extends DaoAbstract implements UserDao {
         query+=Tables.Country.countryname+" LIKE '"+searchText+"%' OR ";
         query+=Tables.Language.languagename+" LIKE '"+searchText+"%'";
         query+=")";
-        return DbUtils.resultSetToTableModel(createResultSet(query), columnTitle(Tables.SysUser.createddate),columnTitle(Tables.SysUser.lastupdate));
+        return DbUtils.resultSetToTableModel(createResultSet(query), columnTitleWithoutPrime(Tables.SysUser.createddate),columnTitleWithoutPrime(Tables.SysUser.lastupdate));
     }
 
     @Override
@@ -107,7 +107,7 @@ public class UserDaoImpl extends DaoAbstract implements UserDao {
     @Override
     public UserModel get(int id) {
         UserModel userModel = null;
-        ResultSet resultSet = createResultSet(getExistID(id, USER_SINGLE_SEARCH_QUERY, " AND ", columnTitle(Tables.SysUser.sysuserid)+"="));
+        ResultSet resultSet = createResultSet(getExistID(id, USER_SINGLE_SEARCH_QUERY, " AND ", columnTitleWithoutPrime(Tables.SysUser.sysuserid)+"="));
         try {
             userModel = new UserModel();
             userModel.setCountryModel(new CountryModel());
@@ -115,19 +115,19 @@ public class UserDaoImpl extends DaoAbstract implements UserDao {
             userModel.setUserTypeModel(new UserTypeModel());
             userModel.setPersonModel(new PersonModel());
             while(resultSet.next()) {
-                userModel.setSysUserId(resultSet.getInt(columnTitle(Tables.SysUser.sysuserid)));
-                userModel.setUserName(resultSet.getString(columnTitle(Tables.SysUser.username)));
-                userModel.setUserPassword(resultSet.getString(columnTitle(Tables.SysUser.userpassword)));
-                userModel.setSessionTime(resultSet.getInt(columnTitle(Tables.SysUser.sessiontime)));
-                userModel.getPersonModel().setPersonId(resultSet.getInt(columnTitle(Tables.Person.personid)));
-                userModel.getPersonModel().setFirstName(resultSet.getString(columnTitle(Tables.Person.firstname)));
-                userModel.getPersonModel().setLastName(resultSet.getString(columnTitle(Tables.Person.lastname)));
-                userModel.getUserTypeModel().setUserTypeId(resultSet.getInt(columnTitle(Tables.UserType.usertypeid)));
-                userModel.getUserTypeModel().setUserTypeName(resultSet.getString(columnTitle(Tables.UserType.usertypename)));
-                userModel.getCountryModel().setCountryid(resultSet.getInt(columnTitle(Tables.Country.countryid)));
-                userModel.getCountryModel().setCountryName(resultSet.getString(columnTitle(Tables.Country.countryname)));
-                userModel.getLanguageModel().setLanguageid(resultSet.getInt(columnTitle(Tables.Language.languageid)));
-                userModel.getLanguageModel().setLanguagename(resultSet.getString(columnTitle(Tables.Language.languagename)));
+                userModel.setSysUserId(resultSet.getInt(columnTitleWithoutPrime(Tables.SysUser.sysuserid)));
+                userModel.setUserName(resultSet.getString(columnTitleWithoutPrime(Tables.SysUser.username)));
+                userModel.setUserPassword(resultSet.getString(columnTitleWithoutPrime(Tables.SysUser.userpassword)));
+                userModel.setSessionTime(resultSet.getInt(columnTitleWithoutPrime(Tables.SysUser.sessiontime)));
+                userModel.getPersonModel().setPersonId(resultSet.getInt(columnTitleWithoutPrime(Tables.Person.personid)));
+                userModel.getPersonModel().setFirstName(resultSet.getString(columnTitleWithoutPrime(Tables.Person.firstname)));
+                userModel.getPersonModel().setLastName(resultSet.getString(columnTitleWithoutPrime(Tables.Person.lastname)));
+                userModel.getUserTypeModel().setUserTypeId(resultSet.getInt(columnTitleWithoutPrime(Tables.UserType.usertypeid)));
+                userModel.getUserTypeModel().setUserTypeName(resultSet.getString(columnTitleWithoutPrime(Tables.UserType.usertypename)));
+                userModel.getCountryModel().setCountryid(resultSet.getInt(columnTitleWithoutPrime(Tables.Country.countryid)));
+                userModel.getCountryModel().setCountryName(resultSet.getString(columnTitleWithoutPrime(Tables.Country.countryname)));
+                userModel.getLanguageModel().setLanguageid(resultSet.getInt(columnTitleWithoutPrime(Tables.Language.languageid)));
+                userModel.getLanguageModel().setLanguagename(resultSet.getString(columnTitleWithoutPrime(Tables.Language.languagename)));
             }
         } catch (SQLException ex) {
             getLogger(ex, "Get User Error", UserDaoImpl.class.getName());

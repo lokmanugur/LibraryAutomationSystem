@@ -13,6 +13,7 @@ import javax.swing.JTable;
 /**
  *
  * @author Teacher
+ * 
  */
 public abstract class AbstractController {
 

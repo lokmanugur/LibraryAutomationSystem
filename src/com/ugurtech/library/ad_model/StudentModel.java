@@ -13,7 +13,7 @@ public class StudentModel extends PersonModel {
 
     private int studentId;
     private String studentNumber;
-    private ClassModel studentClass;
+    private ClassModel classModel;
     private SchoolModel schoolModel;
     
     public int getStudentId() {
@@ -32,12 +32,12 @@ public class StudentModel extends PersonModel {
         this.studentNumber = studentNumber;
     }
 
-    public ClassModel getStudentClass() {
-        return studentClass;
+    public ClassModel getClassModel() {
+        return classModel;
     }
 
-    public void setStudentClass(ClassModel studentClass) {
-        this.studentClass = studentClass;
+    public void setClassModel(ClassModel classModel) {
+        this.classModel = classModel;
     }
 
     public SchoolModel getSchoolModel() {
@@ -69,9 +69,9 @@ public class StudentModel extends PersonModel {
         return this.studentId == other.studentId;
     }
 
-    @Override
-    public String toString() {
-        return studentNumber;
-    }
+//    @Override
+//    public String toString() {
+//        return studentNumber;
+//    }
     
 }

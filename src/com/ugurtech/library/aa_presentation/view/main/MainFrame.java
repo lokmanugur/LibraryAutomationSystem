@@ -22,23 +22,23 @@ public class MainFrame extends JFrame {
     private JInternalFrame[] allFrame;
     private JDesktopPane desktopPane;
 
-    public void addDesktopPane(JInternalFrame jInternalFrame) {
+    public void addDesktopPane(JInternalFrame internalFrame) {
         allFrame = desktopPane.getAllFrames();
-        if (!Arrays.asList(allFrame).contains(jInternalFrame)) {
-            desktopPane.add(jInternalFrame);
+        if (!Arrays.asList(allFrame).contains(internalFrame)) {
+            desktopPane.add(internalFrame);
             try {
-                jInternalFrame.setSelected(true);
+                internalFrame.setSelected(true);
             } catch (PropertyVetoException ex) {
                 Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             try {
-                jInternalFrame.setSelected(true);
+                internalFrame.setSelected(true);
             } catch (PropertyVetoException ex) {
                 Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        jInternalFrame.setVisible(true);
+        internalFrame.setVisible(true);
     }
 
     public JDesktopPane getDesktopPane() {

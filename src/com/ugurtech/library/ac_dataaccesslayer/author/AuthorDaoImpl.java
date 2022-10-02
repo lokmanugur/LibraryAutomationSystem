@@ -70,9 +70,9 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
         try {
             while (resultSet.next()) {
                 authorList.add(new AuthorModel(
-                        resultSet.getInt(columnTitle("author.authorid")),
-                        resultSet.getString(columnTitle("person.firstname")),
-                        resultSet.getString(columnTitle("person.lastname"))));
+                        resultSet.getInt(columnTitleWithoutPrime("author.authorid")),
+                        resultSet.getString(columnTitleWithoutPrime("person.firstname")),
+                        resultSet.getString(columnTitleWithoutPrime("person.lastname"))));
             }
         } catch (SQLException ex) {
             Logger.getLogger(AuthorDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -90,11 +90,11 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
                         " AND author.authorid ="));
         try {
             while (resultSet.next()) {
-                authorModel.setAuthorId(resultSet.getInt(columnTitle("author.authorid")));
-                authorModel.setPersonId(resultSet.getInt(columnTitle("person.personid")));
-                authorModel.setFirstName(resultSet.getString(columnTitle("person.firstname")));
-                authorModel.setLastName(resultSet.getString(columnTitle("person.lastname")));
-                authorModel.setBirthDate(resultSet.getLong(columnTitle("person.birthdate")));
+                authorModel.setAuthorId(resultSet.getInt(columnTitleWithoutPrime("author.authorid")));
+                authorModel.setPersonId(resultSet.getInt(columnTitleWithoutPrime("person.personid")));
+                authorModel.setFirstName(resultSet.getString(columnTitleWithoutPrime("person.firstname")));
+                authorModel.setLastName(resultSet.getString(columnTitleWithoutPrime("person.lastname")));
+                authorModel.setBirthDate(resultSet.getLong(columnTitleWithoutPrime("person.birthdate")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(AuthorDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -165,16 +165,16 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
         query.setLength(0);
         query.append(AUTHOR_SEARCH_QUERY);
         query.append(" WHERE");
-        query.append(" (").append(columnTitle(Tables.author + ".authorid")).append(" LIKE '").append(string).append("%'");
-        query.append(" or ").append(columnTitle(Tables.person + ".firstname")).append(" LIKE '").append(string).append("%'");
-        query.append(" or ").append(columnTitle(Tables.person + ".lastname")).append(" LIKE '").append(string).append("%'");
-        query.append(" or ").append(columnTitle(Tables.person + ".birthdate")).append(" LIKE '").append(string).append("%' ");
-        query.append(" or ").append(columnTitle(Tables.person + ".createddate")).append(" LIKE '").append(string).append("%'");
-        query.append(" or ").append(columnTitle(Tables.person + ".lastupdate")).append(" LIKE '").append(string).append("%' ");
+        query.append(" (").append(columnTitleWithPrime(Tables.Author.authorid)).append(" LIKE '").append(string).append("%'");
+        query.append(" or ").append(columnTitleWithPrime(Tables.Person.firstname)).append(" LIKE '").append(string).append("%'");
+        query.append(" or ").append(columnTitleWithPrime(Tables.Person.lastname)).append(" LIKE '").append(string).append("%'");
+        query.append(" or ").append(columnTitleWithPrime(Tables.Person.birthdate)).append(" LIKE '").append(string).append("%' ");
+        query.append(" or ").append(columnTitleWithPrime(Tables.Person.createddate)).append(" LIKE '").append(string).append("%'");
+        query.append(" or ").append(columnTitleWithPrime(Tables.Person.lastupdate)).append(" LIKE '").append(string).append("%' ");
         query.append(") AND author.personid=person.personid");
         return  DbUtils.resultSetToTableModel(createResultSet(query.toString()),
-                columnTitle("person.birthdate"),
-                columnTitle("person.createddate"),
-                columnTitle("person.lastupdate"));
+                columnTitleWithoutPrime("person.birthdate"),
+                columnTitleWithoutPrime("person.createddate"),
+                columnTitleWithoutPrime("person.lastupdate"));
     }
 }

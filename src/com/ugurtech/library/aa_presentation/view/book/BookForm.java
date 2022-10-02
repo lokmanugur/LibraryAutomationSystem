@@ -284,11 +284,7 @@ public final class BookForm extends JInternalFrame {
         labelBookShelf.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelBookShelf.setText("Book Shelf:");
 
-        try {
-            textFieldIsbn.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#############")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        textFieldIsbn.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#"))));
 
         textFieldBookCount.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 

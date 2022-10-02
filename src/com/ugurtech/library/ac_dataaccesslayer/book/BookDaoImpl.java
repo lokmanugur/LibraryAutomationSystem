@@ -30,17 +30,15 @@ import javax.swing.table.TableModel;
 public class BookDaoImpl extends DaoAbstract implements BookDao {
 
     public static final String BOOK_SERACH_QUERY = "SELECT "
-            + columnNameAsColumnTitle(Tables.book + ".bookid") + ","
-            + columnNameAsColumnTitle(Tables.book + ".isbn") + ","
-            + columnNameAsColumnTitle(Tables.book + ".bookname") + ","
-            + columnNameAsColumnTitle(Tables.publisher + ".publishername") + ","
-            + columnNameAsColumnTitle(Tables.book + ".publishdate") + ","
-            + columnNameAsColumnTitle(Tables.book + ".lastupdate") + ","
-            + "group_concat(DISTINCT booktype.typename) as " + columnTitle("booktype.name") + ","
-            + "group_concat(DISTINCT (person.firstname || ' ' || person.lastname)) as " + columnTitle("author.name") + ","
-            + "CASE WHEN book.bookborrowed=0 THEN '" + columnTitle("bookborrowed.no") + "' "
-            + "WHEN book.bookborrowed=1 THEN '" + columnTitle("bookborrowed.yes") + "' "
-            + "END as " + columnTitle("book.bookborrowed") + " "
+            + columnNameAsColumnTitle(Tables.Book.bookid) + ","
+            + columnNameAsColumnTitle(Tables.Book.isbn) + ","
+            + columnNameAsColumnTitle(Tables.Book.bookname) + ","
+            + columnNameAsColumnTitle(Tables.Publisher.publishername) + ","
+            + columnNameAsColumnTitle(Tables.Book.publishdate) + ","
+            + "group_concat(DISTINCT booktype.typename) as " + columnTitleWithPrime(Tables.BookType.typename) + ","
+            + "group_concat(DISTINCT (person.firstname || ' ' || person.lastname)) as " + columnTitleWithPrime(Tables.Author.name) + ","
+            + columnNameAsColumnTitle(Tables.Book.quantity) + ","
+            + columnNameAsColumnTitle(Tables.Book.lastupdate) + " "
             + "FROM book "
             + "left join booktypebook on book.bookid=booktypebook.bookid "
             + "left join booktype on booktypebook.booktypeid = booktype.booktypeid "
@@ -51,7 +49,7 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
 
     public static final String INSERT_BOOK_AUTHOR = "INSERT INTO bookauthor(bookid,authorid) VALUES(?,?)";
     public static final String INSERT_BOOKTYPE_BOOK = "INSERT INTO booktypebook(bookid,booktypeid) VALUES(?,?)";
-    public static final String INSERT_BOOK = "INSERT INTO book (isbn,sysuserid,publisherid,bookname,publishdate,lastupdate,quantity,shelf) VALUES (?,?,?,?,?,?,?,?)";
+    public static final String INSERT_BOOK = "INSERT INTO book (isbn,sysuserid,publisherid,bookname,publishdate,lastupdate,quantity,stock,shelf) VALUES (?,?,?,?,?,?,?,?,?)";
 
     public static final String CHECK_BOOK_BORROW = "SELECT bookid FROM personbook WHERE finishdate=null AND bookid=?";
 
@@ -61,9 +59,10 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
     public static final String DELETE_BOOK_AUTHOR = "DELETE FROM bookauthor WHERE bookid=?";
     public static final String DELETE_BOOK = "DELETE FROM book WHERE bookid=?";
 
-    public static final String UPDATE_BOOK = "UPDATE book SET isbn=?,publisherid=?,sysuserid=?,bookname=?,publishdate=?,lastupdate=?,quantity=?,shelf=? WHERE bookid=?";
+    public static final String UPDATE_BOOK = "UPDATE book SET isbn=?,publisherid=?,sysuserid=?,bookname=?,publishdate=?,lastupdate=?,quantity=?,stock=?,shelf=? WHERE bookid=?";
     public static final String UPDATE_BOOK_AUTHOR = "UPDATE bookauthor SET authorid=? WHERE bookid=?";
     public static final String UPDATE_BOOKTYPE_BOOK = "UPDATE booktypebook SET booktypeid=? WHERE bookid=?";
+    public static final String SEARCH_ISBN_QUERY = "SELECT quantity,stock FROM book WHERE isbn=";
 
     private final StringBuilder query;
 
@@ -71,24 +70,45 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
         this.query = new StringBuilder();
     }
 
+    private boolean isIsbn(BookModel book) {
+        try {
+            ResultSet rs = createResultSet(SEARCH_ISBN_QUERY+book.getIsbn());
+            if (rs.next()) {
+               int quantity = rs.getInt("quantity");
+               int stock = rs.getInt("stock");
+
+                PreparedStatement preparedStatement = createPrepareStatement("UPDATE book SET quantity=?,stock=? WHERE isbn=?");
+                preparedStatement.setInt(1, book.getQuantity() + quantity);
+                preparedStatement.setInt(2, book.getStock() + stock);
+                preparedStatement.setLong(3, book.getIsbn());
+                preparedStatement.executeUpdate();
+                return true;
+            }
+        } catch (SQLException ex) {
+            getLogger(ex, "Search Isbn error", BookDaoImpl.class.getName());
+        }
+        return false;
+    }
+
     @Override
     public TableModel search(String srch, int selInd, long firstD, long lastD) {
         query.setLength(0);
         query.append(BOOK_SERACH_QUERY);
         query.append(" WHERE ");
-        query.append("  (").append(columnTitle(Tables.book + ".bookid")).append(" LIKE '").append(srch).append("%'");
-        query.append(" OR ").append(columnTitle(Tables.book + ".isbn")).append(" LIKE '").append(srch).append("%'");
-        query.append(" OR ").append(columnTitle(Tables.book + ".bookname")).append(" LIKE '").append(srch).append("%'");
-        query.append(" OR ").append(columnTitle(Tables.publisher + ".publishername")).append(" LIKE '").append(srch).append("%'");
+        query.append("  (").append(Tables.Book.bookid).append(" LIKE '").append(srch).append("%'");
+        query.append(" OR ").append(Tables.Book.isbn).append(" LIKE '").append(srch).append("%'");
+        query.append(" OR ").append(Tables.Book.bookname).append(" LIKE '").append(srch).append("%'");
+        query.append(" OR ").append(Tables.Publisher.publishername).append(" LIKE '").append(srch).append("%'");
+        query.append(" OR ").append(Tables.BookType.typename).append(" LIKE '").append(srch).append("%'");
         query.append(")");
         if (selInd == 1) {
-            query.append(" AND ").append(columnTitle(Tables.book + ".publishdate")).append(" BETWEEN ").append(firstD).append(" AND ").append(lastD);
+            query.append(" AND ").append(Tables.Book.publishdate).append(" BETWEEN ").append(firstD).append(" AND ").append(lastD);
         } else if (selInd == 2) {
-            query.append(" AND ").append(columnTitle(Tables.book + ".lastupdate")).append(" BETWEEN ").append(firstD).append(" AND ").append(lastD);
+            query.append(" AND ").append(Tables.Book.lastupdate).append(" BETWEEN ").append(firstD).append(" AND ").append(lastD);
         }
         query.append(" GROUP BY book.bookid");
         ResultSet rs = createResultSet(query.toString());
-        TableModel tableModel = DbUtils.resultSetToTableModel(rs, columnTitle("book.publishdate"), columnTitle("book.lastupdate"));
+        TableModel tableModel = DbUtils.resultSetToTableModel(rs, columnTitleWithoutPrime("book.publishdate"), columnTitleWithoutPrime("book.lastupdate"));
         return tableModel;
     }
 
@@ -96,42 +116,45 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
     public List<BookModel> getAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public BookModel get(int id) {
-        BookModel bookModel = null;
-        ResultSet resultSet = createResultSet(getExistID(id, SEARCH_BOOK_QUERY, " WHERE", " bookid="));
-        try {
-            bookModel = new BookModel();
-            while (resultSet.next()) {
-                bookModel.setBookId(resultSet.getInt(1));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(BookDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return bookModel;
-    }
+//
+//    @Override
+//    public BookModel get(int id) {
+//        BookModel bookModel = null;
+//        ResultSet resultSet = createResultSet(getExistID(id, SEARCH_BOOK_QUERY, " WHERE", " bookid="));
+//        try {
+//            bookModel = new BookModel();
+//            while (resultSet.next()) {
+//                bookModel.setBookId(resultSet.getInt(1));
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(BookDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        return bookModel;
+//    }
 
     @Override
     public void add(BookModel book) {
-        PreparedStatement preparedStatement = createPrepareStatement(INSERT_BOOK);
-        try {
-            preparedStatement.setLong(1, book.getIsbn());
-            preparedStatement.setInt(2, book.getSysuserId());
-            preparedStatement.setInt(3, book.getPublisherModel().getPublisherId());
-            preparedStatement.setString(4, book.getBookName());
-            preparedStatement.setLong(5, book.getPressDate());
-            preparedStatement.setLong(6, new Date().getTime());
-            preparedStatement.setInt(7, book.getQuantity());
-            preparedStatement.setString(8, book.getShelf());
-            int effactedRow = preparedStatement.executeUpdate();
-            int generatedKey = preparedStatement.getGeneratedKeys().getInt(1);
-            addAuthorAndBookType(book, generatedKey, preparedStatement);
-            UserInfoMessages.getInstance().insertMessage(effactedRow);
-        } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Insert Error");
-            Logger.getLogger(BookDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+        if (isIsbn(book)) {
+        } else {
+            PreparedStatement preparedStatement = createPrepareStatement(INSERT_BOOK);
+            try {
+                preparedStatement.setLong(1, book.getIsbn());
+                preparedStatement.setInt(2, book.getSysuserId());
+                preparedStatement.setInt(3, book.getPublisherModel().getPublisherId());
+                preparedStatement.setString(4, book.getBookName());
+                preparedStatement.setLong(5, book.getPressDate());
+                preparedStatement.setLong(6, new Date().getTime());
+                preparedStatement.setInt(7, book.getQuantity());
+                preparedStatement.setInt(8, book.getStock());
+                preparedStatement.setString(9, book.getShelf());
+                int effactedRow = preparedStatement.executeUpdate();
+                int generatedKey = preparedStatement.getGeneratedKeys().getInt(1);
+                addAuthorAndBookType(book, generatedKey, preparedStatement);
+                UserInfoMessages.getInstance().insertMessage(effactedRow);
+            } catch (SQLException ex) {
+                getLogger(ex, "Add book error", BookDaoImpl.class.getName());
+            }
         }
     }
 
@@ -150,8 +173,7 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Insert Error");
-            Logger.getLogger(BookDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex, "Add Author and Booktype error", BookDaoImpl.class.getName());
         }
 
     }
@@ -167,16 +189,16 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
             preparedStatement.setLong(5, book.getPressDate());
             preparedStatement.setLong(6, new Date().getTime());
             preparedStatement.setInt(7, book.getQuantity());
-            preparedStatement.setString(8, book.getShelf());
-            preparedStatement.setInt(9, book.getBookId());
+            preparedStatement.setInt(8, book.getStock());
+            preparedStatement.setString(9, book.getShelf());
+            preparedStatement.setInt(10, book.getBookId());
             int effactedRow = preparedStatement.executeUpdate();
 
             deleteAuthorAndBookType(book, preparedStatement);
             addAuthorAndBookType(book, book.getBookId(), preparedStatement);
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Insert Error");
-            Logger.getLogger(BookDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex, "Update book error", BookDaoImpl.class.getName());
         }
     }
 
@@ -186,25 +208,24 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
         try {
             int effactedRow;
             effactedRow = deleteAuthorAndBookType(book, preparedStatement);
-            
+
             preparedStatement.setInt(1, book.getBookId());
             if (effactedRow > 1) {
                 preparedStatement.executeUpdate();
             }
             UserInfoMessages.getInstance().deletedMessage(effactedRow);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Delete Error");
-            Logger.getLogger(BookDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex, "Delete book error", BookDaoImpl.class.getName());
         }
     }
-    
-    private int deleteAuthorAndBookType(BookModel book, PreparedStatement preparedStatement){
+
+    private int deleteAuthorAndBookType(BookModel book, PreparedStatement preparedStatement) {
         int effactedRow = 0;
         try {
             preparedStatement = createPrepareStatement(DELETE_BOOK_BOOKTYPE);
             preparedStatement.setInt(1, book.getBookId());
             effactedRow = preparedStatement.executeUpdate();
-            
+
             preparedStatement = createPrepareStatement(DELETE_BOOK_AUTHOR);
             preparedStatement.setInt(1, book.getBookId());
 
@@ -212,16 +233,13 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
                 effactedRow += preparedStatement.executeUpdate();
             }
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Delete Error");
-            Logger.getLogger(BookDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex, "Delete Author And Book error", BookDaoImpl.class.getName());
         }
         return effactedRow;
     }
-    
-    
 
     @Override
-    public BookModel getUpdate(int id) {
+    public BookModel get(int id) {
         List<AuthorModel> authorList = new ArrayList<>();
         List<BookTypeModel> bookTypeList = new ArrayList<>();
         BookModel bookModel = new BookModel();
@@ -250,8 +268,7 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
             }
             bookModel.setPublisherModel(publisherModel);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Author Update Error");
-            Logger.getLogger(BookDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex, "Get book error", BookDaoImpl.class.getName());
         }
 
         ResultSet resultSetAuthor = createResultSet("SELECT author.authorid,person.firstname,person.lastname "
@@ -270,8 +287,7 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
             }
             bookModel.setAuthor(authorList);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Author Update Error");
-            Logger.getLogger(BookDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex, "Get book error", BookDaoImpl.class.getName());
         }
 
         ResultSet resultSetBookType = createResultSet("SELECT booktype.booktypeid,booktype.typename "
@@ -289,8 +305,7 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
             }
             bookModel.setBooksType(bookTypeList);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Author Update Error");
-            Logger.getLogger(BookDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex, "BookType error", BookDaoImpl.class.getName());
         }
 
         return bookModel;

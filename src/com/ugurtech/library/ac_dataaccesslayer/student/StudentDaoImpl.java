@@ -15,6 +15,7 @@ import com.ugurtech.library.ad_model.StudentModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -79,7 +80,7 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
             preparedStatement = createPrepareStatement(STUDENT_INSERT_QUERY);
             preparedStatement.setInt(1, resultSet.getInt(1));
             preparedStatement.setInt(2, studentModel.getSchoolModel().getSchoolId());
-            preparedStatement.setInt(3, studentModel.getStudentClass().getClassId());
+            preparedStatement.setInt(3, studentModel.getClassModel().getClassId());
             preparedStatement.setInt(4, Integer.valueOf(studentModel.getStudentNumber()));
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
@@ -103,7 +104,7 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
             int effectedRow = preparedStatement.executeUpdate();
             if (effectedRow > 0) {
                 preparedStatement = createPrepareStatement(STUDENT_UPDATE_QUERY);
-                preparedStatement.setInt(1, v.getStudentClass().getClassId());
+                preparedStatement.setInt(1, v.getClassModel().getClassId());
                 preparedStatement.setInt(2, v.getSchoolModel().getSchoolId());
                 preparedStatement.setString(3, v.getStudentNumber());
                 preparedStatement.setInt(4, v.getStudentId());
@@ -124,20 +125,20 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
             studentModel = new StudentModel();
             
             if (resultSet.next()) {
-                studentModel.setStudentId(resultSet.getInt(columnTitle(Tables.Student.studentid)));
+                studentModel.setStudentId(resultSet.getInt(columnTitleWithoutPrime(Tables.Student.studentid)));
                 studentModel.setSchoolModel(new SchoolModel());
-                studentModel.getSchoolModel().setSchoolId(resultSet.getInt(columnTitle(Tables.School.schoolid)));
-                studentModel.getSchoolModel().setSchoolName(resultSet.getString(columnTitle(Tables.School.schoolname)));
-                studentModel.setStudentClass(new ClassModel());
-                studentModel.getStudentClass().setClassId(resultSet.getInt(columnTitle(Tables.Clss.classid)));
-                studentModel.getStudentClass().setClassName(resultSet.getString(columnTitle(Tables.Clss.classname)));
-                studentModel.setStudentNumber(resultSet.getString(columnTitle(Tables.Student.studentnumber)));
-                studentModel.setPersonId(resultSet.getInt(columnTitle(Tables.Person.personid)));
-                studentModel.setFirstName(resultSet.getString(columnTitle(Tables.Person.firstname)));
-                studentModel.setLastName(resultSet.getString(columnTitle(Tables.Person.lastname)));
-                studentModel.setBirthDate(resultSet.getLong(columnTitle(Tables.Person.birthdate)));
-                studentModel.setPhone(resultSet.getString(columnTitle(Tables.Person.phone)));
-                studentModel.setAddress(resultSet.getString(columnTitle(Tables.Person.address)));                
+                studentModel.getSchoolModel().setSchoolId(resultSet.getInt(columnTitleWithoutPrime(Tables.School.schoolid)));
+                studentModel.getSchoolModel().setSchoolName(resultSet.getString(columnTitleWithoutPrime(Tables.School.schoolname)));
+                studentModel.setClassModel(new ClassModel());
+                studentModel.getClassModel().setClassId(resultSet.getInt(columnTitleWithoutPrime(Tables.Clss.classid)));
+                studentModel.getClassModel().setClassName(resultSet.getString(columnTitleWithoutPrime(Tables.Clss.classname)));
+                studentModel.setStudentNumber(resultSet.getString(columnTitleWithoutPrime(Tables.Student.studentnumber)));
+                studentModel.setPersonId(resultSet.getInt(columnTitleWithoutPrime(Tables.Person.personid)));
+                studentModel.setFirstName(resultSet.getString(columnTitleWithoutPrime(Tables.Person.firstname)));
+                studentModel.setLastName(resultSet.getString(columnTitleWithoutPrime(Tables.Person.lastname)));
+                studentModel.setBirthDate(resultSet.getLong(columnTitleWithoutPrime(Tables.Person.birthdate)));
+                studentModel.setPhone(resultSet.getString(columnTitleWithoutPrime(Tables.Person.phone)));
+                studentModel.setAddress(resultSet.getString(columnTitleWithoutPrime(Tables.Person.address)));                
             }
         } catch (SQLException ex) {
             Logger.getLogger(StudentDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -164,7 +165,36 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
 
     @Override
     public List<StudentModel> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query="SELECT person.personid,person.firstname,person.lastname,person.phone,person.address,"
+                + "student.studentnumber,"
+                + "school.schoolid,school.schoolname,"
+                + "clss.classid,clss.classname "
+                + "FROM person "
+                + "LEFT JOIN student on person.personid = student.personid  "
+                + "LEFT JOIN clss on student.classid = clss.classid "
+                + "LEFT JOIN school on student.schoolid = school.schoolid "
+                + "WHERE person.personid NOT IN (SELECT author.personid FROM author) ORDER BY person.personid";
+        StudentModel studentModel;
+        List<StudentModel> studentList = null;
+        ResultSet resultSet = createResultSet(query);
+        try {
+            studentList = new ArrayList<>();
+            while(resultSet.next()){
+                studentModel = new StudentModel();
+                studentModel.setPersonId(resultSet.getInt("personid"));
+                studentModel.setFirstName(resultSet.getString("firstname"));
+                studentModel.setLastName(resultSet.getString("lastname"));
+                studentModel.setAddress(resultSet.getString("address"));
+                studentModel.setPhone(resultSet.getString("phone"));
+                studentModel.setStudentNumber(resultSet.getString("studentnumber"));
+                studentModel.setClassModel(new ClassModel(resultSet.getInt("classid"), resultSet.getString("classname")));
+                studentModel.setSchoolModel(new SchoolModel(resultSet.getInt("schoolid"), resultSet.getString("schoolname")));
+                studentList.add(studentModel);
+            }
+        } catch (SQLException ex) {
+            getLogger(ex, "Student GetAll Error Query",StudentDaoImpl.class.getName());
+        }
+        return studentList;
     }
 
     @Override
@@ -173,15 +203,15 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
         query += STUDENT_SEARCH_QUERY;
         query += " AND ";
         query += "(";
-        query += columnTitle(Tables.Student.studentid) + " LIKE '" + searchText + "%' OR ";
-        query += columnTitle(Tables.Student.studentnumber) + " LIKE '" + searchText + "%' OR ";
-        query += columnTitle(Tables.Person.firstname) + " LIKE '" + searchText + "%' OR ";
-        query += columnTitle(Tables.Person.lastname) + " LIKE '" + searchText + "%' OR ";
-        query += columnTitle(Tables.Clss.classname) + " LIKE '" + searchText + "%' OR ";
-        query += columnTitle(Tables.School.schoolname) + " LIKE '" + searchText + "%' OR ";
-        query += columnTitle(Tables.Person.phone) + " LIKE '" + searchText + "%' OR ";
-        query += columnTitle(Tables.Person.address) + " LIKE '" + searchText + "%'";
+        query += Tables.Student.studentid + " LIKE '" + searchText + "%' OR ";
+        query += Tables.Student.studentnumber + " LIKE '" + searchText + "%' OR ";
+        query += Tables.Person.firstname + " LIKE '" + searchText + "%' OR ";
+        query += Tables.Person.lastname + " LIKE '" + searchText + "%' OR ";
+        query += Tables.Clss.classname + " LIKE '" + searchText + "%' OR ";
+        query += Tables.School.schoolname + " LIKE '" + searchText + "%' OR ";
+        query += Tables.Person.phone + " LIKE '" + searchText + "%' OR ";
+        query += Tables.Person.address + " LIKE '" + searchText + "%'";
         query += ")";
-        return DbUtils.resultSetToTableModel(createResultSet(query), columnTitle(Tables.Person.createddate), columnTitle(Tables.Person.lastupdate));
+        return DbUtils.resultSetToTableModel(createResultSet(query), columnTitleWithoutPrime(Tables.Person.createddate), columnTitleWithoutPrime(Tables.Person.lastupdate));
     }
 }

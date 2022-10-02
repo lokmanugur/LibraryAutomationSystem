@@ -42,7 +42,9 @@ public final class MainForm extends MainFrame {
         authorTableButton = new javax.swing.JButton();
         bookTypeButton = new javax.swing.JButton();
         bookTable = new javax.swing.JButton();
-        takenBooksTableButton = new javax.swing.JButton();
+        buttonBookBorrowed = new javax.swing.JButton();
+        buttonBookBorrow = new javax.swing.JButton();
+        buttonBasket = new javax.swing.JButton();
         studentBar = new javax.swing.JToolBar();
         studentPanel = new javax.swing.JPanel();
         studentTable = new javax.swing.JButton();
@@ -114,20 +116,40 @@ public final class MainForm extends MainFrame {
         bookTable.setPreferredSize(new java.awt.Dimension(110, 70));
         bookTable.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        takenBooksTableButton.setText("<html><center>Borrowed<br>Book Table</center></html>");
-        takenBooksTableButton.setFocusable(false);
-        takenBooksTableButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        takenBooksTableButton.setMaximumSize(new java.awt.Dimension(110, 70));
-        takenBooksTableButton.setMinimumSize(new java.awt.Dimension(110, 70));
-        takenBooksTableButton.setPreferredSize(new java.awt.Dimension(110, 70));
-        takenBooksTableButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        buttonBookBorrowed.setText("<html><center>Borrowed<br>Book Table</center></html>");
+        buttonBookBorrowed.setFocusable(false);
+        buttonBookBorrowed.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buttonBookBorrowed.setMaximumSize(new java.awt.Dimension(110, 70));
+        buttonBookBorrowed.setMinimumSize(new java.awt.Dimension(110, 70));
+        buttonBookBorrowed.setPreferredSize(new java.awt.Dimension(110, 70));
+        buttonBookBorrowed.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        buttonBookBorrow.setText("<html><center>Borrow<br>Book Table</center></html>");
+        buttonBookBorrow.setFocusable(false);
+        buttonBookBorrow.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buttonBookBorrow.setMaximumSize(new java.awt.Dimension(110, 70));
+        buttonBookBorrow.setMinimumSize(new java.awt.Dimension(110, 70));
+        buttonBookBorrow.setPreferredSize(new java.awt.Dimension(110, 70));
+        buttonBookBorrow.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        buttonBasket.setText("<html><center>Book<br>Basket</center></html>");
+        buttonBasket.setFocusable(false);
+        buttonBasket.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buttonBasket.setMaximumSize(new java.awt.Dimension(110, 70));
+        buttonBasket.setMinimumSize(new java.awt.Dimension(110, 70));
+        buttonBasket.setPreferredSize(new java.awt.Dimension(110, 70));
+        buttonBasket.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         javax.swing.GroupLayout bookPanelLayout = new javax.swing.GroupLayout(bookPanel);
         bookPanel.setLayout(bookPanelLayout);
         bookPanelLayout.setHorizontalGroup(
             bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bookPanelLayout.createSequentialGroup()
-                .addComponent(takenBooksTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonBookBorrowed, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(buttonBookBorrow, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(buttonBasket, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(bookTable, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -136,21 +158,23 @@ public final class MainForm extends MainFrame {
                 .addComponent(authorTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(publisherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        bookPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {authorTableButton, bookTable, bookTypeButton, publisherButton, takenBooksTableButton});
+        bookPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {authorTableButton, bookTable, bookTypeButton, buttonBookBorrowed, publisherButton});
 
         bookPanelLayout.setVerticalGroup(
             bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(takenBooksTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(buttonBookBorrowed, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(bookTable, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(bookTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(authorTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(publisherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(buttonBookBorrow, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(buttonBasket, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        bookPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {authorTableButton, bookTable, bookTypeButton, publisherButton, takenBooksTableButton});
+        bookPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {authorTableButton, bookTable, bookTypeButton, buttonBookBorrowed, publisherButton});
 
         bookBar.add(bookPanel);
 
@@ -422,6 +446,9 @@ public final class MainForm extends MainFrame {
     private javax.swing.JPanel bookPanel;
     private javax.swing.JButton bookTable;
     private javax.swing.JButton bookTypeButton;
+    private javax.swing.JButton buttonBasket;
+    private javax.swing.JButton buttonBookBorrow;
+    private javax.swing.JButton buttonBookBorrowed;
     private javax.swing.JMenuItem closeOperation;
     private javax.swing.JPanel currentUserPanel;
     private javax.swing.JMenuItem databaseMenuItem;
@@ -442,7 +469,6 @@ public final class MainForm extends MainFrame {
     private javax.swing.JPanel studentPanel;
     private javax.swing.JButton studentTable;
     private javax.swing.JTabbedPane tabbPane;
-    private javax.swing.JButton takenBooksTableButton;
     private javax.swing.JLabel timeLabel;
     private javax.swing.JMenuBar topMenuBar;
     private javax.swing.JButton topReadBooks;
@@ -454,7 +480,7 @@ public final class MainForm extends MainFrame {
     private javax.swing.JButton userTable;
     // End of variables declaration//GEN-END:variables
 
-    
+        
     public JLabel getUserLabel() {
         return userLabel;
     }
@@ -662,11 +688,11 @@ public final class MainForm extends MainFrame {
     }
 
     public JButton getTakenBooksTableButton() {
-        return takenBooksTableButton;
+        return buttonBookBorrowed;
     }
 
     public void setTakenBooksTableButton(JButton takenBooksTableButton) {
-        this.takenBooksTableButton = takenBooksTableButton;
+        this.buttonBookBorrowed = takenBooksTableButton;
     }
 
     public JMenuBar getTopMenuBar() {
@@ -732,5 +758,30 @@ public final class MainForm extends MainFrame {
     public void setGradeButton(JButton gradeButton) {
         this.gradeButton = gradeButton;
     }
+
+    public JButton getButtonBookBorrow() {
+        return buttonBookBorrow;
+    }
+
+    public void setButtonBookBorrow(JButton buttonBookBorrow) {
+        this.buttonBookBorrow = buttonBookBorrow;
+    }
+
+    public JButton getButtonBookBorrowed() {
+        return buttonBookBorrowed;
+    }
+
+    public void setButtonBookBorrowed(JButton buttonBookBorrowed) {
+        this.buttonBookBorrowed = buttonBookBorrowed;
+    }
+
+    public JButton getButtonBasket() {
+        return buttonBasket;
+    }
+
+    public void setButtonBasket(JButton buttonBasket) {
+        this.buttonBasket = buttonBasket;
+    }
+
     
 }

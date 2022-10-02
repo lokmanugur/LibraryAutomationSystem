@@ -7,7 +7,6 @@ package com.ugurtech.library.ac_dataaccesslayer.book;
 
 import com.ugurtech.library.ad_model.BookModel;
 import com.ugurtech.library.ac_dataaccesslayer.Dao;
-import java.sql.ResultSet;
 import javax.swing.table.TableModel;
 
 /**
@@ -17,6 +16,6 @@ import javax.swing.table.TableModel;
 public interface BookDao extends Dao<BookModel>{
 
     public TableModel search(String srch,int selInd,long firstD,long lastD);
-    public BookModel getUpdate(int id);
+    //public BookModel getUpdate(int id);
     
 }

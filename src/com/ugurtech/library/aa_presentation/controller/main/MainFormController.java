@@ -14,7 +14,9 @@ import com.ugurtech.library.aa_presentation.view.author.AuthorSearchForm;
 import com.ugurtech.library.aa_presentation.view.book.BookSearchForm;
 import com.ugurtech.library.aa_presentation.view.booktype.BookTypeSearchForm;
 import com.ugurtech.library.aa_presentation.view.publisher.PublisherSearchForm;
-import com.ugurtech.library.aa_presentation.view.borrowbook.BookBorrowedDetailForm;
+import com.ugurtech.library.aa_presentation.view.borrow.BookBorrowFollowForm;
+import com.ugurtech.library.aa_presentation.view.borrow.BookBorrowForm;
+import com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm;
 import com.ugurtech.library.aa_presentation.view.classstd.ClassSearchForm;
 import com.ugurtech.library.aa_presentation.view.database.DatabaseUI;
 import com.ugurtech.library.aa_presentation.view.person.PersonSearchForm;
@@ -25,7 +27,7 @@ import com.ugurtech.library.aa_presentation.view.user.UserSearchForm;
 /**
  *
  * @author Teacher
- * 
+ *
  */
 public class MainFormController extends AbstractController implements Initialize {
 
@@ -70,6 +72,12 @@ public class MainFormController extends AbstractController implements Initialize
                 SessionTimeCounter.getInstance().setStartTime();
             }
         });
+        mainForm.getButtonBookBorrow().addActionListener((java.awt.event.ActionEvent evt) -> {
+            mainForm.addDesktopPane(BookBorrowForm.INSTANCE);
+        });
+        mainForm.getButtonBasket().addActionListener((java.awt.event.ActionEvent evt) -> {
+            mainForm.addDesktopPane(StartBorrowForm.INSTANCE);
+        });
         mainForm.getPublisherButton().addActionListener((java.awt.event.ActionEvent evt) -> {
             mainForm.addDesktopPane(PublisherSearchForm.INSTANCE);
         });
@@ -83,7 +91,7 @@ public class MainFormController extends AbstractController implements Initialize
             mainForm.addDesktopPane(BookSearchForm.getInstance());
         });
         mainForm.getTakenBooksTableButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            mainForm.addDesktopPane(BookBorrowedDetailForm.getInstance());
+            mainForm.addDesktopPane(BookBorrowFollowForm.INSTANCE);
         });
         mainForm.getStudentTable().addActionListener((java.awt.event.ActionEvent evt) -> {
             mainForm.addDesktopPane(StudentSearchForm.INSTANCE);

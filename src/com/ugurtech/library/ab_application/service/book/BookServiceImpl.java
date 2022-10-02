@@ -53,7 +53,7 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public BookModel getUpdate(int id) {
-       return bookDao.getUpdate(id);
+       return null;//bookDao.getUpdate(id);
     }
     
 }

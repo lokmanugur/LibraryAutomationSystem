@@ -135,7 +135,11 @@ public final class StartBorrowFormController extends ControllerImpl implements I
     }
 
     private void save() {
-        
+        if(!startBorrowForm.getFieldAddress().getText().isEmpty()||!startBorrowForm.getFieldPhone().getText().isEmpty()
+           ||!startBorrowForm.getFieldNumber().getText().isEmpty()||!startBorrowForm.getFieldSchool().getText().isEmpty()
+           ||!startBorrowForm.getFieldGrade().getText().isEmpty()){
+          StudentModel studentModel =(StudentModel)startBorrowForm.getComboBoxPerson().getSelectedItem();
+        }
     }
 
 }

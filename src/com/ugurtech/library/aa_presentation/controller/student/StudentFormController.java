@@ -160,7 +160,7 @@ public final class StudentFormController extends StudentController implements In
         studentForm.getTextFieldFirstName().setText(studentModel.getFirstName());
         studentForm.getTextFieldLastName().setText(studentModel.getLastName());
         studentForm.getTextFieldStudentNo().setText(studentModel.getStudentNumber());
-        studentForm.getComboBoxClass().setSelectedItem(studentModel.getClassModel());
+        studentForm.getComboBoxClass().setSelectedItem(studentModel.getClssModel());
         studentForm.getComboBoxSchool().setSelectedItem(studentModel.getSchoolModel());
         studentForm.getDateChooserBirth().setDate(new Date(studentModel.getBirthDate()));
         studentForm.getFormattedTextFieldPhone().setText(studentModel.getPhone());

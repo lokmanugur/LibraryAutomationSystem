@@ -16,8 +16,8 @@ import java.util.List;
 public class PersonBookModel {
     
     private int personBookId;
-    private List<BookBorrowModel> bookBorrowModel;
-    private int personId;
+    private List<BookModel> bookBorrowModel;
+    private StudentModel studentModel;
     private long startDate;
     private long deadLine;
     private long finishDate;
@@ -31,20 +31,20 @@ public class PersonBookModel {
         this.personBookId = personBookId;
     }
 
-    public List<BookBorrowModel> getBookBorrowModel() {
+    public List<BookModel> getBookModel() {
         return bookBorrowModel;
     }
 
-    public void setBookBorrowModel(List<BookBorrowModel> bookBorrowModel) {
+    public void setBookModel(List<BookModel> bookBorrowModel) {
         this.bookBorrowModel = bookBorrowModel;
     }
 
-    public int getPersonId() {
-        return personId;
+    public StudentModel getStudentModel() {
+        return studentModel;
     }
 
-    public void setPersonId(int personId) {
-        this.personId = personId;
+    public void setStudentModel(StudentModel studentModel) {
+        this.studentModel = studentModel;
     }
 
     public long getStartDate() {

@@ -29,7 +29,7 @@ public class ClassModel {
         this.classId = classId;
     }
 
-    public String getClassName() {
+    public String getClssName() {
         return className;
     }
 

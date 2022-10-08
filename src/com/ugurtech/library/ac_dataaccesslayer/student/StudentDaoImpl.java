@@ -80,7 +80,7 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
             preparedStatement = createPrepareStatement(STUDENT_INSERT_QUERY);
             preparedStatement.setInt(1, resultSet.getInt(1));
             preparedStatement.setInt(2, studentModel.getSchoolModel().getSchoolId());
-            preparedStatement.setInt(3, studentModel.getClassModel().getClassId());
+            preparedStatement.setInt(3, studentModel.getClssModel().getClassId());
             preparedStatement.setInt(4, Integer.valueOf(studentModel.getStudentNumber()));
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
@@ -104,7 +104,7 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
             int effectedRow = preparedStatement.executeUpdate();
             if (effectedRow > 0) {
                 preparedStatement = createPrepareStatement(STUDENT_UPDATE_QUERY);
-                preparedStatement.setInt(1, v.getClassModel().getClassId());
+                preparedStatement.setInt(1, v.getClssModel().getClassId());
                 preparedStatement.setInt(2, v.getSchoolModel().getSchoolId());
                 preparedStatement.setString(3, v.getStudentNumber());
                 preparedStatement.setInt(4, v.getStudentId());
@@ -130,8 +130,8 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
                 studentModel.getSchoolModel().setSchoolId(resultSet.getInt(columnTitleWithoutPrime(Tables.School.schoolid)));
                 studentModel.getSchoolModel().setSchoolName(resultSet.getString(columnTitleWithoutPrime(Tables.School.schoolname)));
                 studentModel.setClassModel(new ClassModel());
-                studentModel.getClassModel().setClassId(resultSet.getInt(columnTitleWithoutPrime(Tables.Clss.classid)));
-                studentModel.getClassModel().setClassName(resultSet.getString(columnTitleWithoutPrime(Tables.Clss.classname)));
+                studentModel.getClssModel().setClassId(resultSet.getInt(columnTitleWithoutPrime(Tables.Clss.classid)));
+                studentModel.getClssModel().setClassName(resultSet.getString(columnTitleWithoutPrime(Tables.Clss.classname)));
                 studentModel.setStudentNumber(resultSet.getString(columnTitleWithoutPrime(Tables.Student.studentnumber)));
                 studentModel.setPersonId(resultSet.getInt(columnTitleWithoutPrime(Tables.Person.personid)));
                 studentModel.setFirstName(resultSet.getString(columnTitleWithoutPrime(Tables.Person.firstname)));

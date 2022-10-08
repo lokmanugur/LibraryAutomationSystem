@@ -269,6 +269,7 @@ public final class BookForm extends JInternalFrame {
         labelBookName.setText("Kitap Adı:");
 
         publisherComboBox.setEditable(true);
+        publisherComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         labelPublisher.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelPublisher.setText("Yayın Evi:");

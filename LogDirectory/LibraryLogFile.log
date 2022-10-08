@@ -1,0 +1,14 @@
+Oct 08, 2022 12:12:17 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+INFO: com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm java.lang.ClassCastException: java.lang.String cannot be cast to com.ugurtech.library.ad_model.StudentModel
+Oct 08, 2022 12:17:16 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+INFO: com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm java.lang.ClassCastException: java.lang.String cannot be cast to com.ugurtech.library.ad_model.StudentModel
+Oct 08, 2022 12:17:24 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+INFO: com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm java.lang.ClassCastException: java.lang.String cannot be cast to com.ugurtech.library.ad_model.StudentModel
+Oct 08, 2022 12:17:24 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+INFO: com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm java.lang.ClassCastException: java.lang.String cannot be cast to com.ugurtech.library.ad_model.StudentModel
+Oct 08, 2022 1:01:47 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+INFO: com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm java.lang.ClassCastException: java.lang.String cannot be cast to com.ugurtech.library.ad_model.StudentModel
+Oct 08, 2022 1:03:16 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+INFO: com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm java.lang.ClassCastException: java.lang.String cannot be cast to com.ugurtech.library.ad_model.StudentModel
+Oct 08, 2022 1:03:16 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+INFO: com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm java.lang.ClassCastException: java.lang.String cannot be cast to com.ugurtech.library.ad_model.StudentModel

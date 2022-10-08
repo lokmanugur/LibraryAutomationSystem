@@ -21,7 +21,7 @@ public class StudentPopulator implements Populator<StudentModel, StudentDTO> {
         target.setStudentNumber(source.getStudentNumber());
         target.setFirstName(source.getFirstName());
         target.setLastName(source.getLastName());
-        target.setClassName(source.getClassModel().getClassName());
+        target.setClassName(source.getClssModel().getClssName());
         target.setSchoolName(source.getSchoolModel().getSchoolName());
         target.setPhone(source.getPhone());
         target.setAddress(source.getAddress());

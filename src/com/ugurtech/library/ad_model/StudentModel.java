@@ -32,7 +32,7 @@ public class StudentModel extends PersonModel {
         this.studentNumber = studentNumber;
     }
 
-    public ClassModel getClassModel() {
+    public ClassModel getClssModel() {
         return classModel;
     }
 
@@ -69,9 +69,9 @@ public class StudentModel extends PersonModel {
         return this.studentId == other.studentId;
     }
 
-//    @Override
-//    public String toString() {
-//        return studentNumber;
-//    }
+    @Override
+    public String toString() {
+        return getFirstName()+" "+getLastName();
+    }
     
 }

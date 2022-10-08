@@ -81,7 +81,7 @@ public static final String CLSS_INSERT_QUERY = "INSERT INTO clss (classname) VAL
     public void add(ClassModel classModel) {
         PreparedStatement preparedStatement = createPrepareStatement(CLSS_INSERT_QUERY);
         try {
-            preparedStatement.setString(1, classModel.getClassName());
+            preparedStatement.setString(1, classModel.getClssName());
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {
@@ -94,7 +94,7 @@ public static final String CLSS_INSERT_QUERY = "INSERT INTO clss (classname) VAL
     public void update(ClassModel classModel) {
         PreparedStatement preparedStatement = createPrepareStatement(CLSS_UPDATE_QUERY);
         try {
-            preparedStatement.setString(1, classModel.getClassName());
+            preparedStatement.setString(1, classModel.getClssName());
             preparedStatement.setInt(2, classModel.getClassId());
             int affectedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().updateMessage(affectedRow);

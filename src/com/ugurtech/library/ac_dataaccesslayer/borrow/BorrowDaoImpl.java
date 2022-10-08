@@ -8,7 +8,7 @@ package com.ugurtech.library.ac_dataaccesslayer.borrow;
 import com.ugurtech.library.ab_application.af_lib.sql.DbUtils;
 import com.ugurtech.library.ac_dataaccesslayer.DaoAbstract;
 import com.ugurtech.library.ac_dataaccesslayer.enumeration.Tables;
-import com.ugurtech.library.ad_model.BookBorrowModel;
+import com.ugurtech.library.ad_model.BookModel;
 import com.ugurtech.library.ad_model.PersonBookModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +21,7 @@ import javax.swing.table.TableModel;
  */
 public class BorrowDaoImpl extends DaoAbstract implements BorrowDao {
 
-    public static String PERSON_BOOK_ADD_QUERY = "INSERT INTO bookperson (personid,bookid,startdate,deadline,finishdate) VALUES(?,?,?,?,?);";
+    public static String PERSON_BOOK_ADD_QUERY = "INSERT INTO personbook (personid,bookid,startdate,deadline) VALUES(?,?,?,?);";
     public static String BORROW_SEARCH_QUERY = "SELECT "
             + columnNameAsColumnTitle(Tables.Book.bookid) + ","
             + columnNameAsColumnTitle(Tables.Book.isbn) + ","
@@ -66,34 +66,62 @@ public class BorrowDaoImpl extends DaoAbstract implements BorrowDao {
 
     @Override
     public void add(PersonBookModel personBookModel) {
-        String query = "BEGIN TRANSACTION;" + PERSON_BOOK_ADD_QUERY;
-        PreparedStatement preparedStatement = createPrepareStatement(query);
         try {
-            preparedStatement.setInt(1, personBookModel.getPersonId());
-            preparedStatement.setLong(3, personBookModel.getStartDate());
-            preparedStatement.setLong(4, personBookModel.getDeadLine());
-            preparedStatement.setLong(5, personBookModel.getFinishDate());
-            for (BookBorrowModel bbm : personBookModel.getBookBorrowModel()) {
-                for (int amount=0;amount<personBookModel.getAmount();amount++ ) {
-                    preparedStatement.setInt(2, bbm.getBookId());
-                    preparedStatement.executeUpdate();
+            createPrepareStatement("BEGIN TRANSACTION; ").executeUpdate();
+            String query = PERSON_BOOK_ADD_QUERY;
+            PreparedStatement preparedStatement = createPrepareStatement(query);
+            try {
+                preparedStatement.setInt(1, personBookModel.getStudentModel().getPersonId());
+                preparedStatement.setLong(3, personBookModel.getStartDate());
+                preparedStatement.setLong(4, personBookModel.getDeadLine());
+                for (BookModel bbm : personBookModel.getBookModel()) {
+                    for (int amount = 1; amount <= bbm.getStock(); amount++) {
+                        preparedStatement.setInt(2, bbm.getBookId());
+                        preparedStatement.executeUpdate();
+                    }
+                    updateStock(bbm.getBookId(),getStock(bbm.getBookId()),bbm.getStock());
                 }
-
+            } catch (SQLException ex) {
+                try {
+                    createPrepareStatement("ROLLBACK;").executeUpdate();
+                    getLogger(ex, "Add person book query error", BorrowDaoImpl.class.getName());
+                } catch (SQLException ex1) {
+                    getLogger(ex1, "Add Personbook Transection error", BorrowDaoImpl.class.getName());
+                }
+            }
+            try {
+                createPrepareStatement("COMMIT;").executeUpdate();
+            } catch (SQLException ex) {
+                getLogger(ex, "Add Personbook Commit error", BorrowDaoImpl.class.getName());
             }
         } catch (SQLException ex) {
             try {
-                preparedStatement = createPrepareStatement("ROLLBACK;");
-                preparedStatement.executeUpdate();
-                getLogger(ex, "Add person book query error", BorrowDaoImpl.class.getName());
+                createPrepareStatement("ROLLBACK;").executeUpdate();
             } catch (SQLException ex1) {
-                getLogger(ex, "Add Personbook Transection error", BorrowDaoImpl.class.getName());
+                getLogger(ex1, "Transection RoolBack error", BorrowDaoImpl.class.getName());
             }
         }
+    }
+    
+    private int getStock(int bookId){
+    ResultSet rs = createResultSet("SELECT stock FROM book WHERE bookid="+bookId);
         try {
-            preparedStatement = createPrepareStatement("COMMIT;");
+            return rs.getInt("stock");
+        } catch (SQLException ex) {
+            getLogger(ex,"Get stock error",BorrowDaoImpl.class.getName() );
+            return-1;
+        }
+    
+    }
+
+    private void updateStock(int bookid,int databaseStock,int amountOfGotenBook) {
+                PreparedStatement preparedStatement = createPrepareStatement("UPDATE book SET stock=? WHERE bookid=?");
+        try {
+            preparedStatement.setInt(1, databaseStock-amountOfGotenBook);
+            preparedStatement.setInt(2, bookid);
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
-            getLogger(ex, "Add Personbook Commit error", BorrowDaoImpl.class.getName());
+                getLogger(ex, "Book update stock error ", BorrowDaoImpl.class.getName()); 
         }
     }
 }

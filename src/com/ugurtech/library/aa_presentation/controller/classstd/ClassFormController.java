@@ -78,7 +78,7 @@ private void setLanguage() {
     }
 
     public void modelToForm() {
-        classForm.getTextFieldClassName().setText(classForm.getClassModel().getClassName());
+        classForm.getTextFieldClassName().setText(classForm.getClassModel().getClssName());
     }
 
     public void clearFields() {

@@ -19,8 +19,8 @@ import javax.swing.table.TableModel;
 public class ControllerImpl extends AbstractController {
     private final BorrowService borrowService = new BorrowServiceImpl(new BorrowDaoImpl());
     
-    public TableModel search(String searchText,int dateId, long startDate, long endDate) {
-        return borrowService.search(dateId, startDate, endDate, searchText);
+    public TableModel search(String searchText,int optionsId, int dateId, long startDate, long endDate) {
+        return borrowService.search(dateId, startDate, endDate,optionsId, searchText);
     }
     
     public void add(PersonBookModel personBookModel){

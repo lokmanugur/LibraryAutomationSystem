@@ -35,6 +35,7 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
             + columnNameAsColumnTitle(Tables.Book.publishdate) + ","
             + "group_concat(DISTINCT booktype.typename) as " + columnTitleWithPrime(Tables.BookType.typename) + ","
             + "group_concat(DISTINCT (person.firstname || ' ' || person.lastname)) as " + columnTitleWithPrime(Tables.Author.name) + ","
+            + columnNameAsColumnTitle(Tables.Book.stock) + ","
             + columnNameAsColumnTitle(Tables.Book.quantity) + ","
             + columnNameAsColumnTitle(Tables.Book.lastupdate) + " "
             + "FROM book "
@@ -135,6 +136,7 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
     public void add(BookModel book) {
         if (isIsbn(book)) {
         } else {
+            beginTransection();
             PreparedStatement preparedStatement = createPrepareStatement(INSERT_BOOK);
             try {
                 preparedStatement.setLong(1, book.getIsbn());
@@ -151,8 +153,10 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
                 addAuthorAndBookType(book, generatedKey, preparedStatement);
                 UserInfoMessages.getInstance().insertMessage(effactedRow);
             } catch (SQLException ex) {
+                rollBack();
                 getLogger(ex, "Add book error", BookDaoImpl.class.getName());
             }
+            commit();
         }
     }
 
@@ -171,6 +175,7 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex, "Add Author and Booktype error", BookDaoImpl.class.getName());
         }
 
@@ -178,6 +183,7 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
 
     @Override
     public void update(BookModel book) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(UPDATE_BOOK);
         try {
             preparedStatement.setLong(1, book.getIsbn());
@@ -196,12 +202,15 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
             addAuthorAndBookType(book, book.getBookId(), preparedStatement);
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex, "Update book error", BookDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override
     public void delete(BookModel book) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(DELETE_BOOK);
         try {
             int effactedRow;
@@ -213,8 +222,10 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
             }
             UserInfoMessages.getInstance().deletedMessage(effactedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex, "Delete book error", BookDaoImpl.class.getName());
         }
+        commit();
     }
 
     private int deleteAuthorAndBookType(BookModel book, PreparedStatement preparedStatement) {
@@ -231,6 +242,7 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
                 effactedRow += preparedStatement.executeUpdate();
             }
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex, "Delete Author And Book error", BookDaoImpl.class.getName());
         }
         return effactedRow;

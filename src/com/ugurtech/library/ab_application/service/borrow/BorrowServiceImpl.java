@@ -22,8 +22,8 @@ public class BorrowServiceImpl implements BorrowService{
     }
 
     @Override
-    public TableModel search(int dateId, long startDate, long endDate, String searchText) {
-        return borrowDao.search(dateId, startDate, endDate, searchText);
+    public TableModel search(int dateId, long startDate, long endDate,int optionsId, String searchText) {
+        return borrowDao.search(dateId, startDate, endDate,optionsId, searchText);
     }
 
     @Override

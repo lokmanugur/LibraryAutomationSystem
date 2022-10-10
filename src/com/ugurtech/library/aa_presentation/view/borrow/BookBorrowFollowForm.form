@@ -72,8 +72,8 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="searchTextField" min="-2" pref="230" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="searchComboBox" min="-2" pref="304" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                          <Component id="searchComboBox" min="-2" pref="271" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
                           <Component id="retunButton" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="writeFileButton" max="32767" attributes="0"/>

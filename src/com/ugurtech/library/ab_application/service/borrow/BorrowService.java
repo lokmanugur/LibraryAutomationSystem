@@ -13,6 +13,6 @@ import javax.swing.table.TableModel;
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
 public interface BorrowService {
-    public TableModel search(int dateId,long startDate,long endDate,String searchText);
+    public TableModel search(int dateId,long startDate,long endDate,int optionsId,String searchText);
     public void add(PersonBookModel personBookModel);
 }

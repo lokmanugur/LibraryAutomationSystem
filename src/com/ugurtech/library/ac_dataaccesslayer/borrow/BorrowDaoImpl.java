@@ -41,7 +41,7 @@ public class BorrowDaoImpl extends DaoAbstract implements BorrowDao {
             + "left join person on author.personid=person.personid ";
 
     @Override
-    public TableModel search(int dateId, long startDate, long endDate, String searchText) {
+    public TableModel search(int dateId, long startDate, long endDate, int optionsId, String searchText) {
         String query = "";
         query += BORROW_SEARCH_QUERY;
         query += " WHERE ";
@@ -66,62 +66,48 @@ public class BorrowDaoImpl extends DaoAbstract implements BorrowDao {
 
     @Override
     public void add(PersonBookModel personBookModel) {
+        beginTransection();
+        String query = PERSON_BOOK_ADD_QUERY;
+        PreparedStatement preparedStatement = createPrepareStatement(query);
         try {
-            createPrepareStatement("BEGIN TRANSACTION; ").executeUpdate();
-            String query = PERSON_BOOK_ADD_QUERY;
-            PreparedStatement preparedStatement = createPrepareStatement(query);
-            try {
-                preparedStatement.setInt(1, personBookModel.getStudentModel().getPersonId());
-                preparedStatement.setLong(3, personBookModel.getStartDate());
-                preparedStatement.setLong(4, personBookModel.getDeadLine());
-                for (BookModel bbm : personBookModel.getBookModel()) {
-                    for (int amount = 1; amount <= bbm.getStock(); amount++) {
-                        preparedStatement.setInt(2, bbm.getBookId());
-                        preparedStatement.executeUpdate();
-                    }
-                    updateStock(bbm.getBookId(),getStock(bbm.getBookId()),bbm.getStock());
+            preparedStatement.setInt(1, personBookModel.getStudentModel().getPersonId());
+            preparedStatement.setLong(3, personBookModel.getStartDate());
+            preparedStatement.setLong(4, personBookModel.getDeadLine());
+            for (BookModel bbm : personBookModel.getBookModel()) {
+                for (int amount = 1; amount <= bbm.getStock(); amount++) {
+                    preparedStatement.setInt(2, bbm.getBookId());
+                    preparedStatement.executeUpdate();
                 }
-            } catch (SQLException ex) {
-                try {
-                    createPrepareStatement("ROLLBACK;").executeUpdate();
-                    getLogger(ex, "Add person book query error", BorrowDaoImpl.class.getName());
-                } catch (SQLException ex1) {
-                    getLogger(ex1, "Add Personbook Transection error", BorrowDaoImpl.class.getName());
-                }
-            }
-            try {
-                createPrepareStatement("COMMIT;").executeUpdate();
-            } catch (SQLException ex) {
-                getLogger(ex, "Add Personbook Commit error", BorrowDaoImpl.class.getName());
+                updateStock(bbm.getBookId(), getStock(bbm.getBookId()), bbm.getStock());
             }
         } catch (SQLException ex) {
-            try {
-                createPrepareStatement("ROLLBACK;").executeUpdate();
-            } catch (SQLException ex1) {
-                getLogger(ex1, "Transection RoolBack error", BorrowDaoImpl.class.getName());
-            }
+            rollBack();
+            getLogger(ex, "Add person book query error", BorrowDaoImpl.class.getName());
         }
+        commit();
     }
-    
-    private int getStock(int bookId){
-    ResultSet rs = createResultSet("SELECT stock FROM book WHERE bookid="+bookId);
+
+    private int getStock(int bookId) {
+        ResultSet rs = createResultSet("SELECT stock FROM book WHERE bookid=" + bookId);
         try {
             return rs.getInt("stock");
         } catch (SQLException ex) {
-            getLogger(ex,"Get stock error",BorrowDaoImpl.class.getName() );
-            return-1;
+            rollBack();
+            getLogger(ex, "Get stock error", BorrowDaoImpl.class.getName());
+            return -1;
         }
-    
+
     }
 
-    private void updateStock(int bookid,int databaseStock,int amountOfGotenBook) {
-                PreparedStatement preparedStatement = createPrepareStatement("UPDATE book SET stock=? WHERE bookid=?");
+    private void updateStock(int bookid, int databaseStock, int amountOfGotenBook) {
+        PreparedStatement preparedStatement = createPrepareStatement("UPDATE book SET stock=? WHERE bookid=?");
         try {
-            preparedStatement.setInt(1, databaseStock-amountOfGotenBook);
+            preparedStatement.setInt(1, databaseStock - amountOfGotenBook);
             preparedStatement.setInt(2, bookid);
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
-                getLogger(ex, "Book update stock error ", BorrowDaoImpl.class.getName()); 
+            rollBack();
+            getLogger(ex, "Book update stock error ", BorrowDaoImpl.class.getName());
         }
     }
 }

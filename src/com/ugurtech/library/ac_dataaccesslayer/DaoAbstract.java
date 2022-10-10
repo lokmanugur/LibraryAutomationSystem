@@ -9,6 +9,7 @@ import com.ugurtech.library.ac_dataaccesslayer.database.SQLiteDatabase;
 import com.ugurtech.library.ab_application.af_lib.localization.Internationalization;
 import com.ugurtech.library.ab_application.af_lib.localization.LanguageImpl;
 import com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages;
+import com.ugurtech.library.ac_dataaccesslayer.borrow.BorrowDaoImpl;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -156,6 +157,30 @@ public abstract class DaoAbstract {
 
     public void getLogger(SQLException ex, String errorTitle, String className) {
         UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), errorTitle);
+    }
+
+    protected void beginTransection() {
+        try {
+            createPrepareStatement("BEGIN TRANSACTION; ").executeUpdate();
+        } catch (SQLException ex) {
+            getLogger(ex, "Begin Transection error", DaoAbstract.class.getName());
+        }
+    }
+
+    protected void rollBack() {
+        try {
+            createPrepareStatement("ROLLBACK;").executeUpdate();
+        } catch (SQLException ex) {
+            getLogger(ex, "Transection rollback error", BorrowDaoImpl.class.getName());
+        }
+    }
+
+    protected void commit() {
+        try {
+            createPrepareStatement("COMMIT;").executeUpdate();
+        } catch (SQLException ex) {
+            getLogger(ex, "Transection Commit error", BorrowDaoImpl.class.getName());
+        }
     }
 
 }

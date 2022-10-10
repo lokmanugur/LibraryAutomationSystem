@@ -7,10 +7,10 @@ package com.ugurtech.library.aa_presentation.controller.borrow;
 
 import com.ugurtech.library.aa_presentation.controller.Initialize;
 import com.ugurtech.library.aa_presentation.view.borrow.BookBorrowForm;
+import com.ugurtech.library.aa_presentation.view.borrow.FinishBorrowedForm;
 import com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm;
 import com.ugurtech.library.aa_presentation.view.main.MainForm;
 import java.util.Vector;
-
 
 /**
  *
@@ -20,10 +20,10 @@ import java.util.Vector;
 public final class BookBorrowController extends ControllerImpl implements Initialize {
 
     private final BookBorrowForm bookBorrowForm;
-    
+
     public BookBorrowController(BookBorrowForm bookBorrowForm) {
         this.bookBorrowForm = bookBorrowForm;
-        
+
         initView();
         initController();
     }
@@ -51,14 +51,24 @@ public final class BookBorrowController extends ControllerImpl implements Initia
         bookBorrowForm.getButtonSearch().addActionListener((java.awt.event.ActionEvent evt) -> {
             search();
         });
+        
         bookBorrowForm.getButtonBorrow().addActionListener((java.awt.event.ActionEvent evt) -> {
             addBasket();
+        });
+        
+        bookBorrowForm.getButtonReturn().addActionListener((e) -> {
+            MainForm.getInstance().addDesktopPane(FinishBorrowedForm.INSTANCE);
+        });
+        
+        bookBorrowForm.getComboBoxOptions().addItemListener((java.awt.event.ItemEvent evt) -> {
+            search();
         });
     }
 
     public void search() {
         bookBorrowForm.getTableBooks().setModel(
                 search(bookBorrowForm.getTextFieldSearch().getText(),
+                        bookBorrowForm.getComboBoxOptions().getSelectedIndex(),
                         bookBorrowForm.getComboBoxDate().getSelectedIndex(),
                         bookBorrowForm.getDateChooserFirst().getDate() == null ? 0 : bookBorrowForm.getDateChooserFirst().getDate().getTime(),
                         bookBorrowForm.getDateChooserLast().getDate() == null ? 0 : bookBorrowForm.getDateChooserLast().getDate().getTime()));
@@ -76,24 +86,26 @@ public final class BookBorrowController extends ControllerImpl implements Initia
         bookBorrowForm.getComboBoxDate().addItem(setLanguage("book.lastupdate"));
     }
 
-    private void setLanguage() {}
+    private void setLanguage() {
+    }
 
     private void addBasket() {
         startBorrowForm().getStartBorrowFormController().addHashMap(
-                (long)bookBorrowForm.getTableBooks().getValueAt(bookBorrowForm.getTableBooks().getSelectedRow(), 1), 
-                addVector(),(int)bookBorrowForm.getTableBooks().getValueAt(bookBorrowForm.getTableBooks().getSelectedRow(), 7));
+                (long) bookBorrowForm.getTableBooks().getValueAt(bookBorrowForm.getTableBooks().getSelectedRow(), 1),
+                addVector(), 
+                (int) bookBorrowForm.getTableBooks().getValueAt(bookBorrowForm.getTableBooks().getSelectedRow(), 7));
     }
-    
-    private StartBorrowForm startBorrowForm(){
-                StartBorrowForm startBorrowForm = StartBorrowForm.INSTANCE;
+
+    private StartBorrowForm startBorrowForm() {
+        StartBorrowForm startBorrowForm = StartBorrowForm.INSTANCE;
         if (!startBorrowForm.isVisible()) {
             MainForm.getInstance().addDesktopPane(startBorrowForm);
             startBorrowForm.setVisible(false);
         }
         return startBorrowForm;
     }
-    
-    private Vector<Object> addVector(){
+
+    private Vector<Object> addVector() {
         Vector<Object> dataList = new Vector<>();
         dataList.add(bookBorrowForm.getTableBooks().getValueAt(bookBorrowForm.getTableBooks().getSelectedRow(), 0));
         dataList.add(bookBorrowForm.getTableBooks().getValueAt(bookBorrowForm.getTableBooks().getSelectedRow(), 1));
@@ -101,5 +113,5 @@ public final class BookBorrowController extends ControllerImpl implements Initia
         dataList.add(1);
         return dataList;
     }
-   
+
 }

@@ -30,7 +30,7 @@ public class LanguageDaoImpl extends DaoAbstract implements LanguageDao{
             while(resultSet.next())
             languageList.add(new LanguageModel(resultSet.getInt("languageid"),resultSet.getString("languagename"),resultSet.getString("abbriviation")));
         } catch (SQLException ex) {
-            Logger.getLogger(CountryDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"FirstStep Exception ",LanguageDaoImpl.class.getName());
         }
         return languageList;
     }

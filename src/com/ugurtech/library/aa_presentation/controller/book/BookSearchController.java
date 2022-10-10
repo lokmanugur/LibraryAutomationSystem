@@ -9,6 +9,8 @@ import com.ugurtech.library.aa_presentation.controller.Initialize;
 import com.ugurtech.library.aa_presentation.view.main.MainForm;
 import com.ugurtech.library.aa_presentation.view.book.BookForm;
 import com.ugurtech.library.aa_presentation.view.book.BookSearchForm;
+import com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm;
+import java.util.Vector;
 
 /**
  *
@@ -59,6 +61,9 @@ public final class BookSearchController extends BookController implements Initia
         bookSearchForm.getButtonSearch().addActionListener((java.awt.event.ActionEvent evt) -> {
             search();
         });
+        bookSearchForm.getButtonBorrow().addActionListener((java.awt.event.ActionEvent evt) -> {
+            addBasket();
+        });
     }
 
     protected void add() {
@@ -101,5 +106,30 @@ public final class BookSearchController extends BookController implements Initia
 
     private void setLanguage() {
 
+    }
+    
+        private void addBasket() {
+        startBorrowForm().getStartBorrowFormController().addHashMap(
+                (long)bookSearchForm.getBooksTable().getValueAt(bookSearchForm.getBooksTable().getSelectedRow(), 1),
+                addVector(), 
+                (int) bookSearchForm.getBooksTable().getValueAt(bookSearchForm.getBooksTable().getSelectedRow(), 7));
+    }
+
+    private StartBorrowForm startBorrowForm() {
+        StartBorrowForm startBorrowForm = StartBorrowForm.INSTANCE;
+        if (!startBorrowForm.isVisible()) {
+            MainForm.getInstance().addDesktopPane(startBorrowForm);
+            startBorrowForm.setVisible(false);
+        }
+        return startBorrowForm;
+    }
+
+    private Vector<Object> addVector() {
+        Vector<Object> dataList = new Vector<>();
+        dataList.add(bookSearchForm.getBooksTable().getValueAt(bookSearchForm.getBooksTable().getSelectedRow(), 0));
+        dataList.add(bookSearchForm.getBooksTable().getValueAt(bookSearchForm.getBooksTable().getSelectedRow(), 1));
+        dataList.add(bookSearchForm.getBooksTable().getValueAt(bookSearchForm.getBooksTable().getSelectedRow(), 2));
+        dataList.add(1);
+        return dataList;
     }
 }

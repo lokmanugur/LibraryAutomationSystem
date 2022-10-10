@@ -58,6 +58,7 @@ public final class BookSearchForm extends JInternalFrame {
         buttonDelete = new javax.swing.JButton();
         buttonWriteFile = new javax.swing.JButton();
         buttonSearch = new javax.swing.JButton();
+        buttonBorrow = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -140,6 +141,11 @@ public final class BookSearchForm extends JInternalFrame {
 
         buttonSearch.setText("Search");
 
+        buttonBorrow.setText("Add Basket");
+        buttonBorrow.setMaximumSize(new java.awt.Dimension(100, 35));
+        buttonBorrow.setMinimumSize(new java.awt.Dimension(90, 35));
+        buttonBorrow.setPreferredSize(new java.awt.Dimension(100, 35));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -151,7 +157,9 @@ public final class BookSearchForm extends JInternalFrame {
                 .addComponent(textFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonSearch)
-                .addGap(130, 130, 130)
+                .addGap(24, 24, 24)
+                .addComponent(buttonBorrow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,7 +180,8 @@ public final class BookSearchForm extends JInternalFrame {
                     .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonWriteFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonBorrow, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -207,6 +216,7 @@ public final class BookSearchForm extends JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable booksTable;
     private javax.swing.JButton buttonAdd;
+    private javax.swing.JButton buttonBorrow;
     private javax.swing.JButton buttonDelete;
     private javax.swing.JButton buttonSearch;
     private javax.swing.JButton buttonUpdate;
@@ -354,6 +364,14 @@ public final class BookSearchForm extends JInternalFrame {
 
     public void setLabelStart(JLabel labelStart) {
         this.labelStart = labelStart;
+    }
+
+    public JButton getButtonBorrow() {
+        return buttonBorrow;
+    }
+
+    public void setButtonBorrow(JButton buttonBorrow) {
+        this.buttonBorrow = buttonBorrow;
     }
     
 }

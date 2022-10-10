@@ -15,8 +15,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.TableModel;
 
 /**
@@ -57,7 +55,7 @@ public class BookTypeDaoImpl extends DaoAbstract implements BookTypeDao {
                         resultSet.getString(3)));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(BookTypeDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"GetAll Exception",BookTypeDaoImpl.class.getName());
         }
         return bookTypeList;
     }  
@@ -74,7 +72,7 @@ public class BookTypeDaoImpl extends DaoAbstract implements BookTypeDao {
                 bookTypeModel.setAbbrivation(resultSet.getString(3));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(BookTypeDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"Get Exception ",BookTypeDaoImpl.class.getName());
         }
 
         return bookTypeModel;
@@ -89,8 +87,7 @@ public class BookTypeDaoImpl extends DaoAbstract implements BookTypeDao {
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Insert Error");
-            Logger.getLogger(BookTypeDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"Add Exception ",BookTypeDaoImpl.class.getName());
         }
     }
 
@@ -104,8 +101,7 @@ public class BookTypeDaoImpl extends DaoAbstract implements BookTypeDao {
             int affectedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().updateMessage(affectedRow);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Update Error");
-            Logger.getLogger(BookTypeDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"Update Exception ",BookTypeDaoImpl.class.getName());
         }
     }
 
@@ -117,8 +113,7 @@ public class BookTypeDaoImpl extends DaoAbstract implements BookTypeDao {
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().deletedMessage(effactedRow);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Delete Error");
-            Logger.getLogger(BookTypeDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"Delete Exception ",BookTypeDaoImpl.class.getName());
         }
     }
 

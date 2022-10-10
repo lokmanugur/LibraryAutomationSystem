@@ -12,8 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -60,8 +58,7 @@ public class FirstStepDaoImpl extends DaoAbstract implements FirstStepDao {
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Insert Error");
-            Logger.getLogger(FirstStepModel.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"FirstStep Exception ",FirstStepModel.class.getName());
         }
     }
 

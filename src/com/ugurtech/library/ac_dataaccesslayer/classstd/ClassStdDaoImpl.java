@@ -15,8 +15,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.TableModel;
 
 /**
@@ -55,7 +53,7 @@ public static final String CLSS_INSERT_QUERY = "INSERT INTO clss (classname) VAL
                         resultSet.getString(2)));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ClassStdDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"GetAll Exception ",ClassStdDaoImpl.class.getName());
         }
         return classList;
     }
@@ -71,7 +69,7 @@ public static final String CLSS_INSERT_QUERY = "INSERT INTO clss (classname) VAL
                 classModel.setClassName(resultSet.getString(2));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ClassStdDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"Get Exception ",ClassStdDaoImpl.class.getName());
         }
 
         return classModel;
@@ -85,8 +83,7 @@ public static final String CLSS_INSERT_QUERY = "INSERT INTO clss (classname) VAL
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Insert Error");
-            Logger.getLogger(ClassStdDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"Add Exception ",ClassStdDaoImpl.class.getName());
         }
     }
 
@@ -99,8 +96,7 @@ public static final String CLSS_INSERT_QUERY = "INSERT INTO clss (classname) VAL
             int affectedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().updateMessage(affectedRow);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Update Error");
-            Logger.getLogger(ClassStdDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"Update Exception ",ClassStdDaoImpl.class.getName());
         }
     }
 
@@ -112,8 +108,7 @@ public static final String CLSS_INSERT_QUERY = "INSERT INTO clss (classname) VAL
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().deletedMessage(effactedRow);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Delete Error");
-            Logger.getLogger(ClassStdDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"Delete Exception ",ClassStdDaoImpl.class.getName());
         }
     }
 

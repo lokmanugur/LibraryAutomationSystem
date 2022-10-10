@@ -335,8 +335,8 @@ public final class BookFormController extends BookController implements Initiali
         bookModel.setSysuserId(CurrentUserModel.INSTANCE.getSysUserId());
         bookModel.setBookName(bookForm.getBookNameTextField().getText());
         bookModel.setPressDate(bookForm.getPressDateChooser().getDate() == null ? 0 : bookForm.getPressDateChooser().getDate().getTime());
-        bookModel.setQuantity(Integer.valueOf(bookForm.getTextFieldBookCount().getText()));
-        bookModel.setStock(Integer.valueOf(bookForm.getTextFieldBookCount().getText()));
+        bookModel.setQuantity(Integer.parseInt(bookForm.getTextFieldBookCount().getText()));
+        bookModel.setStock(Integer.parseInt(bookForm.getTextFieldBookCount().getText()));
         bookModel.setShelf(bookForm.getTextFieldBookShelf().getText());
 
         for (int i = 0; i < bookForm.getBookTypeDefaultListModel().getSize(); i++) {

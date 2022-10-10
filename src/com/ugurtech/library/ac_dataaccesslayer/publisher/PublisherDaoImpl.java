@@ -15,8 +15,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.TableModel;
 
 /**
@@ -59,7 +57,7 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
                           resultSet.getString(columnTitleWithoutPrime(Tables.Publisher.address))));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PublisherDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"GetAll Exception ",PublisherDaoImpl.class.getName());
         }
         return publisherList;
     }
@@ -80,7 +78,7 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
                 publisherModel.setAddress(resultSet.getString(columnTitleWithoutPrime(Tables.publisher + ".address")));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PublisherDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"GetAll Exception ",PublisherDaoImpl.class.getName());
         }
 
         return publisherModel;
@@ -111,7 +109,7 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
             int affectedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().updateMessage(affectedRow);
         } catch (SQLException ex) {
-                getLogger(ex, "Publisher update error ", PublisherDaoImpl.class.getName()); 
+            getLogger(ex, "Publisher update error ", PublisherDaoImpl.class.getName()); 
         }
     }
 

@@ -16,8 +16,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.TableModel;
 
 /**
@@ -75,7 +73,7 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
                         resultSet.getString(columnTitleWithoutPrime("person.lastname"))));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AuthorDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"Author Add Exception",AuthorDaoImpl.class.getName());
         }
         return authorList;
     }
@@ -97,7 +95,7 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
                 authorModel.setBirthDate(resultSet.getLong(columnTitleWithoutPrime("person.birthdate")));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AuthorDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"Author Add Exception",AuthorDaoImpl.class.getName());
         }
 
         return authorModel;
@@ -105,6 +103,7 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
 
     @Override
     public void add(AuthorModel am) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(PERSON_INSERT_QUERY);
         try {
             preparedStatement.setString(1, am.getFirstName());
@@ -120,13 +119,15 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
             int numberOfData = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(numberOfData);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Insert Error");
-            Logger.getLogger(AuthorDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            rollBack();
+            getLogger(ex,"Author Add Exception",AuthorDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override
     public void update(AuthorModel v) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(AUTHOR_UPDATE_QUERY);
         try {
             preparedStatement.setString(1, v.getFirstName());
@@ -137,13 +138,15 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
             int effectedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().updateMessage(effectedRow);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Update Error");
-            Logger.getLogger(AuthorDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            rollBack();
+            getLogger(ex,"Author Add Exception",AuthorDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override
     public void delete(AuthorModel v) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(AUTHOR_DELETE_QUERY);
         try {
             preparedStatement.setInt(1, v.getPersonId());
@@ -155,9 +158,10 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
             preparedStatement.executeUpdate();}
             UserInfoMessages.getInstance().deletedMessage(effactedRow);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Delete Error");
-            Logger.getLogger(AuthorDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            rollBack();
+            getLogger(ex,"Author Add Exception",AuthorDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override

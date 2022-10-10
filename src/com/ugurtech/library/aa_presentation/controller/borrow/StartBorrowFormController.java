@@ -52,6 +52,7 @@ public final class StartBorrowFormController extends ControllerImpl implements I
     @Override
     public void initController() {
         startBorrowForm.getComboBoxPerson().getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 if (evt.getKeyCode() == 10) {
                     fillPersonToLabels();
@@ -71,14 +72,17 @@ public final class StartBorrowFormController extends ControllerImpl implements I
             save();
         });
         startBorrowForm.getComboBoxPerson().addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            @Override
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
 
             }
 
+            @Override
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
                 fillPersonToLabels();
             }
 
+            @Override
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 fillAllPersonToComboBox();
             }

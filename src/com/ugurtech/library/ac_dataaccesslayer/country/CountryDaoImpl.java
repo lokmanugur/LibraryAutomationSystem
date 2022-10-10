@@ -10,8 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -32,7 +30,7 @@ public class CountryDaoImpl extends DaoAbstract implements CountryDao {
             while(resultSet.next())
             countryList.add(new CountryModel(resultSet.getInt("countryid"),resultSet.getString("countryname"),resultSet.getString("abbriviation")));
         } catch (SQLException ex) {
-            Logger.getLogger(CountryDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"GetAll Exception ",CountryDaoImpl.class.getName());
         }
         return countryList;
     }

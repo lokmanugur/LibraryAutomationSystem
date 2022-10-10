@@ -10,8 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -31,7 +29,7 @@ public class UserTypeDaoImpl extends DaoAbstract implements UserTypeDao {
                 userTypeList.add(new UserTypeModel(resultSet.getInt("usertypeid"), resultSet.getString("usertypename")));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserTypeDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"GetAll Exception ",UserTypeDaoImpl.class.getName());
         }
         return userTypeList;
     }

@@ -15,8 +15,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.TableModel;
 
 /**
@@ -71,7 +69,7 @@ public class SchoolDaoImpl extends DaoAbstract implements SchoolDao {
                 schoolList.add(schoolModel);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(SchoolDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"GetAll Exception ",SchoolDaoImpl.class.getName());
         }
         return schoolList;
     }
@@ -93,7 +91,7 @@ public class SchoolDaoImpl extends DaoAbstract implements SchoolDao {
                 schoolModel.setAddress(resultSet.getString(columnTitleWithoutPrime(Tables.school + ".address")));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(SchoolDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"Get Exception ",SchoolDaoImpl.class.getName());
         }
         return schoolModel;
     }
@@ -108,8 +106,7 @@ public class SchoolDaoImpl extends DaoAbstract implements SchoolDao {
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Insert Error");
-            Logger.getLogger(SchoolDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"Add Exception ",SchoolDaoImpl.class.getName());
         }
     }
 
@@ -124,8 +121,7 @@ public class SchoolDaoImpl extends DaoAbstract implements SchoolDao {
             int affectedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().updateMessage(affectedRow);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Update Error");
-            Logger.getLogger(SchoolDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"Update Exception ",SchoolDaoImpl.class.getName());
         }
     }
 
@@ -137,8 +133,7 @@ public class SchoolDaoImpl extends DaoAbstract implements SchoolDao {
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().deletedMessage(effactedRow);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Delete Error");
-            Logger.getLogger(SchoolDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"Delete Exception ",SchoolDaoImpl.class.getName());
         }
     }
 

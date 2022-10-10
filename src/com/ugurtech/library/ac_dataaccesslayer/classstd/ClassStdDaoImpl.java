@@ -77,18 +77,22 @@ public static final String CLSS_INSERT_QUERY = "INSERT INTO clss (classname) VAL
 
     @Override
     public void add(ClassModel classModel) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(CLSS_INSERT_QUERY);
         try {
             preparedStatement.setString(1, classModel.getClssName());
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex,"Add Exception ",ClassStdDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override
     public void update(ClassModel classModel) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(CLSS_UPDATE_QUERY);
         try {
             preparedStatement.setString(1, classModel.getClssName());
@@ -96,20 +100,25 @@ public static final String CLSS_INSERT_QUERY = "INSERT INTO clss (classname) VAL
             int affectedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().updateMessage(affectedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex,"Update Exception ",ClassStdDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override
     public void delete(ClassModel classModel) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(CLSS_DELETE_QUERY);
         try {
             preparedStatement.setInt(1, classModel.getClassId());
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().deletedMessage(effactedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex,"Delete Exception ",ClassStdDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override

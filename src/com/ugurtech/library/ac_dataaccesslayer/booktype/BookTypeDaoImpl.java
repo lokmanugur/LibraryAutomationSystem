@@ -80,6 +80,7 @@ public class BookTypeDaoImpl extends DaoAbstract implements BookTypeDao {
 
     @Override
     public void add(BookTypeModel bookTypeModel) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(BOOKTYPE_INSERT_QUERY);
         try {
             preparedStatement.setString(1, bookTypeModel.getTypeName());
@@ -87,12 +88,15 @@ public class BookTypeDaoImpl extends DaoAbstract implements BookTypeDao {
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex,"Add Exception ",BookTypeDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override
     public void update(BookTypeModel bookTypeModel) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(BOOKTYPE_UPDATE_QUERY);
         try {
             preparedStatement.setString(1, bookTypeModel.getTypeName());
@@ -101,20 +105,25 @@ public class BookTypeDaoImpl extends DaoAbstract implements BookTypeDao {
             int affectedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().updateMessage(affectedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex,"Update Exception ",BookTypeDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override
     public void delete(BookTypeModel bookTypeModel) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(BOOKTYPE_DELETE_QUERY);
         try {
             preparedStatement.setInt(1, bookTypeModel.getBookTypeId());
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().deletedMessage(effactedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex,"Delete Exception ",BookTypeDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override

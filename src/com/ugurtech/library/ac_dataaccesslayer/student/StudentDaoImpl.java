@@ -65,6 +65,7 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
 
     @Override
     public void add(StudentModel studentModel) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(PERSON_INSERT_QUERY);
         try {
             preparedStatement.setString(1, studentModel.getFirstName());
@@ -83,12 +84,15 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex,"Add Exception ",StudentDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override
     public void update(StudentModel v) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(PERSON_UPDATE_QUERY);
         try {
             preparedStatement.setString(1, v.getFirstName());
@@ -109,8 +113,10 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
             }
             UserInfoMessages.getInstance().updateMessage(effectedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex,"Update Exception ",StudentDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override
@@ -145,6 +151,7 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
 
     @Override
     public void delete(StudentModel v) {
+        beginTransection();
         try {
             PreparedStatement preparedStatement = createPrepareStatement(PERSON_DELETE_QUERY);
             preparedStatement.setInt(1, v.getStudentId());
@@ -154,8 +161,10 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
             int effectedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().deletedMessage(effectedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex,"Delete Exception ",StudentDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override

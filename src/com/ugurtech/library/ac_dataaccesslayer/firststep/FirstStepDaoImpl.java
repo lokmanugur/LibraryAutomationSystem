@@ -35,6 +35,7 @@ public class FirstStepDaoImpl extends DaoAbstract implements FirstStepDao {
 
     @Override
     public void add(FirstStepModel v) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(INSERT_PERSON);
         try {
             preparedStatement.setString(1, v.getFirstName());
@@ -58,8 +59,10 @@ public class FirstStepDaoImpl extends DaoAbstract implements FirstStepDao {
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex,"FirstStep Exception ",FirstStepModel.class.getName());
         }
+        commit();
     }
 
     @Override

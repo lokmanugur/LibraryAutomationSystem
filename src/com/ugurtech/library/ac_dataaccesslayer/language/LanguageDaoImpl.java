@@ -6,13 +6,10 @@ package com.ugurtech.library.ac_dataaccesslayer.language;
 
 import com.ugurtech.library.ad_model.responsmodels.LanguageModel;
 import com.ugurtech.library.ac_dataaccesslayer.DaoAbstract;
-import com.ugurtech.library.ac_dataaccesslayer.country.CountryDaoImpl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -23,7 +20,6 @@ public class LanguageDaoImpl extends DaoAbstract implements LanguageDao{
     
     @Override
     public List<LanguageModel> getAll() {
-        
         List<LanguageModel> languageList = new ArrayList<>();
         ResultSet resultSet = createResultSet(ALL_COUNTRY_QUERY);
         try {

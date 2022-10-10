@@ -86,6 +86,7 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
 
     @Override
     public void add(PublisherModel publisherModel) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(PUBLISHER_INSERT_QUERY);
         try {
             preparedStatement.setString(1, publisherModel.getPublisherName());
@@ -94,12 +95,15 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex, "Publisher add error ", PublisherDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override
     public void update(PublisherModel publisherModel) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(PUBLISHER_UPDATE_QUERY);
         try {
             preparedStatement.setString(1, publisherModel.getPublisherName());
@@ -109,20 +113,25 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
             int affectedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().updateMessage(affectedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex, "Publisher update error ", PublisherDaoImpl.class.getName()); 
         }
+        commit();
     }
 
     @Override
     public void delete(PublisherModel publisherModel) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(PUBLISHER_DELETE_QUERY);
         try {
             preparedStatement.setInt(1, publisherModel.getPublisherId());
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().deletedMessage(effactedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex, "Publisher delete error ", PublisherDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override

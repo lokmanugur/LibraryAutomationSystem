@@ -95,6 +95,7 @@ public class PersonDaoImpl extends DaoAbstract implements PersonDao {
 
     @Override
     public void add(PersonModel personModel) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(PERSON_INSERT_QUERY);
         try {
             preparedStatement.setString(1, personModel.getFirstName());
@@ -106,12 +107,15 @@ public class PersonDaoImpl extends DaoAbstract implements PersonDao {
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex, "Add Error Query",PersonDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override
     public void update(PersonModel v) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(PERSON_UPDATE_QUERY);
         try {
             preparedStatement.setString(1, v.getFirstName());
@@ -124,20 +128,25 @@ public class PersonDaoImpl extends DaoAbstract implements PersonDao {
             int effectedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().updateMessage(effectedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex, "Update Error Query",PersonDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override
     public void delete(PersonModel v) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(PERSON_DELETE_QUERY);
         try {
             preparedStatement.setInt(1, v.getPersonId());
             int effectedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().deletedMessage(effectedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex, "Delete Error Query",PersonDaoImpl.class.getName());
         }
+        commit();
     }
 
 }

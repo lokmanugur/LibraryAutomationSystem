@@ -98,6 +98,7 @@ public class SchoolDaoImpl extends DaoAbstract implements SchoolDao {
 
     @Override
     public void add(SchoolModel schoolModel) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(SCHOOL_INSERT_QUERY);
         try {
             preparedStatement.setString(1, schoolModel.getSchoolName());
@@ -106,12 +107,15 @@ public class SchoolDaoImpl extends DaoAbstract implements SchoolDao {
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex,"Add Exception ",SchoolDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override
     public void update(SchoolModel schoolModel) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(SCHOOL_UDATE_QUERY);
         try {
             preparedStatement.setString(1, schoolModel.getSchoolName());
@@ -121,20 +125,25 @@ public class SchoolDaoImpl extends DaoAbstract implements SchoolDao {
             int affectedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().updateMessage(affectedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex,"Update Exception ",SchoolDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override
     public void delete(SchoolModel schoolModel) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(SCHOOL_DELETE_QUERY);
         try {
             preparedStatement.setInt(1, schoolModel.getSchoolId());
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().deletedMessage(effactedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex,"Delete Exception ",SchoolDaoImpl.class.getName());
         }
+        commit();
     }
 
 }

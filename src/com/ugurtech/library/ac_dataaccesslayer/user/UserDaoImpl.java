@@ -138,6 +138,7 @@ public class UserDaoImpl extends DaoAbstract implements UserDao {
 
     @Override
     public void add(UserModel v) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(USER_INSERT_QUERY);
         try {
             preparedStatement.setInt(1, v.getPersonModel().getPersonId());
@@ -151,12 +152,15 @@ public class UserDaoImpl extends DaoAbstract implements UserDao {
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex, " User Add Error", UserDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override
     public void update(UserModel v) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(USER_UPDATE_QUERY);
         try {
             preparedStatement.setInt(1, v.getPersonModel().getPersonId());
@@ -171,20 +175,25 @@ public class UserDaoImpl extends DaoAbstract implements UserDao {
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex, " User Add Error", UserDaoImpl.class.getName());
         }
+        commit();
     }
 
     @Override
     public void delete(UserModel v) {
+        beginTransection();
         PreparedStatement preparedStatement = createPrepareStatement(USER_DELETE_QUERY);
         try {
             preparedStatement.setInt(1, v.getSysUserId());
             int effactedRow = preparedStatement.executeUpdate();
             UserInfoMessages.getInstance().insertMessage(effactedRow);
         } catch (SQLException ex) {
+            rollBack();
             getLogger(ex, " User Add Error", UserDaoImpl.class.getName());
         }
+        commit();
     }
 
 }

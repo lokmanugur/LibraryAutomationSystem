@@ -76,8 +76,9 @@ public final class BookBorrowController extends ControllerImpl implements Initia
     private void fillDateColumnToSelectionComboBox() {
         bookBorrowForm.getComboBoxDate().removeAll();
         bookBorrowForm.getComboBoxDate().addItem("");
-        bookBorrowForm.getComboBoxDate().addItem(setLanguage("book.publishdate"));
-        bookBorrowForm.getComboBoxDate().addItem(setLanguage("book.lastupdate"));
+        bookBorrowForm.getComboBoxDate().addItem(setLanguage("personbook.startdate"));
+        bookBorrowForm.getComboBoxDate().addItem(setLanguage("personbook.deadline"));
+        bookBorrowForm.getComboBoxDate().addItem(setLanguage("personbook.finishdate"));
     }
 
     private void setLanguage() {

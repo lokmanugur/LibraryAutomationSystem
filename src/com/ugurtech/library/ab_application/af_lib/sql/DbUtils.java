@@ -40,7 +40,7 @@ public class DbUtils {
 		Vector<Object> newRow = new Vector<>();
                 int strCount=0;
 		for (int i = 1; i <= numberOfColumns; i++) {                  
-                    if(str.length>strCount && str[strCount].equals(metaData.getColumnLabel(i))){
+                    if(str.length>strCount && str[strCount].equals(metaData.getColumnLabel(i))&&rs.getLong(i)>0){
                         newRow.addElement(DateUtils.longToDateForTable(rs.getLong(i)));
                         strCount++;
                     }else{newRow.addElement(rs.getObject(i));}

@@ -82,6 +82,11 @@ public class UserInfoMessages {
         JOptionPane.showMessageDialog(parentComponent, message, title, JOptionPane.ERROR_MESSAGE);
         addLoggerFile(parentComponent, message);
     }
+    
+    public void exceptionInfoMessages(String className, String message, String title) {
+        JOptionPane.showMessageDialog(null, message, title, JOptionPane.ERROR_MESSAGE);
+        addLoggerFile(className, message);
+    }
 
     private void addLoggerFile(Component parentComponent, String message) {
         // This block configure the logger with handler and formatter  
@@ -92,6 +97,16 @@ public class UserInfoMessages {
         // the following statement is used to log any messages  
         logger.log(Level.INFO, "{0} {1}", new Object[]{parentComponent.getClass().getName(), message});
     }
+    
+    private void addLoggerFile(String className, String message) {
+        // This block configure the logger with handler and formatter  
+        logger.addHandler(fh);
+
+        fh.setFormatter(formatter);
+
+        // the following statement is used to log any messages  
+        logger.log(Level.SEVERE, "{0} {1}", new Object[]{className, message});
+    }    
 
     public String emptyField(String str, JLabel... label) {
         if (!str.equals("")) {

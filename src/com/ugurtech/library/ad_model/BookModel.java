@@ -20,6 +20,7 @@ public class BookModel extends DateModel {
     private PublisherModel publisherModel;
     private String bookName;
     private long pressDate;
+    private int pageNumbber;
     private int quantity;
     private int stock;
     private String shelf;
@@ -111,6 +112,14 @@ public class BookModel extends DateModel {
 
     public void setShelf(String shelf) {
         this.shelf = shelf;
+    }
+
+    public int getPageNumbber() {
+        return pageNumbber;
+    }
+
+    public void setPageNumbber(int pageNumbber) {
+        this.pageNumbber = pageNumbber;
     }
     
 }

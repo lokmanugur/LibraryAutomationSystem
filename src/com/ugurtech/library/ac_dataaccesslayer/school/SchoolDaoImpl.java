@@ -62,10 +62,10 @@ public class SchoolDaoImpl extends DaoAbstract implements SchoolDao {
             SchoolModel schoolModel;
             while (resultSet.next()) {
                 schoolModel = new SchoolModel();
-                schoolModel.setSchoolId(resultSet.getInt(columnTitleWithoutPrime(Tables.school + ".schoolid")));
-                schoolModel.setSchoolName(resultSet.getString(columnTitleWithoutPrime(Tables.school + ".schoolname")));
-                schoolModel.setPhone(resultSet.getString(columnTitleWithoutPrime(Tables.school + ".phone")));
-                schoolModel.setAddress(resultSet.getString(columnTitleWithoutPrime(Tables.school + ".address")));
+                schoolModel.setSchoolId(resultSet.getInt(columnTitleWithOutPrime(Tables.school + ".schoolid")));
+                schoolModel.setSchoolName(resultSet.getString(columnTitleWithOutPrime(Tables.school + ".schoolname")));
+                schoolModel.setPhone(resultSet.getString(columnTitleWithOutPrime(Tables.school + ".phone")));
+                schoolModel.setAddress(resultSet.getString(columnTitleWithOutPrime(Tables.school + ".address")));
                 schoolList.add(schoolModel);
             }
         } catch (SQLException ex) {
@@ -81,14 +81,14 @@ public class SchoolDaoImpl extends DaoAbstract implements SchoolDao {
         ResultSet resultSet = createResultSet(getExistID(id,
                         SCHOOL_SEARCH_QUERY,
                         " WHERE ",
-                        columnTitleWithoutPrime(Tables.school + ".schoolid"), "="));
+                        columnTitleWithOutPrime(Tables.school + ".schoolid"), "="));
         try {
             schoolModel = new SchoolModel();
             if (resultSet.next()) {
-                schoolModel.setSchoolId(resultSet.getInt(columnTitleWithoutPrime(Tables.school + ".schoolid")));
-                schoolModel.setSchoolName(resultSet.getString(columnTitleWithoutPrime(Tables.school + ".schoolname")));
-                schoolModel.setPhone(resultSet.getString(columnTitleWithoutPrime(Tables.school + ".phone")));
-                schoolModel.setAddress(resultSet.getString(columnTitleWithoutPrime(Tables.school + ".address")));
+                schoolModel.setSchoolId(resultSet.getInt(columnTitleWithOutPrime(Tables.school + ".schoolid")));
+                schoolModel.setSchoolName(resultSet.getString(columnTitleWithOutPrime(Tables.school + ".schoolname")));
+                schoolModel.setPhone(resultSet.getString(columnTitleWithOutPrime(Tables.school + ".phone")));
+                schoolModel.setAddress(resultSet.getString(columnTitleWithOutPrime(Tables.school + ".address")));
             }
         } catch (SQLException ex) {
             getLogger(ex,"Get Exception ",SchoolDaoImpl.class.getName());

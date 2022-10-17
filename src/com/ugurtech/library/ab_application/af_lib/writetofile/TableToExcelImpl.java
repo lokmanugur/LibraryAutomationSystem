@@ -44,7 +44,8 @@ public class TableToExcelImpl {
         try {
                 tableToExcel.generate(file);
             } catch (Exception ex) {
-                UserInfoMessages.getInstance().exceptionInfoMessages(null,ex.getMessage(),"Table to Write Excell Error");
+               
+                UserInfoMessages.getInstance().exceptionInfoMessages(TableToExcelImpl.class.getName(),ex.getMessage(),"Table to Write Excell Error");
             }
         }
     }

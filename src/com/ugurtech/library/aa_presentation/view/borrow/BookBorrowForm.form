@@ -169,7 +169,7 @@
                   <Component id="buttonSearch" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="comboBoxOptions" min="-2" pref="271" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                  <EmptySpace pref="104" max="32767" attributes="0"/>
                   <Component id="buttonReturn" min="-2" pref="112" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="buttonWrite" min="-2" max="-2" attributes="0"/>

@@ -19,41 +19,44 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-
 public class DbUtils {
-    
-    public static TableModel resultSetToTableModel(ResultSet rs,String... str) {
-	try {
-	    ResultSetMetaData metaData = rs.getMetaData();
-	    int numberOfColumns = metaData.getColumnCount();
-	    Vector<String> columnNames = new Vector<>();
 
-	    // Get the column names
-	    for (int column = 0; column < numberOfColumns; column++) {
-		columnNames.addElement(metaData.getColumnLabel(column + 1));
-	    }
+    public static TableModel resultSetToTableModel(ResultSet rs, String... str) {
+        try {
+            ResultSetMetaData metaData = rs.getMetaData();
+            int numberOfColumns = metaData.getColumnCount();
+            Vector<String> columnNames = new Vector<>();
 
-	    // Get all rows.
-	    Vector<Vector<Object>> rows = new Vector<>();
+            // Get the column names
+            for (int column = 0; column < numberOfColumns; column++) {
+                columnNames.addElement(metaData.getColumnLabel(column + 1));
+            }
 
-	    while (rs.next()) {
-		Vector<Object> newRow = new Vector<>();
-                int strCount=0;
-		for (int i = 1; i <= numberOfColumns; i++) {                  
-                    if(str.length>strCount && str[strCount].equals(metaData.getColumnLabel(i))&&rs.getLong(i)>0){
-                        newRow.addElement(DateUtils.longToDateForTable(rs.getLong(i)));
+            // Get all rows.
+            Vector<Vector<Object>> rows = new Vector<>();
+
+            while (rs.next()) {
+                Vector<Object> newRow = new Vector<>();
+                int strCount = 0;
+                for (int i = 1; i <= numberOfColumns; i++) {
+                    if (str.length > strCount && str[strCount].equals(metaData.getColumnLabel(i))) {
+                        if (rs.getLong(i) != 0) {
+                            newRow.addElement(DateUtils.longToDateForTable(rs.getLong(i)));
+                        }
                         strCount++;
-                    }else{newRow.addElement(rs.getObject(i));}
-		    
-		}
-		rows.addElement(newRow);
-	    }
+                    } else {
+                        newRow.addElement(rs.getObject(i));
+                    }
 
-	    return new DefaultTableModel(rows, columnNames);
-	} catch (SQLException e) {
-            
-	    return null;
-	}
+                }
+                rows.addElement(newRow);
+            }
+
+            return new DefaultTableModel(rows, columnNames);
+        } catch (SQLException e) {
+
+            return null;
+        }
     }
-    
+
 }

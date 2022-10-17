@@ -5,6 +5,7 @@
  */
 package com.ugurtech.library.ac_dataaccesslayer.borrow;
 
+import com.ugurtech.library.ac_dataaccesslayer.Dao;
 import com.ugurtech.library.ad_model.PersonBookModel;
 import javax.swing.table.TableModel;
 
@@ -12,7 +13,6 @@ import javax.swing.table.TableModel;
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public interface BorrowDao {
+public interface BorrowDao extends Dao<PersonBookModel> {
     public TableModel search(int dateId,long startDate,long endDate,int optionsId,String searchText);
-    public void add(PersonBookModel personBookModel);
 }

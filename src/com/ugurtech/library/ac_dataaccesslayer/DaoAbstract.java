@@ -14,8 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -42,7 +40,7 @@ public abstract class DaoAbstract {
         try {
             isClose = dataBase.getConnection().isClosed();
         } catch (SQLException ex) {
-            Logger.getLogger(DaoAbstract.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"isClosed Method Exception",DaoAbstract.class.getName());
         }
         return isClose;
     }
@@ -52,8 +50,7 @@ public abstract class DaoAbstract {
             statement.close();
             dataBase.getConnection().close();
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Database Close Error");
-            Logger.getLogger(DaoAbstract.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"CloseConnectin Method Exception",DaoAbstract.class.getName());
         }
     }
 
@@ -63,8 +60,7 @@ public abstract class DaoAbstract {
             openConnection();
             statement = dataBase.getConnection().createStatement();
         } catch (SQLException ex) {
-            Logger.getLogger(DaoAbstract.class.getName()).log(Level.SEVERE, null, ex);
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Database CreateStatment Error");
+            getLogger(ex,"Create Statment Exception",DaoAbstract.class.getName());
         }
         return statement;
     }
@@ -81,8 +77,7 @@ public abstract class DaoAbstract {
             openConnection();
             resultSet = createStatemen().executeQuery(sqlQuery);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Database CreateResultset Error");
-            Logger.getLogger(DaoAbstract.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"CreateResoultSet Exception",DaoAbstract.class.getName());
         }
         return resultSet;
     }
@@ -100,8 +95,7 @@ public abstract class DaoAbstract {
             openConnection();
             preparedStatement = dataBase.getConnection().prepareStatement(sqlQuery, PreparedStatement.RETURN_GENERATED_KEYS);
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Database CreatePrepareStatment Error");
-            Logger.getLogger(DaoAbstract.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"createPrepareStatement Exception",DaoAbstract.class.getName());
         }
 
         return preparedStatement;
@@ -112,18 +106,17 @@ public abstract class DaoAbstract {
         try {
             efactedRow = preparedStatement.executeUpdate();
         } catch (SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), "Database ExecuteUpdate Error");
-            Logger.getLogger(DaoAbstract.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(ex,"ExecuteUpdate Exception",DaoAbstract.class.getName());
         }
         return efactedRow;
     }
 
-    protected static String columnTitleWithoutPrime(String columnName) {
+    protected static String columnTitleWithOutPrime(String columnName) {
         String value = LanguageImpl.setLanguage(Internationalization::setLanguage, columnName).replaceAll("'", "");
         return value;
     }
 
-    protected static <V> String columnTitleWithoutPrime(V columnName) {
+    protected static <V> String columnTitleWithOutPrime(V columnName) {
         String value = LanguageImpl.setLanguage(Internationalization::setLanguage, columnName.toString()).replaceAll("'", "");
         return value;
     }
@@ -155,8 +148,8 @@ public abstract class DaoAbstract {
         return string;
     }
 
-    public void getLogger(SQLException ex, String errorTitle, String className) {
-        UserInfoMessages.getInstance().exceptionInfoMessages(null, ex.getMessage(), errorTitle);
+    public void getLogger(SQLException exception, String errorTitle, String className) {
+        UserInfoMessages.getInstance().exceptionInfoMessages(className, exception.toString(), errorTitle);
     }
 
     protected void beginTransection() {

@@ -21,7 +21,7 @@ public enum Tables {
     }
     
     public enum Book{
-        book,bookid,isbn,publisherid,sysuserid,bookname,publishdate,quantity,stock,sherlf,lastupdate;
+        book,bookid,isbn,publisherid,sysuserid,bookname,publishdate,quantity,pages,stock,sherlf,lastupdate;
         
         @Override        
         public String toString() {
@@ -93,7 +93,7 @@ public enum Tables {
     }
 
     public enum PersonBook {
-       personbook, personbookid, personid, bookid, startdate, deadline, finishdate, lastupdate;
+       personbook, personbookid, personid, bookid, startdate, deadline, finishdate, readpage;
 
         @Override
         public String toString() {

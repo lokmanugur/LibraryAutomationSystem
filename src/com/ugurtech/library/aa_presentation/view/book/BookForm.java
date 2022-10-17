@@ -100,6 +100,8 @@ public final class BookForm extends JInternalFrame {
         labelBookShelf = new javax.swing.JLabel();
         textFieldIsbn = new javax.swing.JFormattedTextField();
         textFieldBookCount = new javax.swing.JFormattedTextField();
+        textFieldPageNumber = new javax.swing.JFormattedTextField();
+        labelBookPageNumber = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -108,6 +110,7 @@ public final class BookForm extends JInternalFrame {
         setTitle("Kitap Kayıt Formu");
         setMinimumSize(new java.awt.Dimension(100, 100));
 
+        mainPanel.setBorder(null);
         mainPanel.setMinimumSize(new java.awt.Dimension(100, 100));
 
         panelButtons.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -280,7 +283,7 @@ public final class BookForm extends JInternalFrame {
         publisherButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/advertisement.png"))); // NOI18N
 
         labelBookQuantity.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelBookQuantity.setText("Sayı:");
+        labelBookQuantity.setText("Sayı");
 
         labelBookShelf.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelBookShelf.setText("Book Shelf:");
@@ -289,33 +292,44 @@ public final class BookForm extends JInternalFrame {
 
         textFieldBookCount.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
+        textFieldPageNumber.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
+        labelBookPageNumber.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelBookPageNumber.setText("Page Number");
+
         javax.swing.GroupLayout panelBookLayout = new javax.swing.GroupLayout(panelBook);
         panelBook.setLayout(panelBookLayout);
         panelBookLayout.setHorizontalGroup(
             panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBookLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelBookName)
-                    .addComponent(labelIsbn)
-                    .addComponent(labelPublisher)
-                    .addComponent(labelPressDate)
-                    .addComponent(labelBookQuantity))
+                .addGap(34, 34, 34)
+                .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelBookLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(labelBookShelf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(labelBookPageNumber)
+                        .addComponent(labelBookName)
+                        .addComponent(labelIsbn)
+                        .addComponent(labelPublisher)
+                        .addComponent(labelPressDate)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBookLayout.createSequentialGroup()
-                        .addComponent(textFieldBookCount, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelBookShelf)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textFieldBookShelf, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pressDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelBookLayout.createSequentialGroup()
                         .addComponent(publisherComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
-                        .addComponent(publisherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(publisherButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
                     .addComponent(bookNameTextField)
-                    .addComponent(textFieldIsbn))
+                    .addComponent(textFieldIsbn)
+                    .addComponent(pressDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelBookLayout.createSequentialGroup()
+                        .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(textFieldPageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                            .addComponent(textFieldBookShelf))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelBookQuantity)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textFieldBookCount, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelBookLayout.setVerticalGroup(
@@ -334,19 +348,25 @@ public final class BookForm extends JInternalFrame {
                     .addComponent(publisherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(publisherComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pressDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelPressDate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelBookQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(textFieldBookCount, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBookLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(labelPressDate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelBookLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pressDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textFieldPageNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelBookPageNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(textFieldBookShelf, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelBookShelf, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(14, 14, 14))
+                        .addComponent(textFieldBookCount, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelBookQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textFieldBookShelf, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelBookShelf, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layeredPaneBook.setLayer(panelAuthor, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -376,7 +396,7 @@ public final class BookForm extends JInternalFrame {
         );
         layeredPaneBookLayout.setVerticalGroup(
             layeredPaneBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 268, Short.MAX_VALUE)
+            .addGap(0, 278, Short.MAX_VALUE)
             .addGroup(layeredPaneBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layeredPaneBookLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -409,10 +429,10 @@ public final class BookForm extends JInternalFrame {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(layeredPaneBook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(layeredPaneBook, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -448,6 +468,7 @@ public final class BookForm extends JInternalFrame {
     private javax.swing.JButton buttonSave;
     private javax.swing.JLabel labelAuthorList;
     private javax.swing.JLabel labelBookName;
+    private javax.swing.JLabel labelBookPageNumber;
     private javax.swing.JLabel labelBookQuantity;
     private javax.swing.JLabel labelBookShelf;
     private javax.swing.JLabel labelBookTypeList;
@@ -470,6 +491,7 @@ public final class BookForm extends JInternalFrame {
     private javax.swing.JFormattedTextField textFieldBookCount;
     private javax.swing.JTextField textFieldBookShelf;
     private javax.swing.JFormattedTextField textFieldIsbn;
+    private javax.swing.JFormattedTextField textFieldPageNumber;
     private javax.swing.JButton typeButton;
     // End of variables declaration//GEN-END:variables
 
@@ -805,4 +827,20 @@ public final class BookForm extends JInternalFrame {
         this.textFieldBookShelf = textFieldBookShelf;
     }
 
+    public JLabel getLabelBookPageNumber() {
+        return labelBookPageNumber;
+    }
+
+    public void setLabelBookPageNumber(JLabel labelBookPageNumber) {
+        this.labelBookPageNumber = labelBookPageNumber;
+    }
+
+    public JFormattedTextField getTextFieldPageNumber() {
+        return textFieldPageNumber;
+    }
+
+    public void setTextFieldPageNumber(JFormattedTextField textFieldPageNumber) {
+        this.textFieldPageNumber = textFieldPageNumber;
+    }
+    
 }

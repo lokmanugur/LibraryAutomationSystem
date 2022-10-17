@@ -68,9 +68,9 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
         try {
             while (resultSet.next()) {
                 authorList.add(new AuthorModel(
-                        resultSet.getInt(columnTitleWithoutPrime("author.authorid")),
-                        resultSet.getString(columnTitleWithoutPrime("person.firstname")),
-                        resultSet.getString(columnTitleWithoutPrime("person.lastname"))));
+                        resultSet.getInt(columnTitleWithOutPrime("author.authorid")),
+                        resultSet.getString(columnTitleWithOutPrime("person.firstname")),
+                        resultSet.getString(columnTitleWithOutPrime("person.lastname"))));
             }
         } catch (SQLException ex) {
             getLogger(ex,"Author Add Exception",AuthorDaoImpl.class.getName());
@@ -88,11 +88,11 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
                         " AND author.authorid ="));
         try {
             while (resultSet.next()) {
-                authorModel.setAuthorId(resultSet.getInt(columnTitleWithoutPrime("author.authorid")));
-                authorModel.setPersonId(resultSet.getInt(columnTitleWithoutPrime("person.personid")));
-                authorModel.setFirstName(resultSet.getString(columnTitleWithoutPrime("person.firstname")));
-                authorModel.setLastName(resultSet.getString(columnTitleWithoutPrime("person.lastname")));
-                authorModel.setBirthDate(resultSet.getLong(columnTitleWithoutPrime("person.birthdate")));
+                authorModel.setAuthorId(resultSet.getInt(columnTitleWithOutPrime("author.authorid")));
+                authorModel.setPersonId(resultSet.getInt(columnTitleWithOutPrime("person.personid")));
+                authorModel.setFirstName(resultSet.getString(columnTitleWithOutPrime("person.firstname")));
+                authorModel.setLastName(resultSet.getString(columnTitleWithOutPrime("person.lastname")));
+                authorModel.setBirthDate(resultSet.getLong(columnTitleWithOutPrime("person.birthdate")));
             }
         } catch (SQLException ex) {
             getLogger(ex,"Author Add Exception",AuthorDaoImpl.class.getName());
@@ -177,8 +177,8 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
         query.append(" or ").append(columnTitleWithPrime(Tables.Person.lastupdate)).append(" LIKE '").append(string).append("%' ");
         query.append(") AND author.personid=person.personid");
         return  DbUtils.resultSetToTableModel(createResultSet(query.toString()),
-                columnTitleWithoutPrime("person.birthdate"),
-                columnTitleWithoutPrime("person.createddate"),
-                columnTitleWithoutPrime("person.lastupdate"));
+                columnTitleWithOutPrime("person.birthdate"),
+                columnTitleWithOutPrime("person.createddate"),
+                columnTitleWithOutPrime("person.lastupdate"));
     }
 }

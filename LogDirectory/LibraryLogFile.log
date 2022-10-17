@@ -12,3 +12,21 @@ Oct 08, 2022 1:03:16 PM com.ugurtech.library.ab_application.af_lib.validation.Us
 INFO: com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm java.lang.ClassCastException: java.lang.String cannot be cast to com.ugurtech.library.ad_model.StudentModel
 Oct 08, 2022 1:03:16 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
 INFO: com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm java.lang.ClassCastException: java.lang.String cannot be cast to com.ugurtech.library.ad_model.StudentModel
+Oct 11, 2022 7:31:42 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+INFO: [SQLITE_ERROR] SQL error or missing database (near "Id": syntax error)
+Oct 11, 2022 7:34:44 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+INFO: class com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages [SQLITE_ERROR] SQL error or missing database (near "Id": syntax error)
+Oct 11, 2022 8:26:11 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+SEVERE: com.ugurtech.library.ac_dataaccesslayer.DaoAbstract [SQLITE_ERROR] SQL error or missing database (near "Id": syntax error)
+Oct 11, 2022 8:32:05 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+SEVERE: com.ugurtech.library.ac_dataaccesslayer.DaoAbstract [SQLITE_ERROR] SQL error or missing database (near "Id": syntax error)
+Oct 11, 2022 8:38:31 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+SEVERE: com.ugurtech.library.ac_dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "Id": syntax error)
+Oct 12, 2022 8:09:50 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+SEVERE: com.ugurtech.library.ac_dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "Id": syntax error)
+Oct 12, 2022 8:11:28 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+SEVERE: com.ugurtech.library.ac_dataaccesslayer.publisher.PublisherDaoImpl java.sql.SQLException: no such column: ''Publisher Id''
+Oct 12, 2022 8:13:28 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+SEVERE: com.ugurtech.library.ac_dataaccesslayer.publisher.PublisherDaoImpl java.sql.SQLException: no such column: ''Publisher Name''
+Oct 12, 2022 8:27:51 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+SEVERE: com.ugurtech.library.ac_dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "Id": syntax error)

@@ -29,8 +29,7 @@ public class MySQLDataBase extends Database{
             setStatement(getConnection().createStatement());
             
         }catch(ClassNotFoundException | SQLException ex){
-            UserInfoMessages.getInstance().exceptionInfoMessages(null,ex.getMessage(),"Open Database Error");
-            Logger.getLogger(MySQLDataBase.class.getName()).log(Level.SEVERE, null,ex);
+            UserInfoMessages.getInstance().exceptionInfoMessages(MySQLDataBase.class.getName(),ex.getMessage(),"Open Database Error");
             
         }
         return getConnection();
@@ -41,8 +40,7 @@ public class MySQLDataBase extends Database{
             getStatement().close();
             getConnection().close();
         }catch (SQLException ex){  
-            UserInfoMessages.getInstance().exceptionInfoMessages(null,ex.getMessage(),"Close Database Error");
-            Logger.getLogger(MySQLDataBase.class.getName()).log(Level.SEVERE, null, ex);
+            UserInfoMessages.getInstance().exceptionInfoMessages(MySQLDataBase.class.getName(),ex.getMessage(),"Close Database Error");
         }
     }
 }

@@ -49,7 +49,7 @@ public class PersonDaoImpl extends DaoAbstract implements PersonDao {
         query += Tables.Person.phone + " LIKE '" + searchText + "%' OR ";
         query += Tables.Person.address + " LIKE '" + searchText + "%'";
         query += ")";
-        return DbUtils.resultSetToTableModel(createResultSet(query), columnTitleWithoutPrime(Tables.Person.birthdate), columnTitleWithoutPrime(Tables.Person.createddate), columnTitleWithoutPrime(Tables.Person.lastupdate));
+        return DbUtils.resultSetToTableModel(createResultSet(query), columnTitleWithOutPrime(Tables.Person.birthdate), columnTitleWithOutPrime(Tables.Person.createddate), columnTitleWithOutPrime(Tables.Person.lastupdate));
     }
 
     @Override
@@ -61,9 +61,9 @@ public class PersonDaoImpl extends DaoAbstract implements PersonDao {
         try {
             personsList = new ArrayList<>();
             while(resultSet.next()){
-                personsList.add( new PersonModel(resultSet.getInt(columnTitleWithoutPrime(Tables.Person.personid)),
-                        resultSet.getString(columnTitleWithoutPrime(Tables.Person.firstname)),
-                        resultSet.getString(columnTitleWithoutPrime(Tables.Person.lastname))));
+                personsList.add( new PersonModel(resultSet.getInt(columnTitleWithOutPrime(Tables.Person.personid)),
+                        resultSet.getString(columnTitleWithOutPrime(Tables.Person.firstname)),
+                        resultSet.getString(columnTitleWithOutPrime(Tables.Person.lastname))));
             }
             
         } catch (SQLException ex) {
@@ -79,12 +79,12 @@ public class PersonDaoImpl extends DaoAbstract implements PersonDao {
         try {
             personModel = new PersonModel();
             if (resultSet.next()) {
-                personModel.setPersonId(resultSet.getInt(columnTitleWithoutPrime(Tables.Person.personid)));
-                personModel.setFirstName(resultSet.getString(columnTitleWithoutPrime(Tables.Person.firstname)));
-                personModel.setLastName(resultSet.getString(columnTitleWithoutPrime(Tables.Person.lastname)));
-                personModel.setBirthDate(resultSet.getLong(columnTitleWithoutPrime(Tables.Person.birthdate)));
-                personModel.setPhone(resultSet.getString(columnTitleWithoutPrime(Tables.Person.phone)));
-                personModel.setAddress(resultSet.getString(columnTitleWithoutPrime(Tables.Person.address)));
+                personModel.setPersonId(resultSet.getInt(columnTitleWithOutPrime(Tables.Person.personid)));
+                personModel.setFirstName(resultSet.getString(columnTitleWithOutPrime(Tables.Person.firstname)));
+                personModel.setLastName(resultSet.getString(columnTitleWithOutPrime(Tables.Person.lastname)));
+                personModel.setBirthDate(resultSet.getLong(columnTitleWithOutPrime(Tables.Person.birthdate)));
+                personModel.setPhone(resultSet.getString(columnTitleWithOutPrime(Tables.Person.phone)));
+                personModel.setAddress(resultSet.getString(columnTitleWithOutPrime(Tables.Person.address)));
             }
         } catch (SQLException ex) {
            getLogger(ex, "Get error Query",PersonDaoImpl.class.getName());

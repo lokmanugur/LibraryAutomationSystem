@@ -35,6 +35,7 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
             + columnNameAsColumnTitle(Tables.Book.publishdate) + ","
             + "group_concat(DISTINCT booktype.typename) as " + columnTitleWithPrime(Tables.BookType.typename) + ","
             + "group_concat(DISTINCT (person.firstname || ' ' || person.lastname)) as " + columnTitleWithPrime(Tables.Author.name) + ","
+            + columnNameAsColumnTitle(Tables.Book.pages) + ","
             + columnNameAsColumnTitle(Tables.Book.stock) + ","
             + columnNameAsColumnTitle(Tables.Book.quantity) + ","
             + columnNameAsColumnTitle(Tables.Book.lastupdate) + " "
@@ -48,7 +49,7 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
 
     public static final String INSERT_BOOK_AUTHOR = "INSERT INTO bookauthor(bookid,authorid) VALUES(?,?)";
     public static final String INSERT_BOOKTYPE_BOOK = "INSERT INTO booktypebook(bookid,booktypeid) VALUES(?,?)";
-    public static final String INSERT_BOOK = "INSERT INTO book (isbn,sysuserid,publisherid,bookname,publishdate,lastupdate,quantity,stock,shelf) VALUES (?,?,?,?,?,?,?,?,?)";
+    public static final String INSERT_BOOK = "INSERT INTO book (isbn,sysuserid,publisherid,bookname,publishdate,lastupdate,pages,quantity,stock,shelf) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
     public static final String CHECK_BOOK_BORROW = "SELECT bookid FROM personbook WHERE finishdate=null AND bookid=?";
 
@@ -58,10 +59,11 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
     public static final String DELETE_BOOK_AUTHOR = "DELETE FROM bookauthor WHERE bookid=?";
     public static final String DELETE_BOOK = "DELETE FROM book WHERE bookid=?";
 
-    public static final String UPDATE_BOOK = "UPDATE book SET isbn=?,publisherid=?,sysuserid=?,bookname=?,publishdate=?,lastupdate=?,quantity=?,stock=?,shelf=? WHERE bookid=?";
+    public static final String UPDATE_BOOK = "UPDATE book SET isbn=?,publisherid=?,sysuserid=?,bookname=?,publishdate=?,lastupdate=?,pages=?,quantity=?,shelf=? WHERE bookid=?";
     public static final String UPDATE_BOOK_AUTHOR = "UPDATE bookauthor SET authorid=? WHERE bookid=?";
     public static final String UPDATE_BOOKTYPE_BOOK = "UPDATE booktypebook SET booktypeid=? WHERE bookid=?";
     public static final String SEARCH_ISBN_QUERY = "SELECT quantity,stock FROM book WHERE isbn=";
+    
 
     private final StringBuilder query;
 
@@ -107,7 +109,7 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
         }
         query.append(" GROUP BY book.bookid");
         ResultSet rs = createResultSet(query.toString());
-        TableModel tableModel = DbUtils.resultSetToTableModel(rs, columnTitleWithoutPrime("book.publishdate"), columnTitleWithoutPrime("book.lastupdate"));
+        TableModel tableModel = DbUtils.resultSetToTableModel(rs, columnTitleWithOutPrime("book.publishdate"), columnTitleWithOutPrime("book.lastupdate"));
         return tableModel;
     }
 
@@ -115,22 +117,7 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
     public List<BookModel> getAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-//
-//    @Override
-//    public BookModel get(int id) {
-//        BookModel bookModel = null;
-//        ResultSet resultSet = createResultSet(getExistID(id, SEARCH_BOOK_QUERY, " WHERE", " bookid="));
-//        try {
-//            bookModel = new BookModel();
-//            while (resultSet.next()) {
-//                bookModel.setBookId(resultSet.getInt(1));
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(BookDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//        return bookModel;
-//    }
+
 
     @Override
     public void add(BookModel book) {
@@ -145,9 +132,10 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
                 preparedStatement.setString(4, book.getBookName());
                 preparedStatement.setLong(5, book.getPressDate());
                 preparedStatement.setLong(6, new Date().getTime());
-                preparedStatement.setInt(7, book.getQuantity());
-                preparedStatement.setInt(8, book.getStock());
-                preparedStatement.setString(9, book.getShelf());
+                preparedStatement.setInt(7, book.getPageNumbber());
+                preparedStatement.setInt(8, book.getQuantity());
+                preparedStatement.setInt(9, book.getStock());
+                preparedStatement.setString(10, book.getShelf());
                 int effactedRow = preparedStatement.executeUpdate();
                 int generatedKey = preparedStatement.getGeneratedKeys().getInt(1);
                 addAuthorAndBookType(book, generatedKey, preparedStatement);
@@ -192,8 +180,8 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
             preparedStatement.setString(4, book.getBookName());
             preparedStatement.setLong(5, book.getPressDate());
             preparedStatement.setLong(6, new Date().getTime());
-            preparedStatement.setInt(7, book.getQuantity());
-            preparedStatement.setInt(8, book.getStock());
+            preparedStatement.setInt(7, book.getPageNumbber());
+            preparedStatement.setInt(8, book.getQuantity());
             preparedStatement.setString(9, book.getShelf());
             preparedStatement.setInt(10, book.getBookId());
             int effactedRow = preparedStatement.executeUpdate();
@@ -253,11 +241,12 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
         List<AuthorModel> authorList = new ArrayList<>();
         List<BookTypeModel> bookTypeList = new ArrayList<>();
         BookModel bookModel = new BookModel();
-        ResultSet resultSetPublisher = createResultSet("SELECT "
+        ResultSet resultSet = createResultSet("SELECT "
                 + "book.bookid,"
                 + "book.isbn,"
                 + "book.bookname,"
                 + "book.publishdate,"
+                + "book.pages,"
                 + "book.quantity,"
                 + "book.shelf,"
                 + "publisher.publisherid,"
@@ -266,15 +255,16 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
                 + "WHERE book.bookid=" + String.valueOf(id));
         try {
             PublisherModel publisherModel = new PublisherModel();
-            if (resultSetPublisher.next()) {
-                bookModel.setBookId(resultSetPublisher.getInt(1));
-                bookModel.setIsbn(resultSetPublisher.getLong(2));
-                bookModel.setBookName(resultSetPublisher.getString(3));
-                bookModel.setPressDate(resultSetPublisher.getLong(4));
-                bookModel.setQuantity(resultSetPublisher.getInt(5));
-                bookModel.setShelf(resultSetPublisher.getString(6));
-                publisherModel.setPublisherId(resultSetPublisher.getInt(7));
-                publisherModel.setPublisherName(resultSetPublisher.getString(8));
+            if (resultSet.next()) {
+                bookModel.setBookId(resultSet.getInt(1));
+                bookModel.setIsbn(resultSet.getLong(2));
+                bookModel.setBookName(resultSet.getString(3));
+                bookModel.setPressDate(resultSet.getLong(4));
+                bookModel.setPageNumbber(resultSet.getInt(5));
+                bookModel.setQuantity(resultSet.getInt(6));
+                bookModel.setShelf(resultSet.getString(7));
+                publisherModel.setPublisherId(resultSet.getInt(8));
+                publisherModel.setPublisherName(resultSet.getString(9));
             }
             bookModel.setPublisherModel(publisherModel);
         } catch (SQLException ex) {

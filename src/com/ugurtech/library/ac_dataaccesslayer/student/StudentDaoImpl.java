@@ -127,20 +127,20 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
             studentModel = new StudentModel();
             
             if (resultSet.next()) {
-                studentModel.setStudentId(resultSet.getInt(columnTitleWithoutPrime(Tables.Student.studentid)));
+                studentModel.setStudentId(resultSet.getInt(columnTitleWithOutPrime(Tables.Student.studentid)));
                 studentModel.setSchoolModel(new SchoolModel());
-                studentModel.getSchoolModel().setSchoolId(resultSet.getInt(columnTitleWithoutPrime(Tables.School.schoolid)));
-                studentModel.getSchoolModel().setSchoolName(resultSet.getString(columnTitleWithoutPrime(Tables.School.schoolname)));
+                studentModel.getSchoolModel().setSchoolId(resultSet.getInt(columnTitleWithOutPrime(Tables.School.schoolid)));
+                studentModel.getSchoolModel().setSchoolName(resultSet.getString(columnTitleWithOutPrime(Tables.School.schoolname)));
                 studentModel.setClassModel(new ClassModel());
-                studentModel.getClssModel().setClassId(resultSet.getInt(columnTitleWithoutPrime(Tables.Clss.classid)));
-                studentModel.getClssModel().setClassName(resultSet.getString(columnTitleWithoutPrime(Tables.Clss.classname)));
-                studentModel.setStudentNumber(resultSet.getString(columnTitleWithoutPrime(Tables.Student.studentnumber)));
-                studentModel.setPersonId(resultSet.getInt(columnTitleWithoutPrime(Tables.Person.personid)));
-                studentModel.setFirstName(resultSet.getString(columnTitleWithoutPrime(Tables.Person.firstname)));
-                studentModel.setLastName(resultSet.getString(columnTitleWithoutPrime(Tables.Person.lastname)));
-                studentModel.setBirthDate(resultSet.getLong(columnTitleWithoutPrime(Tables.Person.birthdate)));
-                studentModel.setPhone(resultSet.getString(columnTitleWithoutPrime(Tables.Person.phone)));
-                studentModel.setAddress(resultSet.getString(columnTitleWithoutPrime(Tables.Person.address)));                
+                studentModel.getClssModel().setClassId(resultSet.getInt(columnTitleWithOutPrime(Tables.Clss.classid)));
+                studentModel.getClssModel().setClassName(resultSet.getString(columnTitleWithOutPrime(Tables.Clss.classname)));
+                studentModel.setStudentNumber(resultSet.getString(columnTitleWithOutPrime(Tables.Student.studentnumber)));
+                studentModel.setPersonId(resultSet.getInt(columnTitleWithOutPrime(Tables.Person.personid)));
+                studentModel.setFirstName(resultSet.getString(columnTitleWithOutPrime(Tables.Person.firstname)));
+                studentModel.setLastName(resultSet.getString(columnTitleWithOutPrime(Tables.Person.lastname)));
+                studentModel.setBirthDate(resultSet.getLong(columnTitleWithOutPrime(Tables.Person.birthdate)));
+                studentModel.setPhone(resultSet.getString(columnTitleWithOutPrime(Tables.Person.phone)));
+                studentModel.setAddress(resultSet.getString(columnTitleWithOutPrime(Tables.Person.address)));                
             }
         } catch (SQLException ex) {
             getLogger(ex,"Get Exception ",StudentDaoImpl.class.getName());
@@ -216,6 +216,6 @@ public class StudentDaoImpl extends DaoAbstract implements StudentDao {
         query += Tables.Person.phone + " LIKE '" + searchText + "%' OR ";
         query += Tables.Person.address + " LIKE '" + searchText + "%'";
         query += ")";
-        return DbUtils.resultSetToTableModel(createResultSet(query), columnTitleWithoutPrime(Tables.Person.createddate), columnTitleWithoutPrime(Tables.Person.lastupdate));
+        return DbUtils.resultSetToTableModel(createResultSet(query), columnTitleWithOutPrime(Tables.Person.createddate), columnTitleWithOutPrime(Tables.Person.lastupdate));
     }
 }

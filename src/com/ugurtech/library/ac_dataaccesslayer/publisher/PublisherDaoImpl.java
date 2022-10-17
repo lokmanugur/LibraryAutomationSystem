@@ -51,10 +51,10 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
             
             while (resultSet.next()) {
                 publisherList.add(new PublisherModel(
-                        resultSet.getInt(columnTitleWithoutPrime(Tables.Publisher.publisherid)),
-                      resultSet.getString(columnTitleWithoutPrime(Tables.Publisher.publishername)),
-                            resultSet.getString(columnTitleWithoutPrime(Tables.Publisher.phone)),
-                          resultSet.getString(columnTitleWithoutPrime(Tables.Publisher.address))));
+                        resultSet.getInt(columnTitleWithOutPrime(Tables.Publisher.publisherid)),
+                      resultSet.getString(columnTitleWithOutPrime(Tables.Publisher.publishername)),
+                            resultSet.getString(columnTitleWithOutPrime(Tables.Publisher.phone)),
+                          resultSet.getString(columnTitleWithOutPrime(Tables.Publisher.address))));
             }
         } catch (SQLException ex) {
             getLogger(ex,"GetAll Exception ",PublisherDaoImpl.class.getName());
@@ -68,14 +68,14 @@ public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
         ResultSet resultSet = createResultSet(getExistID(id, 
                 PUBLISHER_SEARCH_QUERY, 
                 " WHERE ",
-                columnTitleWithoutPrime(Tables.publisher + ".publisherid"), "="));
+                Tables.Publisher.publisherid.toString(), "="));
         try {
             publisherModel = new PublisherModel();
             if (resultSet.next()) {
-                publisherModel.setPublisherId(resultSet.getInt(columnTitleWithoutPrime(Tables.publisher + ".publisherid")));
-                publisherModel.setPublisherName(resultSet.getString(columnTitleWithoutPrime(Tables.publisher + ".publishername")));
-                publisherModel.setPhone(resultSet.getString(columnTitleWithoutPrime(Tables.publisher + ".phone")));
-                publisherModel.setAddress(resultSet.getString(columnTitleWithoutPrime(Tables.publisher + ".address")));
+                publisherModel.setPublisherId(resultSet.getInt(columnTitleWithOutPrime(Tables.Publisher.publisherid)));
+                publisherModel.setPublisherName(resultSet.getString(columnTitleWithOutPrime(Tables.Publisher.publishername)));
+                publisherModel.setPhone(resultSet.getString(columnTitleWithOutPrime(Tables.Publisher.phone)));
+                publisherModel.setAddress(resultSet.getString(columnTitleWithOutPrime(Tables.Publisher.address)));
             }
         } catch (SQLException ex) {
             getLogger(ex,"GetAll Exception ",PublisherDaoImpl.class.getName());

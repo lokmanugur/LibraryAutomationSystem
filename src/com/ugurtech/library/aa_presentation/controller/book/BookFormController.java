@@ -226,6 +226,7 @@ public final class BookFormController extends BookController implements Initiali
         bookForm.getPressDateChooser().setDate(null);
         bookForm.getTextFieldBookShelf().setText("");
         bookForm.getTextFieldBookCount().setText("");
+        bookForm.getTextFieldPageNumber().setText("");
     }
     
     public void clearAll(){
@@ -320,6 +321,7 @@ public final class BookFormController extends BookController implements Initiali
         bookForm.getBookNameTextField().setText(bookForm.getBookModel().getBookName());
         bookForm.getPressDateChooser().setDate(new Date(bookForm.getBookModel().getPressDate()));
         bookForm.getPublisherComboBox().addItem(bookForm.getBookModel().getPublisherModel());
+        bookForm.getTextFieldPageNumber().setText(String.valueOf(bookForm.getBookModel().getPageNumbber()));
         bookForm.getTextFieldBookCount().setText(String.valueOf(bookForm.getBookModel().getQuantity()));
         bookForm.getTextFieldBookShelf().setText(bookForm.getBookModel().getShelf());
         bookForm.getBookModel().getBookType().forEach(btm ->bookForm.getBookTypeDefaultListModel().addElement(btm));
@@ -335,6 +337,7 @@ public final class BookFormController extends BookController implements Initiali
         bookModel.setSysuserId(CurrentUserModel.INSTANCE.getSysUserId());
         bookModel.setBookName(bookForm.getBookNameTextField().getText());
         bookModel.setPressDate(bookForm.getPressDateChooser().getDate() == null ? 0 : bookForm.getPressDateChooser().getDate().getTime());
+        bookModel.setPageNumbber(Integer.parseInt(bookForm.getTextFieldPageNumber().getText()));
         bookModel.setQuantity(Integer.parseInt(bookForm.getTextFieldBookCount().getText()));
         bookModel.setStock(Integer.parseInt(bookForm.getTextFieldBookCount().getText()));
         bookModel.setShelf(bookForm.getTextFieldBookShelf().getText());

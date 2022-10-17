@@ -8,6 +8,7 @@ package com.ugurtech.library.ab_application.service.borrow;
 import com.ugurtech.library.ac_dataaccesslayer.borrow.BorrowDao;
 import com.ugurtech.library.ac_dataaccesslayer.borrow.BorrowDaoImpl;
 import com.ugurtech.library.ad_model.PersonBookModel;
+import java.util.List;
 import javax.swing.table.TableModel;
 
 /**
@@ -29,6 +30,26 @@ public class BorrowServiceImpl implements BorrowService{
     @Override
     public void add(PersonBookModel personBookModel) {
         this.borrowDao.add(personBookModel);
+    }
+
+    @Override
+    public List<PersonBookModel> getAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PersonBookModel get(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(PersonBookModel v) {
+        this.borrowDao.update(v);
+    }
+
+    @Override
+    public void delete(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

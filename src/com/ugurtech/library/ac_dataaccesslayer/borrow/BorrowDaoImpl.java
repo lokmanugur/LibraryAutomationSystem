@@ -13,6 +13,7 @@ import com.ugurtech.library.ad_model.PersonBookModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import javax.swing.table.TableModel;
 
 /**
@@ -21,8 +22,8 @@ import javax.swing.table.TableModel;
  */
 public class BorrowDaoImpl extends DaoAbstract implements BorrowDao {
 
-    public static String PERSON_BOOK_ADD_QUERY = "INSERT INTO personbook (personid,bookid,startdate,deadline) VALUES(?,?,?,?);";
-    
+    public static String PERSON_BOOK_ADD_QUERY = "INSERT INTO personbook (personid,bookid,startdate,deadline) VALUES(?,?,?,?)";
+    public static String UPDATE_PERSONBOOK = "UPDATE personbook SET finishdate=?,readpage=? WHERE pesonbookid=?";
     public static String BORROW_SEARCH_QUERY = "SELECT "
             + columnNameAsColumnTitle(Tables.PersonBook.personbookid) + ","
             + columnNameAsColumnTitle(Tables.Book.bookid) + ","
@@ -35,7 +36,8 @@ public class BorrowDaoImpl extends DaoAbstract implements BorrowDao {
             + columnNameAsColumnTitle(Tables.Person.address) + ","
             + columnNameAsColumnTitle(Tables.PersonBook.startdate) + ","
             + columnNameAsColumnTitle(Tables.PersonBook.deadline) + ","
-            + columnNameAsColumnTitle(Tables.PersonBook.finishdate) + " "
+            + columnNameAsColumnTitle(Tables.PersonBook.finishdate) + ","
+            + columnNameAsColumnTitle(Tables.PersonBook.readpage) + " "
             + "FROM personbook "
             + "LEFT JOIN person on personbook.personid = person.personid "
             + "LEFT JOIN book on personbook.bookid = book.bookid "
@@ -47,6 +49,7 @@ public class BorrowDaoImpl extends DaoAbstract implements BorrowDao {
         query += BORROW_SEARCH_QUERY;
         query += " WHERE ";
         query += "  (" + Tables.PersonBook.personbookid + " LIKE '" + searchText + "%'";
+        query += " OR " + Tables.PersonBook.readpage + " LIKE '" + searchText + "%'";
         query += " OR " + Tables.Book.bookid  + " LIKE '" + searchText + "%'";
         query += " OR " + Tables.Book.isbn + " LIKE '" + searchText + "%'";
         query += " OR " + Tables.Book.bookname + " LIKE '" + searchText + "%'";
@@ -69,12 +72,25 @@ public class BorrowDaoImpl extends DaoAbstract implements BorrowDao {
             default:
                 break;
         }
+        switch (optionsId) {
+            case 1:
+                query += " AND " + Tables.PersonBook.finishdate+" NOT NULL";
+                break;
+            case 2:
+                query += " AND " + Tables.PersonBook.finishdate+" IS NULL";
+                break;
+            case 3:
+                query += " AND " + Tables.PersonBook.finishdate + " IS NULL AND date()>"+Tables.PersonBook.finishdate;
+                break;
+            default:
+                break;
+        }        
         query += " GROUP BY personbook.personbookid";
         ResultSet rs = createResultSet(query);
         TableModel tableModel = DbUtils.resultSetToTableModel(rs,
-                columnTitleWithoutPrime("personbook.startdate"),
-                columnTitleWithoutPrime("personbook.deadline"),
-                columnTitleWithoutPrime("personbook.finishdate"));
+                columnTitleWithOutPrime("personbook.startdate"),
+                columnTitleWithOutPrime("personbook.deadline"),
+                columnTitleWithOutPrime("personbook.finishdate"));
         return tableModel;
     }
 
@@ -123,5 +139,37 @@ public class BorrowDaoImpl extends DaoAbstract implements BorrowDao {
             rollBack();
             getLogger(ex, "Book update stock error ", BorrowDaoImpl.class.getName());
         }
+    }
+    
+    @Override
+    public void update(PersonBookModel personBookModel) {
+        beginTransection();
+        String query = UPDATE_PERSONBOOK;
+        PreparedStatement preparedStatement = createPrepareStatement(query);
+        try {
+            preparedStatement.setLong(1, personBookModel.getFinishDate());
+            preparedStatement.setInt(2, personBookModel.getReadPage());
+            preparedStatement.setInt(3, personBookModel.getPersonBookId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            rollBack();
+            getLogger(ex, "Add person book query error", BorrowDaoImpl.class.getName());
+        }
+        commit();
+    }
+
+    @Override
+    public List<PersonBookModel> getAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PersonBookModel get(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(PersonBookModel v) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

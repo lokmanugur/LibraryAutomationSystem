@@ -5,6 +5,7 @@
  */
 package com.ugurtech.library.ab_application.service.borrow;
 
+import com.ugurtech.library.ab_application.service.Service;
 import com.ugurtech.library.ad_model.PersonBookModel;
 import javax.swing.table.TableModel;
 
@@ -12,7 +13,6 @@ import javax.swing.table.TableModel;
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public interface BorrowService {
+public interface BorrowService extends Service<PersonBookModel>{
     public TableModel search(int dateId,long startDate,long endDate,int optionsId,String searchText);
-    public void add(PersonBookModel personBookModel);
 }

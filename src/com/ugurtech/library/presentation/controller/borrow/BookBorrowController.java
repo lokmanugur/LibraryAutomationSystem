@@ -46,16 +46,20 @@ public final class BookBorrowController extends ControllerImpl implements Initia
             write();
         });
 
+        bookBorrowForm.getButtonDelete().addActionListener((java.awt.event.ActionEvent evt) -> {
+            delete();
+        });
+
         bookBorrowForm.getButtonSearch().addActionListener((java.awt.event.ActionEvent evt) -> {
             search();
         });
-        
+
         bookBorrowForm.getButtonReturn().addActionListener((e) -> {
             FinishBorrowedForm finishBorrowedForm = FinishBorrowedForm.INSTANCE;
             MainForm.getInstance().addDesktopPane(finishBorrowedForm);
-            finishBorrowedForm.getPersonBook((int)bookBorrowForm.getTableBooks().getValueAt(bookBorrowForm.getTableBooks().getSelectedRow(), 0));
+            finishBorrowedForm.getPersonBook((int) bookBorrowForm.getTableBooks().getValueAt(bookBorrowForm.getTableBooks().getSelectedRow(), 0));
         });
-        
+
         bookBorrowForm.getComboBoxOptions().addItemListener((java.awt.event.ItemEvent evt) -> {
             search();
         });
@@ -86,6 +90,12 @@ public final class BookBorrowController extends ControllerImpl implements Initia
     private void setLanguage() {
     }
 
-
+    private void delete() {
+        int id = (int) bookBorrowForm.getTableBooks().getValueAt(bookBorrowForm.getTableBooks().getSelectedRow(), 0);
+        if (deleteApproveMessage(id)&&bookBorrowForm.getTableBooks().getValueAt(bookBorrowForm.getTableBooks().getSelectedRow(), 11)==null) {
+            delete(id);
+        }
+        search();
+    }
 
 }

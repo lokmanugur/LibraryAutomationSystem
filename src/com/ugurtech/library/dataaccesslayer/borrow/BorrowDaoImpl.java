@@ -127,7 +127,7 @@ public class BorrowDaoImpl extends DaoAbstract implements BorrowDao {
                     preparedStatement.setInt(2, bbm.getBookId());
                     preparedStatement.executeUpdate();
                 }
-                updateStock(bbm.getBookId(), getStock(bbm.getBookId()), bbm.getStock());
+                stockDecrease(bbm.getBookId(), getStock(bbm.getBookId()), bbm.getStock());
             }
         } catch (SQLException ex) {
             rollBack();
@@ -148,7 +148,7 @@ public class BorrowDaoImpl extends DaoAbstract implements BorrowDao {
 
     }
 
-    private void updateStock(int bookid, int databaseStock, int amountOfGotenBook) {
+    private void stockDecrease(int bookid, int databaseStock, int amountOfGotenBook) {
         PreparedStatement preparedStatement = createPrepareStatement("UPDATE book SET stock=? WHERE bookid=?");
         try {
             preparedStatement.setInt(1, databaseStock - amountOfGotenBook);
@@ -159,6 +159,17 @@ public class BorrowDaoImpl extends DaoAbstract implements BorrowDao {
             getLogger(ex, "Book update stock error ", BorrowDaoImpl.class.getName());
         }
     }
+    private void stockIncrease(int bookid, int databaseStock, int amountOfGotenBook) {
+        PreparedStatement preparedStatement = createPrepareStatement("UPDATE book SET stock=? WHERE bookid=?");
+        try {
+            preparedStatement.setInt(1, databaseStock + amountOfGotenBook);
+            preparedStatement.setInt(2, bookid);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            rollBack();
+            getLogger(ex, "Book update stock error ", BorrowDaoImpl.class.getName());
+        }
+    }    
 
     @Override
     public void update(PersonBookModel personBookModel) {
@@ -170,6 +181,8 @@ public class BorrowDaoImpl extends DaoAbstract implements BorrowDao {
             preparedStatement.setInt(2, personBookModel.getReadPage());
             preparedStatement.setInt(3, personBookModel.getPersonBookId());
             preparedStatement.executeUpdate();
+            stockIncrease(personBookModel.getBookModel().get(0).getBookId(), 
+                    getStock(personBookModel.getBookModel().get(0).getBookId()), 1);
         } catch (SQLException ex) {
             rollBack();
             getLogger(ex, "Add person book query error", BorrowDaoImpl.class.getName());
@@ -227,6 +240,7 @@ public class BorrowDaoImpl extends DaoAbstract implements BorrowDao {
         try {
             preparedStatement.setInt(1, v.getPersonBookId());
             int effactedRow = preparedStatement.executeUpdate();
+                stockIncrease(v.getBookModel().get(0).getBookId(), getStock(v.getBookModel().get(0).getBookId()), 1);
             UserInfoMessages.getInstance().deletedMessage(effactedRow);
         } catch (SQLException ex) {
             rollBack();

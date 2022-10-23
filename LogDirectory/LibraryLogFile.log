@@ -30,3 +30,9 @@ Oct 12, 2022 8:13:28 PM com.ugurtech.library.ab_application.af_lib.validation.Us
 SEVERE: com.ugurtech.library.ac_dataaccesslayer.publisher.PublisherDaoImpl java.sql.SQLException: no such column: ''Publisher Name''
 Oct 12, 2022 8:27:51 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
 SEVERE: com.ugurtech.library.ac_dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "Id": syntax error)
+Oct 23, 2022 12:11:51 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+SEVERE: com.ugurtech.library.ad_model.PersonBookModel java.sql.SQLException: no such column: 'pb.personbookid'
+Oct 23, 2022 12:13:32 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+SEVERE: com.ugurtech.library.ad_model.PersonBookModel java.sql.SQLException: no such column: 'pb.personbookid'
+Oct 23, 2022 12:31:19 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
+SEVERE: com.ugurtech.library.ac_dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (no such column: pesonbookid)

@@ -5,7 +5,7 @@
  */
 package com.ugurtech.library.facades.student;
 
-import com.ugurtech.library.ad_model.StudentModel;
+import com.ugurtech.library.model.StudentModel;
 import com.ugurtech.library.facades.Populator;
 import com.ugurtech.library.dto.StudentDTO;
 

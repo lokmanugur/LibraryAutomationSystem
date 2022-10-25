@@ -29,7 +29,6 @@ public final class BookBorrowController extends ControllerImpl implements Initia
     @Override
     public void initView() {
         setLanguage();
-        fillDateColumnToSelectionComboBox();
         search();
     }
 
@@ -87,12 +86,22 @@ public final class BookBorrowController extends ControllerImpl implements Initia
         bookBorrowForm.getComboBoxDate().addItem(setLanguage("personbook.finishdate"));
     }
 
+    private void finishDateOptionComboBox() {
+        bookBorrowForm.getComboBoxOptions().removeAll();
+        bookBorrowForm.getComboBoxOptions().addItem(setLanguage(""));
+        bookBorrowForm.getComboBoxOptions().addItem(setLanguage(""));
+        bookBorrowForm.getComboBoxOptions().addItem(setLanguage(""));
+        bookBorrowForm.getComboBoxOptions().addItem(setLanguage(""));
+    }
+
     private void setLanguage() {
+        fillDateColumnToSelectionComboBox();
+        finishDateOptionComboBox();
     }
 
     private void delete() {
         int id = (int) bookBorrowForm.getTableBooks().getValueAt(bookBorrowForm.getTableBooks().getSelectedRow(), 0);
-        if (deleteApproveMessage(id)&&bookBorrowForm.getTableBooks().getValueAt(bookBorrowForm.getTableBooks().getSelectedRow(), 11)==null) {
+        if (deleteApproveMessage(id) && bookBorrowForm.getTableBooks().getValueAt(bookBorrowForm.getTableBooks().getSelectedRow(), 11) == null) {
             delete(id);
         }
         search();

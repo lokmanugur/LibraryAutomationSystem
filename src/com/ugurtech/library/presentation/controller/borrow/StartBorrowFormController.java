@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+import javax.swing.BorderFactory;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -48,6 +49,7 @@ public final class StartBorrowFormController extends ControllerImpl implements I
     public void initView() {
         AutoCompleteDecorator.decorate(startBorrowForm.getComboBoxPerson());
         fillAllPersonToComboBox();
+        setLanguage();
     }
 
     @Override
@@ -119,14 +121,14 @@ public final class StartBorrowFormController extends ControllerImpl implements I
             dataMap.remove((long) startBorrowForm.getTableBasket().getValueAt(selectedRow, 1));
             DefaultTableModel dm = (DefaultTableModel) startBorrowForm.getTableBasket().getModel();
             dm.removeRow(selectedRow);
-            setColorToBackround();
+            setIconToBackround();
         }
     }
 
     private void removeAllFromHashMap() {
         dataMap.clear();
         removeAllElementsFromTable();
-        setColorToBackround();
+        setIconToBackround();
     }
 
     public void addHashMap(long key, Vector<Object> value, int stock) {
@@ -143,7 +145,7 @@ public final class StartBorrowFormController extends ControllerImpl implements I
         dataMap.entrySet().forEach(entry -> {
             startBorrowForm.getDefaultTableModel().addRow(entry.getValue());
         });
-        setColorToBackround();
+        setIconToBackround();
     }
 
     private void removeAllElementsFromTable() {
@@ -193,12 +195,28 @@ public final class StartBorrowFormController extends ControllerImpl implements I
         startBorrowForm.getFieldAddress().setText("");
     }
     
-    private void setColorToBackround(){
+    private void setIconToBackround(){
         if(startBorrowForm.getTableBasket().getRowCount()>0){
             MainForm.getInstance().getButtonBasket().setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/basketfull32.png")));
         }else{
             MainForm.getInstance().getButtonBasket().setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/basketempty32.png")));
         }
+    }
+
+    private void setLanguage() {
+        startBorrowForm.setTitle(setLanguage("startborrowform.title"));
+        //startBorrowForm.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), setLanguage("startborrowform.bordertitle")));
+        startBorrowForm.getLabelFirstLast().setText(setLanguage("startborrowform.label.namesurname"));
+        startBorrowForm.getLabelAddress().setText(setLanguage("startborrowform.label.address"));
+        startBorrowForm.getLabelDeadline().setText(setLanguage("startborrowform.label.deadline"));
+        startBorrowForm.getLabelGrade().setText(setLanguage("startborrowform.label.grade"));
+        startBorrowForm.getLabelNumber().setText(setLanguage("startborrowform.label.number"));
+        startBorrowForm.getLabelPhone().setText(setLanguage("startborrowform.label.phone"));
+        startBorrowForm.getLabelSchool().setText(setLanguage("startborrowform.label.school"));
+        
+        startBorrowForm.getButtonRemove().setText(setLanguage("startborrowform.button.remove"));
+        startBorrowForm.getButtonRemoveAll().setText(setLanguage("startborrowform.button.removeall"));
+        startBorrowForm.getButtonSave().setText(setLanguage("startborrowform.button.save"));
     }
 
 }

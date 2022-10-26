@@ -36,3 +36,5 @@ Oct 23, 2022 12:13:32 PM com.ugurtech.library.ab_application.af_lib.validation.U
 SEVERE: com.ugurtech.library.ad_model.PersonBookModel java.sql.SQLException: no such column: 'pb.personbookid'
 Oct 23, 2022 12:31:19 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
 SEVERE: com.ugurtech.library.ac_dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (no such column: pesonbookid)
+Oct 26, 2022 5:26:22 PM com.ugurtech.library.application.lib.validation.UserInfoMessages addLoggerFile
+SEVERE: com.ugurtech.library.dataaccesslayer.borrow.BorrowDaoImpl java.sql.SQLException: [SQLITE_BUSY]  The database file is locked (database is locked)

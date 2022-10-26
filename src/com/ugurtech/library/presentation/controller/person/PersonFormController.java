@@ -29,7 +29,7 @@ public final class PersonFormController extends PersonController implements Init
 
     @Override
     public void initView() {
-        
+        setLanguage();
     }
 
     @Override
@@ -84,5 +84,16 @@ public final class PersonFormController extends PersonController implements Init
         personForm.getTextAreaAddress().setText(personModel.getAddress());
         personForm.getDateChooserBirth().setDate(new Date(personModel.getBirthDate()));
         this.personModel = personModel;
+    }
+
+    private void setLanguage() {
+        personForm.setTitle(setLanguage(""));
+        personForm.getLabelFirstName().setText(setLanguage(""));
+        personForm.getLabelLastName().setText(setLanguage(""));
+        personForm.getLabelBirtDate().setText(setLanguage(""));
+        personForm.getLabelPhone().setText(setLanguage(""));
+        personForm.getTextAreaAddress().setText(setLanguage(""));
+        personForm.getButtonCancel().setText(setLanguage(""));
+        personForm.getButtonSave().setText(setLanguage(""));
     }
 }

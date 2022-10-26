@@ -145,7 +145,7 @@ public class FirstStepFormController extends AbstractController implements Initi
         firstStepModel.setUserName(UserInfoMessages.getInstance().emptyField( firstStepForm.getLoginNameTextField().getText(),firstStepForm.getLabelUserName(),firstStepForm.getLabelCheckPassword()));
         firstStepModel.setPassword(UserInfoMessages.getInstance().emptyField(String.valueOf(firstStepForm.getPasswordTextField().getPassword()),firstStepForm.getLabelPassword(),firstStepForm.getLabelCheckPassword()));
         firstStepModel.setBirtDate(UserInfoMessages.getInstance().emptyField(firstStepForm.getBirthDateChooser().getDate(),firstStepForm.getLabelBirthDate(),firstStepForm.getLabelCheckPassword()));
-        firstStepModel.setSessionTime(firstStepForm.getSessionTimeTextField().getText()==null?5:Integer.valueOf(firstStepForm.getSessionTimeTextField().getText()));
+        firstStepModel.setSessionTime(firstStepForm.getSessionTimeTextField().getText()==null?5:Integer.parseInt(firstStepForm.getSessionTimeTextField().getText()));
         if(setLanguage("userformcontroller.password.match").equals(firstStepForm.getLabelCheckPassword().getText())) {
             firstStepService.add(firstStepModel);
             UserInfoMessages.getInstance().showInfoMessages(setLanguage("validation.message"));

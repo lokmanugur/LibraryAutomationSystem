@@ -88,15 +88,25 @@ public final class BookBorrowController extends ControllerImpl implements Initia
 
     private void finishDateOptionComboBox() {
         bookBorrowForm.getComboBoxOptions().removeAll();
-        bookBorrowForm.getComboBoxOptions().addItem(setLanguage(""));
-        bookBorrowForm.getComboBoxOptions().addItem(setLanguage(""));
-        bookBorrowForm.getComboBoxOptions().addItem(setLanguage(""));
-        bookBorrowForm.getComboBoxOptions().addItem(setLanguage(""));
+        bookBorrowForm.getComboBoxOptions().addItem(setLanguage("bookborrowform.combobox.0option"));
+        bookBorrowForm.getComboBoxOptions().addItem(setLanguage("bookborrowform.combobox.1option"));
+        bookBorrowForm.getComboBoxOptions().addItem(setLanguage("bookborrowform.combobox.2option"));
+        bookBorrowForm.getComboBoxOptions().addItem(setLanguage("bookborrowform.combobox.3option"));
+        bookBorrowForm.getComboBoxOptions().addItem(setLanguage("bookborrowform.combobox.4option"));
     }
 
     private void setLanguage() {
         fillDateColumnToSelectionComboBox();
         finishDateOptionComboBox();
+        bookBorrowForm.setTitle(setLanguage("bookborrowform.title"));
+        bookBorrowForm.getLabelColumn().setText(setLanguage("table.label.column"));
+        bookBorrowForm.getLabelStart().setText(setLanguage("table.begin.date"));
+        bookBorrowForm.getLabelEnd().setText(setLanguage("table.end.date"));
+        bookBorrowForm.getLabelSearch().setText(setLanguage("table.search"));
+        bookBorrowForm.getButtonSearch().setText(setLanguage("table.search"));
+        bookBorrowForm.getButtonReturn().setText(setLanguage("bookborrowform.return.button"));
+        bookBorrowForm.getButtonDelete().setText(setLanguage("table.button.delete"));
+        bookBorrowForm.getButtonWrite().setText(setLanguage("table.button.write.excel"));
     }
 
     private void delete() {
@@ -106,5 +116,4 @@ public final class BookBorrowController extends ControllerImpl implements Initia
         }
         search();
     }
-
 }

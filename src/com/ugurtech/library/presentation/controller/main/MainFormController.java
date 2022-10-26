@@ -14,7 +14,6 @@ import com.ugurtech.library.presentation.view.author.AuthorSearchForm;
 import com.ugurtech.library.presentation.view.book.BookSearchForm;
 import com.ugurtech.library.presentation.view.booktype.BookTypeSearchForm;
 import com.ugurtech.library.presentation.view.publisher.PublisherSearchForm;
-import com.ugurtech.library.presentation.view.borrow.BookBorrowFollowForm;
 import com.ugurtech.library.presentation.view.borrow.BookBorrowForm;
 import com.ugurtech.library.presentation.view.borrow.StartBorrowForm;
 import com.ugurtech.library.presentation.view.classstd.ClassSearchForm;
@@ -132,6 +131,8 @@ public class MainFormController extends AbstractController implements Initialize
 
     private void setLenguage() {
         mainForm.getTabbPane().setTitleAt(0, setLanguage("userpanel.tabbpane.bookbar"));
+        mainForm.getButtonBookBorrow().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.borrowed.button"));
+        mainForm.getButtonBasket().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.basket.button"));
         mainForm.getPublisherButton().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.publisherbutton"));
         mainForm.getAuthorTableButton().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.authortablebutton"));
         mainForm.getBookTypeButton().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.booktypebutton"));
@@ -139,6 +140,7 @@ public class MainFormController extends AbstractController implements Initialize
         mainForm.getTabbPane().setTitleAt(1, setLanguage("userpanel.tabbpane.studentbar"));
         mainForm.getStudentTable().setText(setLanguage("userpanel.tabbpane.studentbar.studentpanel.studenttable"));
         mainForm.getTabbPane().setTitleAt(2, setLanguage("userpanel.tabbpane.schoolbar"));
+        mainForm.getGradeButton().setText(setLanguage("userpanel.tabbpane.schoolbar.schoolpanel.class.button"));
         mainForm.getSchoolForm().setText(setLanguage("userpanel.tabbpane.schoolbar.schoolpanel.schoolform"));
         mainForm.getTabbPane().setTitleAt(3, setLanguage("userpanel.tabbpane.userbar"));
         mainForm.getPersonTableButton().setText(setLanguage("userpanel.tabbpane.userbar.userpanel2.persontablebutton"));

@@ -14,7 +14,7 @@ import javax.swing.JTable;
 /**
  *
  * @author Teacher
- * 
+ *
  */
 public abstract class AbstractController extends JInternalFrame {
 
@@ -38,8 +38,17 @@ public abstract class AbstractController extends JInternalFrame {
             return true;
         }
     }
-    
-    protected void write(JTable table,String title){
+
+    protected boolean unSelectRowMessage(int selectedRow) {
+        if (selectedRow == -1) {
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.unselectedrow"));
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    protected void write(JTable table, String title) {
         new TableToExcelImpl(table, title).writeToTable();
     }
 }

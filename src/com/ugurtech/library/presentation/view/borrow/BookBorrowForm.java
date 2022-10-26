@@ -55,7 +55,7 @@ public final class BookBorrowForm extends JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Books Detail Table");
+        setTitle("Book Borrow Detail Table");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         tableBooks.setModel(new javax.swing.table.DefaultTableModel(
@@ -68,7 +68,7 @@ public final class BookBorrowForm extends JInternalFrame {
         ));
         jScrollPane1.setViewportView(tableBooks);
 
-        labelColumn.setText("Column");
+        labelColumn.setText("Date Column");
 
         labelStart.setText("Start Date");
 
@@ -90,7 +90,7 @@ public final class BookBorrowForm extends JInternalFrame {
                 .addComponent(labelEnd)
                 .addGap(0, 0, 0)
                 .addComponent(dateChooserLast, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,8 +118,6 @@ public final class BookBorrowForm extends JInternalFrame {
 
         buttonReturn.setText("Return Book");
 
-        comboBoxOptions.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ödünç Alınmış Bütün Kitaplar", "İade Edilen Kitaplar", "Okuyucuda Bulunan Kitaplar", "İade Zamanı Aşan Kitaplar" }));
-
         buttonWrite.setText("Write Excel");
         buttonWrite.setMaximumSize(new java.awt.Dimension(240, 105));
         buttonWrite.setPreferredSize(new java.awt.Dimension(100, 35));
@@ -139,15 +137,15 @@ public final class BookBorrowForm extends JInternalFrame {
                 .addComponent(textFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonSearch)
-                .addGap(30, 30, 30)
-                .addComponent(comboBoxOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comboBoxOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(buttonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(buttonWrite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -29,7 +29,6 @@ public final class BookSearchController extends BookController implements Initia
 
     @Override
     public void initView() {
-        fillDateColumnToSelectionComboBox();
         setLanguage();
         search();
     }
@@ -105,14 +104,28 @@ public final class BookSearchController extends BookController implements Initia
     }
 
     private void setLanguage() {
-
+        fillDateColumnToSelectionComboBox();
+        bookSearchForm.getLabelColumn().setText(setLanguage("table.label.column"));
+        bookSearchForm.getLabelStart().setText(setLanguage("table.begin.date"));
+        bookSearchForm.getLabelEnd().setText(setLanguage("table.end.date"));
+        bookSearchForm.getLabelSearch().setText(setLanguage("table.search"));
+        bookSearchForm.getButtonAdd().setText(setLanguage("table.button.add"));
+        bookSearchForm.getButtonBorrow().setText(setLanguage("book.search.form.button.add.basket"));
+        bookSearchForm.getButtonDelete().setText(setLanguage("table.button.delete"));
+        bookSearchForm.getButtonSearch().setText(setLanguage("table.search"));
+        bookSearchForm.getButtonUpdate().setText(setLanguage("table.button.update"));
+        bookSearchForm.getButtonWriteFile().setText(setLanguage("table.button.write.excel"));
+        
     }
     
         private void addBasket() {
-        startBorrowForm().getStartBorrowFormController().addHashMap(
+            int selectedRow =bookSearchForm.getBooksTable().getSelectedRow();
+        if(unSelectRowMessage(selectedRow)){
+            startBorrowForm().getStartBorrowFormController().addHashMap(
                 (long)bookSearchForm.getBooksTable().getValueAt(bookSearchForm.getBooksTable().getSelectedRow(), 1),
                 addVector(), 
                 (int) bookSearchForm.getBooksTable().getValueAt(bookSearchForm.getBooksTable().getSelectedRow(), 8));
+        }
     }
 
     private StartBorrowForm startBorrowForm() {

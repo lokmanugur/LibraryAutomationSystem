@@ -91,7 +91,7 @@ public final class ClassSearchFormController extends ClassController implements 
 
     private void setLanguage() {
         classSearchForm.setTitle(setLanguage("classform.title"));
-        classSearchForm.getLabelSearch().setText(setLanguage("table.label.search"));
+        classSearchForm.getLabelSearch().setText(setLanguage("table.search"));
         classSearchForm.getButtonSave().setText(setLanguage("table.button.add"));
         classSearchForm.getButtonWrite().setText(setLanguage("table.button.write.excel"));
         classSearchForm.getButtonUpdate().setText(setLanguage("table.button.update"));

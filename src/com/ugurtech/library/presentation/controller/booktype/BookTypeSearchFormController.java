@@ -94,7 +94,7 @@ public final class BookTypeSearchFormController extends BookTypeController imple
 
     private void setLanguage() {
         bookTypeSearchForm.setTitle(setLanguage("booktypeform.title"));
-        bookTypeSearchForm.getLabelSearch().setText(setLanguage("table.label.search"));
+        bookTypeSearchForm.getLabelSearch().setText(setLanguage("table.search"));
         bookTypeSearchForm.getButtonSave().setText(setLanguage("table.button.add"));
         bookTypeSearchForm.getButtonWrite().setText(setLanguage("table.button.write.excel"));
         bookTypeSearchForm.getButtonUpdate().setText(setLanguage("table.button.update"));

@@ -95,7 +95,7 @@ public class PublisherSearchFormController extends PublisherController implement
 
     private void setLanguage() {
         publisherSearchForm.setTitle(setLanguage("publisherform.title"));
-        publisherSearchForm.getLabelSearch().setText(setLanguage("table.label.search"));
+        publisherSearchForm.getLabelSearch().setText(setLanguage("table.search"));
         publisherSearchForm.getButtonAdd().setText(setLanguage("table.button.add"));
         publisherSearchForm.getButtonUpdate().setText(setLanguage("table.button.update"));
         publisherSearchForm.getButtonDelete().setText(setLanguage("table.button.delete"));

@@ -61,12 +61,15 @@ public final class BookFormController extends BookController implements Initiali
     public void initController() {
 
         bookForm.getAuthorComboBox().addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            @Override
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
 
+            @Override
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
 
+            @Override
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 getAllAuthor();
             }
@@ -85,18 +88,22 @@ public final class BookFormController extends BookController implements Initiali
         });
 
         bookForm.getBooksTypeComboBox().addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            @Override
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
 
+            @Override
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
 
+            @Override
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 getAllBookType();
             }
         });
 
         bookForm.getBooksTypeComboBox().getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 if (evt.getKeyCode() == 10) {
                     addItmeToBookTypeList();
@@ -104,6 +111,7 @@ public final class BookFormController extends BookController implements Initiali
             }
         });
         bookForm.getAuthorComboBox().getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 if (evt.getKeyCode() == 10) {
                     addItemToAuthorList();
@@ -116,6 +124,7 @@ public final class BookFormController extends BookController implements Initiali
         });
 
         bookForm.getBookTypeList().addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (evt.getClickCount() == 2) {
                     evt.consume();
@@ -125,6 +134,7 @@ public final class BookFormController extends BookController implements Initiali
 
         });
         bookForm.getAuthorList().addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (evt.getClickCount() == 2) {
                     evt.consume();
@@ -143,13 +153,16 @@ public final class BookFormController extends BookController implements Initiali
         });
 
         bookForm.getPublisherComboBox().addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            @Override
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
                 
             }
 
+            @Override
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
 
+            @Override
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 getAllPublisher();
             }
@@ -244,6 +257,7 @@ public final class BookFormController extends BookController implements Initiali
         bookForm.getLabelPressDate().setText(setLanguage("bookform.layeredpanebook.panelbook.labelpressdate"));
         bookForm.getLabelBookQuantity().setText(setLanguage("bookform.layeredpanebook.panelbook.labelbookquantity"));
         bookForm.getLabelBookShelf().setText(setLanguage("bookform.layeredpanebook.panelbook.labelbookshelf"));
+        bookForm.getLabelBookPageNumber().setText(setLanguage("bookform.layeredpanebook.panelbook.labelpages"));
         bookForm.getLabelAuthorList().setText(setLanguage("bookform.layeredpanebook.panelauthor.labelauthorlist"));
         bookForm.getLabelSelectAuthor().setText(setLanguage("bookform.layeredpanebook.panelauthor.labelselectauthor"));
         bookForm.getLabelSelectBookType().setText(setLanguage("bookform.layeredpanebook.panelbooktype.labelselectbooktype"));

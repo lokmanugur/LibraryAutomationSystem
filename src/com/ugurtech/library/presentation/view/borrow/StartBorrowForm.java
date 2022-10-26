@@ -5,12 +5,16 @@
  */
 package com.ugurtech.library.presentation.view.borrow;
 import com.toedter.calendar.JDateChooser;
+import com.ugurtech.library.application.lib.localization.Internationalization;
+import com.ugurtech.library.application.lib.localization.LanguageImpl;
 import com.ugurtech.library.presentation.controller.borrow.StartBorrowFormController;
 import com.ugurtech.library.model.StudentModel;
+import javax.swing.BorderFactory;
 import javax.swing.JInternalFrame;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -70,7 +74,7 @@ public final class StartBorrowForm extends JInternalFrame {
         setTitle("Book Basket");
         setNextFocusableComponent(fieldNumber);
 
-        panelStudent.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Student or Person Details"));
+        panelStudent.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)),LanguageImpl.setLanguage(Internationalization::setLanguage, "startborrowform.bordertitle")));
 
         labelFirstLast.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         labelFirstLast.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -252,7 +256,7 @@ public final class StartBorrowForm extends JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelBottom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -453,5 +457,14 @@ public final class StartBorrowForm extends JInternalFrame {
     public DefaultTableModel getDefaultTableModel() {
         return defaultTableModel;
     }
+
+    public JPanel getPanelStudent() {
+        return panelStudent;
+    }
+
+    public void setPanelStudent(JPanel panelStudent) {
+        this.panelStudent = panelStudent;
+    }
+    
     
 }

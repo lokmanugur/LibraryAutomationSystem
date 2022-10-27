@@ -27,6 +27,7 @@ public final class PersonSearchFormController extends PersonController implement
 
     @Override
     public void initView() {
+        setLanguage();
         search();
     }
 
@@ -81,5 +82,15 @@ public final class PersonSearchFormController extends PersonController implement
 
     private void add() {
         MainForm.getInstance().addDesktopPane(PersonForm.INSTANCE);
+    }
+
+    private void setLanguage() {
+        personSearchForm.setTitle(setLanguage("personsearchform.title"));
+        personSearchForm.getButtonAdd().setText(setLanguage("table.button.add"));
+        personSearchForm.getButtonUpdate().setText(setLanguage("table.button.update"));
+        personSearchForm.getButtonDelete().setText(setLanguage("table.button.delete"));
+        personSearchForm.getButtonWrite().setText(setLanguage("table.button.write.excel"));
+        personSearchForm.getLabelSearch().setText(setLanguage("table.search"));
+
     }
 }

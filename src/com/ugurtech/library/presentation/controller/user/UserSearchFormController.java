@@ -27,6 +27,7 @@ public final class UserSearchFormController extends UserController implements In
 
     @Override
     public void initView() {
+        setLanguage();
         search();
     }
 
@@ -83,5 +84,14 @@ public final class UserSearchFormController extends UserController implements In
             delete((int) userSearchForm.getTableSearch().getValueAt(selectedRow, 0));
         }
         search();
+    }
+
+    private void setLanguage() {
+        userSearchForm.setTitle(setLanguage("usersearchform.title"));
+        userSearchForm.getButtonAdd().setText(setLanguage("table.button.add"));
+        userSearchForm.getButtonUpdate().setText(setLanguage("table.button.update"));
+        userSearchForm.getButtonDelete().setText(setLanguage("table.button.delete"));
+        userSearchForm.getButtonWrite().setText(setLanguage("table.button.write.excel"));
+        userSearchForm.getLabelSearch().setText(setLanguage("table.search"));
     }
 }

@@ -49,7 +49,7 @@ public final class PersonFormController extends PersonController implements Init
         personForm.getTextFieldPhone().setText("");
         personForm.getTextAreaAddress().setText("");
         personForm.getDateChooserBirth().setDate(null);
-        personModel=null;
+        personModel = null;
     }
 
     private void add() {
@@ -87,13 +87,13 @@ public final class PersonFormController extends PersonController implements Init
     }
 
     private void setLanguage() {
-        personForm.setTitle(setLanguage(""));
-        personForm.getLabelFirstName().setText(setLanguage(""));
-        personForm.getLabelLastName().setText(setLanguage(""));
-        personForm.getLabelBirtDate().setText(setLanguage(""));
-        personForm.getLabelPhone().setText(setLanguage(""));
-        personForm.getTextAreaAddress().setText(setLanguage(""));
-        personForm.getButtonCancel().setText(setLanguage(""));
-        personForm.getButtonSave().setText(setLanguage(""));
+        personForm.setTitle(setLanguage("personform.title"));
+        personForm.getLabelFirstName().setText(setLanguage("personform.label.name"));
+        personForm.getLabelLastName().setText(setLanguage("personform.label.surname"));
+        personForm.getLabelBirtDate().setText(setLanguage("personform.label.birtdate"));
+        personForm.getLabelPhone().setText(setLanguage("personform.label.address"));
+        personForm.getTextAreaAddress().setText(setLanguage("personform.label.phone"));
+        personForm.getButtonCancel().setText(setLanguage("form.button.cancel"));
+        personForm.getButtonSave().setText(setLanguage("form.button.save"));
     }
 }

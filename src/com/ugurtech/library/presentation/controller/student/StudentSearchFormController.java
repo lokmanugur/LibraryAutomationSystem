@@ -26,6 +26,7 @@ public final class StudentSearchFormController extends StudentController impleme
 
     @Override
     public void initView() {
+        setLanguage();
         search();
     }
 
@@ -77,6 +78,15 @@ public final class StudentSearchFormController extends StudentController impleme
 
     public void search() {
        studentSearchForm.getTableSearch().setModel(search(studentSearchForm.getTextFieldSearch().getText()));
+    }
+
+    private void setLanguage() {
+        studentSearchForm.setTitle(setLanguage("studentsearchform.title"));
+        studentSearchForm.getLabelSearch().setText(setLanguage("table.search"));
+        studentSearchForm.getButtonAdd().setText(setLanguage("table.button.add"));
+        studentSearchForm.getButtonUpdate().setText(setLanguage("table.button.update"));
+        studentSearchForm.getButtonDelete().setText(setLanguage("table.button.delete"));
+        studentSearchForm.getButtonWrite().setText(setLanguage("table.button.write.excel"));
     }
 
 }

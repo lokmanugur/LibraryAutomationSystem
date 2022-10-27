@@ -55,6 +55,7 @@ public final class UserFormController extends UserController implements Initiali
 
     @Override
     public void initView() {
+        setLanguage();
         fillAllUserTypeToComboBox();
         fillAllCountryToComboBox();
         fillAllLanguageToComboBox();
@@ -219,7 +220,7 @@ public final class UserFormController extends UserController implements Initiali
         userModel.setPersonModel((PersonModel) userForm.getComboBoxUser().getSelectedItem());
         userModel.setUserName(userForm.getTextFieldUserName().getText());
         userModel.setUserPassword(String.copyValueOf(userForm.getTextFieldPassword().getPassword()));
-        userModel.setSessionTime(Integer.valueOf(userForm.getTextFieldSession().getText()));
+        userModel.setSessionTime(Integer.parseInt(userForm.getTextFieldSession().getText()));
         return userModel;
     }
 
@@ -232,5 +233,20 @@ public final class UserFormController extends UserController implements Initiali
         userForm.getTextFieldSession().setText(String.valueOf(userModel.getSessionTime()));
         userForm.getTextFieldUserName().setText(userModel.getUserName());
         this.userModel = userModel;
+    }
+
+    private void setLanguage() {
+        userForm.setTitle(setLanguage("userform.title"));
+        userForm.getLabelCountry().setText(setLanguage("userform.label.country"));
+        userForm.getLabelLanguage().setText(setLanguage("userform.label.language"));
+        userForm.getLabelPassword().setText(setLanguage("userform.label.password"));
+        userForm.getLabelRepeatPassword().setText(setLanguage("userform.label.repeatpassword"));
+        userForm.getLabelSessionTime().setText(setLanguage("userform.label.sessiontime"));
+        userForm.getLabelUser().setText(setLanguage("userform.label.user"));
+        userForm.getLabelUserName().setText(setLanguage("userform.label.username"));
+        userForm.getLabelUserType().setText(setLanguage("userform.label.usertype"));
+        userForm.getLabelMinute().setText(setLanguage("userform.label.minute"));
+        userForm.getButtonSave().setText(setLanguage("form.button.save"));
+        userForm.getButtonCancel().setText(setLanguage("form.button.cancel")); 
     }
 }

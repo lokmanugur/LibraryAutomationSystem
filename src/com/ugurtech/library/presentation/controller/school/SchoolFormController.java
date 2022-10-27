@@ -30,7 +30,7 @@ public final class SchoolFormController extends SchoolController implements Init
 
     @Override
     public void initView() {
-
+        setLanguage();
     }
 
     @Override
@@ -95,5 +95,14 @@ public final class SchoolFormController extends SchoolController implements Init
     
     private void refreshTable(){
         SchoolSearchForm.INSTANCE.getSchoolSearchFromController().search();
+    }
+
+    private void setLanguage() {
+        schoolForm.setTitle(setLanguage("schoolform.title"));
+        schoolForm.getLabelName().setText(setLanguage("schoolform.label.name"));
+        schoolForm.getLabelPhone().setText(setLanguage("schoolform.label.phone"));
+        schoolForm.getLabelAddress().setText(setLanguage("schoolform.label.address"));
+        schoolForm.getButtonSave().setText(setLanguage("form.button.save"));
+        schoolForm.getButtonCancel().setText(setLanguage("form.button.cancel"));
     }
 }

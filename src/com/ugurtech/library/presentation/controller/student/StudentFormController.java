@@ -138,7 +138,17 @@ public final class StudentFormController extends StudentController implements In
     }
 
     private void setLanguage() {
-
+        studentForm.setTitle(setLanguage("studentform.title"));
+        studentForm.getLabelFirstName().setText(setLanguage("studentform.label.name"));
+        studentForm.getLabelLastName().setText(setLanguage("studentform.label.surname"));
+        studentForm.getLabelStudentNo().setText(setLanguage("studentform.label.studentno"));
+        studentForm.getLabelBirthDate().setText(setLanguage("studentform.label.birthdate"));
+        studentForm.getLabelClass().setText(setLanguage("studentform.label.class"));
+        studentForm.getLabelSchool().setText(setLanguage("studentform.label.school"));
+        studentForm.getLabelPhone().setText(setLanguage("studentform.label.phone"));
+        studentForm.getLabelAddress().setText(setLanguage("studentform.label.address"));
+        studentForm.getButtonSave().setText(setLanguage("form.button.save"));
+        studentForm.getButtonCancel().setText(setLanguage("form.button.cancel"));
     }
 
     private void cancel() {

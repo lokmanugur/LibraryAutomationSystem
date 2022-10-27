@@ -28,6 +28,7 @@ public final class SchoolSearchFormController extends SchoolController implement
 
     @Override
     public void initView() {
+        setLanguage();
         search();
     }
 
@@ -35,6 +36,7 @@ public final class SchoolSearchFormController extends SchoolController implement
     public void initController() {
 
         schoolSearchForm.getTextFieldSearch().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 search();
             }
@@ -83,5 +85,14 @@ public final class SchoolSearchFormController extends SchoolController implement
 
     private void writeExel() {
         write(schoolSearchForm.getTableSchool(), schoolSearchForm.getTitle());
+    }
+
+    private void setLanguage() {
+        schoolSearchForm.setTitle(setLanguage("schoolsearchform.title"));
+        schoolSearchForm.getLabelSearch().setText(setLanguage("table.search"));
+        schoolSearchForm.getButtonAdd().setText(setLanguage("table.button.add"));
+        schoolSearchForm.getButtonUpdate().setText(setLanguage("table.button.update"));
+        schoolSearchForm.getButtonDelete().setText(setLanguage("table.button.delete"));
+        schoolSearchForm.getButtonWrite().setText(setLanguage("table.button.write.excel"));
     }
 }

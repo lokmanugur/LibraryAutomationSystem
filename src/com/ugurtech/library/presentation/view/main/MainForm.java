@@ -62,7 +62,7 @@ public final class MainForm extends MainFrame {
         settingsMenu = new javax.swing.JMenu();
         databaseMenuItem = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Library Automation System");
 
         userPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -72,7 +72,6 @@ public final class MainForm extends MainFrame {
         tabbPane.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         tabbPane.setPreferredSize(new java.awt.Dimension(1044, 148));
 
-        bookBar.setFloatable(false);
         bookBar.setRollover(true);
 
         publisherButton.setText("<html><center>Publisher<br>Table</center></html>");
@@ -163,7 +162,6 @@ public final class MainForm extends MainFrame {
 
         tabbPane.addTab("Books", new javax.swing.ImageIcon(getClass().getResource("/resources/img/bookshelf64.png")), bookBar); // NOI18N
 
-        studentBar.setFloatable(false);
         studentBar.setRollover(true);
 
         studentTable.setText("<html><center>Students<br>Table</center></html>");
@@ -194,7 +192,6 @@ public final class MainForm extends MainFrame {
 
         tabbPane.addTab("Students", new javax.swing.ImageIcon(getClass().getResource("/resources/img/graduated64.png")), studentBar); // NOI18N
 
-        schoolBar.setFloatable(false);
         schoolBar.setRollover(true);
 
         schoolForm.setText("<html><center>School<br>Table</center></html>");
@@ -232,7 +229,6 @@ public final class MainForm extends MainFrame {
 
         tabbPane.addTab("Schools", new javax.swing.ImageIcon(getClass().getResource("/resources/img/school64.png")), schoolBar); // NOI18N
 
-        userBar.setFloatable(false);
         userBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         personTableButton.setText("<html><center>Person<br>Table<center><html>");
@@ -277,7 +273,6 @@ public final class MainForm extends MainFrame {
 
         tabbPane.addTab("Users", new javax.swing.ImageIcon(getClass().getResource("/resources/img/profile64.png")), userBar); // NOI18N
 
-        statisticsBar.setFloatable(false);
         statisticsBar.setRollover(true);
 
         topReadBooks.setText("<html><center>Top Read<br>Books</center></html>");
@@ -319,7 +314,6 @@ public final class MainForm extends MainFrame {
 
         tabbPane.addTab("Statistics", new javax.swing.ImageIcon(getClass().getResource("/resources/img/statistics64.png")), statisticsBar); // NOI18N
 
-        settingsBar.setFloatable(false);
         settingsBar.setRollover(true);
         tabbPane.addTab("Settings", new javax.swing.ImageIcon(getClass().getResource("/resources/img/settings64.png")), settingsBar); // NOI18N
 

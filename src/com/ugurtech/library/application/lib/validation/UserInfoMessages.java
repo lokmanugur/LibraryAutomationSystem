@@ -29,6 +29,7 @@ public class UserInfoMessages {
     private static final Logger logger = Logger.getLogger("LibraryAutomationSystemLog");
     private FileHandler fh = null;
     SimpleFormatter formatter;
+    private final String HEADER = "userinfomessage.message.information";
 
     public static UserInfoMessages getInstance() {
         return validationOperration == null ? validationOperration = new UserInfoMessages() : validationOperration;
@@ -53,7 +54,7 @@ public class UserInfoMessages {
      */
     public boolean showApproveMessages(String message, String title) {
         return JOptionPane.OK_OPTION == JOptionPane.showOptionDialog(null, message, title,
-                JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null, new String[]{"Evet", "Hayır"}, "default");
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null, new String[]{Internationalization.setLanguage("swing.approve.yes"), Internationalization.setLanguage("swing.approve.no")}, "default");
 
     }
 
@@ -67,15 +68,15 @@ public class UserInfoMessages {
      *
      */
     public void insertMessage(int numberOfRow) {
-        JOptionPane.showMessageDialog(null, numberOfRow + " Veri kaydı yapıldı.", "Veri Kaydı Bilgilendirme Formu", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, numberOfRow + Internationalization.setLanguage("userinfomessage.message.insert"),Internationalization.setLanguage(HEADER), JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void deletedMessage(int numberOfRow) {
-        JOptionPane.showMessageDialog(null, numberOfRow + " Veri silindi.", "Veri Silme Bilgilendirme Formu", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, numberOfRow +  Internationalization.setLanguage("userinfomessage.message.delete"),Internationalization.setLanguage(HEADER), JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void updateMessage(int numberOfRow) {
-        JOptionPane.showMessageDialog(null, numberOfRow + " Veri güncellendi.", "Veri Güncelleme Bilgilendirme Formu", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, numberOfRow + Internationalization.setLanguage("userinfomessage.message.update"), Internationalization.setLanguage(HEADER), JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void exceptionInfoMessages(Component parentComponent, String message, String title) {

@@ -8,6 +8,7 @@ package com.ugurtech.library.presentation.controller.main;
 import com.ugurtech.library.presentation.controller.AbstractController;
 import com.ugurtech.library.presentation.controller.Initialize;
 import com.ugurtech.library.application.lib.date.SessionTimeCounter;
+import com.ugurtech.library.application.lib.validation.UserInfoMessages;
 import com.ugurtech.library.presentation.view.login.LoginForm;
 import com.ugurtech.library.presentation.view.main.MainForm;
 import com.ugurtech.library.presentation.view.author.AuthorSearchForm;
@@ -40,7 +41,6 @@ public class MainFormController extends AbstractController implements Initialize
 
     @Override
     public final void initView() {
-
         setLenguage();
     }
 
@@ -55,7 +55,11 @@ public class MainFormController extends AbstractController implements Initialize
         mainForm.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent evt) {
-                System.out.println("window closing method work at MainForm");
+                if(UserInfoMessages.getInstance().showApproveMessages(
+                        setLanguage("userinformessage.message.system.exit"), 
+                        setLanguage("userinfomessage.message.information"))){
+                    System.exit(0);
+                }
             }
         });
         mainForm.addKeyListener(new java.awt.event.KeyAdapter() {

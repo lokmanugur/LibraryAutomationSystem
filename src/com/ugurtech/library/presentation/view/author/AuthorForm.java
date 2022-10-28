@@ -8,12 +8,9 @@ import com.ugurtech.library.presentation.controller.author.AuthorFormController;
 import com.toedter.calendar.JDateChooser;
 import com.ugurtech.library.model.AuthorModel;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -155,6 +152,13 @@ public final class AuthorForm extends JInternalFrame {
     public AuthorFormController getAuthorFormController() {
         return authorFormController;
     }
+
+    @Override
+    public void doDefaultCloseAction() {
+        authorFormController.clearAllFields();
+        super.doDefaultCloseAction();
+    }
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser birthDateChooser;

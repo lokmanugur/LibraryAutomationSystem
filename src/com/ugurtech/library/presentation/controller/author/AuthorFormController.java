@@ -79,7 +79,7 @@ public final class AuthorFormController extends AuthorController implements Init
         authorForm.getBirthDateChooser().setDate(new Date(authorForm.getAuthorModel().getBirthDate()));
     }
 
-    private void clearAllFields() {
+    public void clearAllFields() {
         authorForm.getTextFieldFirstName().setText(null);
         authorForm.getTextFieldLastName().setText(null);
         authorForm.getBirthDateChooser().setDate(null);

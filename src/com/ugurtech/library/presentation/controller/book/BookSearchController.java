@@ -66,12 +66,12 @@ public final class BookSearchController extends BookController implements Initia
     }
 
     protected void add() {
-        MainForm.getInstance().addDesktopPane(BookForm.getInstance());
+        MainForm.INSTANCE.addDesktopPane(BookForm.getInstance());
     }
 
     protected void update() {
         if (updateUnSelectRowMessage(bookSearchForm.getBooksTable().getSelectedRow())) {
-            MainForm.getInstance().addDesktopPane(BookForm.getInstance());
+            MainForm.INSTANCE.addDesktopPane(BookForm.getInstance());
             BookForm.getInstance().setBookModel(get((Integer) (bookSearchForm.getBooksTable().getModel().getValueAt(bookSearchForm.getBooksTable().getSelectedRow(), 0))));
             BookForm.getInstance().getBookFormController().modelToForm();
         }
@@ -131,7 +131,7 @@ public final class BookSearchController extends BookController implements Initia
     private StartBorrowForm startBorrowForm() {
         StartBorrowForm startBorrowForm = StartBorrowForm.INSTANCE;
         if (!startBorrowForm.isVisible()) {
-            MainForm.getInstance().addDesktopPane(startBorrowForm);
+            MainForm.INSTANCE.addDesktopPane(startBorrowForm);
             startBorrowForm.setVisible(false);
         }
         return startBorrowForm;

@@ -9,7 +9,6 @@ import com.ugurtech.library.presentation.controller.Initialize;
 import com.ugurtech.library.presentation.view.main.MainForm;
 import com.ugurtech.library.presentation.view.school.SchoolForm;
 import com.ugurtech.library.presentation.view.school.SchoolSearchForm;
-import com.ugurtech.library.application.lib.writetofile.TableToExcelImpl;
 
 /**
  *
@@ -65,12 +64,12 @@ public final class SchoolSearchFormController extends SchoolController implement
     }
 
     private void add() {
-        MainForm.getInstance().addDesktopPane(SchoolForm.INSTANCE);
+        MainForm.INSTANCE.addDesktopPane(SchoolForm.INSTANCE);
     }
 
     private void update() {
         if (updateUnSelectRowMessage(schoolSearchForm.getTableSchool().getSelectedRow())) {
-            MainForm.getInstance().addDesktopPane(SchoolForm.INSTANCE);
+            MainForm.INSTANCE.addDesktopPane(SchoolForm.INSTANCE);
             SchoolForm.INSTANCE.setSchoolModel(get((int) schoolSearchForm.getTableSchool().getModel().getValueAt(schoolSearchForm.getTableSchool().getSelectedRow(), 0)));
             SchoolForm.INSTANCE.getSchoolFormController().modelToForm();
         }

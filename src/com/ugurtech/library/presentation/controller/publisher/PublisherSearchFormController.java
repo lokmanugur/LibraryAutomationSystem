@@ -63,7 +63,7 @@ public class PublisherSearchFormController extends PublisherController implement
     }
 
     protected void add() {
-       MainForm.getInstance().addDesktopPane(PublisherForm.INSTANCE); 
+       MainForm.INSTANCE.addDesktopPane(PublisherForm.INSTANCE); 
     }
 
     private void delete() {
@@ -80,7 +80,7 @@ public class PublisherSearchFormController extends PublisherController implement
         if (publisherSearchForm.getTablePublisher().getSelectedRow() == -1) {
             UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.update.unselectedrow"));
         } else {
-            MainForm.getInstance().addDesktopPane(PublisherForm.INSTANCE);
+            MainForm.INSTANCE.addDesktopPane(PublisherForm.INSTANCE);
             publisherModel = get((int) publisherSearchForm.getTablePublisher().getModel().getValueAt(publisherSearchForm.getTablePublisher().getSelectedRow(), 0));
             PublisherForm.INSTANCE.setPublisherModel(publisherModel);
             PublisherForm.INSTANCE.getPublisherFormController().modelToForm();

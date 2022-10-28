@@ -19,7 +19,6 @@ public final class SessionTimeCounter extends Thread {
     private long startTime;
     private long currentTime;
     private static boolean loginWin = false;
-    private String time;
     private String date;
     private static final int SECOND = 1000;
     private static final int MINUTE = 60;
@@ -44,11 +43,11 @@ public final class SessionTimeCounter extends Thread {
                 currentTime = System.currentTimeMillis();
                 date = simpleDateFormat.format(currentTime);
                 String str[] = date.split(" ");
-                MainForm.getInstance().getDateLabel().setText(str[0]);
-                MainForm.getInstance().getTimeLabel().setText(str[1]);
+                MainForm.INSTANCE.getDateLabel().setText(str[0]);
+                MainForm.INSTANCE.getTimeLabel().setText(str[1]);
                 SessionTimeCounter.sleep(1000);
                 if (currentTime - startTime >= sessionTime && !loginWin) {
-                    MainForm.getInstance().returnLoginForm();
+                    MainForm.INSTANCE.returnLoginForm();
                 }
             } catch (InterruptedException ex) {
                 SessionTimeCounter.currentThread().interrupt();

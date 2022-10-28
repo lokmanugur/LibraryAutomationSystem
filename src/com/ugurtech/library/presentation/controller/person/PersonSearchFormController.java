@@ -75,13 +75,13 @@ public final class PersonSearchFormController extends PersonController implement
     private void update() {
         if(updateUnSelectRowMessage(personSearchForm.getTableSearch().getSelectedRow())){
             PersonForm pf=PersonForm.INSTANCE;
-            MainForm.getInstance().addDesktopPane(pf);
+            MainForm.INSTANCE.addDesktopPane(pf);
             pf.getPersonFormController().modelToForm(get((int)personSearchForm.getTableSearch().getValueAt(personSearchForm.getTableSearch().getSelectedRow(), 0)));
         }
     }
 
     private void add() {
-        MainForm.getInstance().addDesktopPane(PersonForm.INSTANCE);
+        MainForm.INSTANCE.addDesktopPane(PersonForm.INSTANCE);
     }
 
     private void setLanguage() {

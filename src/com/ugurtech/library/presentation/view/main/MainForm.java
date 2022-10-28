@@ -14,19 +14,11 @@ import javax.swing.JToolBar;
 
 public final class MainForm extends MainFrame {
     // private String dPaneimage="/img/MEBLogo.png"; 
-    private static MainForm INSTANCE;
-    private final MainFormController mainFormController;
-    public static MainForm getInstance(){
-        if(INSTANCE == null)
-            return INSTANCE = new MainForm();
-        else
-            return INSTANCE;
-    }
-    
+    public static final MainForm INSTANCE = new MainForm();
     private MainForm() {
         initComponents();
         setDesktopPane(desktopPane);
-        mainFormController = new MainFormController(this);
+        new MainFormController(this).getClass();
     }
 
     @SuppressWarnings("unchecked")
@@ -755,7 +747,5 @@ public final class MainForm extends MainFrame {
 
     public void setButtonBasket(JButton buttonBasket) {
         this.buttonBasket = buttonBasket;
-    }
-
-    
+    }   
 }

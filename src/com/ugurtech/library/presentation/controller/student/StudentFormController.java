@@ -58,13 +58,14 @@ public final class StudentFormController extends StudentController implements In
         });
 
         studentForm.getButtonAdd().addActionListener((e) -> {
-            MainForm.getInstance().addDesktopPane(ClassForm.INSTANCE);
+            MainForm.INSTANCE.addDesktopPane(ClassForm.INSTANCE);
         });
         studentForm.getButtonSave().addActionListener((e) -> {
             add();
         });
 
         studentForm.getComboBoxSchool().getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 if (evt.getKeyCode() == 10) {
 
@@ -72,6 +73,7 @@ public final class StudentFormController extends StudentController implements In
             }
         });
         studentForm.getComboBoxClass().getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 if (evt.getKeyCode() == 10) {
 
@@ -79,23 +81,29 @@ public final class StudentFormController extends StudentController implements In
             }
         });
         studentForm.getComboBoxClass().addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            @Override
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
 
+            @Override
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
 
+            @Override
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 fillAllClassToComboBox();
             }
         });
         studentForm.getComboBoxSchool().addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            @Override
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
 
+            @Override
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
 
+            @Override
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 fillAllSchoolToComboBox();
             }

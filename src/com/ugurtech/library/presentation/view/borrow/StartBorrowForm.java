@@ -175,7 +175,10 @@ public final class StartBorrowForm extends JInternalFrame {
 
             },
             new String [] {
-                "Book Id", "ISBN", "Book Title", "Amount"
+                LanguageImpl.setLanguage(Internationalization::setLanguage,"bookbasket.table.header.bookid"),
+                LanguageImpl.setLanguage(Internationalization::setLanguage, "bookbasket.table.header.isbn"),
+                LanguageImpl.setLanguage(Internationalization::setLanguage, "bookbasket.table.header.booktitle"),
+                LanguageImpl.setLanguage(Internationalization::setLanguage, "bookbasket.table.header.amount")
             }
         ){
             Class[] types = new Class [] {

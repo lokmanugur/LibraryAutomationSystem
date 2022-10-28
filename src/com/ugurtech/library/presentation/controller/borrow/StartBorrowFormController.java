@@ -16,7 +16,6 @@ import com.ugurtech.library.dataaccesslayer.student.StudentDaoImpl;
 import com.ugurtech.library.model.BookModel;
 import com.ugurtech.library.model.PersonBookModel;
 import com.ugurtech.library.model.StudentModel;
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Date;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -24,7 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
-import javax.swing.BorderFactory;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -63,7 +61,7 @@ public final class StartBorrowFormController extends ControllerImpl implements I
             }
         });
         startBorrowForm.getButtonAddPerson().addActionListener((java.awt.event.ActionEvent evt) -> {
-            MainForm.getInstance().addDesktopPane(StudentForm.INSTANCE);
+            MainForm.INSTANCE.addDesktopPane(StudentForm.INSTANCE);
         });
         startBorrowForm.getButtonRemove().addActionListener((java.awt.event.ActionEvent evt) -> {
             removeFromHashMap();
@@ -197,9 +195,9 @@ public final class StartBorrowFormController extends ControllerImpl implements I
     
     private void setIconToBackround(){
         if(startBorrowForm.getTableBasket().getRowCount()>0){
-            MainForm.getInstance().getButtonBasket().setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/basketfull32.png")));
+            MainForm.INSTANCE.getButtonBasket().setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/basketfull32.png")));
         }else{
-            MainForm.getInstance().getButtonBasket().setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/basketempty32.png")));
+            MainForm.INSTANCE.getButtonBasket().setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/basketempty32.png")));
         }
     }
 

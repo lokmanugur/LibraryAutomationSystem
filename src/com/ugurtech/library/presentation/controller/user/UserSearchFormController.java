@@ -66,13 +66,13 @@ public final class UserSearchFormController extends UserController implements In
     }
 
     private void add() {
-        MainForm.getInstance().addDesktopPane(UserForm.INSTANCE);
+        MainForm.INSTANCE.addDesktopPane(UserForm.INSTANCE);
     }
 
     private void update() {
         int selectedRow = userSearchForm.getTableSearch().getSelectedRow();
        if(updateUnSelectRowMessage(selectedRow)){
-           MainForm.getInstance().addDesktopPane(UserForm.INSTANCE);
+           MainForm.INSTANCE.addDesktopPane(UserForm.INSTANCE);
            UserForm.INSTANCE.getUserFormController().modelToForm(get((int)userSearchForm.getTableSearch().
                    getValueAt(userSearchForm.getTableSearch().getSelectedRow(), 0)));
        }

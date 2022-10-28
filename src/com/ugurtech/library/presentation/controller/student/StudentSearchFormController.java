@@ -57,11 +57,11 @@ public final class StudentSearchFormController extends StudentController impleme
     }
 
     private void add() {
-        MainForm.getInstance().addDesktopPane(StudentForm.INSTANCE);
+        MainForm.INSTANCE.addDesktopPane(StudentForm.INSTANCE);
     }
     
     private void update() {
-        MainForm.getInstance().addDesktopPane(StudentForm.INSTANCE);
+        MainForm.INSTANCE.addDesktopPane(StudentForm.INSTANCE);
         StudentForm.INSTANCE.getStudentFormController().modelToForm(
         get((int)studentSearchForm.getTableSearch().getValueAt(studentSearchForm.getTableSearch().getSelectedRow(), 0)));
     }

@@ -96,10 +96,10 @@ public final class UserFormController extends UserController implements Initiali
             cancel();
         });
         userForm.getButtonAddUser().addActionListener((java.awt.event.ActionEvent evt) -> {
-            MainForm.getInstance().addDesktopPane(PersonForm.INSTANCE);
+            MainForm.INSTANCE.addDesktopPane(PersonForm.INSTANCE);
         });
         userForm.getButtonAddUserType().addActionListener((java.awt.event.ActionEvent evt) -> {
-            MainForm.getInstance().addDesktopPane(UserTypeForm.INSTANCE);
+            MainForm.INSTANCE.addDesktopPane(UserTypeForm.INSTANCE);
         });
 
         userForm.getTextFieldPassword().addKeyListener(new KeyAdapter() {

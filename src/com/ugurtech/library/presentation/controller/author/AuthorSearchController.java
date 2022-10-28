@@ -44,7 +44,7 @@ public final class AuthorSearchController extends AuthorController implements In
             UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.update.unselectedrow"));
         } else {
             authorModel = get((int) authorSearchForm.getAuthorTable().getModel().getValueAt(authorSearchForm.getAuthorTable().getSelectedRow(), 0));
-            MainForm.getInstance().addDesktopPane(AuthorForm.getInstance());
+            MainForm.INSTANCE.addDesktopPane(AuthorForm.getInstance());
             AuthorForm.getInstance().setAuthorModel(authorModel);
             AuthorForm.getInstance().getAuthorFormController().modelToForm();
         }
@@ -68,7 +68,7 @@ public final class AuthorSearchController extends AuthorController implements In
         });
 
         authorSearchForm.getButtonAdd().addActionListener((java.awt.event.ActionEvent evt) -> {
-            MainForm.getInstance().addDesktopPane(AuthorForm.getInstance());
+            MainForm.INSTANCE.addDesktopPane(AuthorForm.getInstance());
         });
 
         authorSearchForm.getButtonWriteFile().addActionListener((java.awt.event.ActionEvent evt) -> {
@@ -76,6 +76,7 @@ public final class AuthorSearchController extends AuthorController implements In
         });
 
         authorSearchForm.getTextFieldSearch().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 search();
             }

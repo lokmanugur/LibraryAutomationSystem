@@ -50,8 +50,8 @@ public class LoginFormController extends AbstractController implements Initializ
             initView();
             setLanguage();
             loginForm.getInfolabel().setText("");
-            MainForm.getInstance().getUserLabel().setText(currentUserModel.getFirstName() + " " + currentUserModel.getLastName() + " ");
-            MainForm.getInstance().setVisible(true);
+            MainForm.INSTANCE.getUserLabel().setText(currentUserModel.getFirstName() + " " + currentUserModel.getLastName() + " ");
+            MainForm.INSTANCE.setVisible(true);
             sessionTimeCounter.setSimpleDateFormat(setLanguage("simple.date.format"));
             loginForm.setVisible(false);
             loginForm.getUserNameField().setText("");
@@ -68,7 +68,7 @@ public class LoginFormController extends AbstractController implements Initializ
     public void closeButtonClicked() {
         sessionTimeCounter.interrupt();
         loginForm.dispose();
-        MainForm.getInstance().dispose();
+        MainForm.INSTANCE.dispose();
     }
 
     @Override

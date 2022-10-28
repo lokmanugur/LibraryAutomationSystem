@@ -76,7 +76,7 @@ public final class BookFormController extends BookController implements Initiali
         });
 
         bookForm.getAuthorButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            MainForm.getInstance().addDesktopPane(AuthorForm.getInstance());
+            MainForm.INSTANCE.addDesktopPane(AuthorForm.getInstance());
         });
 
         bookForm.getAuthorRemoveButton().addActionListener((java.awt.event.ActionEvent evt) -> {
@@ -120,7 +120,7 @@ public final class BookFormController extends BookController implements Initiali
         });
 
         bookForm.getTypeButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            MainForm.getInstance().addDesktopPane(BookTypeForm.INSTANCE);
+            MainForm.INSTANCE.addDesktopPane(BookTypeForm.INSTANCE);
         });
 
         bookForm.getBookTypeList().addMouseListener(new java.awt.event.MouseAdapter() {
@@ -169,7 +169,7 @@ public final class BookFormController extends BookController implements Initiali
         });
 
         bookForm.getPublisherButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            MainForm.getInstance().addDesktopPane(PublisherForm.INSTANCE);
+            MainForm.INSTANCE.addDesktopPane(PublisherForm.INSTANCE);
         });
 
         bookForm.getButtonCancel().addActionListener((java.awt.event.ActionEvent evt) -> {

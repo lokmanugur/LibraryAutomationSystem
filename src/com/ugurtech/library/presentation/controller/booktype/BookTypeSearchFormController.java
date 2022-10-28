@@ -63,7 +63,7 @@ public final class BookTypeSearchFormController extends BookTypeController imple
     }
 
     protected void add() {
-        MainForm.getInstance().addDesktopPane(BookTypeForm.INSTANCE);
+        MainForm.INSTANCE.addDesktopPane(BookTypeForm.INSTANCE);
     }
 
     protected void update() {
@@ -71,7 +71,7 @@ public final class BookTypeSearchFormController extends BookTypeController imple
         if (bookTypeSearchForm.getTableBooksType().getSelectedRow() == -1) {
             UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.update.unselectedrow"));
         } else {
-            MainForm.getInstance().addDesktopPane(BookTypeForm.INSTANCE);
+            MainForm.INSTANCE.addDesktopPane(BookTypeForm.INSTANCE);
             BookTypeForm.INSTANCE.setBookTypeModel(get((int) bookTypeSearchForm.getTableBooksType().getModel().getValueAt(bookTypeSearchForm.getTableBooksType().getSelectedRow(), 0)));
             BookTypeForm.INSTANCE.getBookTypeFormController().modelToForm();
         }

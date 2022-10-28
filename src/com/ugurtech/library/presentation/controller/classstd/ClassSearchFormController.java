@@ -61,14 +61,14 @@ public final class ClassSearchFormController extends ClassController implements 
     }
 
     protected void add() {
-        MainForm.getInstance().addDesktopPane(ClassForm.INSTANCE);
+        MainForm.INSTANCE.addDesktopPane(ClassForm.INSTANCE);
     }
 
     protected void update() {
         if (classSearchForm.getTableSearch().getSelectedRow() == -1) {
             UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.update.unselectedrow"));
         } else {
-            MainForm.getInstance().addDesktopPane(ClassForm.INSTANCE);
+            MainForm.INSTANCE.addDesktopPane(ClassForm.INSTANCE);
             ClassForm.INSTANCE.setClassModel(get((int) classSearchForm.getTableSearch().getModel().getValueAt(classSearchForm.getTableSearch().getSelectedRow(), 0)));
             ClassForm.INSTANCE.getClassFormController().modelToForm();
         }

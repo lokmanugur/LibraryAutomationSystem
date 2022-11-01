@@ -68,16 +68,27 @@ public class UserInfoMessages {
      *
      */
     public void insertMessage(int numberOfRow) {
-        JOptionPane.showMessageDialog(null, numberOfRow + Internationalization.setLanguage("userinfomessage.message.insert"),Internationalization.setLanguage(HEADER), JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, numberOfRow+" "+ Internationalization.setLanguage("userinfomessage.message.insert"),Internationalization.setLanguage(HEADER), JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void deletedMessage(int numberOfRow) {
-        JOptionPane.showMessageDialog(null, numberOfRow +  Internationalization.setLanguage("userinfomessage.message.delete"),Internationalization.setLanguage(HEADER), JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, numberOfRow+" "+  Internationalization.setLanguage("userinfomessage.message.delete"),Internationalization.setLanguage(HEADER), JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void updateMessage(int numberOfRow) {
-        JOptionPane.showMessageDialog(null, numberOfRow + Internationalization.setLanguage("userinfomessage.message.update"), Internationalization.setLanguage(HEADER), JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, numberOfRow+" "+ Internationalization.setLanguage("userinfomessage.message.update"), Internationalization.setLanguage(HEADER), JOptionPane.INFORMATION_MESSAGE);
     }
+    public void insertMessage() {
+        JOptionPane.showMessageDialog(null, Internationalization.setLanguage("userinfomessage.message.insert"),Internationalization.setLanguage(HEADER), JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void deletedMessage() {
+        JOptionPane.showMessageDialog(null, Internationalization.setLanguage("userinfomessage.message.delete"),Internationalization.setLanguage(HEADER), JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void updateMessage() {
+        JOptionPane.showMessageDialog(null, Internationalization.setLanguage("userinfomessage.message.update"), Internationalization.setLanguage(HEADER), JOptionPane.INFORMATION_MESSAGE);
+    }    
 
     public void exceptionInfoMessages(Component parentComponent, String message, String title) {
         JOptionPane.showMessageDialog(parentComponent, message, title, JOptionPane.ERROR_MESSAGE);

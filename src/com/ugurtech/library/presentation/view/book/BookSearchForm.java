@@ -17,19 +17,12 @@ import javax.swing.JScrollPane;
  */
 public final class BookSearchForm extends JInternalFrame {
 
-    private static BookSearchForm bookSearchForm;
-    
+    public static BookSearchForm INSTANCE = new BookSearchForm();
+    private final BookSearchController bookSearchController;
     private BookSearchForm() {
         initComponents();
-        new BookSearchController(this).getClass();
+       bookSearchController = new BookSearchController(this);
         setLocation(getWidth()/10,getHeight()/10);
-    }
-
-    public static BookSearchForm getInstance(){
-        if(bookSearchForm == null)
-            return bookSearchForm = new BookSearchForm();
-        else
-            return bookSearchForm;
     }
 
  /**
@@ -234,13 +227,10 @@ public final class BookSearchForm extends JInternalFrame {
     private javax.swing.JTextField textFieldSearch;
     // End of variables declaration//GEN-END:variables
 
-    public static BookSearchForm getBookSearchForm() {
-        return bookSearchForm;
+    public BookSearchController getBookSearchController(){
+        return bookSearchController;
     }
-
-    public static void setBookSearchForm(BookSearchForm bookSearchForm) {
-        BookSearchForm.bookSearchForm = bookSearchForm;
-    }
+    
 
     public JTable getBooksTable() {
         return booksTable;

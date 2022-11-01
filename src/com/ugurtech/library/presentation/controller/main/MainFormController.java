@@ -91,7 +91,7 @@ public class MainFormController extends AbstractController implements Initialize
             mainForm.addDesktopPane(BookTypeSearchForm.getInstance());
         });
         mainForm.getBookTable().addActionListener((java.awt.event.ActionEvent evt) -> {
-            mainForm.addDesktopPane(BookSearchForm.getInstance());
+            mainForm.addDesktopPane(BookSearchForm.INSTANCE);
         });
         mainForm.getStudentTable().addActionListener((java.awt.event.ActionEvent evt) -> {
             mainForm.addDesktopPane(StudentSearchForm.INSTANCE);

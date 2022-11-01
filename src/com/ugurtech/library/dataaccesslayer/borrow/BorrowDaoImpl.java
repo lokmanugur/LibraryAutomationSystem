@@ -134,6 +134,7 @@ public class BorrowDaoImpl extends DaoAbstract implements BorrowDao {
             getLogger(ex, "Add person book query error", BorrowDaoImpl.class.getName());
         }
         commit();
+        UserInfoMessages.getInstance().insertMessage();
     }
 
     private int getStock(int bookId) {
@@ -188,6 +189,7 @@ public class BorrowDaoImpl extends DaoAbstract implements BorrowDao {
             getLogger(ex, "Add person book query error", BorrowDaoImpl.class.getName());
         }
         commit();
+        UserInfoMessages.getInstance().updateMessage();
     }
 
     @Override
@@ -241,11 +243,11 @@ public class BorrowDaoImpl extends DaoAbstract implements BorrowDao {
             preparedStatement.setInt(1, v.getPersonBookId());
             int effactedRow = preparedStatement.executeUpdate();
                 stockIncrease(v.getBookModel().get(0).getBookId(), getStock(v.getBookModel().get(0).getBookId()), 1);
-            UserInfoMessages.getInstance().deletedMessage(effactedRow);
         } catch (SQLException ex) {
             rollBack();
             getLogger(ex, "Delete Exception ", BorrowDaoImpl.class.getName());
         }
         commit();
+        UserInfoMessages.getInstance().deletedMessage();
     }
 }

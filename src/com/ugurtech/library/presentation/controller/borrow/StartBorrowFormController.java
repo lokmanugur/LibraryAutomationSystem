@@ -179,9 +179,9 @@ public final class StartBorrowFormController extends ControllerImpl implements I
             personBookModel.setBookModel(bookList);
             personBookModel.setStudentModel(studentModel);
             add(personBookModel);
+            removeAllFromHashMap();
+            removeAllPersonItemFromBasket();
         }
-        removeAllFromHashMap();
-        removeAllPersonItemFromBasket();
     }
 
     private void removeAllPersonItemFromBasket() {

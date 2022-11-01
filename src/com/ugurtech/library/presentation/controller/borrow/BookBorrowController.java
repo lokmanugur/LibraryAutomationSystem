@@ -54,9 +54,11 @@ public final class BookBorrowController extends ControllerImpl implements Initia
         });
 
         bookBorrowForm.getButtonReturn().addActionListener((e) -> {
-            FinishBorrowedForm finishBorrowedForm = FinishBorrowedForm.INSTANCE;
-            MainForm.INSTANCE.addDesktopPane(finishBorrowedForm);
-            finishBorrowedForm.getPersonBook((int) bookBorrowForm.getTableBooks().getValueAt(bookBorrowForm.getTableBooks().getSelectedRow(), 0));
+            if(returnUnSelectRowMessage(bookBorrowForm.getTableBooks().getSelectedRow())){
+                FinishBorrowedForm finishBorrowedForm = FinishBorrowedForm.INSTANCE;
+                MainForm.INSTANCE.addDesktopPane(finishBorrowedForm);
+                finishBorrowedForm.getPersonBook((int) bookBorrowForm.getTableBooks().getValueAt(bookBorrowForm.getTableBooks().getSelectedRow(), 0));
+            }
         });
 
         bookBorrowForm.getComboBoxOptions().addItemListener((java.awt.event.ItemEvent evt) -> {

@@ -84,7 +84,7 @@ public final class BookSearchController extends BookController implements Initia
         search();
     }
 
-    private void search() {
+    public void search() {
         bookSearchForm.getBooksTable().setModel(
                 search(bookSearchForm.getTextFieldSearch().getText(),
                         bookSearchForm.getComboBoxDate().getSelectedIndex(),

@@ -2,6 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ *
  */
 package com.ugurtech.library.dataaccesslayer.book;
 
@@ -24,6 +25,7 @@ import javax.swing.table.TableModel;
 /**
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
+ * 
  */
 public class BookDaoImpl extends DaoAbstract implements BookDao {
 
@@ -59,11 +61,10 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
     public static final String DELETE_BOOK_AUTHOR = "DELETE FROM bookauthor WHERE bookid=?";
     public static final String DELETE_BOOK = "DELETE FROM book WHERE bookid=?";
 
-    public static final String UPDATE_BOOK = "UPDATE book SET isbn=?,publisherid=?,sysuserid=?,bookname=?,publishdate=?,lastupdate=?,pages=?,quantity=?,shelf=? WHERE bookid=?";
+    public static final String UPDATE_BOOK = "UPDATE book SET isbn=?,sysuserid=?,publisherid=?,bookname=?,publishdate=?,lastupdate=?,pages=?,quantity=?,stock=?,shelf=? WHERE bookid=?";
     public static final String UPDATE_BOOK_AUTHOR = "UPDATE bookauthor SET authorid=? WHERE bookid=?";
     public static final String UPDATE_BOOKTYPE_BOOK = "UPDATE booktypebook SET booktypeid=? WHERE bookid=?";
     public static final String SEARCH_ISBN_QUERY = "SELECT quantity,stock FROM book WHERE isbn=";
-    
 
     private final StringBuilder query;
 
@@ -73,10 +74,10 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
 
     private boolean isIsbn(BookModel book) {
         try {
-            ResultSet rs = createResultSet(SEARCH_ISBN_QUERY+book.getIsbn());
+            ResultSet rs = createResultSet(SEARCH_ISBN_QUERY + book.getIsbn());
             if (rs.next()) {
-               int quantity = rs.getInt("quantity");
-               int stock = rs.getInt("stock");
+                int quantity = rs.getInt("quantity");
+                int stock = rs.getInt("stock");
 
                 PreparedStatement preparedStatement = createPrepareStatement("UPDATE book SET quantity=?,stock=? WHERE isbn=?");
                 preparedStatement.setInt(1, book.getQuantity() + quantity);
@@ -118,7 +119,6 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-
     @Override
     public void add(BookModel book) {
         if (isIsbn(book)) {
@@ -136,15 +136,16 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
                 preparedStatement.setInt(8, book.getQuantity());
                 preparedStatement.setInt(9, book.getStock());
                 preparedStatement.setString(10, book.getShelf());
-                int effactedRow = preparedStatement.executeUpdate();
+                preparedStatement.executeUpdate();
                 int generatedKey = preparedStatement.getGeneratedKeys().getInt(1);
                 addAuthorAndBookType(book, generatedKey, preparedStatement);
-                UserInfoMessages.getInstance().insertMessage(effactedRow);
+                
             } catch (SQLException ex) {
                 rollBack();
                 getLogger(ex, "Add book error", BookDaoImpl.class.getName());
             }
             commit();
+            UserInfoMessages.getInstance().insertMessage();
         }
     }
 
@@ -172,49 +173,59 @@ public class BookDaoImpl extends DaoAbstract implements BookDao {
     @Override
     public void update(BookModel book) {
         beginTransection();
-        PreparedStatement preparedStatement = createPrepareStatement(UPDATE_BOOK);
-        try {
-            preparedStatement.setLong(1, book.getIsbn());
-            preparedStatement.setInt(3, book.getPublisherModel().getPublisherId());
-            preparedStatement.setInt(2, book.getSysuserId());
-            preparedStatement.setString(4, book.getBookName());
-            preparedStatement.setLong(5, book.getPressDate());
-            preparedStatement.setLong(6, new Date().getTime());
-            preparedStatement.setInt(7, book.getPageNumbber());
-            preparedStatement.setInt(8, book.getQuantity());
-            preparedStatement.setString(9, book.getShelf());
-            preparedStatement.setInt(10, book.getBookId());
-            int effactedRow = preparedStatement.executeUpdate();
-
-            deleteAuthorAndBookType(book, preparedStatement);
-            addAuthorAndBookType(book, book.getBookId(), preparedStatement);
-            UserInfoMessages.getInstance().insertMessage(effactedRow);
-        } catch (SQLException ex) {
-            rollBack();
-            getLogger(ex, "Update book error", BookDaoImpl.class.getName());
-        }
-        commit();
-    }
-
-    @Override
-    public void delete(BookModel book) {
-        beginTransection();
-        PreparedStatement preparedStatement = createPrepareStatement(DELETE_BOOK);
-        try {
-            int effactedRow;
-            effactedRow = deleteAuthorAndBookType(book, preparedStatement);
-
-            preparedStatement.setInt(1, book.getBookId());
-            if (effactedRow > 1) {
-                preparedStatement.executeUpdate();
+        int quantity = 0;
+        int stock = 0;
+            PreparedStatement preparedStatement = createPrepareStatement(UPDATE_BOOK);
+            try {
+            ResultSet rs = createResultSet(SEARCH_ISBN_QUERY + book.getIsbn());
+            if (rs.next()) {
+                quantity = rs.getInt("quantity");
+                stock = rs.getInt("stock");
             }
-            UserInfoMessages.getInstance().deletedMessage(effactedRow);
-        } catch (SQLException ex) {
-            rollBack();
-            getLogger(ex, "Delete book error", BookDaoImpl.class.getName());
+                preparedStatement.setLong(1, book.getIsbn());
+                preparedStatement.setInt(2, book.getSysuserId());
+                preparedStatement.setInt(3, book.getPublisherModel().getPublisherId());
+                preparedStatement.setString(4, book.getBookName());
+                preparedStatement.setLong(5, book.getPressDate());
+                preparedStatement.setLong(6, new Date().getTime());
+                preparedStatement.setInt(7, book.getPageNumbber());
+                preparedStatement.setInt(8, book.getQuantity());
+                preparedStatement.setInt(9, book.getQuantity()-(quantity-stock));
+                preparedStatement.setString(10, book.getShelf());
+                preparedStatement.setInt(11, book.getBookId());
+                int effactedRow = preparedStatement.executeUpdate();
+
+                deleteAuthorAndBookType(book, preparedStatement);
+                addAuthorAndBookType(book, book.getBookId(), preparedStatement);
+                UserInfoMessages.getInstance().insertMessage(effactedRow);
+            } catch (SQLException ex) {
+                rollBack();
+                getLogger(ex, "Update book error", BookDaoImpl.class.getName());
+            }
+            commit();
         }
-        commit();
-    }
+
+        @Override
+        public void delete(BookModel book) {
+        beginTransection();
+            PreparedStatement preparedStatement = createPrepareStatement(DELETE_BOOK);
+            try {
+                int effactedRow;
+                effactedRow = deleteAuthorAndBookType(book, preparedStatement);
+
+                preparedStatement.setInt(1, book.getBookId());
+                if (effactedRow > 1) {
+                    preparedStatement.executeUpdate();
+                }
+                UserInfoMessages.getInstance().deletedMessage(effactedRow);
+            } catch (SQLException ex) {
+                rollBack();
+                getLogger(ex, "Delete book error", BookDaoImpl.class.getName());
+            }
+            commit();
+        }
+
+    
 
     private int deleteAuthorAndBookType(BookModel book, PreparedStatement preparedStatement) {
         int effactedRow = 0;

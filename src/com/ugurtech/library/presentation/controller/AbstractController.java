@@ -38,6 +38,15 @@ public abstract class AbstractController extends JInternalFrame {
             return true;
         }
     }
+    
+    protected boolean returnUnSelectRowMessage(int selectedRow) {
+        if (selectedRow == -1) {
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.return.unselectedrow"));
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     protected boolean unSelectRowMessage(int selectedRow) {
         if (selectedRow == -1) {

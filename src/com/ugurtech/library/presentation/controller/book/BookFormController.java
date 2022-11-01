@@ -23,6 +23,7 @@ import com.ugurtech.library.application.service.publisher.PublisherServiceImpl;
 import com.ugurtech.library.presentation.view.main.MainForm;
 import com.ugurtech.library.presentation.view.author.AuthorForm;
 import com.ugurtech.library.presentation.view.book.BookForm;
+import com.ugurtech.library.presentation.view.book.BookSearchForm;
 import com.ugurtech.library.presentation.view.booktype.BookTypeForm;
 import com.ugurtech.library.presentation.view.publisher.PublisherForm;
 import java.util.ArrayList;
@@ -219,11 +220,14 @@ public final class BookFormController extends BookController implements Initiali
     
     protected void update(){
         update(formToModel());
+        clearAllFields();
+        search();
     }
 
     protected void add() {
         add(formToModel());
         clearAllFields();
+        search();
     }
 
     public void clearAllFields() {
@@ -368,6 +372,10 @@ public final class BookFormController extends BookController implements Initiali
         bookModel.setAuthor(authorList);
         bookModel.setPublisherModel((PublisherModel) bookForm.getPublisherComboBox().getSelectedItem());
         return bookModel;
+    }
+    
+    private void search(){
+        BookSearchForm.INSTANCE.getBookSearchController().search();
     }
    
 }

@@ -87,7 +87,7 @@ public final class SchoolFormController extends SchoolController implements Init
         refreshTable();
     }
 
-    private void clearFields() {
+    public void clearFields() {
         schoolForm.getTextFieldName().setText("");
         schoolForm.getFormattedTextFieldPhone().setText("");
         schoolForm.getTextAreaAddress().setText("");

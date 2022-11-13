@@ -38,3 +38,27 @@ Oct 23, 2022 12:31:19 PM com.ugurtech.library.ab_application.af_lib.validation.U
 SEVERE: com.ugurtech.library.ac_dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (no such column: pesonbookid)
 Oct 26, 2022 5:26:22 PM com.ugurtech.library.application.lib.validation.UserInfoMessages addLoggerFile
 SEVERE: com.ugurtech.library.dataaccesslayer.borrow.BorrowDaoImpl java.sql.SQLException: [SQLITE_BUSY]  The database file is locked (database is locked)
+Nov 13, 2022 12:05:59 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
+SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
+Nov 13, 2022 12:07:13 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
+SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
+Nov 13, 2022 12:07:58 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
+SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
+Nov 13, 2022 12:08:49 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
+SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
+Nov 13, 2022 12:09:33 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
+SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
+Nov 13, 2022 12:18:42 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
+SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
+Nov 13, 2022 12:28:36 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
+SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
+Nov 13, 2022 12:30:34 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
+SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
+Nov 13, 2022 12:40:25 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
+SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
+Nov 13, 2022 12:41:08 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
+SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
+Nov 13, 2022 12:43:20 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
+SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
+Nov 13, 2022 12:44:50 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
+SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)

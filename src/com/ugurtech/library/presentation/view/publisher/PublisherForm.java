@@ -232,5 +232,12 @@ public class PublisherForm extends JInternalFrame {
     public void setPublisherModel(PublisherModel publisherModel) {
         this.publisherModel = publisherModel;
     }
+
+    @Override
+    public void doDefaultCloseAction() {
+        publisherFormController.clearAllField();
+        super.doDefaultCloseAction();
+    }
+    
   
 }

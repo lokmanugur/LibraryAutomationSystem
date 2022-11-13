@@ -142,5 +142,11 @@ public class ClassForm extends JInternalFrame {
     public void setClassModel(ClassModel classModel) {
         this.classModel = classModel;
     }
-     
+
+    @Override
+    public void doDefaultCloseAction() {
+        classFormController.clearFields();
+        super.doDefaultCloseAction();
+    }
+    
 }

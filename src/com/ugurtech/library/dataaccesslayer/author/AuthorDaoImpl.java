@@ -30,14 +30,14 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
     public static final String AUTHOR_DELETE_QUERY = "DELETE FROM author WHERE authorid=?";
     public static final String PERSON_DELETE_QUERY = "DELETE FROM person WHERE personid=?";
 
-    public static final String AUTHOR_SEARCH_QUERY2 = "SELECT "
+    public static final String AUTHOR_SEARCH_QUERY_GET = "SELECT "
             + columnNameAsColumnTitle(Tables.author + ".authorid") + ","
             + columnNameAsColumnTitle(Tables.person + ".personid") + ","
             + columnNameAsColumnTitle(Tables.person + ".firstname") + ","
             + columnNameAsColumnTitle(Tables.person + ".lastname") + ","
             + columnNameAsColumnTitle(Tables.person + ".birthdate") + ""
             + " FROM author,person ";
-    public static final String AUTHOR_SEARCH_QUERY = "SELECT "
+    public static final String AUTHOR_SEARCH_QUERY_GETALL = "SELECT2 "
             + columnNameAsColumnTitle(Tables.author + ".authorid") + ","
             + columnNameAsColumnTitle(Tables.person + ".firstname") + ","
             + columnNameAsColumnTitle(Tables.person + ".lastname") + ","
@@ -60,9 +60,8 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
         if (!authorList.isEmpty()) {
             authorList.clear();
         }        
-        ResultSet resultSet = createResultSet(getExistID(
-                0, 
-                AUTHOR_SEARCH_QUERY,
+        ResultSet resultSet = createResultSet(getExistID(0, 
+                AUTHOR_SEARCH_QUERY_GETALL,
                 " WHERE",
                 " author.personid = person.personid"));
         try {
@@ -81,9 +80,8 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
     @Override
     public AuthorModel get(int id) {
         AuthorModel authorModel = new AuthorModel();
-        ResultSet resultSet = createResultSet(
-                getExistID(id,
-                        AUTHOR_SEARCH_QUERY2,
+        ResultSet resultSet = createResultSet(getExistID(id,
+                        AUTHOR_SEARCH_QUERY_GET,
                         " WHERE person.personid = author.personid",
                         " AND author.authorid ="));
         try {
@@ -167,7 +165,7 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
     @Override
     public TableModel search(String string) {
         query.setLength(0);
-        query.append(AUTHOR_SEARCH_QUERY);
+        query.append(AUTHOR_SEARCH_QUERY_GETALL);
         query.append(" WHERE");
         query.append(" (").append(columnTitleWithPrime(Tables.Author.authorid)).append(" LIKE '").append(string).append("%'");
         query.append(" or ").append(columnTitleWithPrime(Tables.Person.firstname)).append(" LIKE '").append(string).append("%'");

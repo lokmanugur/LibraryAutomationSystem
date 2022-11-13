@@ -5,11 +5,11 @@
  */
 package com.ugurtech.library.presentation.controller.borrow;
 
+import com.ugurtech.library.application.lib.log.LogInternalFrame;
 import com.ugurtech.library.presentation.controller.Initialize;
 import com.ugurtech.library.presentation.view.borrow.StartBorrowForm;
 import com.ugurtech.library.presentation.view.main.MainForm;
 import com.ugurtech.library.presentation.view.student.StudentForm;
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
 import com.ugurtech.library.application.service.student.StudentService;
 import com.ugurtech.library.application.service.student.StudentServiceImpl;
 import com.ugurtech.library.dataaccesslayer.student.StudentDaoImpl;
@@ -108,7 +108,7 @@ public final class StartBorrowFormController extends ControllerImpl implements I
             }
 
         } catch (Exception e) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(startBorrowForm, e.toString(), "Error Message");
+            LogInternalFrame.INSTANCE.exceptionInfoMessages(startBorrowForm, e.toString(), "Error Message");
         }
 
     }
@@ -211,7 +211,6 @@ public final class StartBorrowFormController extends ControllerImpl implements I
         startBorrowForm.getLabelNumber().setText(setLanguage("startborrowform.label.number"));
         startBorrowForm.getLabelPhone().setText(setLanguage("startborrowform.label.phone"));
         startBorrowForm.getLabelSchool().setText(setLanguage("startborrowform.label.school"));
-        
         startBorrowForm.getButtonRemove().setText(setLanguage("startborrowform.button.remove"));
         startBorrowForm.getButtonRemoveAll().setText(setLanguage("startborrowform.button.removeall"));
         startBorrowForm.getButtonSave().setText(setLanguage("startborrowform.button.save"));

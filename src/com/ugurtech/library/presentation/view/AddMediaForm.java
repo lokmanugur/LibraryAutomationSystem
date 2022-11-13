@@ -27,6 +27,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class AddMediaForm extends JInternalFrame {
 
     private static AddMediaForm bookForm;
+    private File selectedFile;
 
     private AddMediaForm() {
         initComponents();
@@ -182,7 +183,7 @@ public class AddMediaForm extends JInternalFrame {
         return img;
     }
 
-    File selectedFile;
+
 
     private void fileChooser(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileChooser
 
@@ -198,8 +199,6 @@ public class AddMediaForm extends JInternalFrame {
     }//GEN-LAST:event_fileChooser
     private void save() {
         try {
-            Integer beginindex;
-            Integer endindex;
             String imgName;
             if(dosya.getText().equals("")){
                 imgName="";
@@ -224,19 +223,8 @@ public class AddMediaForm extends JInternalFrame {
         }
     }
 
-    void Update() {
-        String UpDate = "UPDATE menu SET "
-                + "menuname='',"
-                + "menuprice='',"
-                + "menuinfo=''";
-        JOptionPane.showMessageDialog(null, "Bilgiler Güncellendi.");
-        Reset();
-        this.hide();
-    }
-
-    private void cleareText() {
-
-    }
+    private void cleareText() {}
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton Kaydet;
     public javax.swing.JButton Temizle;
@@ -250,5 +238,9 @@ public class AddMediaForm extends JInternalFrame {
     private void Reset() {
         Kaydet.setText("Kaydet");
         Temizle.setText("Temizle");
+    }
+
+    private void Update() {
+        
     }
 }

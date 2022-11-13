@@ -5,7 +5,7 @@
  */
 package com.ugurtech.library.dataaccesslayer.database;
 
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import com.ugurtech.library.application.lib.log.LogInternalFrame;
 import java.nio.file.Paths;
 import java.sql.*;
 
@@ -28,7 +28,7 @@ public class SQLiteDatabase {
             String databaseUrl = "jdbc:sqlite:" + Paths.get("").toAbsolutePath().toString() + "/SQLite/library.sqlite";
             connection = DriverManager.getConnection(databaseUrl);
         } catch (ClassNotFoundException | SQLException ex) {
-            UserInfoMessages.getInstance().exceptionInfoMessages(sqLiteDatabase.getClass().getName(), ex.getMessage(), "File Not Found or SQLException");
+            LogInternalFrame.INSTANCE.exceptionInfoMessages(sqLiteDatabase.getClass().getName(), ex.getMessage(), "File Not Found or SQLException");
         }
     }
 

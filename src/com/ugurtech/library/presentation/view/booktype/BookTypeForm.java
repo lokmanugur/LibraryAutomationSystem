@@ -185,5 +185,12 @@ public class BookTypeForm extends JInternalFrame {
         this.textFieldBookTypeName = textFieldBookTypeName;
     }
 
+    @Override
+    public void doDefaultCloseAction() {
+        bookTypeFormController.clearFields();
+        super.doDefaultCloseAction();
+    }
+    
+    
      
 }

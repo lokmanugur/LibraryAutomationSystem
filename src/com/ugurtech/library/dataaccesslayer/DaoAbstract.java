@@ -8,8 +8,9 @@ package com.ugurtech.library.dataaccesslayer;
 import com.ugurtech.library.dataaccesslayer.database.SQLiteDatabase;
 import com.ugurtech.library.application.lib.localization.Internationalization;
 import com.ugurtech.library.application.lib.localization.LanguageImpl;
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import com.ugurtech.library.application.lib.log.LogInternalFrame;
 import com.ugurtech.library.dataaccesslayer.borrow.BorrowDaoImpl;
+import java.lang.reflect.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -149,7 +150,9 @@ public abstract class DaoAbstract {
     }
 
     public void getLogger(SQLException exception, String errorTitle, String className) {
-        UserInfoMessages.getInstance().exceptionInfoMessages(className, exception.toString(), errorTitle);
+        LogInternalFrame.INSTANCE.exceptionInfoMessages(className, exception.toString(), errorTitle);
+        exception.printStackTrace();
+        System.out.println("after exception");
     }
 
     protected void beginTransection() {

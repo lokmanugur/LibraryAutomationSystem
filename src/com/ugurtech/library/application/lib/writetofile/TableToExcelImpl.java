@@ -5,7 +5,7 @@
  */
 package com.ugurtech.library.application.lib.writetofile;
 
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import com.ugurtech.library.application.lib.log.LogInternalFrame;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
@@ -45,7 +45,7 @@ public class TableToExcelImpl {
                 tableToExcel.generate(file);
             } catch (Exception ex) {
                
-                UserInfoMessages.getInstance().exceptionInfoMessages(TableToExcelImpl.class.getName(),ex.getMessage(),"Table to Write Excell Error");
+                LogInternalFrame.INSTANCE.exceptionInfoMessages(TableToExcelImpl.class.getName(),ex.getMessage(),"Table to Write Excell Error");
             }
         }
     }

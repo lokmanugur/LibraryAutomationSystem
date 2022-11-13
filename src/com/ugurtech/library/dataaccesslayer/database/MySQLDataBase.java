@@ -5,10 +5,9 @@
  */
 package com.ugurtech.library.dataaccesslayer.database;
 
+import com.ugurtech.library.application.lib.log.LogInternalFrame;
 import com.ugurtech.library.application.lib.validation.UserInfoMessages;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class MySQLDataBase extends Database{
     
@@ -29,7 +28,7 @@ public class MySQLDataBase extends Database{
             setStatement(getConnection().createStatement());
             
         }catch(ClassNotFoundException | SQLException ex){
-            UserInfoMessages.getInstance().exceptionInfoMessages(MySQLDataBase.class.getName(),ex.getMessage(),"Open Database Error");
+            LogInternalFrame.INSTANCE.exceptionInfoMessages(MySQLDataBase.class.getName(),ex.getMessage(),"Open Database Error");
             
         }
         return getConnection();
@@ -40,7 +39,7 @@ public class MySQLDataBase extends Database{
             getStatement().close();
             getConnection().close();
         }catch (SQLException ex){  
-            UserInfoMessages.getInstance().exceptionInfoMessages(MySQLDataBase.class.getName(),ex.getMessage(),"Close Database Error");
+            LogInternalFrame.INSTANCE.exceptionInfoMessages(MySQLDataBase.class.getName(),ex.getMessage(),"Close Database Error");
         }
     }
 }

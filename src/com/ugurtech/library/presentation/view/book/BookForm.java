@@ -495,6 +495,7 @@ public final class BookForm extends JInternalFrame {
     private javax.swing.JButton typeButton;
     // End of variables declaration//GEN-END:variables
 
+    
     public static BookForm getBookForm() {
         return bookForm;
     }
@@ -842,5 +843,12 @@ public final class BookForm extends JInternalFrame {
     public void setTextFieldPageNumber(JFormattedTextField textFieldPageNumber) {
         this.textFieldPageNumber = textFieldPageNumber;
     }
+
+    @Override
+    public void doDefaultCloseAction() {
+        bookFormController.clearAllFields();
+        super.doDefaultCloseAction(); 
+    }
+    
     
 }

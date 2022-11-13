@@ -252,4 +252,10 @@ public class SchoolForm extends JInternalFrame {
         return schoolFormController;
     }
 
+    @Override
+    public void doDefaultCloseAction() {
+        schoolFormController.clearFields();
+        super.doDefaultCloseAction(); 
+    }
+    
 }

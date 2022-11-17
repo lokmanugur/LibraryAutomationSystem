@@ -38,7 +38,9 @@ public class UserInfoMessages {
      */
     public boolean showApproveMessages(String message, String title) {
         return JOptionPane.OK_OPTION == JOptionPane.showOptionDialog(null, message, title,
-                JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null, new String[]{Internationalization.setLanguage("swing.approve.yes"), Internationalization.setLanguage("swing.approve.no")}, "default");
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null, 
+                new String[]{Internationalization.setLanguage("swing.approve.yes"), 
+                    Internationalization.setLanguage("swing.approve.no")}, "default");
 
     }
 

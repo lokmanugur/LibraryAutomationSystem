@@ -10,11 +10,11 @@ import com.ugurtech.library.application.lib.localization.Internationalization;
 import com.ugurtech.library.application.lib.localization.LanguageImpl;
 import com.ugurtech.library.application.lib.log.LogInternalFrame;
 import com.ugurtech.library.dataaccesslayer.borrow.BorrowDaoImpl;
-import java.lang.reflect.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,7 +41,7 @@ public abstract class DaoAbstract {
         try {
             isClose = dataBase.getConnection().isClosed();
         } catch (SQLException ex) {
-            getLogger(ex,"isClosed Method Exception",DaoAbstract.class.getName());
+            getLogger(ex, "isClosed Method Exception", DaoAbstract.class.getName());
         }
         return isClose;
     }
@@ -51,7 +51,7 @@ public abstract class DaoAbstract {
             statement.close();
             dataBase.getConnection().close();
         } catch (SQLException ex) {
-            getLogger(ex,"CloseConnectin Method Exception",DaoAbstract.class.getName());
+            getLogger(ex, "CloseConnectin Method Exception", DaoAbstract.class.getName());
         }
     }
 
@@ -61,7 +61,7 @@ public abstract class DaoAbstract {
             openConnection();
             statement = dataBase.getConnection().createStatement();
         } catch (SQLException ex) {
-            getLogger(ex,"Create Statment Exception",DaoAbstract.class.getName());
+            getLogger(ex, "Create Statment Exception", DaoAbstract.class.getName());
         }
         return statement;
     }
@@ -78,7 +78,7 @@ public abstract class DaoAbstract {
             openConnection();
             resultSet = createStatemen().executeQuery(sqlQuery);
         } catch (SQLException ex) {
-            getLogger(ex,"CreateResoultSet Exception",DaoAbstract.class.getName());
+            getLogger(ex, "CreateResoultSet Exception", DaoAbstract.class.getName());
         }
         return resultSet;
     }
@@ -96,7 +96,7 @@ public abstract class DaoAbstract {
             openConnection();
             preparedStatement = dataBase.getConnection().prepareStatement(sqlQuery, PreparedStatement.RETURN_GENERATED_KEYS);
         } catch (SQLException ex) {
-            getLogger(ex,"createPrepareStatement Exception",DaoAbstract.class.getName());
+            getLogger(ex, "createPrepareStatement Exception", DaoAbstract.class.getName());
         }
 
         return preparedStatement;
@@ -107,7 +107,7 @@ public abstract class DaoAbstract {
         try {
             efactedRow = preparedStatement.executeUpdate();
         } catch (SQLException ex) {
-            getLogger(ex,"ExecuteUpdate Exception",DaoAbstract.class.getName());
+            getLogger(ex, "ExecuteUpdate Exception", DaoAbstract.class.getName());
         }
         return efactedRow;
     }
@@ -151,8 +151,13 @@ public abstract class DaoAbstract {
 
     public void getLogger(SQLException exception, String errorTitle, String className) {
         LogInternalFrame.INSTANCE.exceptionInfoMessages(className, exception.toString(), errorTitle);
-        exception.printStackTrace();
-        System.out.println("after exception");
+        //String[] string = exception;
+        System.out.println(exception + "  after exception");
+    }
+
+    public void getLogger(Object exception, String errorTitle, String className) {
+        LogInternalFrame.INSTANCE.exceptionInfoMessages(className, exception, errorTitle);
+        System.out.println(exception + "  after exception2");
     }
 
     protected void beginTransection() {

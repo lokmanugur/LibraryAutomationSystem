@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
 /**
@@ -59,8 +60,8 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
 
         if (!authorList.isEmpty()) {
             authorList.clear();
-        }        
-        ResultSet resultSet = createResultSet(getExistID(0, 
+        }
+        ResultSet resultSet = createResultSet(getExistID(0,
                 AUTHOR_SEARCH_QUERY_GETALL,
                 " WHERE",
                 " author.personid = person.personid"));
@@ -72,18 +73,18 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
                         resultSet.getString(columnTitleWithOutPrime("person.lastname"))));
             }
         } catch (SQLException ex) {
-            getLogger(ex,"Author Add Exception",AuthorDaoImpl.class.getName());
+            getLogger(ex, "Author Add Exception", AuthorDaoImpl.class.getName());
         }
         return authorList;
     }
-    
+
     @Override
     public AuthorModel get(int id) {
         AuthorModel authorModel = new AuthorModel();
         ResultSet resultSet = createResultSet(getExistID(id,
-                        AUTHOR_SEARCH_QUERY_GET,
-                        " WHERE person.personid = author.personid",
-                        " AND author.authorid ="));
+                AUTHOR_SEARCH_QUERY_GET,
+                " WHERE person.personid = author.personid",
+                " AND author.authorid ="));
         try {
             while (resultSet.next()) {
                 authorModel.setAuthorId(resultSet.getInt(columnTitleWithOutPrime("author.authorid")));
@@ -93,7 +94,7 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
                 authorModel.setBirthDate(resultSet.getLong(columnTitleWithOutPrime("person.birthdate")));
             }
         } catch (SQLException ex) {
-            getLogger(ex,"Author Add Exception",AuthorDaoImpl.class.getName());
+            getLogger(ex, "Author Add Exception", AuthorDaoImpl.class.getName());
         }
 
         return authorModel;
@@ -118,7 +119,7 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
             UserInfoMessages.getInstance().insertMessage(numberOfData);
         } catch (SQLException ex) {
             rollBack();
-            getLogger(ex,"Author Add Exception",AuthorDaoImpl.class.getName());
+            getLogger(ex, "Author Add Exception", AuthorDaoImpl.class.getName());
         }
         commit();
     }
@@ -137,7 +138,7 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
             UserInfoMessages.getInstance().updateMessage(effectedRow);
         } catch (SQLException ex) {
             rollBack();
-            getLogger(ex,"Author Add Exception",AuthorDaoImpl.class.getName());
+            getLogger(ex, "Author Add Exception", AuthorDaoImpl.class.getName());
         }
         commit();
     }
@@ -149,15 +150,16 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
         try {
             preparedStatement.setInt(1, v.getPersonId());
             int effactedRow = preparedStatement.executeUpdate();
-            
+
             preparedStatement = createPrepareStatement(PERSON_DELETE_QUERY);
-            preparedStatement.setInt(1,v.getAuthorId());
-            if(effactedRow>0){
-            preparedStatement.executeUpdate();}
+            preparedStatement.setInt(1, v.getAuthorId());
+            if (effactedRow > 0) {
+                preparedStatement.executeUpdate();
+            }
             UserInfoMessages.getInstance().deletedMessage(effactedRow);
         } catch (SQLException ex) {
             rollBack();
-            getLogger(ex,"Author Add Exception",AuthorDaoImpl.class.getName());
+            getLogger(ex, "Author Add Exception", AuthorDaoImpl.class.getName());
         }
         commit();
     }
@@ -174,9 +176,17 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
         query.append(" or ").append(columnTitleWithPrime(Tables.Person.createddate)).append(" LIKE '").append(string).append("%'");
         query.append(" or ").append(columnTitleWithPrime(Tables.Person.lastupdate)).append(" LIKE '").append(string).append("%' ");
         query.append(") AND author.personid=person.personid");
-        return  DbUtils.resultSetToTableModel(createResultSet(query.toString()),
-                columnTitleWithOutPrime("person.birthdate"),
-                columnTitleWithOutPrime("person.createddate"),
-                columnTitleWithOutPrime("person.lastupdate"));
+        try {
+            return DbUtils.resultSetToTableModel(
+                    createResultSet(query.toString()),
+                    columnTitleWithOutPrime("person.birthdate"),
+                    columnTitleWithOutPrime("person.createddate"),
+                    columnTitleWithOutPrime("person.lastupdate"));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getStackTrace());
+            getLogger(e.getStackTrace(), "search error", AuthorDaoImpl.class.getName());
+            return null;
+        }
+        
     }
 }

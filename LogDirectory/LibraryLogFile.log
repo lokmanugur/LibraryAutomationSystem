@@ -1,130 +1,150 @@
-Oct 08, 2022 12:12:17 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-INFO: com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm java.lang.ClassCastException: java.lang.String cannot be cast to com.ugurtech.library.ad_model.StudentModel
-Oct 08, 2022 12:17:16 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-INFO: com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm java.lang.ClassCastException: java.lang.String cannot be cast to com.ugurtech.library.ad_model.StudentModel
-Oct 08, 2022 12:17:24 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-INFO: com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm java.lang.ClassCastException: java.lang.String cannot be cast to com.ugurtech.library.ad_model.StudentModel
-Oct 08, 2022 12:17:24 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-INFO: com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm java.lang.ClassCastException: java.lang.String cannot be cast to com.ugurtech.library.ad_model.StudentModel
-Oct 08, 2022 1:01:47 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-INFO: com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm java.lang.ClassCastException: java.lang.String cannot be cast to com.ugurtech.library.ad_model.StudentModel
-Oct 08, 2022 1:03:16 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-INFO: com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm java.lang.ClassCastException: java.lang.String cannot be cast to com.ugurtech.library.ad_model.StudentModel
-Oct 08, 2022 1:03:16 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-INFO: com.ugurtech.library.aa_presentation.view.borrow.StartBorrowForm java.lang.ClassCastException: java.lang.String cannot be cast to com.ugurtech.library.ad_model.StudentModel
-Oct 11, 2022 7:31:42 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-INFO: [SQLITE_ERROR] SQL error or missing database (near "Id": syntax error)
-Oct 11, 2022 7:34:44 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-INFO: class com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages [SQLITE_ERROR] SQL error or missing database (near "Id": syntax error)
-Oct 11, 2022 8:26:11 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-SEVERE: com.ugurtech.library.ac_dataaccesslayer.DaoAbstract [SQLITE_ERROR] SQL error or missing database (near "Id": syntax error)
-Oct 11, 2022 8:32:05 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-SEVERE: com.ugurtech.library.ac_dataaccesslayer.DaoAbstract [SQLITE_ERROR] SQL error or missing database (near "Id": syntax error)
-Oct 11, 2022 8:38:31 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-SEVERE: com.ugurtech.library.ac_dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "Id": syntax error)
-Oct 12, 2022 8:09:50 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-SEVERE: com.ugurtech.library.ac_dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "Id": syntax error)
-Oct 12, 2022 8:11:28 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-SEVERE: com.ugurtech.library.ac_dataaccesslayer.publisher.PublisherDaoImpl java.sql.SQLException: no such column: ''Publisher Id''
-Oct 12, 2022 8:13:28 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-SEVERE: com.ugurtech.library.ac_dataaccesslayer.publisher.PublisherDaoImpl java.sql.SQLException: no such column: ''Publisher Name''
-Oct 12, 2022 8:27:51 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-SEVERE: com.ugurtech.library.ac_dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "Id": syntax error)
-Oct 23, 2022 12:11:51 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-SEVERE: com.ugurtech.library.ad_model.PersonBookModel java.sql.SQLException: no such column: 'pb.personbookid'
-Oct 23, 2022 12:13:32 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-SEVERE: com.ugurtech.library.ad_model.PersonBookModel java.sql.SQLException: no such column: 'pb.personbookid'
-Oct 23, 2022 12:31:19 PM com.ugurtech.library.ab_application.af_lib.validation.UserInfoMessages addLoggerFile
-SEVERE: com.ugurtech.library.ac_dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (no such column: pesonbookid)
-Oct 26, 2022 5:26:22 PM com.ugurtech.library.application.lib.validation.UserInfoMessages addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.borrow.BorrowDaoImpl java.sql.SQLException: [SQLITE_BUSY]  The database file is locked (database is locked)
-Nov 13, 2022 12:05:59 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 13, 2022 12:07:13 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 13, 2022 12:07:58 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 13, 2022 12:08:49 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 13, 2022 12:09:33 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 13, 2022 12:18:42 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 13, 2022 12:28:36 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 13, 2022 12:30:34 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 13, 2022 12:40:25 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 13, 2022 12:41:08 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 13, 2022 12:43:20 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 13, 2022 12:44:50 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 15, 2022 10:33:38 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 15, 2022 10:42:29 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 15, 2022 10:47:32 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 15, 2022 10:47:32 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 15, 2022 10:49:48 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 15, 2022 10:49:48 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 15, 2022 10:49:48 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 15, 2022 10:50:24 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 15, 2022 10:50:24 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 15, 2022 10:50:24 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 15, 2022 10:50:24 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 15, 2022 11:01:00 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 15, 2022 11:01:50 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 15, 2022 11:07:19 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 15, 2022 11:11:51 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 17, 2022 3:19:36 AM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 17, 2022 3:45:41 AM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 17, 2022 3:46:47 AM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 17, 2022 3:53:43 AM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 17, 2022 3:58:54 AM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 17, 2022 4:04:38 AM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 17, 2022 4:10:42 AM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 17, 2022 4:15:00 AM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 17, 2022 4:16:21 AM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 17, 2022 4:34:50 AM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 17, 2022 4:35:15 AM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 17, 2022 4:56:02 AM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 17, 2022 4:56:08 AM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.author.AuthorDaoImpl [Ljava.lang.StackTraceElement;@f376f4d
-Nov 17, 2022 4:56:08 AM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.author.AuthorDaoImpl [Ljava.lang.StackTraceElement;@f376f4d
-Nov 17, 2022 4:59:02 AM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 17, 2022 5:05:12 AM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 17, 2022 5:11:01 AM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
-Nov 17, 2022 5:12:14 AM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
-SEVERE: com.ugurtech.library.dataaccesslayer.DaoAbstract java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (near "SELECT2": syntax error)
+Nov 18, 2022 3:31:27 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
+SEVERE: CreateResoultSet Exception com.ugurtech.library.dataaccesslayer.DaoAbstract com.ugurtech.library.dataaccesslayer.DaoAbstract
+org.sqlite.DB.newSQLException(DB.java:383)
+org.sqlite.DB.newSQLException(DB.java:387)
+org.sqlite.DB.throwex(DB.java:374)
+org.sqlite.NativeDB.prepare(Native Method)
+org.sqlite.DB.prepare(DB.java:123)
+org.sqlite.Stmt.executeQuery(Stmt.java:121)
+com.ugurtech.library.dataaccesslayer.DaoAbstract.createResultSet(DaoAbstract.java:78)
+com.ugurtech.library.dataaccesslayer.author.AuthorDaoImpl.search(AuthorDaoImpl.java:180)
+com.ugurtech.library.application.service.author.AuthorServiceImpl.search(AuthorServiceImpl.java:53)
+com.ugurtech.library.presentation.controller.author.AuthorController.search(AuthorController.java:52)
+com.ugurtech.library.presentation.controller.author.AuthorSearchController.search(AuthorSearchController.java:31)
+com.ugurtech.library.presentation.controller.author.AuthorSearchController.initView(AuthorSearchController.java:56)
+com.ugurtech.library.presentation.controller.author.AuthorSearchController.<init>(AuthorSearchController.java:25)
+com.ugurtech.library.presentation.view.author.AuthorSearchForm.<init>(AuthorSearchForm.java:24)
+com.ugurtech.library.presentation.view.author.AuthorSearchForm.getInstance(AuthorSearchForm.java:30)
+com.ugurtech.library.presentation.controller.main.MainFormController.lambda$initController$3(MainFormController.java:88)
+javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+java.awt.Component.processMouseEvent(Component.java:6539)
+javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+java.awt.Component.processEvent(Component.java:6304)
+java.awt.Container.processEvent(Container.java:2239)
+java.awt.Component.dispatchEventImpl(Component.java:4889)
+java.awt.Container.dispatchEventImpl(Container.java:2297)
+java.awt.Component.dispatchEvent(Component.java:4711)
+java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4904)
+java.awt.LightweightDispatcher.processMouseEvent(Container.java:4535)
+java.awt.LightweightDispatcher.dispatchEvent(Container.java:4476)
+java.awt.Container.dispatchEventImpl(Container.java:2283)
+java.awt.Window.dispatchEventImpl(Window.java:2746)
+java.awt.Component.dispatchEvent(Component.java:4711)
+java.awt.EventQueue.dispatchEventImpl(EventQueue.java:760)
+java.awt.EventQueue.access$500(EventQueue.java:97)
+java.awt.EventQueue$3.run(EventQueue.java:709)
+java.awt.EventQueue$3.run(EventQueue.java:703)
+java.security.AccessController.doPrivileged(Native Method)
+java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:84)
+java.awt.EventQueue$4.run(EventQueue.java:733)
+java.awt.EventQueue$4.run(EventQueue.java:731)
+java.security.AccessController.doPrivileged(Native Method)
+java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+java.awt.EventQueue.dispatchEvent(EventQueue.java:730)
+java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205)
+java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+Nov 18, 2022 3:31:27 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
+SEVERE: search error com.ugurtech.library.dataaccesslayer.author.AuthorDaoImpl com.ugurtech.library.dataaccesslayer.author.AuthorDaoImpl
+com.ugurtech.library.application.lib.sql.DbUtils.resultSetToTableModel(DbUtils.java:26)
+com.ugurtech.library.dataaccesslayer.author.AuthorDaoImpl.search(AuthorDaoImpl.java:179)
+com.ugurtech.library.application.service.author.AuthorServiceImpl.search(AuthorServiceImpl.java:53)
+com.ugurtech.library.presentation.controller.author.AuthorController.search(AuthorController.java:52)
+com.ugurtech.library.presentation.controller.author.AuthorSearchController.search(AuthorSearchController.java:31)
+com.ugurtech.library.presentation.controller.author.AuthorSearchController.initView(AuthorSearchController.java:56)
+com.ugurtech.library.presentation.controller.author.AuthorSearchController.<init>(AuthorSearchController.java:25)
+com.ugurtech.library.presentation.view.author.AuthorSearchForm.<init>(AuthorSearchForm.java:24)
+com.ugurtech.library.presentation.view.author.AuthorSearchForm.getInstance(AuthorSearchForm.java:30)
+com.ugurtech.library.presentation.controller.main.MainFormController.lambda$initController$3(MainFormController.java:88)
+javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+java.awt.Component.processMouseEvent(Component.java:6539)
+javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+java.awt.Component.processEvent(Component.java:6304)
+java.awt.Container.processEvent(Container.java:2239)
+java.awt.Component.dispatchEventImpl(Component.java:4889)
+java.awt.Container.dispatchEventImpl(Container.java:2297)
+java.awt.Component.dispatchEvent(Component.java:4711)
+java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4904)
+java.awt.LightweightDispatcher.processMouseEvent(Container.java:4535)
+java.awt.LightweightDispatcher.dispatchEvent(Container.java:4476)
+java.awt.Container.dispatchEventImpl(Container.java:2283)
+java.awt.Window.dispatchEventImpl(Window.java:2746)
+java.awt.Component.dispatchEvent(Component.java:4711)
+java.awt.EventQueue.dispatchEventImpl(EventQueue.java:760)
+java.awt.EventQueue.access$500(EventQueue.java:97)
+java.awt.EventQueue$3.run(EventQueue.java:709)
+java.awt.EventQueue$3.run(EventQueue.java:703)
+java.security.AccessController.doPrivileged(Native Method)
+java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:84)
+java.awt.EventQueue$4.run(EventQueue.java:733)
+java.awt.EventQueue$4.run(EventQueue.java:731)
+java.security.AccessController.doPrivileged(Native Method)
+java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+java.awt.EventQueue.dispatchEvent(EventQueue.java:730)
+java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205)
+java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+Nov 18, 2022 3:31:27 PM com.ugurtech.library.application.lib.log.LogInternalFrame addLoggerFile
+SEVERE: search error com.ugurtech.library.dataaccesslayer.author.AuthorDaoImpl com.ugurtech.library.dataaccesslayer.author.AuthorDaoImpl
+com.ugurtech.library.application.lib.sql.DbUtils.resultSetToTableModel(DbUtils.java:26)
+com.ugurtech.library.dataaccesslayer.author.AuthorDaoImpl.search(AuthorDaoImpl.java:179)
+com.ugurtech.library.application.service.author.AuthorServiceImpl.search(AuthorServiceImpl.java:53)
+com.ugurtech.library.presentation.controller.author.AuthorController.search(AuthorController.java:52)
+com.ugurtech.library.presentation.controller.author.AuthorSearchController.search(AuthorSearchController.java:31)
+com.ugurtech.library.presentation.controller.author.AuthorSearchController.initView(AuthorSearchController.java:56)
+com.ugurtech.library.presentation.controller.author.AuthorSearchController.<init>(AuthorSearchController.java:25)
+com.ugurtech.library.presentation.view.author.AuthorSearchForm.<init>(AuthorSearchForm.java:24)
+com.ugurtech.library.presentation.view.author.AuthorSearchForm.getInstance(AuthorSearchForm.java:30)
+com.ugurtech.library.presentation.controller.main.MainFormController.lambda$initController$3(MainFormController.java:88)
+javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+java.awt.Component.processMouseEvent(Component.java:6539)
+javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+java.awt.Component.processEvent(Component.java:6304)
+java.awt.Container.processEvent(Container.java:2239)
+java.awt.Component.dispatchEventImpl(Component.java:4889)
+java.awt.Container.dispatchEventImpl(Container.java:2297)
+java.awt.Component.dispatchEvent(Component.java:4711)
+java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4904)
+java.awt.LightweightDispatcher.processMouseEvent(Container.java:4535)
+java.awt.LightweightDispatcher.dispatchEvent(Container.java:4476)
+java.awt.Container.dispatchEventImpl(Container.java:2283)
+java.awt.Window.dispatchEventImpl(Window.java:2746)
+java.awt.Component.dispatchEvent(Component.java:4711)
+java.awt.EventQueue.dispatchEventImpl(EventQueue.java:760)
+java.awt.EventQueue.access$500(EventQueue.java:97)
+java.awt.EventQueue$3.run(EventQueue.java:709)
+java.awt.EventQueue$3.run(EventQueue.java:703)
+java.security.AccessController.doPrivileged(Native Method)
+java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:84)
+java.awt.EventQueue$4.run(EventQueue.java:733)
+java.awt.EventQueue$4.run(EventQueue.java:731)
+java.security.AccessController.doPrivileged(Native Method)
+java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+java.awt.EventQueue.dispatchEvent(EventQueue.java:730)
+java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205)
+java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+java.awt.EventDispatchThread.run(EventDispatchThread.java:82)

@@ -108,7 +108,7 @@ public final class StartBorrowFormController extends ControllerImpl implements I
             }
 
         } catch (Exception e) {
-            LogInternalFrame.INSTANCE.exceptionInfoMessages(startBorrowForm, e.toString(), "Error Message");
+            LogInternalFrame.INSTANCE.exceptionInfoMessages(startBorrowForm.getName(), e, "Error Message");
         }
 
     }

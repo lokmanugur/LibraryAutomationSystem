@@ -7,7 +7,6 @@ package com.ugurtech.library.application.lib.log;
 
 import com.ugurtech.library.application.lib.validation.UserInfoMessages;
 import com.ugurtech.library.presentation.view.main.MainForm;
-import java.awt.Component;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.logging.FileHandler;
@@ -97,46 +96,27 @@ public class LogInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextPane textPaneException;
     // End of variables declaration//GEN-END:variables
 
-    public void addLoggerFile(Component parentComponent, String message) {
+    public void addLoggerFile(String headerMessage, String message) {
         // This block configure the logger with handler and formatter  
         logger.addHandler(fh);
 
         fh.setFormatter(formatter);
 
         // the following statement is used to log any messages  
-        logger.log(Level.INFO, "{0} {1}", new Object[]{parentComponent.getClass().getName(), message});
+        logger.log(Level.SEVERE, "{0} {1}", new Object[]{headerMessage, message});
     }
 
-    public void addLoggerFile(String className, String message) {
-        // This block configure the logger with handler and formatter  
-        logger.addHandler(fh);
-
-        fh.setFormatter(formatter);
-
-        // the following statement is used to log any messages  
-        logger.log(Level.SEVERE, "{0} {1}", new Object[]{className, message});
-    }
-
-    public void exceptionInfoMessages(Component parentComponent, String message, String title) {
-        LogInternalFrame.INSTANCE.addLoggerFile(parentComponent, message);
-        String exceptionMessage = message + " " + parentComponent;
+    public void exceptionInfoMessages(String className, Exception exception, String title) {
+        String exceptionMessage = className;
+        String headerMessage = title+" "+className;
+        
+        StackTraceElement[] stackTrace = exception.getStackTrace();
+        for (StackTraceElement stackTraceElement : stackTrace) {
+            exceptionMessage += "\n" + stackTraceElement;
+        }
+        addLoggerFile(headerMessage, exceptionMessage);
         textPaneException.setText(exceptionMessage);
-        setTitle("Error Window");
-        MainForm.INSTANCE.addDesktopPane(this);
-    }
-
-    public void exceptionInfoMessages(String className, String message, String title) {
-        LogInternalFrame.INSTANCE.addLoggerFile(className, message);
-        String exceptionMessage = message + " " + className;
-        textPaneException.setText(exceptionMessage);
-        setTitle("Error Window");
-        MainForm.INSTANCE.addDesktopPane(this);
-    }
-
-    public void exceptionInfoMessages(String className, Object message, String title) {
-        String exceptionMessage = message + " " + className;
-        textPaneException.setText(exceptionMessage);
-        setTitle("Error Window");
+        setTitle(title);
         MainForm.INSTANCE.addDesktopPane(this);
     }
 }

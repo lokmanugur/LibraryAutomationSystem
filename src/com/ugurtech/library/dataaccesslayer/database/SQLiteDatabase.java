@@ -28,7 +28,7 @@ public class SQLiteDatabase {
             String databaseUrl = "jdbc:sqlite:" + Paths.get("").toAbsolutePath().toString() + "/SQLite/library.sqlite";
             connection = DriverManager.getConnection(databaseUrl);
         } catch (ClassNotFoundException | SQLException ex) {
-            LogInternalFrame.INSTANCE.exceptionInfoMessages(sqLiteDatabase.getClass().getName(), ex.getMessage(), "File Not Found or SQLException");
+            LogInternalFrame.INSTANCE.exceptionInfoMessages(sqLiteDatabase.getClass().getName(), ex, "File Not Found or SQLException");
         }
     }
 

@@ -14,7 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -150,14 +149,11 @@ public abstract class DaoAbstract {
     }
 
     public void getLogger(SQLException exception, String errorTitle, String className) {
-        LogInternalFrame.INSTANCE.exceptionInfoMessages(className, exception.toString(), errorTitle);
-        //String[] string = exception;
-        System.out.println(exception + "  after exception");
+        LogInternalFrame.INSTANCE.exceptionInfoMessages(className, exception, errorTitle);
     }
 
-    public void getLogger(Object exception, String errorTitle, String className) {
+    public void getLogger(Exception exception, String errorTitle, String className) {
         LogInternalFrame.INSTANCE.exceptionInfoMessages(className, exception, errorTitle);
-        System.out.println(exception + "  after exception2");
     }
 
     protected void beginTransection() {

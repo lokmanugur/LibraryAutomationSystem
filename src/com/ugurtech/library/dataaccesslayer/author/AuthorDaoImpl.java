@@ -16,7 +16,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
 /**
@@ -183,8 +182,7 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
                     columnTitleWithOutPrime("person.createddate"),
                     columnTitleWithOutPrime("person.lastupdate"));
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getStackTrace());
-            getLogger(e.getStackTrace(), "search error", AuthorDaoImpl.class.getName());
+            getLogger(e, "search error", AuthorDaoImpl.class.getName());
             return null;
         }
         

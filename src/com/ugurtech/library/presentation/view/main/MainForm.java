@@ -47,6 +47,7 @@ public final class MainForm extends MainFrame {
         userPanel2 = new javax.swing.JPanel();
         personTableButton = new javax.swing.JButton();
         userTable = new javax.swing.JButton();
+        userTypeTable = new javax.swing.JButton();
         statisticsBar = new javax.swing.JToolBar();
         statisticsPanel = new javax.swing.JPanel();
         topReadBooks = new javax.swing.JButton();
@@ -247,6 +248,14 @@ public final class MainForm extends MainFrame {
         userTable.setPreferredSize(new java.awt.Dimension(110, 70));
         userTable.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        userTypeTable.setText("<html><center>User Type<br>Table</center></html>");
+        userTypeTable.setFocusable(false);
+        userTypeTable.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        userTypeTable.setMaximumSize(new java.awt.Dimension(110, 70));
+        userTypeTable.setMinimumSize(new java.awt.Dimension(110, 70));
+        userTypeTable.setPreferredSize(new java.awt.Dimension(110, 70));
+        userTypeTable.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
         javax.swing.GroupLayout userPanel2Layout = new javax.swing.GroupLayout(userPanel2);
         userPanel2.setLayout(userPanel2Layout);
         userPanel2Layout.setHorizontalGroup(
@@ -256,7 +265,9 @@ public final class MainForm extends MainFrame {
                 .addComponent(personTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(userTable, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(598, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(userTypeTable, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(488, Short.MAX_VALUE))
         );
 
         userPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {personTableButton, userTable});
@@ -265,6 +276,7 @@ public final class MainForm extends MainFrame {
             userPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(personTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(userTable, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(userTypeTable, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         userPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {personTableButton, userTable});
@@ -454,6 +466,7 @@ public final class MainForm extends MainFrame {
     private javax.swing.JPanel userPanel;
     private javax.swing.JPanel userPanel2;
     private javax.swing.JButton userTable;
+    private javax.swing.JButton userTypeTable;
     // End of variables declaration//GEN-END:variables
 
         
@@ -741,5 +754,14 @@ public final class MainForm extends MainFrame {
 
     public void setButtonBasket(JButton buttonBasket) {
         this.buttonBasket = buttonBasket;
-    }   
+    }
+
+    public JButton getUserTypeTable() {
+        return userTypeTable;
+    }
+
+    public void setUserTypeTable(JButton userTypeTable) {
+        this.userTypeTable = userTypeTable;
+    }
+
 }

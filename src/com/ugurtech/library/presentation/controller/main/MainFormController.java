@@ -23,6 +23,7 @@ import com.ugurtech.library.presentation.view.person.PersonSearchForm;
 import com.ugurtech.library.presentation.view.school.SchoolSearchForm;
 import com.ugurtech.library.presentation.view.student.StudentSearchForm;
 import com.ugurtech.library.presentation.view.user.UserSearchForm;
+import com.ugurtech.library.presentation.view.usertype.UserTypeSearchForm;
 
 /**
  *
@@ -105,6 +106,9 @@ public class MainFormController extends AbstractController implements Initialize
         mainForm.getUserTable().addActionListener((java.awt.event.ActionEvent evt) -> {
             mainForm.addDesktopPane(UserSearchForm.INSTANCE);
         });
+        mainForm.getUserTypeTable().addActionListener((java.awt.event.ActionEvent evt) -> {
+            mainForm.addDesktopPane(UserTypeSearchForm.INSTANCE);
+        });
         mainForm.getGradeButton().addActionListener((e) -> {
             mainForm.addDesktopPane(ClassSearchForm.INSTANCE);
         });
@@ -149,6 +153,7 @@ public class MainFormController extends AbstractController implements Initialize
         mainForm.getTabbPane().setTitleAt(3, setLanguage("userpanel.tabbpane.userbar"));
         mainForm.getPersonTableButton().setText(setLanguage("userpanel.tabbpane.userbar.userpanel2.persontablebutton"));
         mainForm.getUserTable().setText(setLanguage("userpanel.tabbpane.userbar.userpanel2.usertable"));
+        mainForm.getUserTypeTable().setText(setLanguage("userpanel.tabbpane.userbar.userpanel2.usertypetable"));
         mainForm.getTabbPane().setTitleAt(4, setLanguage("userpanel.tabbpane.statisticsbar"));
         mainForm.getTopReadBooks().setText(setLanguage("userpanel.tabbpane.statisticsbar.statisticspanel.topreadbooks"));
         mainForm.getTopReadStudents().setText(setLanguage("userpanel.tabbpane.statisticsbar.statisticspanel.topreadstudents"));

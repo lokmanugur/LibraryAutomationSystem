@@ -68,6 +68,23 @@
                 <Column editable="true" title="Permission" type="java.lang.Boolean"/>
               </Table>
             </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="300" resizable="false">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="20" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+              </TableColumnModel>
+            </Property>
+            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
@@ -88,7 +105,7 @@
                   <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                   <Component id="buttonCancel" min="-2" pref="80" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="buttonAdd" min="-2" pref="80" max="-2" attributes="0"/>
+                  <Component id="buttonSave" min="-2" pref="80" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -97,7 +114,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="buttonAdd" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="buttonSave" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="buttonCancel" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
@@ -106,9 +123,9 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="buttonAdd">
+        <Component class="javax.swing.JButton" name="buttonSave">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Add"/>
+            <Property name="text" type="java.lang.String" value="Save"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="buttonCancel">

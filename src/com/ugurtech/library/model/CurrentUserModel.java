@@ -14,6 +14,7 @@ public class CurrentUserModel extends PersonModel {
     private int sysUserId;
     private String userName;
     private String userPassword;
+    private UserTypeModel userTypeModel;
     private String language;
     private String region;
     private long sessionTime;
@@ -36,6 +37,14 @@ public class CurrentUserModel extends PersonModel {
 
     public void setSysUserId(int sysUserId) {
         this.sysUserId = sysUserId;
+    }
+
+    public UserTypeModel getUserTypeModel() {
+        return userTypeModel;
+    }
+
+    public void setUserTypeModel(UserTypeModel userTypeModel) {
+        this.userTypeModel = userTypeModel;
     }
 
     public String getUserPassword() {

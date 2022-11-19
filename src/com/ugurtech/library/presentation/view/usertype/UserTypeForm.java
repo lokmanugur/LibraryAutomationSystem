@@ -5,10 +5,6 @@
  */
 package com.ugurtech.library.presentation.view.usertype;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.JTextField;
 
 /**
  *
@@ -38,7 +34,7 @@ public class UserTypeForm extends javax.swing.JInternalFrame {
         textFieldUserTypeName = new javax.swing.JTextField();
         labelUserTypeName = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        buttonAdd = new javax.swing.JButton();
+        buttonSave = new javax.swing.JButton();
         buttonCancel = new javax.swing.JButton();
 
         setClosable(true);
@@ -70,10 +66,15 @@ public class UserTypeForm extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tablePermission);
+        if (tablePermission.getColumnModel().getColumnCount() > 0) {
+            tablePermission.getColumnModel().getColumn(0).setResizable(false);
+            tablePermission.getColumnModel().getColumn(0).setPreferredWidth(300);
+            tablePermission.getColumnModel().getColumn(1).setPreferredWidth(20);
+        }
 
         labelUserTypeName.setText("User Type Name");
 
-        buttonAdd.setText("Add");
+        buttonSave.setText("Save");
 
         buttonCancel.setText("Cancel");
 
@@ -85,14 +86,14 @@ public class UserTypeForm extends javax.swing.JInternalFrame {
                 .addGap(70, 70, 70)
                 .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 12, Short.MAX_VALUE))
         );
@@ -128,53 +129,13 @@ public class UserTypeForm extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonCancel;
+    private javax.swing.JButton buttonSave;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelUserTypeName;
     private javax.swing.JTable tablePermission;
     private javax.swing.JTextField textFieldUserTypeName;
     // End of variables declaration//GEN-END:variables
-
-    public JButton getButtonAdd() {
-        return buttonAdd;
-    }
-
-    public void setButtonAdd(JButton buttonAdd) {
-        this.buttonAdd = buttonAdd;
-    }
-
-    public JButton getButtonCancel() {
-        return buttonCancel;
-    }
-
-    public void setButtonCancel(JButton buttonCancel) {
-        this.buttonCancel = buttonCancel;
-    }
-
-    public JLabel getLabelUserTypeName() {
-        return labelUserTypeName;
-    }
-
-    public void setLabelUserTypeName(JLabel labelUserTypeName) {
-        this.labelUserTypeName = labelUserTypeName;
-    }
-
-    public JTable getTablePermission() {
-        return tablePermission;
-    }
-
-    public void setTablePermission(JTable tablePermission) {
-        this.tablePermission = tablePermission;
-    }
-
-    public JTextField getTextFieldUserTypeName() {
-        return textFieldUserTypeName;
-    }
-
-    public void setTextFieldUserTypeName(JTextField textFieldUserTypeName) {
-        this.textFieldUserTypeName = textFieldUserTypeName;
-    }
-    
+   
 }

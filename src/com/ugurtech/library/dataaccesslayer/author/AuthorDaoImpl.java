@@ -37,7 +37,7 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
             + columnNameAsColumnTitle(Tables.person + ".lastname") + ","
             + columnNameAsColumnTitle(Tables.person + ".birthdate") + ""
             + " FROM author,person ";
-    public static final String AUTHOR_SEARCH_QUERY_GETALL = "SELECT2 "
+    public static final String AUTHOR_SEARCH_QUERY_GETALL = "SELECT "
             + columnNameAsColumnTitle(Tables.author + ".authorid") + ","
             + columnNameAsColumnTitle(Tables.person + ".firstname") + ","
             + columnNameAsColumnTitle(Tables.person + ".lastname") + ","

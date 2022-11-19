@@ -148,9 +148,9 @@ public abstract class DaoAbstract {
         return string;
     }
 
-    public void getLogger(SQLException exception, String errorTitle, String className) {
-        LogInternalFrame.INSTANCE.exceptionInfoMessages(className, exception, errorTitle);
-    }
+//    public void getLogger(SQLException exception, String errorTitle, String className) {
+//        LogInternalFrame.INSTANCE.exceptionInfoMessages(className, exception, errorTitle);
+//    }
 
     public void getLogger(Exception exception, String errorTitle, String className) {
         LogInternalFrame.INSTANCE.exceptionInfoMessages(className, exception, errorTitle);

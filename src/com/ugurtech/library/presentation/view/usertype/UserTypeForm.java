@@ -5,12 +5,14 @@
  */
 package com.ugurtech.library.presentation.view.usertype;
 
+import com.ugurtech.library.presentation.controller.usertype.UserTypeController;
+
 
 /**
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public class UserTypeForm extends javax.swing.JInternalFrame {
+public class UserTypeForm extends UserTypeController {
 
     /**
      * Creates new form UserTypeForm

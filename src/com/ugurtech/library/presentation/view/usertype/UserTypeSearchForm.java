@@ -1,17 +1,22 @@
 package com.ugurtech.library.presentation.view.usertype;
 
-import javax.swing.JInternalFrame;
+import com.ugurtech.library.presentation.controller.usertype.UserTypeController;
+import com.ugurtech.library.presentation.view.main.MainForm;
+import com.ugurtech.library.presentation.view.main.MainFrame;
+
 /**
  *
  * @author lokmanugur
  */
-public final class UserTypeSearchForm extends JInternalFrame {
+public final class UserTypeSearchForm extends UserTypeController {
 
     public static UserTypeSearchForm INSTANCE = new UserTypeSearchForm();
 
     private UserTypeSearchForm() {
         initComponents();
-        setLocation(getWidth()/5,getHeight()/10);
+        initController();
+        setLocation(getWidth() / 5, getHeight() / 10);
+        search();
     }
 
     @SuppressWarnings("unchecked")
@@ -163,4 +168,32 @@ public final class UserTypeSearchForm extends JInternalFrame {
     private javax.swing.JTextField textFieldSearch;
     // End of variables declaration//GEN-END:variables
     
+    public void search() {
+        tableSearch.setModel(search(textFieldSearch.getText()));
+    }
+
+    private void initController() {
+        textFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                search();
+            }
+        });
+        
+        buttonAdd.addActionListener(((e) -> {
+            MainForm.INSTANCE.addDesktopPane(UserTypeForm.INSTANCE);
+        }));
+        
+        buttonWrite.addActionListener((e) -> {
+            write(tableSearch, title);
+        });
+        
+        buttonDelete.addActionListener((e) -> {
+            int selectedRow = tableSearch.getSelectedRow();
+            if (deleteApproveMessage(selectedRow)) {
+                delete((int) tableSearch.getValueAt(selectedRow, 0));
+            }
+            search();
+        });
+    }
 }

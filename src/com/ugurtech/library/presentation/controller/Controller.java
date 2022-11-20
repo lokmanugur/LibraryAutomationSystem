@@ -17,5 +17,5 @@ public interface Controller<V> {
     public V get(int id);
     public void add(V v);
     public void update(V v);
-    public void delete(int id); 
+    public void delete(int id);
 }

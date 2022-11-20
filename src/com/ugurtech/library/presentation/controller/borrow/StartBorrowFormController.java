@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ugurtech.library.presentation.controller.borrow;
 
 import com.ugurtech.library.application.lib.log.LogInternalFrame;
@@ -203,7 +198,6 @@ public final class StartBorrowFormController extends ControllerImpl implements I
 
     private void setLanguage() {
         startBorrowForm.setTitle(setLanguage("startborrowform.title"));
-        //startBorrowForm.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), setLanguage("startborrowform.bordertitle")));
         startBorrowForm.getLabelFirstLast().setText(setLanguage("startborrowform.label.namesurname"));
         startBorrowForm.getLabelAddress().setText(setLanguage("startborrowform.label.address"));
         startBorrowForm.getLabelDeadline().setText(setLanguage("startborrowform.label.deadline"));

@@ -6,11 +6,12 @@ package com.ugurtech.library.application.service.usertype;
 
 import com.ugurtech.library.model.responsmodels.UserTypeModel;
 import com.ugurtech.library.application.service.Service;
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author Teacher
  */
 public interface UserTypeService extends Service<UserTypeModel> {
-    
+    public TableModel search(String searchText);
 }

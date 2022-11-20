@@ -21,6 +21,7 @@ import javax.swing.table.TableModel;
 /**
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
+ * 
  */
 public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
 
@@ -177,7 +178,7 @@ public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
         query.append(") AND author.personid=person.personid");
         try {
             return DbUtils.resultSetToTableModel(
-                    createResultSet(query.toString()),
+                     createResultSet(query.toString()),
                     columnTitleWithOutPrime("person.birthdate"),
                     columnTitleWithOutPrime("person.createddate"),
                     columnTitleWithOutPrime("person.lastupdate"));

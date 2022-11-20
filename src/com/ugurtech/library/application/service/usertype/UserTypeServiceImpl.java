@@ -7,6 +7,7 @@ package com.ugurtech.library.application.service.usertype;
 import com.ugurtech.library.model.responsmodels.UserTypeModel;
 import com.ugurtech.library.dataaccesslayer.usertype.UserTypeDao;
 import java.util.List;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -27,12 +28,12 @@ public class UserTypeServiceImpl implements UserTypeService {
 
     @Override
     public UserTypeModel get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return userTypeDao.get(id);
     }
 
     @Override
     public void add(UserTypeModel v) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        userTypeDao.add(v);
     }
 
     @Override
@@ -43,6 +44,11 @@ public class UserTypeServiceImpl implements UserTypeService {
     @Override
     public void delete(int id) {
         userTypeDao.delete(get(id));
+    }
+
+    @Override
+    public TableModel search(String searchText) {
+       return userTypeDao.search(searchText);
     }
     
 }

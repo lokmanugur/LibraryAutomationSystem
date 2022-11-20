@@ -6,11 +6,13 @@ package com.ugurtech.library.dataaccesslayer.usertype;
 
 import com.ugurtech.library.model.responsmodels.UserTypeModel;
 import com.ugurtech.library.dataaccesslayer.Dao;
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author Teacher
+ * 
  */
 public interface UserTypeDao extends Dao<UserTypeModel> {
-    
+    public TableModel search(String searchText);
 }

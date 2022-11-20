@@ -5,6 +5,8 @@
  */
 package com.ugurtech.library.model;
 
+import com.ugurtech.library.model.responsmodels.UserTypeModel;
+
 /**
  *
  * @author Ugur

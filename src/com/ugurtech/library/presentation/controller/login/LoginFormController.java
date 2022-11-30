@@ -16,6 +16,9 @@ import com.ugurtech.library.application.lib.date.SessionTimeCounter;
 import com.ugurtech.library.application.lib.localization.Internationalization;
 import com.ugurtech.library.application.service.login.LoginService;
 import com.ugurtech.library.application.service.login.LoginServiceImpl;
+import com.ugurtech.library.application.service.usertype.UserTypeService;
+import com.ugurtech.library.application.service.usertype.UserTypeServiceImpl;
+import com.ugurtech.library.dataaccesslayer.usertype.UserTypeDaoImpl;
 import com.ugurtech.library.presentation.view.main.MainForm;
 import com.ugurtech.library.presentation.view.user.FirstStepForm;
 
@@ -28,6 +31,7 @@ public class LoginFormController extends AbstractController implements Initializ
 
     private final LoginForm loginForm;
     private final LoginService loginService;
+    private final UserTypeService userTypeService;
     private final CurrentUserModel currentUserModel;
     private final SessionTimeCounter sessionTimeCounter;
 
@@ -37,6 +41,7 @@ public class LoginFormController extends AbstractController implements Initializ
         this.loginForm = loginForm;
         Internationalization.getInstance().setLocaleCountry(null, null);
         sessionTimeCounter = SessionTimeCounter.getInstance();
+        userTypeService = new UserTypeServiceImpl(new UserTypeDaoImpl());
         initView();
         initController();
         firstStep();
@@ -46,6 +51,7 @@ public class LoginFormController extends AbstractController implements Initializ
         currentUserModel.setUserName(loginForm.getUserNameField().getText());
         currentUserModel.setUserPassword(String.valueOf(loginForm.getUserPaswordField().getPassword()));
         if (loginService.checkUser(currentUserModel)) {
+            CurrentUserModel.INSTANCE.setUserTypeModel(userTypeService.get(currentUserModel.getUserTypeModel().getUserTypeId()));
             Internationalization.getInstance().setLocaleCountry(currentUserModel.getLanguage(), currentUserModel.getRegion());
             initView();
             setLanguage();
@@ -62,7 +68,6 @@ public class LoginFormController extends AbstractController implements Initializ
         } else {
             loginForm.getInfolabel().setText(setLanguage("loginform.infolabel"));
         }
-
     }
 
     public void closeButtonClicked() {

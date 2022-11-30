@@ -5,21 +5,28 @@
  */
 package com.ugurtech.library.presentation.view.usertype;
 
+import com.ugurtech.library.model.responsmodels.UserTypeModel;
 import com.ugurtech.library.presentation.controller.usertype.UserTypeController;
-
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public class UserTypeForm extends UserTypeController {
+public final class UserTypeForm extends UserTypeController {
 
     /**
      * Creates new form UserTypeForm
      */
     public static UserTypeForm INSTANCE = new UserTypeForm();
+
     public UserTypeForm() {
         initComponents();
+        initController();
+        permition();
     }
 
     /**
@@ -38,6 +45,7 @@ public class UserTypeForm extends UserTypeController {
         jPanel1 = new javax.swing.JPanel();
         buttonSave = new javax.swing.JButton();
         buttonCancel = new javax.swing.JButton();
+        labelUserTypeInfo = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -53,7 +61,7 @@ public class UserTypeForm extends UserTypeController {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
                 false, true
@@ -100,6 +108,9 @@ public class UserTypeForm extends UserTypeController {
                 .addGap(0, 12, Short.MAX_VALUE))
         );
 
+        labelUserTypeInfo.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        labelUserTypeInfo.setForeground(new java.awt.Color(237, 51, 51));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,8 +119,10 @@ public class UserTypeForm extends UserTypeController {
                 .addContainerGap()
                 .addComponent(labelUserTypeName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textFieldUserTypeName, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(textFieldUserTypeName, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelUserTypeInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addComponent(jScrollPane1)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -119,9 +132,10 @@ public class UserTypeForm extends UserTypeController {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldUserTypeName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelUserTypeName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelUserTypeName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelUserTypeInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -135,9 +149,49 @@ public class UserTypeForm extends UserTypeController {
     private javax.swing.JButton buttonSave;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelUserTypeInfo;
     private javax.swing.JLabel labelUserTypeName;
     private javax.swing.JTable tablePermission;
     private javax.swing.JTextField textFieldUserTypeName;
     // End of variables declaration//GEN-END:variables
-   
+
+    public void permition() {
+        tablePermission.setModel(options());
+    }
+
+    private void initController() {
+        textFieldUserTypeName.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                buttonSave.setEnabled(true);
+                labelUserTypeInfo.setText("");
+                if (search()) {
+                    buttonSave.setEnabled(!search());
+                    labelUserTypeInfo.setText("User Type Exist");
+                }
+            }
+        });
+        buttonSave.addActionListener((e) -> {
+            UserTypeModel userTypeModel = new UserTypeModel();
+            userTypeModel.setUserTypeName(textFieldUserTypeName.getText());
+            Field[] field = userTypeModel.getClass().getFields();
+            System.out.println(Arrays.toString(field));
+//            for (int i = 0; i < tablePermission.getColumnCount(); i++) {
+//               
+//                tablePermission.getValueAt(i, 1);
+//            }
+//            //add(userTypeModel);
+        });
+    }
+
+    public boolean search() {
+        boolean result = false;
+        TableModel tableModel = search(textFieldUserTypeName.getText());
+        if (tableModel.getRowCount() > 0) {
+            for (int i = 0; i < tableModel.getRowCount(); i++) {
+                return String.valueOf(tableModel.getValueAt(i, 1)).equalsIgnoreCase(textFieldUserTypeName.getText());
+            }
+        }
+        return result;
+    }
 }

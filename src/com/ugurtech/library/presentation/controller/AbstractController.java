@@ -8,6 +8,8 @@ import com.ugurtech.library.application.lib.localization.Internationalization;
 import com.ugurtech.library.application.lib.localization.LanguageImpl;
 import com.ugurtech.library.application.lib.validation.UserInfoMessages;
 import com.ugurtech.library.application.lib.writetofile.TableToExcelImpl;
+import com.ugurtech.library.model.CurrentUserModel;
+import com.ugurtech.library.model.responsmodels.UserTypeModel;
 import javax.swing.JInternalFrame;
 import javax.swing.JTable;
 
@@ -20,6 +22,10 @@ public abstract class AbstractController extends JInternalFrame {
 
     protected String setLanguage(String strng) {
         return LanguageImpl.setLanguage(Internationalization::setLanguage, strng);
+    }
+    
+    protected UserTypeModel visible(){
+        return CurrentUserModel.INSTANCE.getUserTypeModel();
     }
 
     protected boolean deleteApproveMessage(int selectedRow) {

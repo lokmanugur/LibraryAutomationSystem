@@ -8,49 +8,60 @@ package com.ugurtech.library.application.lib.sql;
 /**
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
+ *
  */
-import com.ugurtech.library.application.lib.date.DateUtils;
+import com.ugurtech.library.application.lib.log.LogInternalFrame;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-
 import java.util.Vector;
-
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-
 public class ListUtils {
-    public static TableModel resultSetToTableModel(ResultSet rs,String... str) {
-	try {
-	    ResultSetMetaData metaData = rs.getMetaData();
-	    int numberOfColumns = metaData.getColumnCount();
-	    Vector<String> columnNames = new Vector<>();
 
-	    // Get the column names
-	    for (int column = 0; column < numberOfColumns; column++) {
-		columnNames.addElement(metaData.getColumnLabel(column + 1));
-	    }
+    public static TableModel resultSetToTableModel(ResultSet rs, String... str) {
+        try {
+            ResultSetMetaData metaData = rs.getMetaData();
+            int numberOfColumns = metaData.getColumnCount();
+            Vector<String> columnNames = new Vector<>();
+            columnNames.addElement("Components");
+            columnNames.addElement("Permission");
+//            Vector<Object> componentNames = new Vector<>();
+//
+////	     Get the column names
+//	    for (int column = 2; column < numberOfColumns; column++) {
+//		componentNames.addElement(metaData.getColumnLabel(column + 1));
+//	    }
 
-	    // Get all rows.
-	    Vector<Vector<Object>> rows = new Vector<>();
+            // Get all rows.
+            Vector<Vector<Object>> rows = new Vector<>();
+            for (int column = 2; column < numberOfColumns; column++) {
+                // while (rs.next()) {
+                Vector<Object> newRow = new Vector<>();
+                for (int i = 3; i <= numberOfColumns; i++) {
+                    newRow.addElement(metaData.getColumnLabel(column + 1));
+                    newRow.addElement(rs.getBoolean(column + 1));
+                }
+                rows.addElement(newRow);
+            }
+            return new DefaultTableModel(rows, columnNames) {
+                @Override
+                public Class<?> getColumnClass(int columnIndex) {
+                    switch (columnIndex) {
+                        case 0:
+                            return java.lang.String.class;
+                        case 1:
+                            return java.lang.Boolean.class;
+                        default:
+                            return java.lang.Object.class;
+                    }
+                }
 
-	    while (rs.next()) {
-		Vector<Object> newRow = new Vector<>();
-                int strCount=0;
-		for (int i = 1; i <= numberOfColumns; i++) {
-                    if(str.length>strCount && str[strCount].equals(metaData.getColumnLabel(i))){
-                        newRow.addElement(DateUtils.longToDateForTable(rs.getLong(i)));
-                        strCount++;
-                    }else{newRow.addElement(rs.getObject(i));}
-		}
-		rows.addElement(newRow);
-	    }
-
-	    return new DefaultTableModel(rows, columnNames);
-	} catch (SQLException e) {
-
-	    return null;
-	}
+            };
+        } catch (SQLException e) {
+            LogInternalFrame.INSTANCE.exceptionInfoMessages(ListUtils.class.getName(), e, "Fill Table Error");
+            return null;
+        }
     }
 }

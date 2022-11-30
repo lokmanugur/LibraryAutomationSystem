@@ -11,9 +11,10 @@ import java.util.Objects;
 /**
  *
  * @author ugur
- * 
+ *
  */
 public class UserTypeModel extends DateModel {
+
     private int userTypeId;
     private String userTypeName;
     private boolean authorform;
@@ -73,12 +74,13 @@ public class UserTypeModel extends DateModel {
     private boolean userdeletebutton;
     private boolean userwritebutton;
     private boolean usertypeform;
-    
+
     public UserTypeModel(int userTypeId, String userTypeName) {
         this.userTypeId = userTypeId;
         this.userTypeName = userTypeName;
     }
-        public UserTypeModel(int userTypeId) {
+
+    public UserTypeModel(int userTypeId) {
         this.userTypeId = userTypeId;
     }
 
@@ -556,6 +558,7 @@ public class UserTypeModel extends DateModel {
     public void setUsertypeform(boolean usertypeform) {
         this.usertypeform = usertypeform;
     }
+
     @Override
     public int hashCode() {
         int hash = 5;
@@ -585,5 +588,5 @@ public class UserTypeModel extends DateModel {
     @Override
     public String toString() {
         return userTypeName;
-    } 
+    }
 }

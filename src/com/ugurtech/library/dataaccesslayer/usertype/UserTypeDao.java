@@ -15,4 +15,5 @@ import javax.swing.table.TableModel;
  */
 public interface UserTypeDao extends Dao<UserTypeModel> {
     public TableModel search(String searchText);
+    public TableModel options();
 }

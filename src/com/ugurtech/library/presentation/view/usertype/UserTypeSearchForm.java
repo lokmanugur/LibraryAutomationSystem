@@ -2,7 +2,6 @@ package com.ugurtech.library.presentation.view.usertype;
 
 import com.ugurtech.library.presentation.controller.usertype.UserTypeController;
 import com.ugurtech.library.presentation.view.main.MainForm;
-import com.ugurtech.library.presentation.view.main.MainFrame;
 
 /**
  *

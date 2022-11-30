@@ -49,4 +49,8 @@ public class UserTypeController extends AbstractController implements Controller
     public TableModel search(String searchText){
        return userTypeService.search(searchText);
     }
+    
+    public TableModel options(){
+       return userTypeService.options();
+    }
 }

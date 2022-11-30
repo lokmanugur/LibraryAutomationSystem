@@ -50,5 +50,10 @@ public class UserTypeServiceImpl implements UserTypeService {
     public TableModel search(String searchText) {
        return userTypeDao.search(searchText);
     }
+
+    @Override
+    public TableModel options() {
+        return userTypeDao.options();
+    }
     
 }

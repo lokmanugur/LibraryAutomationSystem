@@ -6,6 +6,7 @@ package com.ugurtech.library.dataaccesslayer.login;
 
 import com.ugurtech.library.model.CurrentUserModel;
 import com.ugurtech.library.dataaccesslayer.DaoAbstract;
+import com.ugurtech.library.model.responsmodels.UserTypeModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 public class LoginDaoImpl extends DaoAbstract implements LoginDao{
     private static final String SEARCH_SYSTEM_USER = "SELECT * FROM sysuser";
-    private static final String USER_LOGIN = "SELECT s.sysuserid,s.personid,s.username,s.userpassword,s.createddate,s.lastupdate,s.sessiontime,"
+    private static final String USER_LOGIN = "SELECT s.sysuserid,s.usertypeid,s.personid,s.username,s.userpassword,s.createddate,s.lastupdate,s.sessiontime,"
             + "p.firstname,p.lastname,p.phone,p.address,p.birthdate,"
             + "c.abbriviation,l.abbriviation "
             + "FROM sysuser s, person p,country c, language l ";
@@ -69,6 +70,7 @@ public class LoginDaoImpl extends DaoAbstract implements LoginDao{
             resultSet = createResultSet(query.toString());
             if (resultSet.next()) {
                 currentUser.setSysUserId(resultSet.getInt("sysuserid"));
+                currentUser.setUserTypeModel(new UserTypeModel(resultSet.getInt("usertypeid")));
                 currentUser.setPersonId(resultSet.getInt("personid"));
                 currentUser.setUserName(resultSet.getString("username"));
                 currentUser.setFirstName(resultSet.getString("firstname"));

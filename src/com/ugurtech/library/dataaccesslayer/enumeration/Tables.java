@@ -9,140 +9,199 @@ package com.ugurtech.library.dataaccesslayer.enumeration;
  * @author Teacher
  */
 public enum Tables {
-    author, book, bookauthor, booktype, booktypebook, borrowedbook, country, language, person, personbook, publisher, school, student, sysuser, usertype, clss,date;
-    
+    author, book, bookauthor, booktype, booktypebook, borrowedbook, country, language, person, personbook, publisher, school, student, sysuser, usertype, clss, date;
+
     public enum Author {
-       author, authorid, personid,name;
+        author, authorid, personid, name;
 
         @Override
         public String toString() {
-            return Tables.author+"."+this.name();
+            return Tables.author + "." + this.name();
         }
     }
-    
-    public enum Book{
-        book,bookid,isbn,publisherid,sysuserid,bookname,publishdate,quantity,pages,stock,sherlf,lastupdate;
-        
-        @Override        
+
+    public enum Book {
+        book, bookid, isbn, publisherid, sysuserid, bookname, publishdate, quantity, pages, stock, sherlf, lastupdate;
+
+        @Override
         public String toString() {
-            return Tables.book+"."+this.name();
+            return Tables.book + "." + this.name();
         }
     }
 
     public enum Bookauthor {
-      bookauthor, bookauthorid, bookid, authorid;
+        bookauthor, bookauthorid, bookid, authorid;
 
         @Override
         public String toString() {
-            return Tables.bookauthor+"."+this.name();
+            return Tables.bookauthor + "." + this.name();
         }
     }
 
     public enum BookTypeBook {
-      booktypebook, booktypebookid, bookid, booktypeid;
+        booktypebook, booktypebookid, bookid, booktypeid;
 
         @Override
         public String toString() {
-            return Tables.booktypebook+"."+this.name();
+            return Tables.booktypebook + "." + this.name();
         }
     }
 
     public enum BookType {
-       booktypeid,typename,abbreviation;
+        booktypeid, typename, abbreviation;
 
         @Override
         public String toString() {
-            return Tables.booktype+"."+this.name();
+            return Tables.booktype + "." + this.name();
         }
     }
 
     public enum Clss {
-       clss, classid, classname;
+        clss, classid, classname;
 
         @Override
         public String toString() {
-            return Tables.clss+"."+this.name();
+            return Tables.clss + "." + this.name();
         }
     }
 
     public enum Country {
-       country, countryid, countryname, abbriviation;
+        country, countryid, countryname, abbriviation;
 
         @Override
         public String toString() {
-            return Tables.country+"."+this.name();
+            return Tables.country + "." + this.name();
         }
     }
 
     public enum Language {
-       language, languageid, languagename, abbriviation;
+        language, languageid, languagename, abbriviation;
 
         @Override
         public String toString() {
-            return Tables.language+"."+this.name();
+            return Tables.language + "." + this.name();
         }
     }
 
     public enum Person {
-       person, personid, firstname, lastname, birthdate, address, phone, createddate, lastupdate;
+        person, personid, firstname, lastname, birthdate, address, phone, createddate, lastupdate;
 
         @Override
         public String toString() {
-            return Tables.person+"."+this.name();
+            return Tables.person + "." + this.name();
         }
     }
 
     public enum PersonBook {
-       personbook, personbookid, personid, bookid, startdate, deadline, finishdate, readpage;
+        personbook, personbookid, personid, bookid, startdate, deadline, finishdate, readpage;
 
         @Override
         public String toString() {
-            return Tables.personbook+"."+this.name();
+            return Tables.personbook + "." + this.name();
         }
     }
 
     public enum Publisher {
-      publisher, publisherid, publishername, phone, address;
+        publisher, publisherid, publishername, phone, address;
 
         @Override
         public String toString() {
-            return Tables.publisher+"."+this.name();
+            return Tables.publisher + "." + this.name();
         }
     }
 
     public enum School {
-       school, schoolid, schoolname, phone, address;
+        school, schoolid, schoolname, phone, address;
 
         @Override
         public String toString() {
-            return Tables.school+"."+this.name();
+            return Tables.school + "." + this.name();
         }
     }
 
     public enum Student {
-       student, studentid, personid, schoolid, classid, studentnumber;
+        student, studentid, personid, schoolid, classid, studentnumber;
 
         @Override
         public String toString() {
-            return Tables.student+"."+this.name();
+            return Tables.student + "." + this.name();
         }
     }
 
     public enum SysUser {
-       sysuser, sysuserid, personid, usertypeid, countryid, languageid, username, userpassword, createddate, lastupdate, sessiontime;
+        sysuser, sysuserid, personid, usertypeid, countryid, languageid, username, userpassword, createddate, lastupdate, sessiontime;
 
         @Override
         public String toString() {
-            return Tables.sysuser+"."+this.name();
+            return Tables.sysuser + "." + this.name();
         }
     }
 
     public enum UserType {
-       usertype, usertypeid, usertypename;
+        usertype,
+        usertypeid,
+        usertypename,
+        authorform,
+        authorsearchform,
+        authoraddbutton,
+        authorupdatebutton,
+        authordeletebutton,
+        authorwritebutton,
+        bookform,
+        booksearchform,
+        bookaddbutton,
+        bookupdatebutton,
+        bookdeletebutton,
+        bookwritebutton,
+        booktypeform,
+        booktypesearchform,
+        booktypeaddbutton,
+        booktypeupdatebutton,
+        booktypedeletebutton,
+        booktypewritebutton,
+        bookborrowform,
+        finishborrowform,
+        startborrowform,
+        classform,
+        classsearchform,
+        classaddbutton,
+        classupdatebutton,
+        classdeletebutton,
+        classwritebutton,
+        databaseui,
+        personform,
+        personsearchform,
+        personaddbutton,
+        personupdatebutton,
+        persondeletebutton,
+        personwritebutton,
+        publisherform,
+        publishersearchform,
+        publisheraddbutton,
+        publisherupdatebutton,
+        publisherdeletebutton,
+        publisherwritebutton,
+        schoolform,
+        schoolsearchform,
+        schooladdbutton,
+        settings,
+        studentform,
+        studentsearchform,
+        studentaddbutton,
+        studentupdatebutton,
+        studentdeletebutton,
+        studentwritebutton,
+        userform,
+        usersearchform,
+        useraddbutton,
+        userupdatebutton,
+        userdeletebutton,
+        userwritebutton,
+        usertypeform;
 
         @Override
         public String toString() {
-            return Tables.usertype+"."+this.name();
+            return Tables.usertype + "." + this.name();
         }
     }
 }

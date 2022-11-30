@@ -11,7 +11,9 @@ import javax.swing.table.TableModel;
 /**
  *
  * @author Teacher
+ * 
  */
 public interface UserTypeService extends Service<UserTypeModel> {
     public TableModel search(String searchText);
+    public TableModel options();
 }

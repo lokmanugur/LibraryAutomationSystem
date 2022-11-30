@@ -9,6 +9,7 @@ import com.ugurtech.library.presentation.controller.AbstractController;
 import com.ugurtech.library.presentation.controller.Initialize;
 import com.ugurtech.library.application.lib.date.SessionTimeCounter;
 import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import com.ugurtech.library.model.CurrentUserModel;
 import com.ugurtech.library.presentation.view.login.LoginForm;
 import com.ugurtech.library.presentation.view.main.MainForm;
 import com.ugurtech.library.presentation.view.author.AuthorSearchForm;
@@ -43,6 +44,7 @@ public class MainFormController extends AbstractController implements Initialize
     @Override
     public final void initView() {
         setLenguage();
+        setPermission();
     }
 
     @Override
@@ -56,9 +58,9 @@ public class MainFormController extends AbstractController implements Initialize
         mainForm.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent evt) {
-                if(UserInfoMessages.getInstance().showApproveMessages(
-                        setLanguage("userinformessage.message.system.exit"), 
-                        setLanguage("userinfomessage.message.information"))){
+                if (UserInfoMessages.getInstance().showApproveMessages(
+                        setLanguage("userinformessage.message.system.exit"),
+                        setLanguage("userinfomessage.message.information"))) {
                     System.exit(0);
                 }
             }
@@ -139,24 +141,30 @@ public class MainFormController extends AbstractController implements Initialize
 
     private void setLenguage() {
         mainForm.getTabbPane().setTitleAt(0, setLanguage("userpanel.tabbpane.bookbar"));
-        mainForm.getButtonBookBorrow().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.borrowed.button"));
+        mainForm.getButtonBookBorrow().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.borrowed.button"));//??
         mainForm.getButtonBasket().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.basket.button"));
         mainForm.getPublisherButton().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.publisherbutton"));
         mainForm.getAuthorTableButton().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.authortablebutton"));
         mainForm.getBookTypeButton().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.booktypebutton"));
         mainForm.getBookTable().setText(setLanguage("userpanel.tabbpane.bookbar.bookpanel.booktable"));
+        
         mainForm.getTabbPane().setTitleAt(1, setLanguage("userpanel.tabbpane.studentbar"));
         mainForm.getStudentTable().setText(setLanguage("userpanel.tabbpane.studentbar.studentpanel.studenttable"));
         mainForm.getTabbPane().setTitleAt(2, setLanguage("userpanel.tabbpane.schoolbar"));
+        
         mainForm.getGradeButton().setText(setLanguage("userpanel.tabbpane.schoolbar.schoolpanel.class.button"));
         mainForm.getSchoolForm().setText(setLanguage("userpanel.tabbpane.schoolbar.schoolpanel.schoolform"));
+        
         mainForm.getTabbPane().setTitleAt(3, setLanguage("userpanel.tabbpane.userbar"));
         mainForm.getPersonTableButton().setText(setLanguage("userpanel.tabbpane.userbar.userpanel2.persontablebutton"));
         mainForm.getUserTable().setText(setLanguage("userpanel.tabbpane.userbar.userpanel2.usertable"));
         mainForm.getUserTypeTable().setText(setLanguage("userpanel.tabbpane.userbar.userpanel2.usertypetable"));
+        
         mainForm.getTabbPane().setTitleAt(4, setLanguage("userpanel.tabbpane.statisticsbar"));
+
         mainForm.getTopReadBooks().setText(setLanguage("userpanel.tabbpane.statisticsbar.statisticspanel.topreadbooks"));
         mainForm.getTopReadStudents().setText(setLanguage("userpanel.tabbpane.statisticsbar.statisticspanel.topreadstudents"));
+
         mainForm.getTabbPane().setTitleAt(5, setLanguage("userpanel.tabbpane.settingsbar"));
         mainForm.setTitle(setLanguage("mainform.topmenubar.label"));
         mainForm.getFileMenu().setText(setLanguage("mainform.topmenubar.filemenu"));
@@ -164,5 +172,21 @@ public class MainFormController extends AbstractController implements Initialize
         mainForm.getSettingsMenu().setText(setLanguage("mainform.topmenubar.settingsmenu"));
         mainForm.getDatabaseMenuItem().setText(setLanguage("mainform.topmenubar.settingsmenu.databasemenuitem"));
 
+    }
+
+    private void setPermission() {
+        //mainForm.getTopReadStudents().setVisible(visible().is);
+        //mainForm.getTopReadBooks().setVisible(visible().is);
+        mainForm.getUserTypeTable().setVisible(visible().isUsersearchform());
+        mainForm.getUserTable().setVisible(visible().isUsersearchform());
+        mainForm.getPersonTableButton().setVisible(visible().isPersonsearchform());
+        mainForm.getSchoolForm().setVisible(visible().isSchoolsearchform());
+        mainForm.getGradeButton().setVisible(visible().isClasssearchform());
+        mainForm.getStudentTable().setVisible(visible().isStudentsearchform());
+        mainForm.getBookTypeButton().setVisible(visible().isBooktypesearchform());
+        mainForm.getAuthorTableButton().setVisible(visible().isAuthorsearchform());
+        mainForm.getButtonBasket().setVisible(visible().isPublisheraddbutton());
+        mainForm.getButtonBookBorrow().setVisible(visible().isBookborrowform());
+        mainForm.getBookTable().setVisible(visible().isBooksearchform());
     }
 }

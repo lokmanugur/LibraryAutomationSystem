@@ -8,7 +8,6 @@ package com.ugurtech.library.presentation.view.usertype;
 import com.ugurtech.library.model.responsmodels.UserTypeModel;
 import com.ugurtech.library.presentation.controller.usertype.UserTypeController;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.Arrays;
 import javax.swing.table.TableModel;
 
@@ -180,7 +179,7 @@ public final class UserTypeForm extends UserTypeController {
 //               
 //                tablePermission.getValueAt(i, 1);
 //            }
-//            //add(userTypeModel);
+//            add(userTypeModel);
         });
     }
 

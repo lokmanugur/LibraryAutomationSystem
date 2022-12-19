@@ -17,6 +17,7 @@ import javax.swing.table.TableModel;
 /**
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
+ * 
  */
 public class UserTypeController extends AbstractController implements Controller<UserTypeModel> {
 

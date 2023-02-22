@@ -97,7 +97,7 @@ public class UserTypeDaoImpl extends DaoAbstract implements UserTypeDao {
         try {
             userTypeList = new ArrayList<>();
             while (resultSet.next()) {
-                userTypeList.add(new UserTypeModel(resultSet.getInt("usertypeid"), resultSet.getString("usertypename")));
+                userTypeList.add(new UserTypeModel(resultSet.getInt(columnTitleWithOutPrime(Tables.UserType.usertypeid)), resultSet.getString(columnTitleWithOutPrime(Tables.UserType.usertypename))));
             }
         } catch (SQLException ex) {
             getLogger(ex, "GetAll Exception ", UserTypeDaoImpl.class.getName());

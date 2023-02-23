@@ -4,25 +4,23 @@
  * and open the template in the editor.
  */
 package com.ugurtech.library.presentation.view.booktype;
-import com.ugurtech.library.presentation.controller.booktype.BookTypeFormController;
+import com.ugurtech.library.application.lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.BookTypeModel;
-import javax.swing.JButton;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import com.ugurtech.library.presentation.controller.Initialize;
+import com.ugurtech.library.presentation.controller.booktype.BookTypeController;
+
 
 /**
  *
  * @author ugur
  */
-public class BookTypeForm extends JInternalFrame {
+public final class BookTypeForm extends BookTypeController implements Initialize{
 
-    public static final BookTypeForm INSTANCE = new BookTypeForm();
-    private BookTypeFormController bookTypeFormController;
-    private BookTypeModel bookTypeModel;
+    public static BookTypeForm INSTANCE = new BookTypeForm();
     private BookTypeForm() {
         initComponents();
-        bookTypeFormController = new BookTypeFormController(this);
+        initView();
+        initController();
         setLocation(getWidth()/2, getHeight()/10);
     }
 
@@ -121,76 +119,73 @@ public class BookTypeForm extends JInternalFrame {
     private javax.swing.JTextField textFieldBookTypeName;
     // End of variables declaration//GEN-END:variables
 
-    public BookTypeFormController getBookTypeFormController() {
-        return bookTypeFormController;
+    private void setLanguage() {
+        this.setTitle(setLanguage("booktypeform.title"));
+        labelBookTypeName.setText(setLanguage("booktypeform.panelbooktype.labelbookname"));
+        labelAbbreviation.setText(setLanguage("booktypeform.panelbooktype.labelabbreviation"));
     }
 
-    public void setBookTypeFormController(BookTypeFormController bookTypeFormController) {
-        this.bookTypeFormController = bookTypeFormController;
+    private void add() {
+        add(formToModel());
+        BookTypeSearchForm.getInstance().initView();
     }
 
-    public BookTypeModel getBookTypeModel() {
-        return bookTypeModel;
+    @Override
+    public void initView() {
+        setLanguage();
     }
 
-    public void setBookTypeModel(BookTypeModel bookTypeModel) {
-        this.bookTypeModel = bookTypeModel;
+    @Override
+    public void initController() {
+        buttonSave.addActionListener(((e) -> {
+            if (bookTypeModel != null) {
+                updete();
+                bookTypeModel=null;
+                clearFields();
+            } else {
+                add();
+                clearFields();
+            }
+        }));
+        buttonCancel.addActionListener(((e) -> {
+            bookTypeModel=null;
+            clearFields();
+            this.dispose();
+        }));
     }
 
-    public JButton getButtonCancel() {
-        return buttonCancel;
+    private void updete() {
+        update(formToModel());
+        BookTypeSearchForm.getInstance().initView();
     }
 
-    public void setButtonCancel(JButton buttonCancel) {
-        this.buttonCancel = buttonCancel;
+    private BookTypeModel formToModel() {
+        BookTypeModel btm = null;
+        if (textFieldBookTypeName.getText().equals("")) {
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("booktypecontroller.booktypefield.empty"));
+        } else {
+            btm = new BookTypeModel();
+            btm.setBookTypeId(bookTypeModel==null?0:bookTypeModel.getBookTypeId());
+            btm.setTypeName(textFieldBookTypeName.getText());
+            btm.setAbbrivation(textFieldAbbreviation.getText());
+        }
+        return btm;
     }
 
-    public JButton getButtonSave() {
-        return buttonSave;
+    public void modelToForm() {
+        textFieldBookTypeName.setText(bookTypeModel.getTypeName());
+        textFieldAbbreviation.setText(bookTypeModel.getAbbrivation());
     }
 
-    public void setButtonSave(JButton buttonSave) {
-        this.buttonSave = buttonSave;
-    }
-
-    public JLabel getLabelAbbreviation() {
-        return labelAbbreviation;
-    }
-
-    public void setLabelAbbreviation(JLabel labelAbbreviation) {
-        this.labelAbbreviation = labelAbbreviation;
-    }
-
-    public JLabel getLabelBookTypeName() {
-        return labelBookTypeName;
-    }
-
-    public void setLabelBookTypeName(JLabel labelBookTypeName) {
-        this.labelBookTypeName = labelBookTypeName;
-    }
-
-    public JTextField getTextFieldAbbreviation() {
-        return textFieldAbbreviation;
-    }
-
-    public void setTextFieldAbbreviation(JTextField textFieldAbbreviation) {
-        this.textFieldAbbreviation = textFieldAbbreviation;
-    }
-
-    public JTextField getTextFieldBookTypeName() {
-        return textFieldBookTypeName;
-    }
-
-    public void setTextFieldBookTypeName(JTextField textFieldBookTypeName) {
-        this.textFieldBookTypeName = textFieldBookTypeName;
+    public void clearFields() {
+        textFieldBookTypeName.setText("");
+        textFieldAbbreviation.setText("");
     }
 
     @Override
     public void doDefaultCloseAction() {
-        bookTypeFormController.clearFields();
+        clearFields();
         super.doDefaultCloseAction();
     }
-    
-    
-     
+       
 }

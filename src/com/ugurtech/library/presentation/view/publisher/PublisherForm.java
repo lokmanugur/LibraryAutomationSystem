@@ -4,31 +4,23 @@
  * and open the template in the editor.
  */
 package com.ugurtech.library.presentation.view.publisher;
-import com.ugurtech.library.presentation.controller.publisher.PublisherFormController;
+import com.ugurtech.library.application.lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.PublisherModel;
-import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import com.ugurtech.library.presentation.controller.Initialize;
+import com.ugurtech.library.presentation.controller.publisher.PublisherController;
 
 /**
  *
  * @author ugur
  */
-public class PublisherForm extends JInternalFrame {
+public final class PublisherForm extends PublisherController implements Initialize {
 
     public static PublisherForm INSTANCE = new PublisherForm();
     
-    private final PublisherFormController publisherFormController;
-    
-    private PublisherModel publisherModel;
-    
     private PublisherForm() {
         initComponents();
-        publisherFormController = new PublisherFormController(this);
+        initView();
+        initController();
         setLocation(getWidth()/2, getHeight()/10);
     }
     
@@ -149,95 +141,73 @@ public class PublisherForm extends JInternalFrame {
     private javax.swing.JTextField textFieldPublisher;
     // End of variables declaration//GEN-END:variables
     
-    public PublisherFormController getPublisherFormController(){
-        return publisherFormController;
-    }
-    
-    public JButton getButtonCancel() {
-        return buttonCancel;
-    }
-
-    public void setButtonCancel(JButton buttonCancel) {
-        this.buttonCancel = buttonCancel;
-    }
-
-    public JButton getButtonSave() {
-        return buttonSave;
-    }
-
-    public void setButtonSave(JButton buttonSave) {
-        this.buttonSave = buttonSave;
-    }
-
-    public JScrollPane getjScrollPane1() {
-        return jScrollPane1;
-    }
-
-    public void setjScrollPane1(JScrollPane jScrollPane1) {
-        this.jScrollPane1 = jScrollPane1;
-    }
-
-    public JLabel getLabelAddress() {
-        return labelAddress;
-    }
-
-    public void setLabelAddress(JLabel labelAddress) {
-        this.labelAddress = labelAddress;
-    }
-
-    public JLabel getLabelPhone() {
-        return labelPhone;
-    }
-
-    public void setLabelPhone(JLabel labelPhone) {
-        this.labelPhone = labelPhone;
-    }
-
-    public JLabel getLabelPublisher() {
-        return labelPublisher;
-    }
-
-    public void setLabelPublisher(JLabel labelPublisher) {
-        this.labelPublisher = labelPublisher;
-    }
-
-    public JTextArea getTextAreaAddress() {
-        return textAreaAddress;
-    }
-
-    public void setTextAreaAddress(JTextArea textAreaAddress) {
-        this.textAreaAddress = textAreaAddress;
-    }
-
-    public JFormattedTextField getTextFieldPhone() {
-        return textFieldPhone;
-    }
-
-    public void setTextFieldPhone(JFormattedTextField textFieldPhone) {
-        this.textFieldPhone = textFieldPhone;
-    }
-
-    public JTextField getTextFieldPublisher() {
-        return textFieldPublisher;
-    }
-
-    public void setTextFieldPublisher(JTextField textFieldPublisher) {
-        this.textFieldPublisher = textFieldPublisher;
-    }
-
-    public PublisherModel getPublisherModel() {
-        return publisherModel;
-    }
-
-    public void setPublisherModel(PublisherModel publisherModel) {
-        this.publisherModel = publisherModel;
+    @Override
+    public void initView() {
+        setLanguage();
     }
 
     @Override
-    public void doDefaultCloseAction() {
-        publisherFormController.clearAllField();
-        super.doDefaultCloseAction();
+    public void initController() {
+        buttonSave.addActionListener(((java.awt.event.ActionEvent evt) -> {
+            if (publisherModel != null) {
+                update();
+            } else {
+                add();
+            }
+        }));
+        buttonCancel.addActionListener((java.awt.event.ActionEvent evt) -> {
+            clearAllField();
+            publisherModel=null;
+            dispose();
+        });
     }
-    
+
+    private void add() {
+        add(formToModel());
+        clearAllField();
+        PublisherSearchForm.INSTANCE.initView();
+    }
+
+    private void update() {
+        update(formToModel());
+        publisherModel=null;
+        clearAllField();
+        PublisherSearchForm.INSTANCE.initView();
+    }
+
+    public void modelToForm() {
+        textFieldPublisher.setText(publisherModel.getPublisherName());
+        textFieldPhone.setText(publisherModel.getPhone());
+        textAreaAddress.setText(publisherModel.getAddress());
+    }
+
+    public void clearAllField() {
+        textAreaAddress.setText(null);
+        textFieldPublisher.setText(null);
+        textFieldPhone.setText("");
+    }
+
+    private void setLanguage() {
+        setTitle(setLanguage("publisherform.title"));
+        labelPublisher.setText(setLanguage("publisherform.panelpublisher.labelpublisher"));
+        labelPhone.setText(setLanguage("publisherform.panelpublisher.labelphone"));
+        labelAddress.setText(setLanguage("publisherform.panelpublisher.labeladdress"));
+        buttonCancel.setText(setLanguage("form.button.cancel"));
+        buttonSave.setText(setLanguage("form.button.save"));
+    }
+
+    private PublisherModel formToModel() {
+        PublisherModel pm = null;
+        if (textFieldPublisher.getText().equals("")) {
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("publisherform.fill.publishername"));
+        } else {
+            pm = new PublisherModel();
+            pm.setPublisherId(publisherModel==null?0:publisherModel.getPublisherId());
+            pm.setPublisherName(textFieldPublisher.getText());
+            pm.setPhone(textFieldPhone.getText());
+            pm.setAddress(textAreaAddress.getText());
+        }
+        return pm;
+    }
   
 }

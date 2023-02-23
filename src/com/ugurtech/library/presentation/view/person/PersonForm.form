@@ -73,7 +73,7 @@
                       </Group>
                       <Component id="textFieldSurname" alignment="0" max="32767" attributes="0"/>
                       <Component id="textFieldName" alignment="0" max="32767" attributes="0"/>
-                      <Component id="DateChooserBirth" alignment="0" max="32767" attributes="0"/>
+                      <Component id="dateChooserBirth" alignment="0" max="32767" attributes="0"/>
                       <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
                       <Component id="textFieldPhone" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -96,7 +96,7 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="DateChooserBirth" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="dateChooserBirth" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="labelBirtDate" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -186,7 +186,7 @@
             <Property name="text" type="java.lang.String" value="Save"/>
           </Properties>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="DateChooserBirth">
+        <Component class="com.toedter.calendar.JDateChooser" name="dateChooserBirth">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JDateChooser()"/>
           </AuxValues>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ugurtech.library.presentation.view.user;
+package com.ugurtech.library.presentation.view.firststep;
 import com.toedter.calendar.JDateChooser;
 import com.ugurtech.library.model.responsmodels.CountryModel;
 import com.ugurtech.library.model.responsmodels.LanguageModel;

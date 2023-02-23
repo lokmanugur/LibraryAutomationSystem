@@ -9,7 +9,10 @@ import com.ugurtech.library.presentation.controller.AbstractController;
 import com.ugurtech.library.presentation.controller.Controller;
 import com.ugurtech.library.application.service.borrow.BorrowService;
 import com.ugurtech.library.application.service.borrow.BorrowServiceImpl;
+import com.ugurtech.library.application.service.student.StudentService;
+import com.ugurtech.library.application.service.student.StudentServiceImpl;
 import com.ugurtech.library.dataaccesslayer.borrow.BorrowDaoImpl;
+import com.ugurtech.library.dataaccesslayer.student.StudentDaoImpl;
 import com.ugurtech.library.model.PersonBookModel;
 import java.util.List;
 import javax.swing.table.TableModel;
@@ -21,7 +24,7 @@ import javax.swing.table.TableModel;
  */
 public class ControllerImpl extends AbstractController implements Controller<PersonBookModel>{
     private final BorrowService borrowService = new BorrowServiceImpl(new BorrowDaoImpl());
-    
+    protected final StudentService studentService = new StudentServiceImpl(new StudentDaoImpl());
     public TableModel search(String searchText,int optionsId, int dateId, long startDate, long endDate) {
         return borrowService.search(dateId, startDate, endDate,optionsId, searchText);
     }

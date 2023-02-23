@@ -7,30 +7,39 @@ package com.ugurtech.library.presentation.view.borrow;
 import com.toedter.calendar.JDateChooser;
 import com.ugurtech.library.application.lib.localization.Internationalization;
 import com.ugurtech.library.application.lib.localization.LanguageImpl;
-import com.ugurtech.library.presentation.controller.borrow.StartBorrowFormController;
+import com.ugurtech.library.application.lib.log.LogInternalFrame;
+import com.ugurtech.library.model.BookModel;
+import com.ugurtech.library.model.PersonBookModel;
 import com.ugurtech.library.model.StudentModel;
+import com.ugurtech.library.presentation.controller.Initialize;
+import com.ugurtech.library.presentation.controller.borrow.ControllerImpl;
+import com.ugurtech.library.presentation.view.main.MainForm;
+import com.ugurtech.library.presentation.view.student.StudentForm;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
 import javax.swing.BorderFactory;
-import javax.swing.JInternalFrame;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
  * @author ugur
  * 
  */
-public final class StartBorrowForm extends JInternalFrame {
+public final class StartBorrowForm extends ControllerImpl implements Initialize {
 
     public static StartBorrowForm INSTANCE = new StartBorrowForm();
-    private final StartBorrowFormController startBorrowFormController;
+    private final Map<Long, Vector<Object>> dataMap;
     DefaultTableModel defaultTableModel;
     private StartBorrowForm() {
         initComponents();
-        startBorrowFormController = new StartBorrowFormController(this);
+        initView();
+        initController();
+        dataMap = new HashMap<>();
         setLocation(getWidth()/2, getHeight()/10);
     }
 
@@ -293,181 +302,177 @@ public final class StartBorrowForm extends JInternalFrame {
     private javax.swing.JTable tableBasket;
     // End of variables declaration//GEN-END:variables
 
-    public StartBorrowFormController getStartBorrowFormController() {
-        return startBorrowFormController;
+    
+    @Override
+    public void initView() {
+        AutoCompleteDecorator.decorate(comboBoxPerson);
+        fillAllPersonToComboBox();
+        setLanguage();
     }
 
-    public JButton getButtonAddPerson() {
-        return buttonAddPerson;
+    @Override
+    public void initController() {
+        comboBoxPerson.getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == 10) {
+                    fillPersonToLabels();
+                }
+            }
+        });
+        buttonAddPerson.addActionListener((java.awt.event.ActionEvent evt) -> {
+            MainForm.INSTANCE.addDesktopPane(StudentForm.INSTANCE);
+        });
+        buttonRemove.addActionListener((java.awt.event.ActionEvent evt) -> {
+            removeFromHashMap();
+        });
+        buttonRemoveAll.addActionListener((java.awt.event.ActionEvent evt) -> {
+            removeAllFromHashMap();
+        });
+        buttonSave.addActionListener((java.awt.event.ActionEvent evt) -> {
+            save();
+        });
+        comboBoxPerson.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            @Override
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                fillPersonToLabels();
+            }
+
+            @Override
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                fillAllPersonToComboBox();
+            }
+        });
     }
 
-    public void setButtonAddPerson(JButton buttonAddPerson) {
-        this.buttonAddPerson = buttonAddPerson;
+    private void fillAllPersonToComboBox() {
+        comboBoxPerson.removeAllItems();
+        studentService.getAll().forEach(studentModel -> comboBoxPerson.addItem(studentModel));
     }
 
-    public JButton getButtonSave() {
-        return buttonSave;
+    private void fillPersonToLabels() {
+        try {
+            if (!comboBoxPerson.getSelectedItem().equals("")
+                    && comboBoxPerson.getSelectedItem() != null) {
+                StudentModel studentModel = (StudentModel) comboBoxPerson.getSelectedItem();
+                fieldGrade.setText(studentModel.getClssModel().getClssName());
+                fieldNumber.setText(studentModel.getStudentNumber());
+                fieldSchool.setText(studentModel.getSchoolModel().getSchoolName());
+                fieldAddress.setText(studentModel.getAddress());
+                fieldPhone.setText(studentModel.getPhone());
+            }
+
+        } catch (Exception e) {
+            LogInternalFrame.INSTANCE.exceptionInfoMessages(this.getName(), e, "Error Message");
+        }
+
     }
 
-    public void setButtonSave(JButton buttonSave) {
-        this.buttonSave = buttonSave;
+    private void removeFromHashMap() {
+        int selectedRow = tableBasket.getSelectedRow();
+        if (selectedRow != -1) {
+            dataMap.remove((long) tableBasket.getValueAt(selectedRow, 1));
+            DefaultTableModel dm = (DefaultTableModel) tableBasket.getModel();
+            dm.removeRow(selectedRow);
+            setIconToBackround();
+        }
     }
 
-    public JDateChooser getDateChooserDeadline() {
-        return dateChooserDeadline;
+    private void removeAllFromHashMap() {
+        dataMap.clear();
+        removeAllElementsFromTable();
+        setIconToBackround();
     }
 
-    public void setDateChooserDeadline(JDateChooser dateChooserDeadline) {
-        this.dateChooserDeadline = dateChooserDeadline;
+    public void addHashMap(long key, Vector<Object> value, int stock) {
+        if (dataMap.containsKey(key) && stock > (int) dataMap.get(key).get(3)) {
+            dataMap.get(key).setElementAt((int) dataMap.get(key).get(3) + 1, 3);
+        } else if (stock > 0) {
+            dataMap.put(key, value);
+        }
+        hashMapToTable();
     }
 
-    public JLabel getFieldAddress() {
-        return fieldAddress;
+    private void hashMapToTable() {
+        removeAllElementsFromTable();
+        dataMap.entrySet().forEach(entry -> {
+            defaultTableModel.addRow(entry.getValue());
+        });
+        setIconToBackround();
     }
 
-    public void setFieldAddress(JLabel fieldAddress) {
-        this.fieldAddress = fieldAddress;
+    private void removeAllElementsFromTable() {
+        DefaultTableModel dm = (DefaultTableModel) tableBasket.getModel();
+        int rowCount = tableBasket.getModel().getRowCount();
+        if (rowCount > 0) {
+            for (int row = rowCount - 1; row >= 0; row--) {
+                dm.removeRow(row);
+            }
+        }
     }
 
-    public JLabel getFieldGrade() {
-        return fieldGrade;
+    private void save() {
+        if ((!fieldAddress.getText().equals("")
+                || !fieldPhone.getText().equals("")
+                || !fieldNumber.getText().equals("")
+                || !fieldSchool.getText().equals("")
+                || !fieldGrade.getText().equals(""))
+                && !(dateChooserDeadline.getDate()==null)) {
+            StudentModel studentModel = (StudentModel) comboBoxPerson.getSelectedItem();
+            BookModel bookModel;
+            PersonBookModel personBookModel = new PersonBookModel();
+            List<BookModel> bookList = new ArrayList<>();
+            int rowCount = tableBasket.getRowCount();
+            for (int i = rowCount - 1; 0 <= i; i--) {
+                    bookModel = new BookModel();
+                    bookModel.setBookId((int) tableBasket.getValueAt(i, 0));
+                    bookModel.setStock((int) tableBasket.getValueAt(i, 3));
+                    bookList.add(bookModel);
+            }
+            personBookModel.setDeadLine(dateChooserDeadline.getDate().getTime());
+            personBookModel.setStartDate(new Date().getTime());
+            personBookModel.setBookModel(bookList);
+            personBookModel.setStudentModel(studentModel);
+            add(personBookModel);
+            removeAllFromHashMap();
+            removeAllPersonItemFromBasket();
+        }
     }
 
-    public void setFieldGrade(JLabel fieldGrade) {
-        this.fieldGrade = fieldGrade;
-    }
-
-    public JLabel getFieldNumber() {
-        return fieldNumber;
-    }
-
-    public void setFieldNumber(JLabel fieldNumber) {
-        this.fieldNumber = fieldNumber;
-    }
-
-    public JLabel getFieldPhone() {
-        return fieldPhone;
-    }
-
-    public void setFieldPhone(JLabel fieldPhone) {
-        this.fieldPhone = fieldPhone;
-    }
-
-    public JLabel getFieldSchool() {
-        return fieldSchool;
-    }
-
-    public void setFieldSchool(JLabel fieldSchool) {
-        this.fieldSchool = fieldSchool;
-    }
-
-    public JLabel getLabelAddress() {
-        return labelAddress;
-    }
-
-    public void setLabelAddress(JLabel labelAddress) {
-        this.labelAddress = labelAddress;
-    }
-
-    public JLabel getLabelDeadline() {
-        return labelDeadline;
-    }
-
-    public void setLabelDeadline(JLabel labelDeadline) {
-        this.labelDeadline = labelDeadline;
-    }
-
-    public JLabel getLabelFirstLast() {
-        return labelFirstLast;
-    }
-
-    public void setLabelFirstLast(JLabel labelFirstLast) {
-        this.labelFirstLast = labelFirstLast;
-    }
-
-    public JLabel getLabelGrade() {
-        return labelGrade;
-    }
-
-    public void setLabelGrade(JLabel labelGrade) {
-        this.labelGrade = labelGrade;
-    }
-
-    public JLabel getLabelNumber() {
-        return labelNumber;
-    }
-
-    public void setLabelNumber(JLabel labelNumber) {
-        this.labelNumber = labelNumber;
-    }
-
-    public JLabel getLabelPhone() {
-        return labelPhone;
-    }
-
-    public void setLabelPhone(JLabel labelPhone) {
-        this.labelPhone = labelPhone;
-    }
-
-    public JLabel getLabelSchool() {
-        return labelSchool;
-    }
-
-    public void setLabelSchool(JLabel labelSchool) {
-        this.labelSchool = labelSchool;
-    }
-
-    public JLabel getPhotoIcon() {
-        return photoIcon;
-    }
-
-    public void setPhotoIcon(JLabel photoIcon) {
-        this.photoIcon = photoIcon;
-    }
-
-    public JTable getTableBasket() {
-        return tableBasket;
-    }
-
-    public void setTableBasket(JTable tableBasket) {
-        this.tableBasket = tableBasket;
-    }
-
-    public JComboBox<StudentModel> getComboBoxPerson() {
-        return comboBoxPerson;
-    }
-
-    public void setComboBoxPerson(JComboBox<StudentModel> comboBoxPerson) {
-        this.comboBoxPerson = comboBoxPerson;
-    }
-
-    public JButton getButtonRemove() {
-        return buttonRemove;
-    }
-
-    public void setButtonRemove(JButton buttonRemove) {
-        this.buttonRemove = buttonRemove;
-    }
-
-    public JButton getButtonRemoveAll() {
-        return buttonRemoveAll;
-    }
-
-    public void setButtonRemoveAll(JButton buttonRemoveAll) {
-        this.buttonRemoveAll = buttonRemoveAll;
-    }
-
-    public DefaultTableModel getDefaultTableModel() {
-        return defaultTableModel;
-    }
-
-    public JPanel getPanelStudent() {
-        return panelStudent;
-    }
-
-    public void setPanelStudent(JPanel panelStudent) {
-        this.panelStudent = panelStudent;
+    private void removeAllPersonItemFromBasket() {
+        comboBoxPerson.setSelectedItem(null);
+        fieldNumber.setText("");
+        fieldGrade.setText("");
+        fieldSchool.setText("");
+        fieldPhone.setText("");
+        fieldAddress.setText("");
     }
     
-    
+    private void setIconToBackround(){
+        if(tableBasket.getRowCount()>0){
+            MainForm.INSTANCE.getButtonBasket().setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/basketfull32.png")));
+        }else{
+            MainForm.INSTANCE.getButtonBasket().setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/basketempty32.png")));
+        }
+    }
+
+    private void setLanguage() {
+        setTitle(setLanguage("startborrowform.title"));
+        labelFirstLast.setText(setLanguage("startborrowform.label.namesurname"));
+        labelAddress.setText(setLanguage("startborrowform.label.address"));
+        labelDeadline.setText(setLanguage("startborrowform.label.deadline"));
+        labelGrade.setText(setLanguage("startborrowform.label.grade"));
+        labelNumber.setText(setLanguage("startborrowform.label.number"));
+        labelPhone.setText(setLanguage("startborrowform.label.phone"));
+        labelSchool.setText(setLanguage("startborrowform.label.school"));
+        buttonRemove.setText(setLanguage("startborrowform.button.remove"));
+        buttonRemoveAll.setText(setLanguage("startborrowform.button.removeall"));
+        buttonSave.setText(setLanguage("startborrowform.button.save"));
+    }
+
 }

@@ -4,26 +4,22 @@
  * and open the template in the editor.
  */
 package com.ugurtech.library.presentation.view.booktype;
-import com.ugurtech.library.presentation.controller.booktype.BookTypeSearchFormController;
-import javax.swing.JButton;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import com.ugurtech.library.presentation.controller.Initialize;
+import com.ugurtech.library.presentation.controller.booktype.BookTypeController;
+import com.ugurtech.library.presentation.view.main.MainForm;
 
 /**
  *
  * @author ugur
  */
-public final class BookTypeSearchForm extends JInternalFrame {
+public final class BookTypeSearchForm extends BookTypeController implements Initialize{
 
     private static BookTypeSearchForm booksTypeForm;
-    private final BookTypeSearchFormController bookTypeSearchFormController;
     private BookTypeSearchForm() {
         initComponents();
-        bookTypeSearchFormController= new BookTypeSearchFormController(this);
+        initView();
+        initController();
         setLocation(getWidth()/2, getHeight()/10);
     }
     
@@ -157,81 +153,79 @@ public final class BookTypeSearchForm extends JInternalFrame {
     private javax.swing.JTextField textFieldSearch;
     // End of variables declaration//GEN-END:variables
 
-    public JButton getButtonWrite() {
-        return buttonWrite;
+  @Override
+    public void initView() {
+        setLanguage();
+        search();
     }
 
-    public BookTypeSearchFormController getBookTypeSearchFormController() {
-        return bookTypeSearchFormController;
-    }
-    
+    @Override
+    public void initController() {
+        buttonSave.addActionListener((java.awt.event.ActionEvent evt) -> {
+            add();
+            clearAllFields();
+        });
+        buttonWrite.addActionListener((java.awt.event.ActionEvent evt) -> {
 
-    public void setButtonWrite(JButton buttonWrite) {
-        this.buttonWrite = buttonWrite;
-    }
+        });
+        buttonUpdate.addActionListener((java.awt.event.ActionEvent evt) -> {
+            update();
+        });
 
-    public JButton getButtonDelete() {
-        return buttonDelete;
-    }
-
-    public void setButtonDelete(JButton buttonDelete) {
-        this.buttonDelete = buttonDelete;
-    }
-
-    public JButton getButtonSave() {
-        return buttonSave;
-    }
-
-    public void setButtonSave(JButton buttonSave) {
-        this.buttonSave = buttonSave;
-    }
-
-    public JButton getButtonUpdate() {
-        return buttonUpdate;
+        buttonDelete.addActionListener((java.awt.event.ActionEvent evt) -> {
+            delete();
+            clearAllFields();
+        });
+        textFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                search();
+            }
+        });
     }
 
-    public void setButtonUpdate(JButton buttonUpdate) {
-        this.buttonUpdate = buttonUpdate;
+    public void search() {
+        tableBooksType.setModel(search(textFieldSearch.getText()));
     }
 
-    public JPanel getjPanel1() {
-        return panelBookType;
+    protected void add() {
+        MainForm.INSTANCE.addDesktopPane(BookTypeForm.INSTANCE);
     }
 
-    public void setjPanel1(JPanel jPanel1) {
-        this.panelBookType = jPanel1;
+    protected void update() {
+       // bookTypeModel = new BookTypeModel();
+        if (tableBooksType.getSelectedRow() == -1) {
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.update.unselectedrow"));
+        } else {
+            BookTypeForm bookTypeForm = BookTypeForm.INSTANCE;
+            MainForm.INSTANCE.addDesktopPane(bookTypeForm);
+            bookTypeModel=get((int) tableBooksType.getModel().getValueAt(tableBooksType.getSelectedRow(), 0));
+            bookTypeForm.modelToForm();
+        }
     }
 
-    public JScrollPane getjScrollPane1() {
-        return scrollPaneTable;
+    protected void delete() {
+        if (tableBooksType.getSelectedRow() == -1) {
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.delete.unselectedrow"));
+        } else if (UserInfoMessages.getInstance().showApproveMessages(setLanguage("table.option.approve"), setLanguage("table.option.approve.form.title"))) {
+            delete((Integer) (tableBooksType.getModel().getValueAt(tableBooksType.getSelectedRow(), 0)));
+
+        }
+        search();
+
     }
 
-    public void setjScrollPane1(JScrollPane jScrollPane1) {
-        this.scrollPaneTable = jScrollPane1;
+    public void clearAllFields() {
+        textFieldSearch.setText("");
     }
 
-    public JLabel getLabelSearch() {
-        return labelSearch;
-    }
-
-    public void setLabelSearch(JLabel labelSearch) {
-        this.labelSearch = labelSearch;
-    }
-
-    public JTable getTableBooksType() {
-        return tableBooksType;
-    }
-
-    public void setTableBooksType(JTable tableBooksType) {
-        this.tableBooksType = tableBooksType;
-    }
-
-    public JTextField getTextFieldSearch() {
-        return textFieldSearch;
-    }
-
-    public void setTextFieldSearch(JTextField textFieldSearch) {
-        this.textFieldSearch = textFieldSearch;
+    private void setLanguage() {
+        setTitle(setLanguage("booktypeform.title"));
+        labelSearch.setText(setLanguage("table.search"));
+        buttonSave.setText(setLanguage("table.button.add"));
+        buttonWrite.setText(setLanguage("table.button.write.excel"));
+        buttonUpdate.setText(setLanguage("table.button.update"));
+        buttonDelete.setText(setLanguage("table.button.delete"));
     }
     
 }

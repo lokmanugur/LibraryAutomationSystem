@@ -1,20 +1,17 @@
 package com.ugurtech.library.presentation.view.school;
 
-import com.ugurtech.library.presentation.controller.school.SchoolSearchFormController;
-import javax.swing.JButton;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import com.ugurtech.library.presentation.controller.Initialize;
+import com.ugurtech.library.presentation.controller.school.SchoolController;
+import com.ugurtech.library.presentation.view.main.MainForm;
 
-public final class SchoolSearchForm extends JInternalFrame {
+public final class SchoolSearchForm extends SchoolController implements Initialize {
 
     public static SchoolSearchForm INSTANCE = new SchoolSearchForm();
-    private final SchoolSearchFormController schoolSearchFromController;
     
     private SchoolSearchForm(){
         initComponents();
-        schoolSearchFromController = new SchoolSearchFormController(this);
+        initView();
+        initController();
         setLocation(getWidth()/5,getHeight()/10);
     }
 
@@ -155,64 +152,75 @@ public final class SchoolSearchForm extends JInternalFrame {
     private javax.swing.JTextField textFieldSearch;
     // End of variables declaration//GEN-END:variables
 
-    public JButton getButtonAdd() {
-        return buttonAdd;
+    @Override
+    public void initView() {
+        setLanguage();
+        search();
     }
 
-    public void setButtonAdd(JButton buttonAdd) {
-        this.buttonAdd = buttonAdd;
+    @Override
+    public void initController() {
+
+        textFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                search();
+            }
+        });
+
+        buttonAdd.addActionListener((java.awt.event.ActionEvent evt) -> {
+            add();
+        });
+
+        buttonUpdate.addActionListener((java.awt.event.ActionEvent evt) -> {
+            update();
+        });
+
+        buttonDelete.addActionListener((java.awt.event.ActionEvent evt) -> {
+            delete();
+        });
+
+        buttonWrite.addActionListener((java.awt.event.ActionEvent evt) -> {
+            writeExel();
+        });
+
     }
 
-    public JButton getButtonDelete() {
-        return buttonDelete;
+    public void search() {
+        tableSchool.setModel(search(textFieldSearch.getText()));
     }
 
-    public void setButtonDelete(JButton buttonDelete) {
-        this.buttonDelete = buttonDelete;
+    private void add() {
+        MainForm.INSTANCE.addDesktopPane(SchoolForm.INSTANCE);
     }
 
-    public JButton getButtonUpdate() {
-        return buttonUpdate;
+    private void update() {
+        if (updateUnSelectRowMessage(tableSchool.getSelectedRow())) {
+            SchoolForm schoolForm = SchoolForm.INSTANCE;
+            MainForm.INSTANCE.addDesktopPane(schoolForm);
+            schoolModel = get((int) tableSchool.getModel().getValueAt(tableSchool.getSelectedRow(), 0));
+            schoolForm.modelToForm();
+        }
     }
 
-    public void setButtonUpdate(JButton buttonUpdate) {
-        this.buttonUpdate = buttonUpdate;
+    private void delete() {
+        if (deleteApproveMessage(tableSchool.getSelectedRow())) {
+            delete((int) tableSchool.getModel().getValueAt(tableSchool.getSelectedRow(), 0));
+        }
+        search();
     }
 
-    public JButton getButtonWrite() {
-        return buttonWrite;
+    private void writeExel() {
+        write(tableSchool, getTitle());
     }
 
-    public void setButtonWrite(JButton buttonWrite) {
-        this.buttonWrite = buttonWrite;
-    }
-
-    public JLabel getLabelSearch() {
-        return labelSearch;
-    }
-
-    public void setLabelSearch(JLabel labelSearch) {
-        this.labelSearch = labelSearch;
-    }
-
-    public JTable getTableSchool() {
-        return tableSchool;
-    }
-
-    public void setTableSchool(JTable tableSchool) {
-        this.tableSchool = tableSchool;
-    }
-
-    public JTextField getTextFieldSearch() {
-        return textFieldSearch;
-    }
-
-    public void setTextFieldSearch(JTextField textFieldSearch) {
-        this.textFieldSearch = textFieldSearch;
-    }
-
-    public SchoolSearchFormController getSchoolSearchFromController() {
-        return schoolSearchFromController;
+    private void setLanguage() {
+        setTitle(setLanguage("schoolsearchform.title"));
+        labelSearch.setText(setLanguage("table.search"));
+        buttonAdd.setText(setLanguage("table.button.add"));
+        buttonUpdate.setText(setLanguage("table.button.update"));
+        buttonDelete.setText(setLanguage("table.button.delete"));
+        buttonWrite.setText(setLanguage("table.button.write.excel"));
     }
 
 }

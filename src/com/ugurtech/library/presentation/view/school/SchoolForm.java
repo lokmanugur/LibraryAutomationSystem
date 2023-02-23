@@ -5,30 +5,25 @@
  */
 package com.ugurtech.library.presentation.view.school;
 
-import com.ugurtech.library.presentation.controller.school.SchoolFormController;
+import com.ugurtech.library.application.lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.SchoolModel;
-import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import com.ugurtech.library.presentation.controller.Initialize;
+import com.ugurtech.library.presentation.controller.school.SchoolController;
+import java.util.Objects;
 
 
 /**
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public class SchoolForm extends JInternalFrame {
+public final class SchoolForm extends SchoolController implements Initialize {
 
     public static SchoolForm INSTANCE = new SchoolForm();
-    private final SchoolFormController schoolFormController;
-    private SchoolModel schoolModel;
+    
     private SchoolForm() {
         initComponents();
-        schoolFormController = new SchoolFormController(this);
+        initView();
+        initController();
         setLocation(getWidth()/5,getHeight()/10);
     }
 
@@ -159,102 +154,86 @@ public class SchoolForm extends JInternalFrame {
     private javax.swing.JTextField textFieldName;
     // End of variables declaration//GEN-END:variables
 
-    public SchoolModel getSchoolModel() {
-        return schoolModel;
+      @Override
+    public void initView() {
+        setLanguage();
     }
 
-    public void setSchoolModel(SchoolModel schoolModel) {
-        this.schoolModel = schoolModel;
+    @Override
+    public void initController() {
+        buttonSave.addActionListener((e) -> {
+            if (schoolModel == null) {
+                save();
+            } else {
+                update();
+            }
+        });
+       buttonCancel.addActionListener((e) -> {
+            cancel();
+        });
     }
 
-    public JButton getButtonCancel() {
-        return buttonCancel;
+    private SchoolModel formToModel() {
+        if (textFieldName.getText().equals("")) {
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("authorcontroller.add.leaveblank.caution"));
+            return null;
+        } else {
+            schoolModel = new SchoolModel();
+            schoolModel.setSchoolId(Objects.isNull(schoolModel)? 0 : schoolModel.getSchoolId());
+            schoolModel.setSchoolName(textFieldName.getText());
+            schoolModel.setPhone(formattedTextFieldPhone.getText());
+            schoolModel.setAddress(textAreaAddress.getText());
+            return schoolModel;
+        }
     }
 
-    public void setButtonCancel(JButton buttonCancel) {
-        this.buttonCancel = buttonCancel;
+    void modelToForm() {
+        textFieldName.setText(schoolModel.getSchoolName());
+        formattedTextFieldPhone.setText(schoolModel.getPhone());
+        textAreaAddress.setText(schoolModel.getAddress());
     }
 
-    public JButton getButtonSave() {
-        return buttonSave;
+    private void cancel() {
+        clearFields();
+        schoolModel=null;
+        dispose();
     }
 
-    public void setButtonSave(JButton buttonSave) {
-        this.buttonSave = buttonSave;
+    private void save() {
+        add(formToModel());
+        clearFields();
+        refreshTable();
     }
 
-    public JPanel getjPanel1() {
-        return jPanel1;
+    private void update() {
+        update(formToModel());
+        schoolModel=null;
+        clearFields();
+        refreshTable();
     }
 
-    public void setjPanel1(JPanel jPanel1) {
-        this.jPanel1 = jPanel1;
-    }
-
-    public JScrollPane getjScrollPane1() {
-        return jScrollPane1;
-    }
-
-    public void setjScrollPane1(JScrollPane jScrollPane1) {
-        this.jScrollPane1 = jScrollPane1;
-    }
-
-    public JLabel getLabelAddress() {
-        return labelAddress;
-    }
-
-    public void setLabelAddress(JLabel labelAddress) {
-        this.labelAddress = labelAddress;
-    }
-
-    public JLabel getLabelName() {
-        return labelName;
-    }
-
-    public void setLabelName(JLabel labelName) {
-        this.labelName = labelName;
-    }
-
-    public JLabel getLabelPhone() {
-        return labelPhone;
-    }
-
-    public void setLabelPhone(JLabel labelPhone) {
-        this.labelPhone = labelPhone;
-    }
-
-    public JTextArea getTextAreaAddress() {
-        return textAreaAddress;
-    }
-
-    public void setTextAreaAddress(JTextArea textAreaAddress) {
-        this.textAreaAddress = textAreaAddress;
-    }
-
-    public JTextField getTextFieldName() {
-        return textFieldName;
-    }
-
-    public void setTextFieldName(JTextField textFieldName) {
-        this.textFieldName = textFieldName;
-    }
-
-    public JFormattedTextField getFormattedTextFieldPhone() {
-        return formattedTextFieldPhone;
-    }
-
-    public void setFormattedTextFieldPhone(JFormattedTextField formattedTextFieldPhone) {
-        this.formattedTextFieldPhone = formattedTextFieldPhone;
+    public void clearFields() {
+        textFieldName.setText("");
+       formattedTextFieldPhone.setText("");
+        textAreaAddress.setText("");
     }
     
+    private void refreshTable(){
+        SchoolSearchForm.INSTANCE.search();
+    }
 
-    public SchoolFormController getSchoolFormController() {
-        return schoolFormController;
+    private void setLanguage() {
+        setTitle(setLanguage("schoolform.title"));
+        labelName.setText(setLanguage("schoolform.label.name"));
+        labelPhone.setText(setLanguage("schoolform.label.phone"));
+        labelAddress.setText(setLanguage("schoolform.label.address"));
+        buttonSave.setText(setLanguage("form.button.save"));
+        buttonCancel.setText(setLanguage("form.button.cancel"));
     }
 
     @Override
     public void doDefaultCloseAction() {
-        schoolFormController.clearFields();
+        clearFields();
         super.doDefaultCloseAction(); 
     }
     

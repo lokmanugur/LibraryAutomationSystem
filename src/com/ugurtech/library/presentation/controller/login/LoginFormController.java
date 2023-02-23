@@ -20,7 +20,7 @@ import com.ugurtech.library.application.service.usertype.UserTypeService;
 import com.ugurtech.library.application.service.usertype.UserTypeServiceImpl;
 import com.ugurtech.library.dataaccesslayer.usertype.UserTypeDaoImpl;
 import com.ugurtech.library.presentation.view.main.MainForm;
-import com.ugurtech.library.presentation.view.user.FirstStepForm;
+import com.ugurtech.library.presentation.view.firststep.FirstStepForm;
 
 /**
  *
@@ -72,8 +72,7 @@ public class LoginFormController extends AbstractController implements Initializ
 
     public void closeButtonClicked() {
         sessionTimeCounter.interrupt();
-        loginForm.dispose();
-        MainForm.INSTANCE.dispose();
+        System.exit(0);
     }
 
     @Override

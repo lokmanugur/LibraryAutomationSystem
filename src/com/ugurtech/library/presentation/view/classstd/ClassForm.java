@@ -4,25 +4,23 @@
  * and open the template in the editor.
  */
 package com.ugurtech.library.presentation.view.classstd;
-import com.ugurtech.library.presentation.controller.classstd.ClassFormController;
+import com.ugurtech.library.application.lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.ClassModel;
-import javax.swing.JButton;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import com.ugurtech.library.presentation.controller.Initialize;
+import com.ugurtech.library.presentation.controller.classstd.ClassController;
 
 /**
  *
  * @author ugur
  */
-public class ClassForm extends JInternalFrame {
+public final class ClassForm extends ClassController implements Initialize {
 
     public static final ClassForm INSTANCE = new ClassForm();
-    private final ClassFormController classFormController;
-    private ClassModel classModel;
+    
     private ClassForm() {
         initComponents();
-        classFormController = new ClassFormController(this);
+        initView();
+        initController();
         setLocation(getWidth()/2, getHeight()/10);
     }
 
@@ -99,53 +97,71 @@ public class ClassForm extends JInternalFrame {
     private javax.swing.JTextField textFieldClassName;
     // End of variables declaration//GEN-END:variables
 
-    public ClassFormController getClassFormController() {
-        return classFormController;
+private void setLanguage() {
+        setTitle(setLanguage("classform.title"));
+        labelClassName.setText(setLanguage("classform.label.name"));
+        buttonCancel.setText(setLanguage("form.button.cancel"));
+        buttonSave.setText(setLanguage("form.button.save"));
     }
 
-    public JButton getButtonCancel() {
-        return buttonCancel;
-    }
-
-    public void setButtonCancel(JButton buttonCancel) {
-        this.buttonCancel = buttonCancel;
-    }
-
-    public JButton getButtonSave() {
-        return buttonSave;
-    }
-
-    public void setButtonSave(JButton buttonSave) {
-        this.buttonSave = buttonSave;
-    }
-
-    public JLabel getLabelClassName() {
-        return labelClassName;
-    }
-
-    public void setLabelClassName(JLabel labelClassName) {
-        this.labelClassName = labelClassName;
-    }
-
-    public JTextField getTextFieldClassName() {
-        return textFieldClassName;
-    }
-
-    public void setTextFieldClassName(JTextField textFieldClassName) {
-        this.textFieldClassName = textFieldClassName;
-    }
-
-    public ClassModel getClassModel() {
-        return classModel;
-    }
-
-    public void setClassModel(ClassModel classModel) {
-        this.classModel = classModel;
+    private void add() {
+        add(formToModel());
+        ClassSearchForm.INSTANCE.initView();
     }
 
     @Override
+    public void initView() {
+        setLanguage();
+    }
+
+    @Override
+    public void initController() {
+        buttonSave.addActionListener(((e) -> {
+            if (classModel != null) {
+                updete();
+                classModel=null;
+                clearFields();
+            } else {
+                add();
+                clearFields();
+            }
+        }));
+        buttonCancel.addActionListener(((e) -> {
+            classModel=null;
+            clearFields();
+            this.dispose();
+        }));
+    }
+
+    private void updete() {
+        update(formToModel());
+        ClassSearchForm.INSTANCE.initView();
+    }
+
+    private ClassModel formToModel() {
+        ClassModel cm = null;
+        if (textFieldClassName.getText().equals("")) {
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("classform.classname.empty"));
+        } else {
+            cm = new ClassModel();
+            cm.setClassId(classModel==null?0:classModel.getClassId());
+            cm.setClassName(textFieldClassName.getText());
+        }
+        return cm;
+    }
+
+    public void modelToForm() {
+        textFieldClassName.setText(classModel.getClssName());
+    }
+
+    public void clearFields() {
+        textFieldClassName.setText("");
+    }
+    
+
+    @Override
     public void doDefaultCloseAction() {
-        classFormController.clearFields();
+        clearFields();
         super.doDefaultCloseAction();
     }
     

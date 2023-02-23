@@ -1,5 +1,7 @@
 package com.ugurtech.library.presentation.view.usertype;
 
+
+import com.ugurtech.library.presentation.controller.Initialize;
 import com.ugurtech.library.presentation.controller.usertype.UserTypeController;
 import com.ugurtech.library.presentation.view.main.MainForm;
 
@@ -7,12 +9,13 @@ import com.ugurtech.library.presentation.view.main.MainForm;
  *
  * @author lokmanugur
  */
-public final class UserTypeSearchForm extends UserTypeController {
+public final class UserTypeSearchForm extends UserTypeController implements Initialize{
 
     public static UserTypeSearchForm INSTANCE = new UserTypeSearchForm();
 
     private UserTypeSearchForm() {
         initComponents();
+       // initView();
         initController();
         setLocation(getWidth() / 5, getHeight() / 10);
         search();
@@ -171,7 +174,8 @@ public final class UserTypeSearchForm extends UserTypeController {
         tableSearch.setModel(search(textFieldSearch.getText()));
     }
 
-    private void initController() {
+    @Override
+    public void initController() {
         textFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -194,5 +198,10 @@ public final class UserTypeSearchForm extends UserTypeController {
             }
             search();
         });
+    }
+
+    @Override
+    public void initView() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

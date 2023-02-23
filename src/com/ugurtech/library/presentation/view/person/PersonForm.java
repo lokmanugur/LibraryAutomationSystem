@@ -5,25 +5,23 @@
  */
 package com.ugurtech.library.presentation.view.person;
 import com.toedter.calendar.JDateChooser;
-import com.ugurtech.library.presentation.controller.person.PersonFormController;
-import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import com.ugurtech.library.model.PersonModel;
+import com.ugurtech.library.presentation.controller.Initialize;
+import com.ugurtech.library.presentation.controller.person.PersonController;
+import java.util.Date;
+import java.util.Objects;
 
 /**
  *
  * @author ugur
  */
-public final class PersonForm extends JInternalFrame {
+public final class PersonForm extends PersonController implements Initialize {
 
     public static PersonForm INSTANCE = new PersonForm();
-    private final PersonFormController personFormController;
     private PersonForm() {
         initComponents();
-        personFormController = new PersonFormController(this);
+        initView();
+        initController();
         setLocation(getWidth()/2, getHeight()/10);
     }
 
@@ -46,7 +44,7 @@ public final class PersonForm extends JInternalFrame {
         labelPhone = new javax.swing.JLabel();
         buttonCancel = new javax.swing.JButton();
         buttonSave = new javax.swing.JButton();
-        DateChooserBirth = new JDateChooser();
+        dateChooserBirth = new JDateChooser();
         jScrollPane2 = new javax.swing.JScrollPane();
         textAreaAddress = new javax.swing.JTextArea();
         textFieldPhone = new javax.swing.JFormattedTextField();
@@ -118,7 +116,7 @@ public final class PersonForm extends JInternalFrame {
                         .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(textFieldSurname)
                     .addComponent(textFieldName)
-                    .addComponent(DateChooserBirth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateChooserBirth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
                     .addComponent(textFieldPhone))
                 .addContainerGap())
@@ -136,7 +134,7 @@ public final class PersonForm extends JInternalFrame {
                     .addComponent(labelLastName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(DateChooserBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateChooserBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelBirtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -178,9 +176,9 @@ public final class PersonForm extends JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser DateChooserBirth;
     private javax.swing.JButton buttonCancel;
     private javax.swing.JButton buttonSave;
+    private com.toedter.calendar.JDateChooser dateChooserBirth;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelAddress;
@@ -194,109 +192,79 @@ public final class PersonForm extends JInternalFrame {
     private javax.swing.JTextField textFieldSurname;
     // End of variables declaration//GEN-END:variables
 
-    public PersonFormController getPersonFormController() {
-        return personFormController;
+    @Override
+    public void initView() {
+        setLanguage();
     }
 
-    public JDateChooser getDateChooserBirth() {
-        return DateChooserBirth;
+    @Override
+    public void initController() {
+        buttonSave.addActionListener((e) -> {
+            add();
+        });
+        buttonCancel.addActionListener((e) -> {
+            cancel();
+
+        });
     }
 
-    public void setDateChooserBirth(JDateChooser DateChooserBirth) {
-        this.DateChooserBirth = DateChooserBirth;
+    public void clearAllFields() {
+        textFieldName.setText("");
+        textFieldSurname.setText("");
+        textFieldPhone.setText("");
+        textAreaAddress.setText("");
+        dateChooserBirth.setDate(null);
+        personModel = null;
     }
 
-    public JButton getButtonCancel() {
-        return buttonCancel;
+    private void add() {
+        if (Objects.isNull(personModel)) {
+            add(formToModel(new PersonModel()));
+        } else {
+            update(formToModel(personModel));
+            this.dispose();
+        }
+        clearAllFields();
+        PersonSearchForm.INSTANCE.search();
     }
 
-    public void setButtonCancel(JButton buttonCancel) {
-        this.buttonCancel = buttonCancel;
+    private void cancel() {
+        clearAllFields();
+        this.dispose();
     }
 
-    public JButton getButtonSave() {
-        return buttonSave;
+    public PersonModel formToModel(PersonModel personModel) {
+        personModel.setFirstName(textFieldName.getText());
+        personModel.setLastName(textFieldSurname.getText());
+        personModel.setPhone(textFieldPhone.getText());
+        personModel.setAddress(textAreaAddress.getText());
+        personModel.setBirthDate(dateChooserBirth.getDate().getTime());
+        return personModel;
     }
 
-    public void setButtonSave(JButton buttonSave) {
-        this.buttonSave = buttonSave;
+    public void modelToForm(PersonModel personModel) {
+        textFieldName.setText(personModel.getFirstName());
+        textFieldSurname.setText(personModel.getLastName());
+        textFieldPhone.setText(personModel.getPhone());
+        textAreaAddress.setText(personModel.getAddress());
+        dateChooserBirth.setDate(new Date(personModel.getBirthDate()));
+        this.personModel = personModel;
     }
 
-    public JLabel getLabelAddress() {
-        return labelAddress;
-    }
-
-    public void setLabelAddress(JLabel labelAddress) {
-        this.labelAddress = labelAddress;
-    }
-
-    public JLabel getLabelBirtDate() {
-        return labelBirtDate;
-    }
-
-    public void setLabelBirtDate(JLabel labelBirtDate) {
-        this.labelBirtDate = labelBirtDate;
-    }
-
-    public JLabel getLabelFirstName() {
-        return labelFirstName;
-    }
-
-    public void setLabelFirstName(JLabel labelFirstName) {
-        this.labelFirstName = labelFirstName;
-    }
-
-    public JLabel getLabelLastName() {
-        return labelLastName;
-    }
-
-    public void setLabelLastName(JLabel labelLastName) {
-        this.labelLastName = labelLastName;
-    }
-
-    public JLabel getLabelPhone() {
-        return labelPhone;
-    }
-
-    public void setLabelPhone(JLabel labelPhone) {
-        this.labelPhone = labelPhone;
-    }
-
-    public JTextArea getTextAreaAddress() {
-        return textAreaAddress;
-    }
-
-    public void setTextAreaAddress(JTextArea textAreaAddress) {
-        this.textAreaAddress = textAreaAddress;
-    }
-
-    public JTextField getTextFieldName() {
-        return textFieldName;
-    }
-
-    public void setTextFieldName(JTextField textFieldName) {
-        this.textFieldName = textFieldName;
-    }
-
-    public JFormattedTextField getTextFieldPhone() {
-        return textFieldPhone;
-    }
-
-    public void setTextFieldPhone(JFormattedTextField textFieldPhone) {
-        this.textFieldPhone = textFieldPhone;
-    }
-
-    public JTextField getTextFieldSurname() {
-        return textFieldSurname;
-    }
-
-    public void setTextFieldSurname(JTextField textFieldSurname) {
-        this.textFieldSurname = textFieldSurname;
+    private void setLanguage() {
+        setTitle(setLanguage("personform.title"));
+        labelFirstName.setText(setLanguage("personform.label.name"));
+        labelLastName.setText(setLanguage("personform.label.surname"));
+        labelBirtDate.setText(setLanguage("personform.label.birtdate"));
+        labelPhone.setText(setLanguage("personform.label.address"));
+        textAreaAddress.setText(setLanguage("personform.label.phone"));
+        buttonCancel.setText(setLanguage("form.button.cancel"));
+        buttonSave.setText(setLanguage("form.button.save"));
     }
 
     @Override
     public void doDefaultCloseAction() {
-        personFormController.clearAllFields();
+        clearAllFields();
         super.doDefaultCloseAction();
     }
     

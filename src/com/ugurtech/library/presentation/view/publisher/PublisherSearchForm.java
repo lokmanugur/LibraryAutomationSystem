@@ -4,27 +4,23 @@
  */
 package com.ugurtech.library.presentation.view.publisher;
 
-import com.ugurtech.library.presentation.controller.publisher.PublisherSearchFormController;
-import javax.swing.JButton;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import com.ugurtech.library.presentation.controller.Initialize;
+import com.ugurtech.library.presentation.controller.publisher.PublisherController;
+import com.ugurtech.library.presentation.view.main.MainForm;
 /**
  *
  * @author Administrator
  * 
  */
-public final class PublisherSearchForm extends JInternalFrame {
+public final class PublisherSearchForm extends PublisherController implements Initialize {
 
     public static PublisherSearchForm INSTANCE = new PublisherSearchForm();
-    private final PublisherSearchFormController publisherController;
 
     private PublisherSearchForm() {
       initComponents();
-      publisherController = new PublisherSearchFormController(this);
+      initView();
+      initController();
       setLocation(getWidth()/2,getHeight()/10);
     }
 
@@ -155,82 +151,78 @@ public final class PublisherSearchForm extends JInternalFrame {
     private javax.swing.JTextField textFieldSearch;
     // End of variables declaration//GEN-END:variables
 
-    public PublisherSearchFormController getPublisherController() {
-        return publisherController;
+       public void search() {
+        tablePublisher.setModel(search(textFieldSearch.getText()));
     }
 
-    public JButton getButtonWrite() {
-        return buttonWrite;
+    @Override
+    public final void initView() {
+        setLanguage();
+        search();
     }
 
-    public void setButtonWrite(JButton buttonWrite) {
-        this.buttonWrite = buttonWrite;
+    @Override
+    public final void initController() {
+        buttonAdd.addActionListener((java.awt.event.ActionEvent evt) -> {
+            add();
+        });
+
+        buttonUpdate.addActionListener((java.awt.event.ActionEvent evt) -> {
+            update();
+        });
+
+        buttonDelete.addActionListener((java.awt.event.ActionEvent evt) -> {
+            delete();
+        });
+        buttonWrite.addActionListener((java.awt.event.ActionEvent evt) -> {
+            //write to excel
+        });
+
+        textFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                search();
+            }
+        });
+
     }
 
-    public JButton getButtonAdd() {
-        return buttonAdd;
+    protected void add() {
+       MainForm.INSTANCE.addDesktopPane(PublisherForm.INSTANCE); 
     }
 
-    public void setButtonAdd(JButton buttonAdd) {
-        this.buttonAdd = buttonAdd;
+    private void delete() {
+        if (tablePublisher.getSelectedRow() == -1) {
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.delete.unselectedrow"));
+        } else if (UserInfoMessages.getInstance().showApproveMessages(setLanguage("table.option.approve"), setLanguage("table.option.approve.form.title"))) {
+            delete((Integer)(tablePublisher.getModel().getValueAt(tablePublisher.getSelectedRow(), 0)));
+
+        }
+        search();
     }
 
-    public JButton getButtonDelete() {
-        return buttonDelete;
+    private void update() {
+        if (tablePublisher.getSelectedRow() == -1) {
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.update.unselectedrow"));
+        } else {
+            MainForm.INSTANCE.addDesktopPane(PublisherForm.INSTANCE);
+            publisherModel = get((int) tablePublisher.getModel().getValueAt(tablePublisher.getSelectedRow(), 0));
+            PublisherForm.INSTANCE.modelToForm();
+        }
+
     }
 
-    public void setButtonDelete(JButton buttonDelete) {
-        this.buttonDelete = buttonDelete;
+    public void clearAllField() {
+        textFieldSearch.setText(null);
+        search();
     }
 
-    public JButton getButtonUpdate() {
-        return buttonUpdate;
+    private void setLanguage() {
+        setTitle(setLanguage("publisherform.title"));
+        labelSearch.setText(setLanguage("table.search"));
+        buttonAdd.setText(setLanguage("table.button.add"));
+        buttonUpdate.setText(setLanguage("table.button.update"));
+        buttonDelete.setText(setLanguage("table.button.delete"));
+        buttonWrite.setText(setLanguage("table.button.write.excel"));
     }
-
-    public void setButtonUpdate(JButton buttonUpdate) {
-        this.buttonUpdate = buttonUpdate;
-    }
-
-    public JScrollPane getjScrollPane2() {
-        return jScrollPane2;
-    }
-
-    public void setjScrollPane2(JScrollPane jScrollPane2) {
-        this.jScrollPane2 = jScrollPane2;
-    }
-
-    public JLabel getLabelSearch() {
-        return labelSearch;
-    }
-
-    public void setLabelSearch(JLabel labelSearch) {
-        this.labelSearch = labelSearch;
-    }
-
-    public JPanel getPanelPublisher() {
-        return panelPublisher;
-    }
-
-    public void setPanelPublisher(JPanel panelPublisher) {
-        this.panelPublisher = panelPublisher;
-    }
-
-    public JTable getTablePublisher() {
-        return tablePublisher;
-    }
-
-    public void setTablePublisher(JTable tablePublisher) {
-        this.tablePublisher = tablePublisher;
-    }
-
-    public JTextField getTextFieldSearch() {
-        return textFieldSearch;
-    }
-
-    public void setTextFieldSearch(JTextField textFieldSearch) {
-        this.textFieldSearch = textFieldSearch;
-    }
-
-    
-    
 }

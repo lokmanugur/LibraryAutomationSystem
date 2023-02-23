@@ -4,17 +4,20 @@
  * and open the template in the editor.
  */
 package com.ugurtech.library.presentation.view.user;
-import com.ugurtech.library.presentation.controller.user.UserFormController;
 import com.ugurtech.library.model.PersonModel;
+import com.ugurtech.library.model.UserModel;
 import com.ugurtech.library.model.responsmodels.CountryModel;
 import com.ugurtech.library.model.responsmodels.LanguageModel;
 import com.ugurtech.library.model.responsmodels.UserTypeModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import com.ugurtech.library.presentation.controller.Initialize;
+import com.ugurtech.library.presentation.controller.user.UserController;
+import com.ugurtech.library.presentation.view.main.MainForm;
+import com.ugurtech.library.presentation.view.person.PersonForm;
+import com.ugurtech.library.presentation.view.usertype.UserTypeForm;
+import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.Objects;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 
@@ -22,18 +25,17 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  *
  * @author lokman uğur
  */
-public final class UserForm extends JInternalFrame {
+public final class UserForm extends UserController implements Initialize {
 
-    public static UserForm INSTANCE = new UserForm();   
-    private final UserFormController userFormController;
-    
+    public static UserForm INSTANCE = new UserForm();       
     private UserForm() {
         initComponents();
-        this.userFormController = new UserFormController(this);
         AutoCompleteDecorator.decorate(comboBoxUser);
         AutoCompleteDecorator.decorate(comboBoxUserType);
         AutoCompleteDecorator.decorate(comboBoxCountry);
         AutoCompleteDecorator.decorate(comboBoxLanguage);
+        initView();
+        initController();
         setLocation(getWidth()/2,getHeight()/10);
     }
     /**
@@ -253,190 +255,206 @@ public final class UserForm extends JInternalFrame {
     private javax.swing.JTextField textFieldSession;
     private javax.swing.JTextField textFieldUserName;
     // End of variables declaration//GEN-END:variables
-
-    public JButton getButtonAddUser() {
-        return buttonAddUser;
+ @Override
+    public void initView() {
+        setLanguage();
+        fillAllUserTypeToComboBox();
+        fillAllCountryToComboBox();
+        fillAllLanguageToComboBox();
+        fillAllPersonToComboBox();
     }
 
-    public void setButtonAddUser(JButton buttonAddUser) {
-        this.buttonAddUser = buttonAddUser;
+    private void fillAllLanguageToComboBox() {
+        languageService.getAll().forEach(languageModel -> {
+            comboBoxLanguage.addItem(languageModel);
+        });
     }
 
-    public JButton getButtonAddUserType() {
-        return buttonAddUserType;
+    private void fillAllPersonToComboBox() {
+        personService.getAll().forEach(personModel -> {
+            comboBoxUser.addItem(personModel);
+        });
     }
 
-    public void setButtonAddUserType(JButton buttonAddUserType) {
-        this.buttonAddUserType = buttonAddUserType;
+    private void fillAllCountryToComboBox() {
+        countryService.getAll().forEach(countryModel -> {
+            comboBoxCountry.addItem(countryModel);
+        });
     }
 
-    public JButton getButtonCancel() {
-        return buttonCancel;
+    private void fillAllUserTypeToComboBox() {
+        userTypeService.getAll().forEach(userTypeModel -> {
+            comboBoxUserType.addItem(userTypeModel);
+        });
     }
 
-    public void setButtonCancel(JButton buttonCancel) {
-        this.buttonCancel = buttonCancel;
+    @Override
+    public void initController() {
+        buttonSave.addActionListener((java.awt.event.ActionEvent evt) -> {
+            save();
+        });
+
+        buttonCancel.addActionListener((java.awt.event.ActionEvent evt) -> {
+            cancel();
+        });
+        buttonAddUser.addActionListener((java.awt.event.ActionEvent evt) -> {
+            MainForm.INSTANCE.addDesktopPane(PersonForm.INSTANCE);
+        });
+        buttonAddUserType.addActionListener((java.awt.event.ActionEvent evt) -> {
+            MainForm.INSTANCE.addDesktopPane(UserTypeForm.INSTANCE);
+        });
+
+        textFieldPassword.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent evt) {
+                if (!String.valueOf(textFieldRepeatPassword.getPassword()).equals("")) {
+                    checkPassword();
+                }
+            }
+        });
+
+        textFieldRepeatPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                checkPassword();
+            }
+        });
+
+        comboBoxUser.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            @Override
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            @Override
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboBoxUser.removeAllItems();
+                fillAllPersonToComboBox();
+            }
+        });
+
+        comboBoxUserType.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            @Override
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            @Override
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboBoxUserType.removeAllItems();
+                fillAllUserTypeToComboBox();
+            }
+        });
+
+        comboBoxUser.getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                //personComboBoxKeyReleased(evt);
+            }
+        });
+        comboBoxUserType.getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                //userTypeComboBoxKeyReleased(evt);
+            }
+        });
     }
 
-    public JButton getButtonSave() {
-        return buttonSave;
+    private void save() {
+        if (checkFields()) {
+            if (Objects.isNull(userModel)) {
+                add(formToModel(new UserModel()));
+            } else {
+                update(formToModel(userModel));
+                dispose();
+            }
+            clearTextField();
+            UserSearchForm.INSTANCE.search();
+        }
     }
 
-    public void setButtonSave(JButton buttonSave) {
-        this.buttonSave = buttonSave;
+    private void cancel() {
+        dispose();
+        clearTextField();
     }
 
-    public JComboBox<CountryModel> getComboBoxCountry() {
-        return comboBoxCountry;
+    public void clearTextField() {
+        comboBoxUser.setSelectedItem(null);
+        comboBoxUserType.setSelectedItem(null);
+        comboBoxCountry.setSelectedItem(null);
+        comboBoxLanguage.setSelectedItem(null);
+        textFieldUserName.setText(null);
+        textFieldSession.setText(null);
+        textFieldPassword.setText(null);
+        textFieldRepeatPassword.setText(null);
+        labelInformUser.setText(null);
+        userModel = null;
     }
 
-    public void setComboBoxCountry(JComboBox<CountryModel> comboBoxCountry) {
-        this.comboBoxCountry = comboBoxCountry;
+    public void checkPassword() {
+        boolean check = String.valueOf(textFieldPassword.getPassword()).equals(String.valueOf(textFieldRepeatPassword.getPassword()));
+        if (check) {
+            labelInformUser.setForeground(Color.BLACK);
+            labelInformUser.setText(setLanguage("userformcontroller.password.match"));
+            buttonSave.setEnabled(true);
+        } else {
+            labelInformUser.setForeground(Color.RED);
+            labelInformUser.setText(setLanguage("userformcontroller.password.dont.match"));
+            buttonSave.setEnabled(false);
+        }
     }
 
-    public JComboBox<LanguageModel> getComboBoxLanguage() {
-        return comboBoxLanguage;
+    private boolean checkFields() {
+        return comboBoxUserType.getSelectedItem() != null && comboBoxUser.getSelectedItem() != null
+                && textFieldPassword.getPassword() != null && textFieldUserName.getText() != null;
     }
 
-    public void setComboBoxLanguage(JComboBox<LanguageModel> comboBoxLanguage) {
-        this.comboBoxLanguage = comboBoxLanguage;
+    public UserModel formToModel(UserModel userModel) {
+        userModel.setCountryModel((CountryModel) comboBoxCountry.getSelectedItem());
+        userModel.setLanguageModel((LanguageModel) comboBoxLanguage.getSelectedItem());
+        userModel.setUserTypeModel((UserTypeModel) comboBoxUserType.getSelectedItem());
+        userModel.setPersonModel((PersonModel) comboBoxUser.getSelectedItem());
+        userModel.setUserName(textFieldUserName.getText());
+        userModel.setUserPassword(String.copyValueOf(textFieldPassword.getPassword()));
+        userModel.setSessionTime(Integer.parseInt(textFieldSession.getText()));
+        return userModel;
     }
 
-    public JComboBox<PersonModel> getComboBoxUser() {
-        return comboBoxUser;
+    public void modelToForm(UserModel userModel) {
+        comboBoxUserType.setSelectedItem(userModel.getUserTypeModel());
+        comboBoxUser.setSelectedItem(userModel.getPersonModel());
+        comboBoxCountry.setSelectedItem(userModel.getCountryModel());
+        comboBoxLanguage.setSelectedItem(userModel.getLanguageModel());
+        textFieldPassword.setText(userModel.getUserPassword());
+        textFieldSession.setText(String.valueOf(userModel.getSessionTime()));
+        textFieldUserName.setText(userModel.getUserName());
+        this.userModel = userModel;
     }
 
-    public void setComboBoxUser(JComboBox<PersonModel> comboBoxUser) {
-        this.comboBoxUser = comboBoxUser;
-    }
-
-    public JComboBox<UserTypeModel> getComboBoxUserType() {
-        return comboBoxUserType;
-    }
-
-    public void setComboBoxUserType(JComboBox<UserTypeModel> comboBoxUserType) {
-        this.comboBoxUserType = comboBoxUserType;
-    }
-
-    public JLabel getLabelCountry() {
-        return labelCountry;
-    }
-
-    public void setLabelCountry(JLabel labelCountry) {
-        this.labelCountry = labelCountry;
-    }
-
-    public JLabel getLabelInformUser() {
-        return labelInformUser;
-    }
-
-    public void setLabelInformUser(JLabel labelInformUser) {
-        this.labelInformUser = labelInformUser;
-    }
-
-    public JLabel getLabelLanguage() {
-        return labelLanguage;
-    }
-
-    public void setLabelLanguage(JLabel labelLanguage) {
-        this.labelLanguage = labelLanguage;
-    }
-
-    public JLabel getLabelMinute() {
-        return labelMinute;
-    }
-
-    public void setLabelMinute(JLabel labelMinute) {
-        this.labelMinute = labelMinute;
-    }
-
-    public JLabel getLabelPassword() {
-        return labelPassword;
-    }
-
-    public void setLabelPassword(JLabel labelPassword) {
-        this.labelPassword = labelPassword;
-    }
-
-    public JLabel getLabelRepeatPassword() {
-        return labelRepeatPassword;
-    }
-
-    public void setLabelRepeatPassword(JLabel labelRepeatPassword) {
-        this.labelRepeatPassword = labelRepeatPassword;
-    }
-
-    public JLabel getLabelSessionTime() {
-        return labelSessionTime;
-    }
-
-    public void setLabelSessionTime(JLabel labelSessionTime) {
-        this.labelSessionTime = labelSessionTime;
-    }
-
-    public JLabel getLabelUser() {
-        return labelUser;
-    }
-
-    public void setLabelUser(JLabel labelUser) {
-        this.labelUser = labelUser;
-    }
-
-    public JLabel getLabelUserName() {
-        return labelUserName;
-    }
-
-    public void setLabelUserName(JLabel labelUserName) {
-        this.labelUserName = labelUserName;
-    }
-
-    public JLabel getLabelUserType() {
-        return labelUserType;
-    }
-
-    public void setLabelUserType(JLabel labelUserType) {
-        this.labelUserType = labelUserType;
-    }
-
-    public JPasswordField getTextFieldPassword() {
-        return textFieldPassword;
-    }
-
-    public void setTextFieldPassword(JPasswordField textFieldPassword) {
-        this.textFieldPassword = textFieldPassword;
-    }
-
-    public JPasswordField getTextFieldRepeatPassword() {
-        return textFieldRepeatPassword;
-    }
-
-    public void setTextFieldRepeatPassword(JPasswordField textFieldRepeatPassword) {
-        this.textFieldRepeatPassword = textFieldRepeatPassword;
-    }
-
-    public JTextField getTextFieldSession() {
-        return textFieldSession;
-    }
-
-    public void setTextFieldSession(JTextField textFieldSession) {
-        this.textFieldSession = textFieldSession;
-    }
-
-    public JTextField getTextFieldUserName() {
-        return textFieldUserName;
-    }
-
-    public void setTextFieldUserName(JTextField textFieldUserName) {
-        this.textFieldUserName = textFieldUserName;
-    }
-
-    public UserFormController getUserFormController() {
-        return userFormController;
+    private void setLanguage() {
+        setTitle(setLanguage("userform.title"));
+        labelCountry.setText(setLanguage("userform.label.country"));
+        labelLanguage.setText(setLanguage("userform.label.language"));
+        labelPassword.setText(setLanguage("userform.label.password"));
+        labelRepeatPassword.setText(setLanguage("userform.label.repeatpassword"));
+        labelSessionTime.setText(setLanguage("userform.label.sessiontime"));
+        labelUser.setText(setLanguage("userform.label.user"));
+        labelUserName.setText(setLanguage("userform.label.username"));
+        labelUserType.setText(setLanguage("userform.label.usertype"));
+        labelMinute.setText(setLanguage("userform.label.minute"));
+        buttonSave.setText(setLanguage("form.button.save"));
+        buttonCancel.setText(setLanguage("form.button.cancel")); 
     }
 
     @Override
     public void doDefaultCloseAction() {
-        userFormController.clearTextField();
+        clearTextField();
         super.doDefaultCloseAction();
     }
     

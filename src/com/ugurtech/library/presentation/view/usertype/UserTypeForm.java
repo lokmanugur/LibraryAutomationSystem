@@ -6,6 +6,7 @@
 package com.ugurtech.library.presentation.view.usertype;
 
 import com.ugurtech.library.model.responsmodels.UserTypeModel;
+import com.ugurtech.library.presentation.controller.Initialize;
 import com.ugurtech.library.presentation.controller.usertype.UserTypeController;
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -15,7 +16,7 @@ import javax.swing.table.TableModel;
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public final class UserTypeForm extends UserTypeController {
+public final class UserTypeForm extends UserTypeController implements Initialize {
 
     /**
      * Creates new form UserTypeForm
@@ -24,6 +25,7 @@ public final class UserTypeForm extends UserTypeController {
 
     public UserTypeForm() {
         initComponents();
+        //initView();
         initController();
         permition();
     }
@@ -129,10 +131,11 @@ public final class UserTypeForm extends UserTypeController {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldUserTypeName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelUserTypeName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelUserTypeInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelUserTypeInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(textFieldUserTypeName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelUserTypeName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -158,7 +161,8 @@ public final class UserTypeForm extends UserTypeController {
         tablePermission.setModel(options());
     }
 
-    private void initController() {
+    @Override
+    public void initController() {
         textFieldUserTypeName.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -192,5 +196,10 @@ public final class UserTypeForm extends UserTypeController {
             }
         }
         return result;
+    }
+
+    @Override
+    public void initView() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

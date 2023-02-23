@@ -1,27 +1,23 @@
 package com.ugurtech.library.presentation.view.author;
 
-import com.ugurtech.library.presentation.controller.author.AuthorSearchController;
+import com.ugurtech.library.application.lib.validation.UserInfoMessages;
 import com.ugurtech.library.application.lib.writetofile.TableToExcelImpl;
-import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import com.ugurtech.library.presentation.controller.Initialize;
+import com.ugurtech.library.presentation.controller.author.AuthorController;
+import com.ugurtech.library.presentation.view.main.MainForm;
 /**
  *
  * @author lokman uğur
  * 
  */
-public final class AuthorSearchForm extends JInternalFrame {
+public final class AuthorSearchForm extends AuthorController implements Initialize {
 
     private static AuthorSearchForm authorSearchForm;
-    private final AuthorSearchController authorSearchController;
     
     private AuthorSearchForm() {
         initComponents();
-        this.authorSearchController = new AuthorSearchController(this);
+        initView();
+        initController();
         setLocation(getWidth()/10,getHeight()/10);
     }
 
@@ -152,81 +148,74 @@ public final class AuthorSearchForm extends JInternalFrame {
     private javax.swing.JTextField textFieldSearch;
     // End of variables declaration//GEN-END:variables
 
-    public AuthorSearchController getAuthorSearchController(){
-        return authorSearchController;
+    private void search() {
+        authorTable.setModel(search(textFieldSearch.getText()));
     }
 
-    public JTable getAuthorTable() {
-        return authorTable;
+    private void delete() {
+        if (authorTable.getSelectedRow() == -1) {
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.delete.unselectedrow"));
+        } else if (UserInfoMessages.getInstance().showApproveMessages(setLanguage("table.option.approve"), setLanguage("table.option.approve.form.title"))) {
+            delete((int) authorTable.getModel().getValueAt(authorTable.getSelectedRow(), 0));
+        }
     }
 
-    public void setAuthorTable(JTable authorTable) {
-        this.authorTable = authorTable;
+    private void update() {
+        if (authorTable.getSelectedRow() == -1) {
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.update.unselectedrow"));
+        } else {
+            authorModel = get((int) authorTable.getModel().getValueAt(authorTable.getSelectedRow(), 0));
+            AuthorForm authorForm = AuthorForm.getInstance();
+            MainForm.INSTANCE.addDesktopPane(authorForm);
+            authorForm.setAuthorModel(authorModel);
+            authorForm.modelToForm();
+        }
     }
 
-    public JButton getButtonDelete() {
-        return buttonDelete;
+    @Override
+    public void initView() {
+        setLanguage();
+        search();
     }
 
-    public void setButtonDelete(JButton buttonDelete) {
-        this.buttonDelete = buttonDelete;
+    @Override
+    public void initController() {
+        buttonUpdate.addActionListener((java.awt.event.ActionEvent evt) -> {
+            this.update();
+        });
+
+        buttonDelete.addActionListener((java.awt.event.ActionEvent evt) -> {
+            delete();
+            search();
+        });
+
+        buttonAdd.addActionListener((java.awt.event.ActionEvent evt) -> {
+            MainForm.INSTANCE.addDesktopPane(AuthorForm.getInstance());
+        });
+
+        buttonWriteFile.addActionListener((java.awt.event.ActionEvent evt) -> {
+            writeExel();
+        });
+
+        textFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                search();
+            }
+        });
     }
 
-    public JButton getButtonUpdate() {
-        return buttonUpdate;
+    private void setLanguage() {
+        setTitle(setLanguage("authorsearchform.title"));
+        labelSearch.setText(setLanguage("authorsearchform.paneltoolbar.labelsearch"));
+        buttonAdd.setText(setLanguage("authorsearchform.paneltoolbar.buttonadd"));
+        buttonDelete.setText(setLanguage("authorsearchform.paneltoolbar.buttondelete"));
+        buttonUpdate.setText(setLanguage("authorsearchform.paneltoolbar.buttonupdate"));
+        buttonWriteFile.setText(setLanguage("authorsearchform.paneltoolbar.buttonwritefile"));
     }
 
-    public void setButtonUpdate(JButton buttonUpdate) {
-        this.buttonUpdate = buttonUpdate;
-    }
-
-    public JButton getButtonWriteFile() {
-        return buttonWriteFile;
-    }
-
-    public void setButtonWriteFile(JButton buttonWriteFile) {
-        this.buttonWriteFile = buttonWriteFile;
-    }
-
-    public JLabel getLabelSearch() {
-        return labelSearch;
-    }
-
-    public void setLabelSearch(JLabel labelSearch) {
-        this.labelSearch = labelSearch;
-    }
-
-
-    public JScrollPane getjScrollPane1() {
-        return jScrollPane1;
-    }
-
-    public void setjScrollPane1(JScrollPane jScrollPane1) {
-        this.jScrollPane1 = jScrollPane1;
-    }
-
-    public JPanel getPanelToolBar() {
-        return panelToolBar;
-    }
-
-    public void setPanelToolBar(JPanel panelToolBar) {
-        this.panelToolBar = panelToolBar;
-    }
-
-    public JTextField getTextFieldSearch() {
-        return textFieldSearch;
-    }
-
-    public void setTextFieldSearch(JTextField textFieldSearch) {
-        this.textFieldSearch = textFieldSearch;
-    }
-
-    public JButton getButtonAdd() {
-        return buttonAdd;
-    }
-
-    public void setButtonAdd(JButton buttonAdd) {
-        this.buttonAdd = buttonAdd;
+    private void writeExel() {
+        new TableToExcelImpl(authorTable, setLanguage("authorsearchform.title")).writeToTable();
     }
 
 }

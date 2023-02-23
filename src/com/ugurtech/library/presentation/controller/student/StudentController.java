@@ -5,10 +5,16 @@
  */
 package com.ugurtech.library.presentation.controller.student;
 
+import com.ugurtech.library.application.service.classstd.ClassStdService;
+import com.ugurtech.library.application.service.classstd.ClassStdServiceImpl;
+import com.ugurtech.library.application.service.school.SchoolService;
+import com.ugurtech.library.application.service.school.SchoolServiceImpl;
 import com.ugurtech.library.presentation.controller.AbstractController;
 import com.ugurtech.library.presentation.controller.Controller;
 import com.ugurtech.library.application.service.student.StudentService;
 import com.ugurtech.library.application.service.student.StudentServiceImpl;
+import com.ugurtech.library.dataaccesslayer.classstd.ClassStdDaoImpl;
+import com.ugurtech.library.dataaccesslayer.school.SchoolDaoImpl;
 import com.ugurtech.library.dataaccesslayer.student.StudentDaoImpl;
 import com.ugurtech.library.model.StudentModel;
 import java.util.List;
@@ -19,9 +25,10 @@ import javax.swing.table.TableModel;
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
 public class StudentController extends AbstractController implements Controller<StudentModel>{
-
+    protected final SchoolService schoolService = new SchoolServiceImpl(new SchoolDaoImpl());
+    protected final ClassStdService classStdService = new ClassStdServiceImpl(new ClassStdDaoImpl());
     private final StudentService studentService = new StudentServiceImpl(new StudentDaoImpl());
-    
+    protected StudentModel studentModel;
     @Override
     public List<StudentModel> getAll() {
         return studentService.getAll();

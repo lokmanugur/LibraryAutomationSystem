@@ -21,7 +21,7 @@ import javax.swing.table.TableModel;
 public class SchoolController extends AbstractController implements Controller<SchoolModel> {
 
     private final SchoolService schoolService = new SchoolServiceImpl(new SchoolDaoImpl());
-    
+    protected SchoolModel schoolModel;
     @Override
     public List<SchoolModel> getAll() {
         return schoolService.getAll();

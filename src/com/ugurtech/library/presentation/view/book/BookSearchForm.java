@@ -1,27 +1,22 @@
 package com.ugurtech.library.presentation.view.book;
 
-import com.toedter.calendar.JDateChooser;
-import com.ugurtech.library.presentation.controller.book.BookSearchController;
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
+import com.ugurtech.library.presentation.controller.Initialize;
+import com.ugurtech.library.presentation.controller.book.BookController;
+import com.ugurtech.library.presentation.view.borrow.StartBorrowForm;
+import com.ugurtech.library.presentation.view.main.MainForm;
+import java.util.Vector;
 /**
  *
  * @author lokman uğur
  * 
  */
-public final class BookSearchForm extends JInternalFrame {
+public final class BookSearchForm extends BookController implements Initialize {
 
     public static BookSearchForm INSTANCE = new BookSearchForm();
-    private final BookSearchController bookSearchController;
     private BookSearchForm() {
         initComponents();
-       bookSearchController = new BookSearchController(this);
+        initView();
+        initController();
         setLocation(getWidth()/10,getHeight()/10);
     }
 
@@ -227,141 +222,124 @@ public final class BookSearchForm extends JInternalFrame {
     private javax.swing.JTextField textFieldSearch;
     // End of variables declaration//GEN-END:variables
 
-    public BookSearchController getBookSearchController(){
-        return bookSearchController;
+    @Override
+    public void initView() {
+        setLanguage();
+        search();
+    }
+
+    @Override
+    public void initController() {
+        textFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                search();
+            }
+        });
+
+        buttonWriteFile.addActionListener((java.awt.event.ActionEvent evt) -> {
+            write();
+        });
+
+        buttonDelete.addActionListener((java.awt.event.ActionEvent evt) -> {
+            delete();
+        });
+
+        buttonUpdate.addActionListener((java.awt.event.ActionEvent evt) -> {
+            update();
+        });
+
+        buttonAdd.addActionListener((java.awt.event.ActionEvent evt) -> {
+            add();
+        });
+        buttonSearch.addActionListener((java.awt.event.ActionEvent evt) -> {
+            search();
+        });
+        buttonBorrow.addActionListener((java.awt.event.ActionEvent evt) -> {
+            addBasket();
+        });
+    }
+
+    protected void add() {
+        MainForm.INSTANCE.addDesktopPane(BookForm.getInstance());
+    }
+
+    protected void update() {
+        if (updateUnSelectRowMessage(booksTable.getSelectedRow())) {
+            BookForm bookForm = BookForm.getInstance();
+            MainForm.INSTANCE.addDesktopPane(bookForm);
+            bookModel=get((Integer) (booksTable.getModel().getValueAt(booksTable.getSelectedRow(), 0)));
+            bookForm.modelToForm();
+        }
+    }
+
+    protected void delete() {
+        if (deleteApproveMessage(booksTable.getSelectedRow())) {
+            delete((Integer) (booksTable.getModel().getValueAt(booksTable.getSelectedRow(), 0)));
+        }
+        search();
+    }
+
+    public void search() {
+        booksTable.setModel(
+                search(textFieldSearch.getText(),
+                        comboBoxDate.getSelectedIndex(),
+                        dateChooserFirst.getDate() == null ? 0 : dateChooserFirst.getDate().getTime(),
+                        dateChooserLast.getDate() == null ? 0 : dateChooserLast.getDate().getTime()));
+    }
+
+    private void fillDateColumnToSelectionComboBox() {
+        comboBoxDate.removeAll();
+        comboBoxDate.addItem("");
+        comboBoxDate.addItem(setLanguage("book.publishdate"));
+        comboBoxDate.addItem(setLanguage("book.lastupdate"));
+    }
+
+    private void write() {
+        write(booksTable, getTitle());
+    }
+
+    private void setLanguage() {
+        fillDateColumnToSelectionComboBox();
+        labelColumn.setText(setLanguage("table.label.column"));
+        labelStart.setText(setLanguage("table.begin.date"));
+        labelEnd.setText(setLanguage("table.end.date"));
+        labelSearch.setText(setLanguage("table.search"));
+        buttonAdd.setText(setLanguage("table.button.add"));
+        buttonBorrow.setText(setLanguage("book.search.form.button.add.basket"));
+        buttonDelete.setText(setLanguage("table.button.delete"));
+        buttonSearch.setText(setLanguage("table.search"));
+        buttonUpdate.setText(setLanguage("table.button.update"));
+        buttonWriteFile.setText(setLanguage("table.button.write.excel"));
+        
     }
     
-
-    public JTable getBooksTable() {
-        return booksTable;
+        private void addBasket() {
+            int selectedRow =booksTable.getSelectedRow();
+        if(unSelectRowMessage(selectedRow)){
+            startBorrowForm().addHashMap(
+                (long)booksTable.getValueAt(booksTable.getSelectedRow(), 1),
+                addVector(), 
+                (int) booksTable.getValueAt(booksTable.getSelectedRow(), 8));
+        }
     }
 
-    public void setBooksTable(JTable booksTable) {
-        this.booksTable = booksTable;
+    private StartBorrowForm startBorrowForm() {
+        StartBorrowForm startBorrowForm = StartBorrowForm.INSTANCE;
+        if (!startBorrowForm.isVisible()) {
+            MainForm.INSTANCE.addDesktopPane(startBorrowForm);
+            startBorrowForm.setVisible(false);
+        }
+        return startBorrowForm;
     }
 
-    public JButton getButtonAdd() {
-        return buttonAdd;
-    }
-
-    public void setButtonAdd(JButton buttonAdd) {
-        this.buttonAdd = buttonAdd;
-    }
-
-    public JButton getButtonDelete() {
-        return buttonDelete;
-    }
-
-    public void setButtonDelete(JButton buttonDelete) {
-        this.buttonDelete = buttonDelete;
-    }
-
-    public JButton getButtonUpdate() {
-        return buttonUpdate;
-    }
-
-    public void setButtonUpdate(JButton buttonUpdate) {
-        this.buttonUpdate = buttonUpdate;
-    }
-
-    public JButton getButtonWriteFile() {
-        return buttonWriteFile;
-    }
-
-    public void setButtonWriteFile(JButton buttonWriteFile) {
-        this.buttonWriteFile = buttonWriteFile;
-    }
-
-    public JScrollPane getjScrollPane1() {
-        return jScrollPane1;
-    }
-
-    public void setjScrollPane1(JScrollPane jScrollPane1) {
-        this.jScrollPane1 = jScrollPane1;
-    }
-
-    public JLabel getLabelSearch() {
-        return labelSearch;
-    }
-
-    public void setLabelSearch(JLabel labelSearch) {
-        this.labelSearch = labelSearch;
-    }
-
-    public JTextField getTextFieldSearch() {
-        return textFieldSearch;
-    }
-
-    public void setTextFieldSearch(JTextField textFieldSearch) {
-        this.textFieldSearch = textFieldSearch;
-    }
-    
-    public void getAllBooks(){
-        UserInfoMessages.getInstance().showInfoMessages("this will be change");
-    }
-
-    public JComboBox<String> getComboBoxDate() {
-        return comboBoxDate;
-    }
-
-    public void setComboBoxDate(JComboBox<String> comboBoxDate) {
-        this.comboBoxDate = comboBoxDate;
-    }
-
-    public JDateChooser getDateChooserFirst() {
-        return dateChooserFirst;
-    }
-
-    public void setDateChooserFirst(JDateChooser dateChooserFirst) {
-        this.dateChooserFirst = dateChooserFirst;
-    }
-
-    public JDateChooser getDateChooserLast() {
-        return dateChooserLast;
-    }
-
-    public void setDateChooserLast(JDateChooser dateChooserLast) {
-        this.dateChooserLast = dateChooserLast;
-    }
-
-    public JButton getButtonSearch() {
-        return buttonSearch;
-    }
-
-    public void setButtonSearch(JButton buttonSearch) {
-        this.buttonSearch = buttonSearch;
-    }
-
-    public JLabel getLabelColumn() {
-        return labelColumn;
-    }
-
-    public void setLabelColumn(JLabel labelColumn) {
-        this.labelColumn = labelColumn;
-    }
-
-    public JLabel getLabelEnd() {
-        return labelEnd;
-    }
-
-    public void setLabelEnd(JLabel labelEnd) {
-        this.labelEnd = labelEnd;
-    }
-
-    public JLabel getLabelStart() {
-        return labelStart;
-    }
-
-    public void setLabelStart(JLabel labelStart) {
-        this.labelStart = labelStart;
-    }
-
-    public JButton getButtonBorrow() {
-        return buttonBorrow;
-    }
-
-    public void setButtonBorrow(JButton buttonBorrow) {
-        this.buttonBorrow = buttonBorrow;
+    private Vector<Object> addVector() {
+        Vector<Object> dataList = new Vector<>();
+        dataList.add(booksTable.getValueAt(booksTable.getSelectedRow(), 0));
+        dataList.add(booksTable.getValueAt(booksTable.getSelectedRow(), 1));
+        dataList.add(booksTable.getValueAt(booksTable.getSelectedRow(), 2));
+        dataList.add(1);
+        return dataList;
     }
     
 }

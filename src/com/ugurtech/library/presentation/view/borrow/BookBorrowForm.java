@@ -1,26 +1,21 @@
 package com.ugurtech.library.presentation.view.borrow;
 
-import com.toedter.calendar.JDateChooser;
-import com.ugurtech.library.presentation.controller.borrow.BookBorrowController;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
+import com.ugurtech.library.presentation.controller.Initialize;
+import com.ugurtech.library.presentation.controller.borrow.ControllerImpl;
+import com.ugurtech.library.presentation.view.main.MainForm;
 /**
  *
  * @author lokman uğur
  * 
  */
-public final class BookBorrowForm extends JInternalFrame {
+public final class BookBorrowForm extends ControllerImpl implements Initialize {
 
     public static BookBorrowForm INSTANCE = new BookBorrowForm();
-    private final BookBorrowController bookBorrowController;
     
     private BookBorrowForm() {
         initComponents();
-        bookBorrowController = new BookBorrowController(this);
+        initView();
+        initController();
         setLocation(getWidth()/10,getHeight()/10);
     }
 
@@ -212,120 +207,97 @@ public final class BookBorrowForm extends JInternalFrame {
     private javax.swing.JTextField textFieldSearch;
     // End of variables declaration//GEN-END:variables
 
-    public JButton getButtonSearch() {
-        return buttonSearch;
+       @Override
+    public void initView() {
+        setLanguage();
+        search();
     }
 
-    public void setButtonSearch(JButton buttonSearch) {
-        this.buttonSearch = buttonSearch;
+    @Override
+    public void initController() {
+        textFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                search();
+            }
+        });
+
+        buttonWrite.addActionListener((java.awt.event.ActionEvent evt) -> {
+            write();
+        });
+
+        buttonDelete.addActionListener((java.awt.event.ActionEvent evt) -> {
+            delete();
+        });
+
+        buttonSearch.addActionListener((java.awt.event.ActionEvent evt) -> {
+            search();
+        });
+
+        buttonReturn.addActionListener((e) -> {
+            if(returnUnSelectRowMessage(tableBooks.getSelectedRow())){
+                FinishBorrowedForm finishBorrowedForm = FinishBorrowedForm.INSTANCE;
+                MainForm.INSTANCE.addDesktopPane(finishBorrowedForm);
+                finishBorrowedForm.getPersonBook((int) tableBooks.getValueAt(tableBooks.getSelectedRow(), 0));
+            }
+        });
+
+        comboBoxOptions.addItemListener((java.awt.event.ItemEvent evt) -> {
+            search();
+        });
     }
 
-    public JButton getButtonWrite() {
-        return buttonWrite;
+    public void search() {
+        tableBooks.setModel(
+                search(textFieldSearch.getText(),
+                        comboBoxOptions.getSelectedIndex(),
+                        comboBoxDate.getSelectedIndex(),
+                        dateChooserFirst.getDate() == null ? 0 : dateChooserFirst.getDate().getTime(),
+                        dateChooserLast.getDate() == null ? 0 : dateChooserLast.getDate().getTime()));
+
     }
 
-    public void setButtonWrite(JButton buttonWrite) {
-        this.buttonWrite = buttonWrite;
+    private void write() {
+        write(tableBooks,getTitle());
     }
 
-    public JComboBox<String> getComboBoxDate() {
-        return comboBoxDate;
+    private void fillDateColumnToSelectionComboBox() {
+        comboBoxDate.removeAll();
+        comboBoxDate.addItem("");
+        comboBoxDate.addItem(setLanguage("personbook.startdate"));
+        comboBoxDate.addItem(setLanguage("personbook.deadline"));
+        comboBoxDate.addItem(setLanguage("personbook.finishdate"));
     }
 
-    public void setComboBoxDate(JComboBox<String> comboBoxDate) {
-        this.comboBoxDate = comboBoxDate;
+    private void finishDateOptionComboBox() {
+        comboBoxOptions.removeAll();
+        comboBoxOptions.addItem(setLanguage("bookborrowform.combobox.0option"));
+        comboBoxOptions.addItem(setLanguage("bookborrowform.combobox.1option"));
+        comboBoxOptions.addItem(setLanguage("bookborrowform.combobox.2option"));
+        comboBoxOptions.addItem(setLanguage("bookborrowform.combobox.3option"));
+        comboBoxOptions.addItem(setLanguage("bookborrowform.combobox.4option"));
     }
 
-    public JDateChooser getDateChooserFirst() {
-        return dateChooserFirst;
+    private void setLanguage() {
+        fillDateColumnToSelectionComboBox();
+        finishDateOptionComboBox();
+        setTitle(setLanguage("bookborrowform.title"));
+        labelColumn.setText(setLanguage("table.label.column"));
+        labelStart.setText(setLanguage("table.begin.date"));
+        labelEnd.setText(setLanguage("table.end.date"));
+        labelSearch.setText(setLanguage("table.search"));
+        buttonSearch.setText(setLanguage("table.search"));
+        buttonReturn.setText(setLanguage("bookborrowform.return.button"));
+        buttonDelete.setText(setLanguage("table.button.delete"));
+        buttonWrite.setText(setLanguage("table.button.write.excel"));
     }
 
-    public void setDateChooserFirst(JDateChooser dateChooserFirst) {
-        this.dateChooserFirst = dateChooserFirst;
-    }
-
-    public JDateChooser getDateChooserLast() {
-        return dateChooserLast;
-    }
-
-    public void setDateChooserLast(JDateChooser dateChooserLast) {
-        this.dateChooserLast = dateChooserLast;
-    }
-
-    public JLabel getLabelColumn() {
-        return labelColumn;
-    }
-
-    public void setLabelColumn(JLabel labelColumn) {
-        this.labelColumn = labelColumn;
-    }
-
-    public JLabel getLabelEnd() {
-        return labelEnd;
-    }
-
-    public void setLabelEnd(JLabel labelEnd) {
-        this.labelEnd = labelEnd;
-    }
-
-    public JLabel getLabelSearch() {
-        return labelSearch;
-    }
-
-    public void setLabelSearch(JLabel labelSearch) {
-        this.labelSearch = labelSearch;
-    }
-
-    public JLabel getLabelStart() {
-        return labelStart;
-    }
-
-    public void setLabelStart(JLabel labelStart) {
-        this.labelStart = labelStart;
-    }
-
-    public JTable getTableBooks() {
-        return tableBooks;
-    }
-
-    public void setTableBooks(JTable tableBooks) {
-        this.tableBooks = tableBooks;
-    }
-
-    public JTextField getTextFieldSearch() {
-        return textFieldSearch;
-    }
-
-    public void setTextFieldSearch(JTextField textFieldSearch) {
-        this.textFieldSearch = textFieldSearch;
-    }
-
-    public BookBorrowController getBookBorrowController() {
-        return bookBorrowController;
-    }
-
-    public JButton getButtonReturn() {
-        return buttonReturn;
-    }
-
-    public void setButtonReturn(JButton buttonReturn) {
-        this.buttonReturn = buttonReturn;
-    }
-
-    public JComboBox<String> getComboBoxOptions() {
-        return comboBoxOptions;
-    }
-
-    public void setComboBoxOptions(JComboBox<String> comboBoxOptions) {
-        this.comboBoxOptions = comboBoxOptions;
-    }
-
-    public JButton getButtonDelete() {
-        return buttonDelete;
-    }
-
-    public void setButtonDelete(JButton buttonDelete) {
-        this.buttonDelete = buttonDelete;
+    private void delete() {
+        int id = (int) tableBooks.getValueAt(tableBooks.getSelectedRow(), 0);
+        if (deleteApproveMessage(id) && tableBooks.getValueAt(tableBooks.getSelectedRow(), 11) == null) {
+            delete(id);
+        }
+        search();
     }
     
 }

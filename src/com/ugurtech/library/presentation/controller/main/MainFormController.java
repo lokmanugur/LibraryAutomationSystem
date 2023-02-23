@@ -9,7 +9,6 @@ import com.ugurtech.library.presentation.controller.AbstractController;
 import com.ugurtech.library.presentation.controller.Initialize;
 import com.ugurtech.library.application.lib.date.SessionTimeCounter;
 import com.ugurtech.library.application.lib.validation.UserInfoMessages;
-import com.ugurtech.library.model.CurrentUserModel;
 import com.ugurtech.library.presentation.view.login.LoginForm;
 import com.ugurtech.library.presentation.view.main.MainForm;
 import com.ugurtech.library.presentation.view.author.AuthorSearchForm;

@@ -6,23 +6,25 @@
 package com.ugurtech.library.presentation.view.borrow;
 
 import com.ugurtech.library.presentation.controller.borrow.ControllerImpl;
-import com.ugurtech.library.presentation.view.book.BookSearchForm;
 import com.ugurtech.library.application.lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.BookModel;
 import com.ugurtech.library.model.PersonBookModel;
 import com.ugurtech.library.model.StudentModel;
+import com.ugurtech.library.presentation.controller.Initialize;
 
 /**
  *
  * @author ugur
  */
-public final class FinishBorrowedForm extends ControllerImpl {
+public final class FinishBorrowedForm extends ControllerImpl implements Initialize {
 
     public static FinishBorrowedForm INSTANCE = new FinishBorrowedForm();
     PersonBookModel personBookModel;
 
     private FinishBorrowedForm() {
         initComponents();
+        //initView();
+        initController();
         setLocation(getWidth() / 2, getHeight() / 10);
     }
 
@@ -286,18 +288,8 @@ public final class FinishBorrowedForm extends ControllerImpl {
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         buttonSave.setText("Save");
-        buttonSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSaveActionPerformed(evt);
-            }
-        });
 
         buttonCancel.setText("Cancel");
-        buttonCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCancelActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -365,16 +357,6 @@ public final class FinishBorrowedForm extends ControllerImpl {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
-        update();
-        clearTextField();
-    }//GEN-LAST:event_buttonSaveActionPerformed
-
-    private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
-        this.dispose();
-        clearTextField();
-    }//GEN-LAST:event_buttonCancelActionPerformed
 
     protected void clearTextField() {
         textFieldBookId.setText(null);
@@ -465,6 +447,22 @@ public final class FinishBorrowedForm extends ControllerImpl {
         textFieldSchool.setText(studentModel.getSchoolModel().getSchoolName());
         textFieldPhone.setText(studentModel.getPhone());
         textAreaAddress.setText(studentModel.getAddress());
+    }
 
+    @Override
+    public void initView() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void initController() {
+        buttonCancel.addActionListener(((e) -> {
+            this.dispose();
+            clearTextField();
+        }));
+        buttonSave.addActionListener(((e) -> {
+            update();
+            clearTextField();
+        }));
     }
 }

@@ -5,16 +5,15 @@
  */
 package com.ugurtech.library.presentation.view.student;
 import com.toedter.calendar.JDateChooser;
-import com.ugurtech.library.presentation.controller.student.StudentFormController;
 import com.ugurtech.library.model.ClassModel;
 import com.ugurtech.library.model.SchoolModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import com.ugurtech.library.model.StudentModel;
+import com.ugurtech.library.presentation.controller.Initialize;
+import com.ugurtech.library.presentation.controller.student.StudentController;
+import com.ugurtech.library.presentation.view.classstd.ClassForm;
+import com.ugurtech.library.presentation.view.main.MainForm;
+import java.util.Date;
+import java.util.Objects;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
@@ -22,14 +21,14 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  * @author ugur
  * 
  */
-public class StudentForm extends JInternalFrame {
+public final class StudentForm extends StudentController implements Initialize {
 
     public static StudentForm INSTANCE = new StudentForm();
-    private final StudentFormController studentFormController;
     private StudentForm() {
         initComponents();
-        studentFormController = new StudentFormController(this);
         AutoCompleteDecorator.decorate(comboBoxSchool);
+        initView();
+        initController();
         setLocation(getWidth()/3, getHeight()/10);
     }
 
@@ -262,166 +261,161 @@ public class StudentForm extends JInternalFrame {
     private javax.swing.JTextField textFieldStudentNo;
     // End of variables declaration//GEN-END:variables
 
-    public JButton getButtonAdd() {
-        return buttonAdd;
-    }
-
-    public void setButtonAdd(JButton buttonAdd) {
-        this.buttonAdd = buttonAdd;
-    }
-
-    public JButton getButtonCancel() {
-        return buttonCancel;
-    }
-
-    public void setButtonCancel(JButton buttonCancel) {
-        this.buttonCancel = buttonCancel;
-    }
-
-    public JButton getButtonSave() {
-        return buttonSave;
-    }
-
-    public void setButtonSave(JButton buttonSave) {
-        this.buttonSave = buttonSave;
-    }
-
-    public JComboBox<ClassModel> getComboBoxClass() {
-        return comboBoxClass;
-    }
-
-    public void setComboBoxClass(JComboBox<ClassModel> comboBoxClass) {
-        this.comboBoxClass = comboBoxClass;
-    }
-
-    public JComboBox<SchoolModel> getComboBoxSchool() {
-        return comboBoxSchool;
-    }
-
-    public void setComboBoxSchool(JComboBox<SchoolModel> comboBoxSchool) {
-        this.comboBoxSchool = comboBoxSchool;
-    }
-
-    public JDateChooser getDateChooserBirth() {
-        return dateChooserBirth;
-    }
-
-    public void setDateChooserBirth(JDateChooser dateChooserBirth) {
-        this.dateChooserBirth = dateChooserBirth;
-    }
-
-    public JFormattedTextField getFormattedTextFieldPhone() {
-        return formattedTextFieldPhone;
-    }
-
-    public void setFormattedTextFieldPhone(JFormattedTextField formattedTextFieldPhone) {
-        this.formattedTextFieldPhone = formattedTextFieldPhone;
-    }
-
-    public JLabel getLabelAddress() {
-        return labelAddress;
-    }
-
-    public void setLabelAddress(JLabel labelAddress) {
-        this.labelAddress = labelAddress;
-    }
-
-    public JLabel getLabelBirthDate() {
-        return labelBirthDate;
-    }
-
-    public void setLabelBirthDate(JLabel labelBirthDate) {
-        this.labelBirthDate = labelBirthDate;
-    }
-
-    public JLabel getLabelClass() {
-        return labelClass;
-    }
-
-    public void setLabelClass(JLabel labelClass) {
-        this.labelClass = labelClass;
-    }
-
-    public JLabel getLabelFirstName() {
-        return labelFirstName;
-    }
-
-    public void setLabelFirstName(JLabel labelFirstName) {
-        this.labelFirstName = labelFirstName;
-    }
-
-    public JLabel getLabelLastName() {
-        return labelLastName;
-    }
-
-    public void setLabelLastName(JLabel labelLastName) {
-        this.labelLastName = labelLastName;
-    }
-
-    public JLabel getLabelPhone() {
-        return labelPhone;
-    }
-
-    public void setLabelPhone(JLabel labelPhone) {
-        this.labelPhone = labelPhone;
-    }
-
-    public JLabel getLabelSchool() {
-        return labelSchool;
-    }
-
-    public void setLabelSchool(JLabel labelSchool) {
-        this.labelSchool = labelSchool;
-    }
-
-    public JLabel getLabelStudentNo() {
-        return labelStudentNo;
-    }
-
-    public void setLabelStudentNo(JLabel labelStudentNo) {
-        this.labelStudentNo = labelStudentNo;
-    }
-
-    public JTextArea getTextAreaAddress() {
-        return textAreaAddress;
-    }
-
-    public void setTextAreaAddress(JTextArea textAreaAddress) {
-        this.textAreaAddress = textAreaAddress;
-    }
-
-    public JTextField getTextFieldFirstName() {
-        return textFieldFirstName;
-    }
-
-    public void setTextFieldFirstName(JTextField textFieldFirstName) {
-        this.textFieldFirstName = textFieldFirstName;
-    }
-
-    public JTextField getTextFieldLastName() {
-        return textFieldLastName;
-    }
-
-    public void setTextFieldLastName(JTextField textFieldLastName) {
-        this.textFieldLastName = textFieldLastName;
-    }
-
-    public JTextField getTextFieldStudentNo() {
-        return textFieldStudentNo;
-    }
-
-    public void setTextFieldStudentNo(JTextField textFieldStudentNo) {
-        this.textFieldStudentNo = textFieldStudentNo;
+  
+    @Override
+    public void initView() {
+        setLanguage();
+        AutoCompleteDecorator.decorate(comboBoxClass);
+        AutoCompleteDecorator.decorate(comboBoxSchool);
+        fillAllSchoolToComboBox();
+        fillAllClassToComboBox();
     }
 
     @Override
-    public void doDefaultCloseAction() {
-        studentFormController.clearFormFields();
-        this.dispose();
+    public void initController() {
+
+        buttonCancel.addActionListener((e) -> {
+            cancel();
+        });
+
+        buttonAdd.addActionListener((e) -> {
+            MainForm.INSTANCE.addDesktopPane(ClassForm.INSTANCE);
+        });
+        buttonSave.addActionListener((e) -> {
+            add();
+        });
+
+        comboBoxSchool.getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == 10) {
+
+                }
+            }
+        });
+        comboBoxClass.getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == 10) {
+
+                }
+            }
+        });
+        comboBoxClass.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            @Override
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            @Override
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                fillAllClassToComboBox();
+            }
+        });
+        comboBoxSchool.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            @Override
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            @Override
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                fillAllSchoolToComboBox();
+            }
+        });
     }
 
-    public StudentFormController getStudentFormController() {
-        return studentFormController;
+    private void fillAllSchoolToComboBox() {
+        comboBoxSchool.removeAllItems();
+        schoolService.getAll().forEach((SchoolModel item) -> comboBoxSchool.addItem(item));
     }
-   
+
+    private void fillAllClassToComboBox() {
+        comboBoxClass.removeAllItems();
+        classStdService.getAll().forEach((ClassModel item) -> comboBoxClass.addItem(item));
+    }
+
+    public void clearFormFields() {
+        textFieldFirstName.setText("");
+        textFieldLastName.setText("");
+        textFieldStudentNo.setText("");
+        dateChooserBirth.setDate(null);
+        formattedTextFieldPhone.setText("");
+        textAreaAddress.setText("");
+        fillAllClassToComboBox();
+        fillAllSchoolToComboBox();
+        StudentSearchForm.INSTANCE.search();
+    }
+
+    private void add() {
+        if (Objects.isNull(studentModel)) {
+            add(formToModel(new StudentModel()));
+            clearFormFields();
+            setStudentModel(null);
+        } else {
+            update(formToModel(studentModel));
+            clearFormFields();
+            setStudentModel(null);
+            dispose();
+        }
+    }
+
+    private void setLanguage() {
+        setTitle(setLanguage("studentform.title"));
+        labelFirstName.setText(setLanguage("studentform.label.name"));
+        labelLastName.setText(setLanguage("studentform.label.surname"));
+        labelStudentNo.setText(setLanguage("studentform.label.studentno"));
+        labelBirthDate.setText(setLanguage("studentform.label.birthdate"));
+        labelClass.setText(setLanguage("studentform.label.class"));
+        labelSchool.setText(setLanguage("studentform.label.school"));
+        labelPhone.setText(setLanguage("studentform.label.phone"));
+        labelAddress.setText(setLanguage("studentform.label.address"));
+        buttonSave.setText(setLanguage("form.button.save"));
+        buttonCancel.setText(setLanguage("form.button.cancel"));
+    }
+
+    private void cancel() {
+        clearFormFields();
+        setStudentModel(null);
+        dispose();
+        
+    }
+
+    public StudentModel getStudentModel() {
+        return studentModel;
+    }
+
+    public void setStudentModel(StudentModel studentModel) {
+        this.studentModel = studentModel;
+    }
+
+    public void modelToForm(StudentModel studentModel) {
+        textFieldFirstName.setText(studentModel.getFirstName());
+        textFieldLastName.setText(studentModel.getLastName());
+        textFieldStudentNo.setText(studentModel.getStudentNumber());
+        comboBoxClass.setSelectedItem(studentModel.getClssModel());
+        comboBoxSchool.setSelectedItem(studentModel.getSchoolModel());
+        dateChooserBirth.setDate(new Date(studentModel.getBirthDate()));
+        formattedTextFieldPhone.setText(studentModel.getPhone());
+        textAreaAddress.setText(studentModel.getAddress());
+        this.studentModel = studentModel;
+    }
+
+    public StudentModel formToModel(StudentModel sm) {
+        sm.setFirstName(textFieldFirstName.getText());
+        sm.setLastName(textFieldLastName.getText());
+        sm.setStudentNumber(textFieldStudentNo.getText());
+        sm.setClassModel((ClassModel) comboBoxClass.getSelectedItem());
+        sm.setSchoolModel((SchoolModel) comboBoxSchool.getSelectedItem());
+        sm.setBirthDate(dateChooserBirth.getDate().getTime());
+        sm.setPhone(formattedTextFieldPhone.getText());
+        sm.setAddress(textAreaAddress.getText());
+        return sm;
+    }
 }

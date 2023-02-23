@@ -6,39 +6,38 @@
 package com.ugurtech.library.presentation.view.book;
 
 import com.toedter.calendar.JDateChooser;
-import com.ugurtech.library.presentation.controller.book.BookFormController;
 import com.ugurtech.library.model.AuthorModel;
 import com.ugurtech.library.model.BookModel;
 import com.ugurtech.library.model.BookTypeModel;
+import com.ugurtech.library.model.CurrentUserModel;
 import com.ugurtech.library.model.PublisherModel;
+import com.ugurtech.library.presentation.controller.Initialize;
+import com.ugurtech.library.presentation.controller.book.BookController;
+import com.ugurtech.library.presentation.view.author.AuthorForm;
+import com.ugurtech.library.presentation.view.booktype.BookTypeForm;
+import com.ugurtech.library.presentation.view.main.MainForm;
+import com.ugurtech.library.presentation.view.publisher.PublisherForm;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
  * @author ugur
  *
  */
-public final class BookForm extends JInternalFrame {
+public final class BookForm extends BookController implements Initialize {
 
     private static BookForm bookForm;
-    private final BookFormController bookFormController;
-    private DefaultListModel bookTypeDefaultListModel;
-    private DefaultListModel authorDefaultListModel;
-    private BookModel bookModel;
+    private final DefaultListModel bookTypeDefaultListModel;
+    private final DefaultListModel authorDefaultListModel;
 
     private BookForm() {
         initComponents();
-        bookFormController = new BookFormController(this);
+        initView();
+        initController();
         bookTypeDefaultListModel = new DefaultListModel();
         authorDefaultListModel = new DefaultListModel();
         bookTypeList.setModel(bookTypeDefaultListModel);
@@ -496,357 +495,339 @@ public final class BookForm extends JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     
-    public static BookForm getBookForm() {
-        return bookForm;
+    private int layerPaneCount = 1;
+    @Override
+    public void initView() {
+        AutoCompleteDecorator.decorate(booksTypeComboBox);
+        AutoCompleteDecorator.decorate(authorComboBox);
+        AutoCompleteDecorator.decorate(publisherComboBox);
+        setLanguage();
+        layerPane(layerPaneCount);
     }
 
-    public static void setBookForm(BookForm bookForm) {
-        BookForm.bookForm = bookForm;
+    @Override
+    public void initController() {
+
+        authorComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            @Override
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            @Override
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                getAllAuthor();
+            }
+        });
+
+        authorButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+            MainForm.INSTANCE.addDesktopPane(AuthorForm.getInstance());
+        });
+
+        authorRemoveButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+            removeItemFromAuthorList();
+        });
+
+        authorAddButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+            addItemToAuthorList();
+        });
+
+        booksTypeComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            @Override
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            @Override
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                getAllBookType();
+            }
+        });
+
+        booksTypeComboBox.getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == 10) {
+                    addItmeToBookTypeList();
+                }
+            }
+        });
+        authorComboBox.getEditor().getEditorComponent().addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == 10) {
+                    addItemToAuthorList();
+                }
+            }
+        });
+
+        typeButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+            MainForm.INSTANCE.addDesktopPane(BookTypeForm.INSTANCE);
+        });
+
+        bookTypeList.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    evt.consume();
+                    removeItemFromBookTypeList();
+                }
+            }
+
+        });
+        authorList.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    evt.consume();
+                    removeItemFromAuthorList();
+                }
+            }
+
+        });
+
+        booksTypeAddButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+            addItmeToBookTypeList();
+        });
+
+        booksTypeRemoveButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+            removeItemFromBookTypeList();
+        });
+
+        publisherComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            @Override
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+                
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+
+            @Override
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                getAllPublisher();
+            }
+        });
+
+        publisherButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+            MainForm.INSTANCE.addDesktopPane(PublisherForm.INSTANCE);
+        });
+
+        buttonCancel.addActionListener((java.awt.event.ActionEvent evt) -> {
+            if (buttonCancel.getText().equals(setLanguage("form.button.cancel"))) {
+                layerPaneCount = 1;
+                layerPane(layerPaneCount);
+                bookModel=null;
+                clearAllFields();
+                bookForm.dispose();
+            } else {
+                layerPane(--layerPaneCount);
+            }
+        });
+
+        buttonSave.addActionListener((java.awt.event.ActionEvent evt) -> {
+            if (buttonSave.getText().equals(setLanguage("form.button.save"))) {
+                if(bookModel==null){
+                    add();
+                }else{
+                    update();
+                    bookModel=null;
+                }
+                layerPaneCount = 1;
+                layerPane(layerPaneCount);
+                clearAllFields();
+            } else {
+                layerPane(++layerPaneCount);
+            }
+
+        });
     }
 
-    public BookFormController getBookFormController() {
-        return bookFormController;
+    public void getAllPublisher() {
+        publisherComboBox.removeAllItems();
+        publisherService.getAll().forEach(publisherModel -> publisherComboBox.addItem(publisherModel));
     }
 
-    public BookModel getBookModel() {
+    public void getAllAuthor() {
+        authorComboBox.removeAllItems();
+        authorService.getAll().forEach(authorModel -> authorComboBox.addItem(authorModel));
+    }
+
+    public void getAllBookType() {
+        booksTypeComboBox.removeAllItems();
+        bookTypeService.getAll().forEach(bookTypeModel -> booksTypeComboBox.addItem(bookTypeModel));
+    }
+    
+    protected void update(){
+        update(formToModel());
+        clearAllFields();
+        search();
+    }
+
+    protected void add() {
+        add(formToModel());
+        clearAllFields();
+        search();
+    }
+
+    public void clearAllFields() {
+        authorDefaultListModel.removeAllElements();
+        bookTypeDefaultListModel.removeAllElements();
+        authorList.removeAll();
+        bookTypeList.removeAll();
+        authorComboBox.removeAllItems();
+        publisherComboBox.removeAllItems();
+        booksTypeComboBox.removeAllItems();
+        bookNameTextField.setText(null);
+        textFieldIsbn.setText(null);
+        pressDateChooser.setDate(null);
+        textFieldBookShelf.setText("");
+        textFieldBookCount.setText("");
+        textFieldPageNumber.setText("");
+    }
+    
+    public void clearAll(){
+        authorList.removeAll();
+        bookTypeList.removeAll();
+    }
+
+    private void setLanguage() {
+        setTitle(setLanguage("bookform.title"));
+        buttonSave.setText(setLanguage("form.button.save"));
+        buttonCancel.setText(setLanguage("form.button.cancel"));
+        labelIsbn.setText(setLanguage("bookform.layeredpanebook.panelbook.labelisbn"));
+        labelBookName.setText(setLanguage("bookform.layeredpanebook.panelbook.labelbookname"));
+        labelPublisher.setText(setLanguage("bookform.layeredpanebook.panelbook.labelpublisher"));
+        labelPressDate.setText(setLanguage("bookform.layeredpanebook.panelbook.labelpressdate"));
+        labelBookQuantity.setText(setLanguage("bookform.layeredpanebook.panelbook.labelbookquantity"));
+        labelBookShelf.setText(setLanguage("bookform.layeredpanebook.panelbook.labelbookshelf"));
+        labelBookPageNumber.setText(setLanguage("bookform.layeredpanebook.panelbook.labelpages"));
+        labelAuthorList.setText(setLanguage("bookform.layeredpanebook.panelauthor.labelauthorlist"));
+        labelSelectAuthor.setText(setLanguage("bookform.layeredpanebook.panelauthor.labelselectauthor"));
+        labelSelectBookType.setText(setLanguage("bookform.layeredpanebook.panelbooktype.labelselectbooktype"));
+        labelBookTypeList.setText(setLanguage("bookform.layeredpanebook.panelbooktype.labelbooktypelist"));
+        
+        panelBook.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Book Details"));
+        panelBookType.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Book Types"));
+        panelAuthor.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Book Authors"));
+    }
+
+    private void layerPane(int count) {
+        switch (countPane(count)) {
+            case 1:
+                panelBook.setVisible(true);
+                panelAuthor.setVisible(false);
+                panelBookType.setVisible(false);
+                buttonSave.setText(setLanguage("bookform.mainpanel.panelbuttons.next"));
+                buttonCancel.setText(setLanguage("form.button.cancel"));
+                break;
+            case 2:
+                panelBook.setVisible(false);
+                panelAuthor.setVisible(true);
+                panelBookType.setVisible(false);
+                buttonSave.setText(setLanguage("bookform.mainpanel.panelbuttons.next"));
+                buttonCancel.setText(setLanguage("bookform.mainpanel.panelbuttons.back"));
+                break;
+            case 3:
+                panelBook.setVisible(false);
+                panelAuthor.setVisible(false);
+                panelBookType.setVisible(true);
+                buttonSave.setText(setLanguage("form.button.save"));
+                buttonCancel.setText(setLanguage("bookform.mainpanel.panelbuttons.back"));
+                break;
+            default:
+                panelBook.setVisible(true);
+                panelAuthor.setVisible(false);
+                panelBookType.setVisible(false);
+                buttonSave.setText(setLanguage("bookform.mainpanel.panelbuttons.next"));
+                buttonCancel.setText(setLanguage("form.button.cancel"));
+        }
+    }
+
+    private int countPane(int count) {
+        if (count > 3 || count < 1) {
+            count = 1;
+        }
+        return count;
+    }
+
+    private void addItmeToBookTypeList() {
+        bookTypeDefaultListModel.addElement(booksTypeComboBox.getSelectedItem());
+    }
+
+    private void addItemToAuthorList() {
+        authorDefaultListModel.addElement(authorComboBox.getSelectedItem());
+    }
+
+    private void removeItemFromAuthorList() {
+        if (authorList.isSelectionEmpty()) {
+
+        } else {
+            authorDefaultListModel.remove(authorList.getSelectedIndex());
+        }
+    }
+    private void removeItemFromBookTypeList() {
+        if (bookTypeList.isSelectionEmpty()) {
+            
+        } else {
+            bookTypeDefaultListModel.remove(bookTypeList.getSelectedIndex());
+        }
+    }
+
+    public void modelToForm() {
+        textFieldIsbn.setText(String.valueOf(bookModel.getIsbn()));
+        bookNameTextField.setText(bookModel.getBookName());
+        pressDateChooser.setDate(new Date(bookModel.getPressDate()));
+        publisherComboBox.addItem(bookModel.getPublisherModel());
+        textFieldPageNumber.setText(String.valueOf(bookModel.getPageNumbber()));
+        textFieldBookCount.setText(String.valueOf(bookModel.getQuantity()));
+        textFieldBookShelf.setText(bookModel.getShelf());
+        bookModel.getBookType().forEach(btm ->bookTypeDefaultListModel.addElement(btm));
+        bookModel.getAuthor().forEach(am->authorDefaultListModel.addElement(am));
+    }
+    
+    public BookModel formToModel(){
+        this.bookModel = new BookModel();
+        List<AuthorModel> authorList = new ArrayList<>();
+        List<BookTypeModel> bookTypeList = new ArrayList<>();
+        bookModel.setBookId(bookModel==null?0:bookModel.getBookId());
+        bookModel.setIsbn(Long.parseLong(textFieldIsbn.getText()));
+        bookModel.setSysuserId(CurrentUserModel.INSTANCE.getSysUserId());
+        bookModel.setBookName(bookNameTextField.getText());
+        bookModel.setPressDate(pressDateChooser.getDate() == null ? 0 : pressDateChooser.getDate().getTime());
+        bookModel.setPageNumbber(Integer.parseInt(textFieldPageNumber.getText()));
+        bookModel.setQuantity(Integer.parseInt(textFieldBookCount.getText()));
+        bookModel.setStock(Integer.parseInt(textFieldBookCount.getText()));
+        bookModel.setShelf(textFieldBookShelf.getText());
+
+        for (int i = 0; i < bookTypeDefaultListModel.getSize(); i++) {
+            bookTypeList.add((BookTypeModel) bookTypeDefaultListModel.getElementAt(i));
+        }
+
+        for (int i = 0; i < authorDefaultListModel.getSize(); i++) {
+            authorList.add((AuthorModel) authorDefaultListModel.getElementAt(i));
+        }
+
+        bookModel.setBooksType(bookTypeList);
+        bookModel.setAuthor(authorList);
+        bookModel.setPublisherModel((PublisherModel) publisherComboBox.getSelectedItem());
         return bookModel;
     }
-
-    public void setBookModel(BookModel bookModel) {
-        this.bookModel = bookModel;
-    }
-
-    public JButton getAuthorAddButton() {
-        return authorAddButton;
-    }
-
-    public void setAuthorAddButton(JButton authorAddButton) {
-        this.authorAddButton = authorAddButton;
-    }
-
-    public JButton getAuthorButton() {
-        return authorButton;
-    }
-
-    public void setAuthorButton(JButton authorButton) {
-        this.authorButton = authorButton;
-    }
-
-    public JComboBox<AuthorModel> getAuthorComboBox() {
-        return authorComboBox;
-    }
-
-    public void setAuthorComboBox(JComboBox<AuthorModel> authorComboBox) {
-        this.authorComboBox = authorComboBox;
-    }
-
-    public JList<AuthorModel> getAuthorList() {
-        return authorList;
-    }
-
-    public void setAuthorList(JList<AuthorModel> authorList) {
-        this.authorList = authorList;
-    }
-
-    public JButton getAuthorRemoveButton() {
-        return authorRemoveButton;
-    }
-
-    public void setAuthorRemoveButton(JButton authorRemoveButton) {
-        this.authorRemoveButton = authorRemoveButton;
-    }
-
-    public JFormattedTextField getTextFieldBookCount() {
-        return textFieldBookCount;
-    }
-
-    public void setTextFieldBookCount(JFormattedTextField textFieldBookCount) {
-        this.textFieldBookCount = textFieldBookCount;
-    }
-
-    public JTextField getBookNameTextField() {
-        return bookNameTextField;
-    }
-
-    public void setBookNameTextField(JTextField bookNameTextField) {
-        this.bookNameTextField = bookNameTextField;
-    }
-
-    public JList<BookTypeModel> getBookTypeList() {
-        return bookTypeList;
-    }
-
-    public void setBookTypeList(JList<BookTypeModel> bookTypeList) {
-        this.bookTypeList = bookTypeList;
-    }
-
-    public JButton getBooksTypeAddButton() {
-        return booksTypeAddButton;
-    }
-
-    public void setBooksTypeAddButton(JButton booksTypeAddButton) {
-        this.booksTypeAddButton = booksTypeAddButton;
-    }
-
-    public JComboBox<BookTypeModel> getBooksTypeComboBox() {
-        return booksTypeComboBox;
-    }
-
-    public void setBooksTypeComboBox(JComboBox<BookTypeModel> booksTypeComboBox) {
-        this.booksTypeComboBox = booksTypeComboBox;
-    }
-
-    public JButton getBooksTypeRemoveButton() {
-        return booksTypeRemoveButton;
-    }
-
-    public void setBooksTypeRemoveButton(JButton booksTypeRemoveButton) {
-        this.booksTypeRemoveButton = booksTypeRemoveButton;
-    }
-
-    public JButton getButtonCancel() {
-        return buttonCancel;
-    }
-
-    public void setButtonCancel(JButton buttonCancel) {
-        this.buttonCancel = buttonCancel;
-    }
-
-    public JButton getButtonSave() {
-        return buttonSave;
-    }
-
-    public void setButtonSave(JButton buttonSave) {
-        this.buttonSave = buttonSave;
-    }
-
-    public JFormattedTextField getTextFieldIsbn() {
-        return textFieldIsbn;
-    }
-
-    public void setTextFieldIsbn(JFormattedTextField textFieldIsbn) {
-        this.textFieldIsbn = textFieldIsbn;
-    }
-
-    public JLabel getLabelAuthorList() {
-        return labelAuthorList;
-    }
-
-    public void setLabelAuthorList(JLabel labelAuthorList) {
-        this.labelAuthorList = labelAuthorList;
-    }
-
-    public JLabel getLabelBookName() {
-        return labelBookName;
-    }
-
-    public void setLabelBookName(JLabel labelBookName) {
-        this.labelBookName = labelBookName;
-    }
-
-    public JLabel getLabelBookQuantity() {
-        return labelBookQuantity;
-    }
-
-    public void setLabelBookQuantity(JLabel labelBookQuantity) {
-        this.labelBookQuantity = labelBookQuantity;
-    }
-
-    public JLabel getLabelBookTypeList() {
-        return labelBookTypeList;
-    }
-
-    public void setLabelBookTypeList(JLabel labelBookTypeList) {
-        this.labelBookTypeList = labelBookTypeList;
-    }
-
-    public JLabel getLabelIsbn() {
-        return labelIsbn;
-    }
-
-    public void setLabelIsbn(JLabel labelIsbn) {
-        this.labelIsbn = labelIsbn;
-    }
-
-    public JLabel getLabelPressDate() {
-        return labelPressDate;
-    }
-
-    public void setLabelPressDate(JLabel labelPressDate) {
-        this.labelPressDate = labelPressDate;
-    }
-
-    public JLabel getLabelPublisher() {
-        return labelPublisher;
-    }
-
-    public void setLabelPublisher(JLabel labelPublisher) {
-        this.labelPublisher = labelPublisher;
-    }
-
-    public JLabel getLabelSelectAuthor() {
-        return labelSelectAuthor;
-    }
-
-    public void setLabelSelectAuthor(JLabel labelSelectAuthor) {
-        this.labelSelectAuthor = labelSelectAuthor;
-    }
-
-    public JLabel getLabelSelectBookType() {
-        return labelSelectBookType;
-    }
-
-    public void setLabelSelectBookType(JLabel labelSelectBookType) {
-        this.labelSelectBookType = labelSelectBookType;
-    }
-
-    public JPanel getPanelAuthor() {
-        return panelAuthor;
-    }
-
-    public void setPanelAuthor(JPanel panelAuthor) {
-        this.panelAuthor = panelAuthor;
-    }
-
-    public JPanel getPanelBook() {
-        return panelBook;
-    }
-
-    public void setPanelBook(JPanel panelBook) {
-        this.panelBook = panelBook;
-    }
-
-    public JPanel getPanelBookType() {
-        return panelBookType;
-    }
-
-    public void setPanelBookType(JPanel panelBookType) {
-        this.panelBookType = panelBookType;
-    }
-
-    public JPanel getPanelButtons() {
-        return panelButtons;
-    }
-
-    public void setPanelButtons(JPanel panelButtons) {
-        this.panelButtons = panelButtons;
-    }
-
-    public JDateChooser getPressDateChooser() {
-        return pressDateChooser;
-    }
-
-    public void setPressDateChooser(JDateChooser pressDateChooser) {
-        this.pressDateChooser = pressDateChooser;
-    }
-
-    public JComboBox<PublisherModel> getPublisherComboBox() {
-        return publisherComboBox;
-    }
-
-    public void setPublisherComboBox(JComboBox<PublisherModel> publisherComboBox) {
-        this.publisherComboBox = publisherComboBox;
-    }
-
-    public JButton getPublisherButton() {
-        return publisherButton;
-    }
-
-    public void setPublisherButton(JButton publisherButton) {
-        this.publisherButton = publisherButton;
-    }
-
-    public JScrollPane getScrollPaneAuthor() {
-        return scrollPaneAuthor;
-    }
-
-    public void setScrollPaneAuthor(JScrollPane scrollPaneAuthor) {
-        this.scrollPaneAuthor = scrollPaneAuthor;
-    }
-
-    public JScrollPane getScrollPaneBookType() {
-        return scrollPaneBookType;
-    }
-
-    public void setScrollPaneBookType(JScrollPane scrollPaneBookType) {
-        this.scrollPaneBookType = scrollPaneBookType;
-    }
-
-    public JButton getTypeButton() {
-        return typeButton;
-    }
-
-    public void setTypeButton(JButton typeButton) {
-        this.typeButton = typeButton;
-    }
-
-    public DefaultListModel getBookTypeDefaultListModel() {
-        return bookTypeDefaultListModel;
-    }
-
-    public void setBookTypeDefaultListModel(DefaultListModel bookTypeDefaultListModel) {
-        this.bookTypeDefaultListModel = bookTypeDefaultListModel;
-    }
-
-    public DefaultListModel getAuthorDefaultListModel() {
-        return authorDefaultListModel;
-    }
-
-    public void setAuthorDefaultListModel(DefaultListModel authorDefaultListModel) {
-        this.authorDefaultListModel = authorDefaultListModel;
-    }
-
-    public JLabel getLabelBookShelf() {
-        return labelBookShelf;
-    }
-
-    public void setLabelBookShelf(JLabel labelBookShelf) {
-        this.labelBookShelf = labelBookShelf;
-    }
-
-    public JLayeredPane getLayeredPaneBook() {
-        return layeredPaneBook;
-    }
-
-    public void setLayeredPaneBook(JLayeredPane layeredPaneBook) {
-        this.layeredPaneBook = layeredPaneBook;
-    }
-
-    public JPanel getMainPanel() {
-        return mainPanel;
-    }
-
-    public void setMainPanel(JPanel mainPanel) {
-        this.mainPanel = mainPanel;
-    }
-
-    public JTextField getTextFieldBookShelf() {
-        return textFieldBookShelf;
-    }
-
-    public void setTextFieldBookShelf(JTextField textFieldBookShelf) {
-        this.textFieldBookShelf = textFieldBookShelf;
-    }
-
-    public JLabel getLabelBookPageNumber() {
-        return labelBookPageNumber;
-    }
-
-    public void setLabelBookPageNumber(JLabel labelBookPageNumber) {
-        this.labelBookPageNumber = labelBookPageNumber;
-    }
-
-    public JFormattedTextField getTextFieldPageNumber() {
-        return textFieldPageNumber;
-    }
-
-    public void setTextFieldPageNumber(JFormattedTextField textFieldPageNumber) {
-        this.textFieldPageNumber = textFieldPageNumber;
+    
+    private void search(){
+        BookSearchForm.INSTANCE.search();
     }
 
     @Override
     public void doDefaultCloseAction() {
-        bookFormController.clearAllFields();
+        clearAllFields();
         super.doDefaultCloseAction(); 
     }
     

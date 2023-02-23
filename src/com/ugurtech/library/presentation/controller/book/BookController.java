@@ -5,11 +5,20 @@
  */
 package com.ugurtech.library.presentation.controller.book;
 
+import com.ugurtech.library.application.service.author.AuthorService;
+import com.ugurtech.library.application.service.author.AuthorServiceImpl;
 import com.ugurtech.library.presentation.controller.AbstractController;
 import com.ugurtech.library.presentation.controller.Controller;
 import com.ugurtech.library.application.service.book.BookService;
 import com.ugurtech.library.application.service.book.BookServiceImpl;
+import com.ugurtech.library.application.service.booktype.BookTypeService;
+import com.ugurtech.library.application.service.booktype.BookTypeServiceImpl;
+import com.ugurtech.library.application.service.publisher.PublisherService;
+import com.ugurtech.library.application.service.publisher.PublisherServiceImpl;
+import com.ugurtech.library.dataaccesslayer.author.AuthorDaoImpl;
 import com.ugurtech.library.dataaccesslayer.book.BookDaoImpl;
+import com.ugurtech.library.dataaccesslayer.booktype.BookTypeDaoImpl;
+import com.ugurtech.library.dataaccesslayer.publisher.PublisherDaoImpl;
 import com.ugurtech.library.model.BookModel;
 import java.util.List;
 import javax.swing.table.TableModel;
@@ -21,6 +30,10 @@ import javax.swing.table.TableModel;
 public class BookController extends AbstractController implements Controller<BookModel> {
 
     private final BookService bookService = new BookServiceImpl(new BookDaoImpl());
+    protected final PublisherService publisherService = new PublisherServiceImpl(new PublisherDaoImpl());
+    protected final BookTypeService bookTypeService = new BookTypeServiceImpl(new BookTypeDaoImpl());
+    protected final AuthorService authorService = new AuthorServiceImpl(new AuthorDaoImpl());
+    
     protected BookModel bookModel;
 
     @Override

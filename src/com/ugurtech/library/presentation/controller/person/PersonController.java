@@ -20,7 +20,7 @@ import javax.swing.table.TableModel;
 public class PersonController extends AbstractController implements Controller<PersonModel> {
 
     private final PersonService personService = new PersonServiceImpl(new PersonDaoImpl());
-    
+    protected PersonModel personModel;
     @Override
     public List<PersonModel> getAll() {
       return personService.getAll();

@@ -4,26 +4,22 @@
  * and open the template in the editor.
  */
 package com.ugurtech.library.presentation.view.classstd;
-import com.ugurtech.library.presentation.controller.classstd.ClassSearchFormController;
-import javax.swing.JButton;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import com.ugurtech.library.presentation.controller.Initialize;
+import com.ugurtech.library.presentation.controller.classstd.ClassController;
+import com.ugurtech.library.presentation.view.main.MainForm;
 
 /**
  *
  * @author ugur
  */
-public final class ClassSearchForm extends JInternalFrame {
+public final class ClassSearchForm extends ClassController implements Initialize {
 
     public static final ClassSearchForm INSTANCE = new ClassSearchForm();
-    private final ClassSearchFormController ClassSearchFormController;
     private ClassSearchForm() {
         initComponents();
-        ClassSearchFormController= new ClassSearchFormController(this);
+        initView();
+        initController();
         setLocation(getWidth()/2, getHeight()/10);
     }
    
@@ -151,81 +147,77 @@ public final class ClassSearchForm extends JInternalFrame {
     private javax.swing.JTextField textFieldSearch;
     // End of variables declaration//GEN-END:variables
 
-    public ClassSearchFormController getClassSearchFormController() {
-        return ClassSearchFormController;
+  @Override
+    public void initView() {
+        setLanguage();
+        search();
     }
 
-    public JButton getButtonDelete() {
-        return buttonDelete;
+    @Override
+    public void initController() {
+        buttonSave.addActionListener((java.awt.event.ActionEvent evt) -> {
+            add();
+            clearAllFields();
+        });
+        buttonWrite.addActionListener((java.awt.event.ActionEvent evt) -> {
+
+        });
+        buttonUpdate.addActionListener((java.awt.event.ActionEvent evt) -> {
+            update();
+        });
+
+        buttonDelete.addActionListener((java.awt.event.ActionEvent evt) -> {
+            delete();
+            clearAllFields();
+        });
+        textFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                search();
+            }
+        });
     }
 
-    public void setButtonDelete(JButton buttonDelete) {
-        this.buttonDelete = buttonDelete;
+    public void search() {
+        tableSearch.setModel(search(textFieldSearch.getText()));
     }
 
-    public JButton getButtonSave() {
-        return buttonSave;
+    protected void add() {
+        MainForm.INSTANCE.addDesktopPane(ClassForm.INSTANCE);
     }
 
-    public void setButtonSave(JButton buttonSave) {
-        this.buttonSave = buttonSave;
+    protected void update() {
+        if (tableSearch.getSelectedRow() == -1) {
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.update.unselectedrow"));
+        } else {
+            MainForm.INSTANCE.addDesktopPane(ClassForm.INSTANCE);
+            classModel= get((int) tableSearch.getModel().getValueAt(tableSearch.getSelectedRow(), 0));
+            ClassForm.INSTANCE.modelToForm();
+        }
     }
 
-    public JButton getButtonUpdate() {
-        return buttonUpdate;
+    protected void delete() {
+        if (tableSearch.getSelectedRow() == -1) {
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.delete.unselectedrow"));
+        } else if (UserInfoMessages.getInstance().showApproveMessages(setLanguage("table.option.approve"), setLanguage("table.option.approve.form.title"))) {
+            delete((Integer) (tableSearch.getModel().getValueAt(tableSearch.getSelectedRow(), 0)));
+
+        }
+        search();
+
     }
 
-    public void setButtonUpdate(JButton buttonUpdate) {
-        this.buttonUpdate = buttonUpdate;
+    public void clearAllFields() {
+        textFieldSearch.setText("");
     }
 
-    public JButton getButtonWrite() {
-        return buttonWrite;
+    private void setLanguage() {
+        setTitle(setLanguage("classform.title"));
+        labelSearch.setText(setLanguage("table.search"));
+        buttonSave.setText(setLanguage("table.button.add"));
+        buttonWrite.setText(setLanguage("table.button.write.excel"));
+        buttonUpdate.setText(setLanguage("table.button.update"));
+        buttonDelete.setText(setLanguage("table.button.delete"));
     }
-
-    public void setButtonWrite(JButton buttonWrite) {
-        this.buttonWrite = buttonWrite;
-    }
-
-    public JLabel getLabelSearch() {
-        return labelSearch;
-    }
-
-    public void setLabelSearch(JLabel labelSearch) {
-        this.labelSearch = labelSearch;
-    }
-
-    public JPanel getPanel() {
-        return panel;
-    }
-
-    public void setPanel(JPanel panel) {
-        this.panel = panel;
-    }
-
-    public JScrollPane getScrollPaneTable() {
-        return scrollPaneTable;
-    }
-
-    public void setScrollPaneTable(JScrollPane scrollPaneTable) {
-        this.scrollPaneTable = scrollPaneTable;
-    }
-
-    public JTable getTableSearch() {
-        return tableSearch;
-    }
-
-    public void setTableSearch(JTable tableSearch) {
-        this.tableSearch = tableSearch;
-    }
-
-    public JTextField getTextFieldSearch() {
-        return textFieldSearch;
-    }
-
-    public void setTextFieldSearch(JTextField textFieldSearch) {
-        this.textFieldSearch = textFieldSearch;
-    }
-
     
 }

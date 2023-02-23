@@ -4,28 +4,27 @@
  * and open the template in the editor.
  */
 package com.ugurtech.library.presentation.view.author;
-import com.ugurtech.library.presentation.controller.author.AuthorFormController;
 import com.toedter.calendar.JDateChooser;
+import com.ugurtech.library.application.lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.AuthorModel;
-import javax.swing.JButton;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import com.ugurtech.library.presentation.controller.Initialize;
+import com.ugurtech.library.presentation.controller.author.AuthorController;
+import java.util.Date;
+
 
 /**
  *
  * @author ugur
  */
-public final class AuthorForm extends JInternalFrame {
+public final class AuthorForm extends AuthorController implements Initialize {
 
     private static AuthorForm authorForm;
-    private final AuthorFormController authorFormController;
     private AuthorModel authorModel;
     
     private AuthorForm() {
     initComponents();
-    authorFormController = new AuthorFormController(this);
+    initView();
+    initController();
     setLocation(getWidth()/5, getHeight()/10);
     }
     
@@ -149,13 +148,9 @@ public final class AuthorForm extends JInternalFrame {
         this.authorModel = authorModel;
     }
 
-    public AuthorFormController getAuthorFormController() {
-        return authorFormController;
-    }
-
     @Override
     public void doDefaultCloseAction() {
-        authorFormController.clearAllFields();
+        clearAllFields();
         super.doDefaultCloseAction();
     }
     
@@ -172,84 +167,72 @@ public final class AuthorForm extends JInternalFrame {
     private javax.swing.JTextField textFieldLastName;
     // End of variables declaration//GEN-END:variables
 
-    public static AuthorForm getAuthorForm() {
-        return authorForm;
+    @Override
+    public void initView() {
+        setLanguage();
     }
 
-    public static void setAuthorForm(AuthorForm authorForm) {
-        AuthorForm.authorForm = authorForm;
+    @Override
+    public void initController() {
+        cancelButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+            clearAllFields();
+            setAuthorModel(null);
+            AuthorForm.this.dispose();
+        });
+
+        saveButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+            if(authorForm.getAuthorModel()==null){
+                add();
+            }else{
+                update();
+            }
+            clearAllFields();
+            authorForm.dispose();
+        });
     }
 
-    public JDateChooser getBirthDateChooser() {
-        return birthDateChooser;
+    protected void add() {
+        add(formToModel());
     }
 
-    public void setBirthDateChooser(JDateChooser birthDateChooser) {
-        this.birthDateChooser = birthDateChooser;
+    private void update() {
+        update(formToModel());
+        setAuthorModel(null);
     }
 
-    public JButton getCancelButton() {
-        return cancelButton;
+    public AuthorModel formToModel() {
+        if (textFieldFirstName.getText().equals("") && textFieldLastName.getText().equals("")) {
+            UserInfoMessages.getInstance().showInfoMessages(setLanguage("authorcontroller.add.leaveblank.caution"));
+            return null;
+        } else {
+            int authorId = getAuthorModel() == null ? 0 : getAuthorModel().getAuthorId();
+            authorModel = new AuthorModel();
+            authorModel.setAuthorId(authorId);
+            authorModel.setFirstName(textFieldFirstName.getText());
+            authorModel.setLastName(textFieldLastName.getText());
+            authorModel.setBirthDate(birthDateChooser.getDateEditor().getDate() == null ? 0 : birthDateChooser.getDateEditor().getDate().getTime());
+            return authorModel;
+        }
+    }
+    
+    public void modelToForm() {
+        textFieldFirstName.setText(authorForm.getAuthorModel().getFirstName());
+        textFieldLastName.setText(authorForm.getAuthorModel().getLastName());
+        birthDateChooser.setDate(new Date(authorForm.getAuthorModel().getBirthDate()));
     }
 
-    public void setCancelButton(JButton cancelButton) {
-        this.cancelButton = cancelButton;
+    public void clearAllFields() {
+        textFieldFirstName.setText(null);
+        textFieldLastName.setText(null);
+        birthDateChooser.setDate(null);
     }
 
-    public JLabel getLabelBirthDate() {
-        return labelBirthDate;
+    private void setLanguage() {
+        setTitle(setLanguage("authorform.title"));
+        labelFirstName.setText(setLanguage("authorform.panelsave.labelfirstname"));
+        labelLastName.setText(setLanguage("authorform.panelsave.labellastname"));
+        labelBirthDate.setText(setLanguage("authorform.panelsave.labelbirthdate"));
+        saveButton.setText(setLanguage("authorform.panelsave.savebutton"));
+        cancelButton.setText(setLanguage("authorform.panelsave.cancelbutton"));
     }
-
-    public void setLabelBirthDate(JLabel labelBirthDate) {
-        this.labelBirthDate = labelBirthDate;
-    }
-
-    public JLabel getLabelFirstName() {
-        return labelFirstName;
-    }
-
-    public void setLabelFirstName(JLabel labelFirstName) {
-        this.labelFirstName = labelFirstName;
-    }
-
-    public JLabel getLabelLastName() {
-        return labelLastName;
-    }
-
-    public void setLabelLastName(JLabel labelLastName) {
-        this.labelLastName = labelLastName;
-    }
-
-    public JPanel getPanelSaveForm() {
-        return panelSave;
-    }
-
-    public void setPanelSaveForm(JPanel panelSaveForm) {
-        this.panelSave = panelSaveForm;
-    }
-
-    public JButton getSaveButton() {
-        return saveButton;
-    }
-
-    public void setSaveButton(JButton saveButton) {
-        this.saveButton = saveButton;
-    }
-
-    public JTextField getTextFieldFirstName() {
-        return textFieldFirstName;
-    }
-
-    public void setTextFieldFirstName(JTextField textFieldFirstName) {
-        this.textFieldFirstName = textFieldFirstName;
-    }
-
-    public JTextField getTextFieldLastName() {
-        return textFieldLastName;
-    }
-
-    public void setTextFieldLastName(JTextField textFieldLastName) {
-        this.textFieldLastName = textFieldLastName;
-    }
-
 }

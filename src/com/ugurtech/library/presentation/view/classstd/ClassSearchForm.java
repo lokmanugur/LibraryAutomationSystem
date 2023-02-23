@@ -12,6 +12,7 @@ import com.ugurtech.library.presentation.view.main.MainForm;
 /**
  *
  * @author ugur
+ * 
  */
 public final class ClassSearchForm extends ClassController implements Initialize {
 
@@ -23,7 +24,6 @@ public final class ClassSearchForm extends ClassController implements Initialize
         setLocation(getWidth()/2, getHeight()/10);
     }
    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -190,9 +190,9 @@ public final class ClassSearchForm extends ClassController implements Initialize
         if (tableSearch.getSelectedRow() == -1) {
             UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.update.unselectedrow"));
         } else {
-            MainForm.INSTANCE.addDesktopPane(ClassForm.INSTANCE);
-            classModel= get((int) tableSearch.getModel().getValueAt(tableSearch.getSelectedRow(), 0));
-            ClassForm.INSTANCE.modelToForm();
+            ClassForm classForm = ClassForm.INSTANCE;
+            MainForm.INSTANCE.addDesktopPane(classForm);
+            classForm.modelToForm(get((int) tableSearch.getModel().getValueAt(tableSearch.getSelectedRow(), 0)));
         }
     }
 
@@ -201,10 +201,8 @@ public final class ClassSearchForm extends ClassController implements Initialize
             UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.delete.unselectedrow"));
         } else if (UserInfoMessages.getInstance().showApproveMessages(setLanguage("table.option.approve"), setLanguage("table.option.approve.form.title"))) {
             delete((Integer) (tableSearch.getModel().getValueAt(tableSearch.getSelectedRow(), 0)));
-
         }
         search();
-
     }
 
     public void clearAllFields() {
@@ -219,5 +217,4 @@ public final class ClassSearchForm extends ClassController implements Initialize
         buttonUpdate.setText(setLanguage("table.button.update"));
         buttonDelete.setText(setLanguage("table.button.delete"));
     }
-    
 }

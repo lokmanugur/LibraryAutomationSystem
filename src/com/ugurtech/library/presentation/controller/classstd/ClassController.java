@@ -20,7 +20,7 @@ import javax.swing.table.TableModel;
  */
 public class ClassController extends AbstractController implements Controller<ClassModel> {
 
-    private ClassStdService classStdService = new ClassStdServiceImpl(new ClassStdDaoImpl());
+    private final ClassStdService classStdService = new ClassStdServiceImpl(new ClassStdDaoImpl());
     protected ClassModel classModel;
     @Override
     public List<ClassModel> getAll() {

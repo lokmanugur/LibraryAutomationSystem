@@ -357,11 +357,11 @@ public final class StudentForm extends StudentController implements Initialize {
         if (Objects.isNull(studentModel)) {
             add(formToModel(new StudentModel()));
             clearFormFields();
-            setStudentModel(null);
+            studentModel=null;
         } else {
             update(formToModel(studentModel));
             clearFormFields();
-            setStudentModel(null);
+            studentModel=null;
             dispose();
         }
     }
@@ -382,17 +382,8 @@ public final class StudentForm extends StudentController implements Initialize {
 
     private void cancel() {
         clearFormFields();
-        setStudentModel(null);
-        dispose();
-        
-    }
-
-    public StudentModel getStudentModel() {
-        return studentModel;
-    }
-
-    public void setStudentModel(StudentModel studentModel) {
-        this.studentModel = studentModel;
+        studentModel=null;
+        dispose(); 
     }
 
     public void modelToForm(StudentModel studentModel) {
@@ -407,15 +398,15 @@ public final class StudentForm extends StudentController implements Initialize {
         this.studentModel = studentModel;
     }
 
-    public StudentModel formToModel(StudentModel sm) {
-        sm.setFirstName(textFieldFirstName.getText());
-        sm.setLastName(textFieldLastName.getText());
-        sm.setStudentNumber(textFieldStudentNo.getText());
-        sm.setClassModel((ClassModel) comboBoxClass.getSelectedItem());
-        sm.setSchoolModel((SchoolModel) comboBoxSchool.getSelectedItem());
-        sm.setBirthDate(dateChooserBirth.getDate().getTime());
-        sm.setPhone(formattedTextFieldPhone.getText());
-        sm.setAddress(textAreaAddress.getText());
-        return sm;
+    public StudentModel formToModel(StudentModel studentModel) {
+        studentModel.setFirstName(textFieldFirstName.getText());
+        studentModel.setLastName(textFieldLastName.getText());
+        studentModel.setStudentNumber(textFieldStudentNo.getText());
+        studentModel.setClassModel((ClassModel) comboBoxClass.getSelectedItem());
+        studentModel.setSchoolModel((SchoolModel) comboBoxSchool.getSelectedItem());
+        studentModel.setBirthDate(dateChooserBirth.getDate().getTime());
+        studentModel.setPhone(formattedTextFieldPhone.getText());
+        studentModel.setAddress(textAreaAddress.getText());
+        return studentModel;
     }
 }

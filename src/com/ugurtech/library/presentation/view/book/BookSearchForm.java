@@ -261,15 +261,14 @@ public final class BookSearchForm extends BookController implements Initialize {
     }
 
     protected void add() {
-        MainForm.INSTANCE.addDesktopPane(BookForm.getInstance());
+        MainForm.INSTANCE.addDesktopPane(BookForm.INSTANCE);
     }
 
     protected void update() {
         if (updateUnSelectRowMessage(booksTable.getSelectedRow())) {
-            BookForm bookForm = BookForm.getInstance();
+            BookForm bookForm = BookForm.INSTANCE;
             MainForm.INSTANCE.addDesktopPane(bookForm);
-            bookModel=get((Integer) (booksTable.getModel().getValueAt(booksTable.getSelectedRow(), 0)));
-            bookForm.modelToForm();
+            bookForm.modelToForm(get((Integer) (booksTable.getModel().getValueAt(booksTable.getSelectedRow(), 0))));
         }
     }
 

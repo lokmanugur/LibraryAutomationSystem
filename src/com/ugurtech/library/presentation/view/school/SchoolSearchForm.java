@@ -198,8 +198,7 @@ public final class SchoolSearchForm extends SchoolController implements Initiali
         if (updateUnSelectRowMessage(tableSchool.getSelectedRow())) {
             SchoolForm schoolForm = SchoolForm.INSTANCE;
             MainForm.INSTANCE.addDesktopPane(schoolForm);
-            schoolModel = get((int) tableSchool.getModel().getValueAt(tableSchool.getSelectedRow(), 0));
-            schoolForm.modelToForm();
+            schoolForm.modelToForm(get((int) tableSchool.getModel().getValueAt(tableSchool.getSelectedRow(), 0)));
         }
     }
 

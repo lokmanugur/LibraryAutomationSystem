@@ -205,9 +205,9 @@ public final class PublisherSearchForm extends PublisherController implements In
         if (tablePublisher.getSelectedRow() == -1) {
             UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.update.unselectedrow"));
         } else {
-            MainForm.INSTANCE.addDesktopPane(PublisherForm.INSTANCE);
-            publisherModel = get((int) tablePublisher.getModel().getValueAt(tablePublisher.getSelectedRow(), 0));
-            PublisherForm.INSTANCE.modelToForm();
+            PublisherForm publisherForm = PublisherForm.INSTANCE;
+            MainForm.INSTANCE.addDesktopPane(publisherForm);
+            publisherForm.modelToForm(get((int) tablePublisher.getModel().getValueAt(tablePublisher.getSelectedRow(), 0)));
         }
 
     }

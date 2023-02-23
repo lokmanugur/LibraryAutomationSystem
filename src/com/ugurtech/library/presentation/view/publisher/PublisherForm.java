@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package com.ugurtech.library.presentation.view.publisher;
+
 import com.ugurtech.library.application.lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.PublisherModel;
 import com.ugurtech.library.presentation.controller.Initialize;
 import com.ugurtech.library.presentation.controller.publisher.PublisherController;
+import java.util.Objects;
 
 /**
  *
@@ -15,15 +17,15 @@ import com.ugurtech.library.presentation.controller.publisher.PublisherControlle
  */
 public final class PublisherForm extends PublisherController implements Initialize {
 
-    public static PublisherForm INSTANCE = new PublisherForm();
-    
+    public static final PublisherForm INSTANCE = new PublisherForm();
+
     private PublisherForm() {
         initComponents();
         initView();
         initController();
-        setLocation(getWidth()/2, getHeight()/10);
+        setLocation(getWidth() / 2, getHeight() / 10);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,7 +142,7 @@ public final class PublisherForm extends PublisherController implements Initiali
     private javax.swing.JFormattedTextField textFieldPhone;
     private javax.swing.JTextField textFieldPublisher;
     // End of variables declaration//GEN-END:variables
-    
+
     @Override
     public void initView() {
         setLanguage();
@@ -149,36 +151,36 @@ public final class PublisherForm extends PublisherController implements Initiali
     @Override
     public void initController() {
         buttonSave.addActionListener(((java.awt.event.ActionEvent evt) -> {
-            if (publisherModel != null) {
-                update();
+            if (Objects.isNull(publisherModel)) {
+                add(formToModel(new PublisherModel()));
+                clearAllField();
+                PublisherSearchForm.INSTANCE.initView();
             } else {
-                add();
+                update(formToModel(publisherModel));
+                publisherModel = null;
+                clearAllField();
+                PublisherSearchForm.INSTANCE.initView();
             }
         }));
         buttonCancel.addActionListener((java.awt.event.ActionEvent evt) -> {
             clearAllField();
-            publisherModel=null;
+            publisherModel = null;
             dispose();
         });
     }
 
-    private void add() {
-        add(formToModel());
-        clearAllField();
-        PublisherSearchForm.INSTANCE.initView();
-    }
-
-    private void update() {
-        update(formToModel());
-        publisherModel=null;
-        clearAllField();
-        PublisherSearchForm.INSTANCE.initView();
-    }
-
-    public void modelToForm() {
+    public void modelToForm(PublisherModel publisherModel) {
         textFieldPublisher.setText(publisherModel.getPublisherName());
         textFieldPhone.setText(publisherModel.getPhone());
         textAreaAddress.setText(publisherModel.getAddress());
+        this.publisherModel = publisherModel;
+    }
+
+    private PublisherModel formToModel(PublisherModel publisherModel) {
+        publisherModel.setPublisherName(textFieldPublisher.getText());
+        publisherModel.setPhone(textFieldPhone.getText());
+        publisherModel.setAddress(textAreaAddress.getText());
+        return publisherModel;
     }
 
     public void clearAllField() {
@@ -195,19 +197,4 @@ public final class PublisherForm extends PublisherController implements Initiali
         buttonCancel.setText(setLanguage("form.button.cancel"));
         buttonSave.setText(setLanguage("form.button.save"));
     }
-
-    private PublisherModel formToModel() {
-        PublisherModel pm = null;
-        if (textFieldPublisher.getText().equals("")) {
-            UserInfoMessages.getInstance().showInfoMessages(setLanguage("publisherform.fill.publishername"));
-        } else {
-            pm = new PublisherModel();
-            pm.setPublisherId(publisherModel==null?0:publisherModel.getPublisherId());
-            pm.setPublisherName(textFieldPublisher.getText());
-            pm.setPhone(textFieldPhone.getText());
-            pm.setAddress(textAreaAddress.getText());
-        }
-        return pm;
-    }
-  
 }

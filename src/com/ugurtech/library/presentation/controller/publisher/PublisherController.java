@@ -20,8 +20,8 @@ import javax.swing.table.TableModel;
  */
 public class PublisherController extends AbstractController implements Controller<PublisherModel>{
 
-    protected PublisherModel publisherModel;
     private final PublisherService publisherService = new PublisherServiceImpl(new PublisherDaoImpl());
+    protected PublisherModel publisherModel;
     
     @Override
     public List<PublisherModel> getAll() {

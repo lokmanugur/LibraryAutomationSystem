@@ -20,6 +20,7 @@ import com.ugurtech.library.presentation.view.publisher.PublisherForm;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.swing.DefaultListModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
@@ -30,7 +31,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  */
 public final class BookForm extends BookController implements Initialize {
 
-    private static BookForm bookForm;
+    public static final BookForm INSTANCE = new BookForm();
     private final DefaultListModel bookTypeDefaultListModel;
     private final DefaultListModel authorDefaultListModel;
 
@@ -43,14 +44,6 @@ public final class BookForm extends BookController implements Initialize {
         bookTypeList.setModel(bookTypeDefaultListModel);
         authorList.setModel(authorDefaultListModel);
         setLocation(getWidth() / 2, getHeight() / 100);
-    }
-
-    public static BookForm getInstance() {
-        if (bookForm == null) {
-            return bookForm = new BookForm();
-        } else {
-            return bookForm;
-        }
     }
 
     /**
@@ -524,7 +517,7 @@ public final class BookForm extends BookController implements Initialize {
         });
 
         authorButton.addActionListener((java.awt.event.ActionEvent evt) -> {
-            MainForm.INSTANCE.addDesktopPane(AuthorForm.getInstance());
+            MainForm.INSTANCE.addDesktopPane(AuthorForm.INSTANCE);
         });
 
         authorRemoveButton.addActionListener((java.awt.event.ActionEvent evt) -> {
@@ -626,7 +619,7 @@ public final class BookForm extends BookController implements Initialize {
                 layerPane(layerPaneCount);
                 bookModel=null;
                 clearAllFields();
-                bookForm.dispose();
+                this.dispose();
             } else {
                 layerPane(--layerPaneCount);
             }
@@ -634,10 +627,14 @@ public final class BookForm extends BookController implements Initialize {
 
         buttonSave.addActionListener((java.awt.event.ActionEvent evt) -> {
             if (buttonSave.getText().equals(setLanguage("form.button.save"))) {
-                if(bookModel==null){
-                    add();
+                if(Objects.isNull(bookModel)){
+                    add(formToModel(new BookModel()));
+                    clearAllFields();
+                    search();
                 }else{
-                    update();
+                    update(formToModel(bookModel));
+                    clearAllFields();
+                    search();
                     bookModel=null;
                 }
                 layerPaneCount = 1;
@@ -663,18 +660,6 @@ public final class BookForm extends BookController implements Initialize {
     public void getAllBookType() {
         booksTypeComboBox.removeAllItems();
         bookTypeService.getAll().forEach(bookTypeModel -> booksTypeComboBox.addItem(bookTypeModel));
-    }
-    
-    protected void update(){
-        update(formToModel());
-        clearAllFields();
-        search();
-    }
-
-    protected void add() {
-        add(formToModel());
-        clearAllFields();
-        search();
     }
 
     public void clearAllFields() {
@@ -781,7 +766,7 @@ public final class BookForm extends BookController implements Initialize {
         }
     }
 
-    public void modelToForm() {
+    public void modelToForm(BookModel bookModel) {
         textFieldIsbn.setText(String.valueOf(bookModel.getIsbn()));
         bookNameTextField.setText(bookModel.getBookName());
         pressDateChooser.setDate(new Date(bookModel.getPressDate()));
@@ -791,9 +776,10 @@ public final class BookForm extends BookController implements Initialize {
         textFieldBookShelf.setText(bookModel.getShelf());
         bookModel.getBookType().forEach(btm ->bookTypeDefaultListModel.addElement(btm));
         bookModel.getAuthor().forEach(am->authorDefaultListModel.addElement(am));
+        this.bookModel = bookModel;
     }
     
-    public BookModel formToModel(){
+    public BookModel formToModel(BookModel bookModel){
         this.bookModel = new BookModel();
         List<AuthorModel> authorList = new ArrayList<>();
         List<BookTypeModel> bookTypeList = new ArrayList<>();

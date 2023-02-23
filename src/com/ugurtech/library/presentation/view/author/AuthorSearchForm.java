@@ -164,11 +164,9 @@ public final class AuthorSearchForm extends AuthorController implements Initiali
         if (authorTable.getSelectedRow() == -1) {
             UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.update.unselectedrow"));
         } else {
-            authorModel = get((int) authorTable.getModel().getValueAt(authorTable.getSelectedRow(), 0));
-            AuthorForm authorForm = AuthorForm.getInstance();
+            AuthorForm authorForm = AuthorForm.INSTANCE;
             MainForm.INSTANCE.addDesktopPane(authorForm);
-            authorForm.setAuthorModel(authorModel);
-            authorForm.modelToForm();
+            authorForm.modelToForm(get((int) authorTable.getModel().getValueAt(authorTable.getSelectedRow(), 0)));
         }
     }
 
@@ -190,7 +188,7 @@ public final class AuthorSearchForm extends AuthorController implements Initiali
         });
 
         buttonAdd.addActionListener((java.awt.event.ActionEvent evt) -> {
-            MainForm.INSTANCE.addDesktopPane(AuthorForm.getInstance());
+            MainForm.INSTANCE.addDesktopPane(AuthorForm.INSTANCE);
         });
 
         buttonWriteFile.addActionListener((java.awt.event.ActionEvent evt) -> {

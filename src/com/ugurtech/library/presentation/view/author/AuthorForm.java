@@ -10,6 +10,7 @@ import com.ugurtech.library.model.AuthorModel;
 import com.ugurtech.library.presentation.controller.Initialize;
 import com.ugurtech.library.presentation.controller.author.AuthorController;
 import java.util.Date;
+import java.util.Objects;
 
 
 /**
@@ -18,8 +19,7 @@ import java.util.Date;
  */
 public final class AuthorForm extends AuthorController implements Initialize {
 
-    private static AuthorForm authorForm;
-    private AuthorModel authorModel;
+    public static final AuthorForm INSTANCE = new AuthorForm();
     
     private AuthorForm() {
     initComponents();
@@ -28,13 +28,6 @@ public final class AuthorForm extends AuthorController implements Initialize {
     setLocation(getWidth()/5, getHeight()/10);
     }
     
-    public static AuthorForm getInstance(){
-        if(authorForm==null)
-            return authorForm= new AuthorForm();
-        else
-            return authorForm;
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,14 +133,6 @@ public final class AuthorForm extends AuthorController implements Initialize {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public AuthorModel getAuthorModel() {
-        return authorModel;
-    }
-
-    public void setAuthorModel(AuthorModel authorModel) {
-        this.authorModel = authorModel;
-    }
-
     @Override
     public void doDefaultCloseAction() {
         clearAllFields();
@@ -176,36 +161,28 @@ public final class AuthorForm extends AuthorController implements Initialize {
     public void initController() {
         cancelButton.addActionListener((java.awt.event.ActionEvent evt) -> {
             clearAllFields();
-            setAuthorModel(null);
-            AuthorForm.this.dispose();
+            authorModel=null;
+            this.dispose();
         });
 
         saveButton.addActionListener((java.awt.event.ActionEvent evt) -> {
-            if(authorForm.getAuthorModel()==null){
-                add();
+            if(Objects.isNull(authorModel)){
+                add(formToModel(new AuthorModel()));
             }else{
-                update();
+                update(formToModel(authorModel));
+                authorModel=null;
             }
             clearAllFields();
-            authorForm.dispose();
+            this.dispose();
         });
     }
 
-    protected void add() {
-        add(formToModel());
-    }
-
-    private void update() {
-        update(formToModel());
-        setAuthorModel(null);
-    }
-
-    public AuthorModel formToModel() {
+    public AuthorModel formToModel(AuthorModel authorModel) {
         if (textFieldFirstName.getText().equals("") && textFieldLastName.getText().equals("")) {
             UserInfoMessages.getInstance().showInfoMessages(setLanguage("authorcontroller.add.leaveblank.caution"));
             return null;
         } else {
-            int authorId = getAuthorModel() == null ? 0 : getAuthorModel().getAuthorId();
+            int authorId = authorModel == null ? 0 : authorModel.getAuthorId();
             authorModel = new AuthorModel();
             authorModel.setAuthorId(authorId);
             authorModel.setFirstName(textFieldFirstName.getText());
@@ -215,10 +192,11 @@ public final class AuthorForm extends AuthorController implements Initialize {
         }
     }
     
-    public void modelToForm() {
-        textFieldFirstName.setText(authorForm.getAuthorModel().getFirstName());
-        textFieldLastName.setText(authorForm.getAuthorModel().getLastName());
-        birthDateChooser.setDate(new Date(authorForm.getAuthorModel().getBirthDate()));
+    public void modelToForm(AuthorModel authorModel) {
+        textFieldFirstName.setText(authorModel.getFirstName());
+        textFieldLastName.setText(authorModel.getLastName());
+        birthDateChooser.setDate(new Date(authorModel.getBirthDate()));
+        this.authorModel = authorModel;
     }
 
     public void clearAllFields() {

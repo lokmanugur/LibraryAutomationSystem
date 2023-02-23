@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package com.ugurtech.library.presentation.view.classstd;
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+
+ 
 import com.ugurtech.library.model.ClassModel;
 import com.ugurtech.library.presentation.controller.Initialize;
 import com.ugurtech.library.presentation.controller.classstd.ClassController;
+import java.util.Objects;
 
 /**
  *
@@ -16,12 +18,12 @@ import com.ugurtech.library.presentation.controller.classstd.ClassController;
 public final class ClassForm extends ClassController implements Initialize {
 
     public static final ClassForm INSTANCE = new ClassForm();
-    
+
     private ClassForm() {
         initComponents();
         initView();
         initController();
-        setLocation(getWidth()/2, getHeight()/10);
+        setLocation(getWidth() / 2, getHeight() / 10);
     }
 
     /**
@@ -97,16 +99,11 @@ public final class ClassForm extends ClassController implements Initialize {
     private javax.swing.JTextField textFieldClassName;
     // End of variables declaration//GEN-END:variables
 
-private void setLanguage() {
+    private void setLanguage() {
         setTitle(setLanguage("classform.title"));
         labelClassName.setText(setLanguage("classform.label.name"));
         buttonCancel.setText(setLanguage("form.button.cancel"));
         buttonSave.setText(setLanguage("form.button.save"));
-    }
-
-    private void add() {
-        add(formToModel());
-        ClassSearchForm.INSTANCE.initView();
     }
 
     @Override
@@ -117,52 +114,42 @@ private void setLanguage() {
     @Override
     public void initController() {
         buttonSave.addActionListener(((e) -> {
-            if (classModel != null) {
-                updete();
-                classModel=null;
+            if (Objects.isNull(classModel)) {
+                add(formToModel(new ClassModel()));
+                ClassSearchForm.INSTANCE.initView();
                 clearFields();
             } else {
-                add();
+                update(formToModel(classModel));
+                ClassSearchForm.INSTANCE.initView();
+                classModel = null;
                 clearFields();
             }
         }));
         buttonCancel.addActionListener(((e) -> {
-            classModel=null;
+            classModel = null;
             clearFields();
             this.dispose();
         }));
     }
 
-    private void updete() {
-        update(formToModel());
-        ClassSearchForm.INSTANCE.initView();
+    private ClassModel formToModel(ClassModel classModel) {
+        classModel.setClassName(textFieldClassName.getText());
+        return classModel;
     }
 
-    private ClassModel formToModel() {
-        ClassModel cm = null;
-        if (textFieldClassName.getText().equals("")) {
-            UserInfoMessages.getInstance().showInfoMessages(setLanguage("classform.classname.empty"));
-        } else {
-            cm = new ClassModel();
-            cm.setClassId(classModel==null?0:classModel.getClassId());
-            cm.setClassName(textFieldClassName.getText());
-        }
-        return cm;
-    }
-
-    public void modelToForm() {
+    public void modelToForm(ClassModel classModel) {
         textFieldClassName.setText(classModel.getClssName());
+        this.classModel = classModel;
     }
 
     public void clearFields() {
         textFieldClassName.setText("");
     }
-    
 
     @Override
     public void doDefaultCloseAction() {
         clearFields();
         super.doDefaultCloseAction();
     }
-    
+
 }

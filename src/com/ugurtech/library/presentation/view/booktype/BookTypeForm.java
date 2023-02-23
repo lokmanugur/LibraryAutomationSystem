@@ -8,6 +8,7 @@ import com.ugurtech.library.application.lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.BookTypeModel;
 import com.ugurtech.library.presentation.controller.Initialize;
 import com.ugurtech.library.presentation.controller.booktype.BookTypeController;
+import java.util.Objects;
 
 
 /**
@@ -125,11 +126,6 @@ public final class BookTypeForm extends BookTypeController implements Initialize
         labelAbbreviation.setText(setLanguage("booktypeform.panelbooktype.labelabbreviation"));
     }
 
-    private void add() {
-        add(formToModel());
-        BookTypeSearchForm.getInstance().initView();
-    }
-
     @Override
     public void initView() {
         setLanguage();
@@ -138,12 +134,14 @@ public final class BookTypeForm extends BookTypeController implements Initialize
     @Override
     public void initController() {
         buttonSave.addActionListener(((e) -> {
-            if (bookTypeModel != null) {
-                updete();
-                bookTypeModel=null;
+            if(Objects.isNull(bookTypeModel)) {
+                add(formToModel(new BookTypeModel()));
+                BookTypeSearchForm.INSTANCE.initView();
                 clearFields();
             } else {
-                add();
+                update(formToModel(bookTypeModel));
+                bookTypeModel=null;
+                BookTypeSearchForm.INSTANCE.initView();
                 clearFields();
             }
         }));
@@ -154,27 +152,17 @@ public final class BookTypeForm extends BookTypeController implements Initialize
         }));
     }
 
-    private void updete() {
-        update(formToModel());
-        BookTypeSearchForm.getInstance().initView();
+    private BookTypeModel formToModel(BookTypeModel bookTypeModel) {
+            bookTypeModel.setTypeName(textFieldBookTypeName.getText());
+            bookTypeModel.setAbbrivation(textFieldAbbreviation.getText());
+
+        return bookTypeModel;
     }
 
-    private BookTypeModel formToModel() {
-        BookTypeModel btm = null;
-        if (textFieldBookTypeName.getText().equals("")) {
-            UserInfoMessages.getInstance().showInfoMessages(setLanguage("booktypecontroller.booktypefield.empty"));
-        } else {
-            btm = new BookTypeModel();
-            btm.setBookTypeId(bookTypeModel==null?0:bookTypeModel.getBookTypeId());
-            btm.setTypeName(textFieldBookTypeName.getText());
-            btm.setAbbrivation(textFieldAbbreviation.getText());
-        }
-        return btm;
-    }
-
-    public void modelToForm() {
+    public void modelToForm(BookTypeModel bookTypeModel) {
         textFieldBookTypeName.setText(bookTypeModel.getTypeName());
         textFieldAbbreviation.setText(bookTypeModel.getAbbrivation());
+        this.bookTypeModel = bookTypeModel;
     }
 
     public void clearFields() {

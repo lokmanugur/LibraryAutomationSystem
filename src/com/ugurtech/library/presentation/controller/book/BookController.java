@@ -33,7 +33,6 @@ public class BookController extends AbstractController implements Controller<Boo
     protected final PublisherService publisherService = new PublisherServiceImpl(new PublisherDaoImpl());
     protected final BookTypeService bookTypeService = new BookTypeServiceImpl(new BookTypeDaoImpl());
     protected final AuthorService authorService = new AuthorServiceImpl(new AuthorDaoImpl());
-    
     protected BookModel bookModel;
 
     @Override

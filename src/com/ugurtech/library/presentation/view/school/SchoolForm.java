@@ -49,21 +49,19 @@ public final class SchoolForm extends SchoolController implements Initialize {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
 
         textAreaAddress.setColumns(15);
         textAreaAddress.setRows(3);
         jScrollPane1.setViewportView(textAreaAddress);
 
         labelAddress.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelAddress.setText("Adres:");
+        labelAddress.setText("Address:");
 
         labelPhone.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelPhone.setText("Telefon:");
+        labelPhone.setText("Phone:");
 
         labelName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelName.setText("Okul Adı:");
+        labelName.setText("School Name:");
 
         buttonCancel.setText("Cancel");
         buttonCancel.setPreferredSize(new java.awt.Dimension(80, 35));
@@ -117,7 +115,7 @@ public final class SchoolForm extends SchoolController implements Initialize {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -125,16 +123,16 @@ public final class SchoolForm extends SchoolController implements Initialize {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -162,10 +160,15 @@ public final class SchoolForm extends SchoolController implements Initialize {
     @Override
     public void initController() {
         buttonSave.addActionListener((e) -> {
-            if (schoolModel == null) {
-                save();
+            if (Objects.isNull(schoolModel)) {
+                add(formToModel(new SchoolModel()));
+                clearFields();
+                refreshTable();
             } else {
-                update();
+                update(formToModel(schoolModel));
+                schoolModel=null;
+                clearFields();
+                refreshTable();
             }
         });
        buttonCancel.addActionListener((e) -> {
@@ -173,43 +176,25 @@ public final class SchoolForm extends SchoolController implements Initialize {
         });
     }
 
-    private SchoolModel formToModel() {
-        if (textFieldName.getText().equals("")) {
-            UserInfoMessages.getInstance().showInfoMessages(setLanguage("authorcontroller.add.leaveblank.caution"));
-            return null;
-        } else {
-            schoolModel = new SchoolModel();
-            schoolModel.setSchoolId(Objects.isNull(schoolModel)? 0 : schoolModel.getSchoolId());
+    public SchoolModel formToModel(SchoolModel schoolModel) {
             schoolModel.setSchoolName(textFieldName.getText());
             schoolModel.setPhone(formattedTextFieldPhone.getText());
             schoolModel.setAddress(textAreaAddress.getText());
             return schoolModel;
-        }
+
     }
 
-    void modelToForm() {
+    public void modelToForm(SchoolModel schoolModel) {
         textFieldName.setText(schoolModel.getSchoolName());
         formattedTextFieldPhone.setText(schoolModel.getPhone());
         textAreaAddress.setText(schoolModel.getAddress());
+        this.schoolModel = schoolModel;
     }
 
     private void cancel() {
         clearFields();
         schoolModel=null;
         dispose();
-    }
-
-    private void save() {
-        add(formToModel());
-        clearFields();
-        refreshTable();
-    }
-
-    private void update() {
-        update(formToModel());
-        schoolModel=null;
-        clearFields();
-        refreshTable();
     }
 
     public void clearFields() {

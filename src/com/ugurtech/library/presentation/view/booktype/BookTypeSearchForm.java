@@ -15,19 +15,12 @@ import com.ugurtech.library.presentation.view.main.MainForm;
  */
 public final class BookTypeSearchForm extends BookTypeController implements Initialize{
 
-    private static BookTypeSearchForm booksTypeForm;
+    public static BookTypeSearchForm INSTANCE = new BookTypeSearchForm();
     private BookTypeSearchForm() {
         initComponents();
         initView();
         initController();
         setLocation(getWidth()/2, getHeight()/10);
-    }
-    
-    public static BookTypeSearchForm getInstance(){
-        if(booksTypeForm==null)
-            return booksTypeForm= new BookTypeSearchForm();
-        else
-            return booksTypeForm;
     }
 
     /**
@@ -193,14 +186,12 @@ public final class BookTypeSearchForm extends BookTypeController implements Init
     }
 
     protected void update() {
-       // bookTypeModel = new BookTypeModel();
         if (tableBooksType.getSelectedRow() == -1) {
             UserInfoMessages.getInstance().showInfoMessages(setLanguage("table.update.unselectedrow"));
         } else {
             BookTypeForm bookTypeForm = BookTypeForm.INSTANCE;
             MainForm.INSTANCE.addDesktopPane(bookTypeForm);
-            bookTypeModel=get((int) tableBooksType.getModel().getValueAt(tableBooksType.getSelectedRow(), 0));
-            bookTypeForm.modelToForm();
+            bookTypeForm.modelToForm(get((int) tableBooksType.getModel().getValueAt(tableBooksType.getSelectedRow(), 0)));
         }
     }
 
@@ -212,7 +203,6 @@ public final class BookTypeSearchForm extends BookTypeController implements Init
 
         }
         search();
-
     }
 
     public void clearAllFields() {

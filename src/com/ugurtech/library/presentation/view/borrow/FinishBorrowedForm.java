@@ -23,7 +23,7 @@ public final class FinishBorrowedForm extends ControllerImpl implements Initiali
 
     private FinishBorrowedForm() {
         initComponents();
-        //initView();
+        initView();
         initController();
         setLocation(getWidth() / 2, getHeight() / 10);
     }
@@ -79,9 +79,8 @@ public final class FinishBorrowedForm extends ControllerImpl implements Initiali
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Kitap İade Formu");
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Book Details"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), setLanguage("finishborrowedform.book.frame.title")));
 
         labelIsbn.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelIsbn.setText("ISBN:");
@@ -186,7 +185,7 @@ public final class FinishBorrowedForm extends ControllerImpl implements Initiali
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Person Details"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), setLanguage("finishborrowedform.person.frame.title")));
 
         labelNameSurname.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelNameSurname.setText("Name Surname:");
@@ -451,7 +450,7 @@ public final class FinishBorrowedForm extends ControllerImpl implements Initiali
 
     @Override
     public void initView() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        setLanguage();
     }
 
     @Override
@@ -464,5 +463,27 @@ public final class FinishBorrowedForm extends ControllerImpl implements Initiali
             update();
             clearTextField();
         }));
+    }
+
+    private void setLanguage() {
+        this.setTitle(setLanguage("finishborrowedform.title"));
+        labelBookId.setText(setLanguage("finishborrowedform.label.id"));
+        labelIsbn.setText(setLanguage("finishborrowedform.label.isbn")); 
+        labelTitle.setText(setLanguage("finishborrowedform.label.title"));
+        labelPhone.setText(setLanguage("finishborrowedform.label.pagenumber"));
+        labelShelf.setText(setLanguage("finishborrowedform.label.shelf"));
+        labelStartDate.setText(setLanguage("finishborrowedform.label.startdate"));
+        labelDeadline.setText(setLanguage("finishborrowedform.label.deadline"));
+        labelFinishDate.setText(setLanguage("finishborrowedform.label.finishdate"));
+        
+        labelNameSurname.setText(setLanguage("finishborrowedform.label.namesurname"));
+        labelStudentNumber.setText(setLanguage("finishborrowedform.label.studentnumber"));
+        labelGrade.setText(setLanguage("finishborrowedform.label.grade"));
+        labelSchool.setText(setLanguage("finishborrowedform.label.school"));
+        labelPhone.setText(setLanguage("finishborrowedform.label.phone"));
+        labelAddress.setText(setLanguage("finishborrowedform.label.address"));
+        labelReadPages.setText(setLanguage("finishborrowedform.label.readpages"));
+        buttonSave.setText(setLanguage("form.button.save"));
+        buttonCancel.setText(setLanguage("form.button.cancel"));
     }
 }

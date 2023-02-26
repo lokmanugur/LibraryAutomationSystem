@@ -182,7 +182,7 @@ public final class BookBorrowForm extends ControllerImpl implements Initialize {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE))
         );
 
-        getAccessibleContext().setAccessibleName("Menu Hareket");
+        getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

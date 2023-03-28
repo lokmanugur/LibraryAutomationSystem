@@ -17,19 +17,19 @@ public class DateUtils {
     private static SimpleDateFormat simpleDateFormat;
     private static String timeFormatText;
     private static String dateFormatText;
-    private static final String DEFAULT_DATE_FORMAT=Internationalization.setLanguage("simple.date.format");
+    private static final String DEFAULT_DATE_FORMAT = Internationalization.setLanguage("simple.date.format");
 
-    static{
-       new DateUtils().getClass();
+    static {
+        new DateUtils().getClass();
     }
-    
+
     private DateUtils() {
         DateUtils.simpleDateFormat = new SimpleDateFormat();
-        String str[]=DEFAULT_DATE_FORMAT.split(" ");
+        String str[] = DEFAULT_DATE_FORMAT.split(" ");
         dateFormatText = str[0];
         timeFormatText = str[1];
     }
-    
+
     public static String longToDateForTable(long lng) {
         applyPattern(DEFAULT_DATE_FORMAT);
         return simpleDateFormat.format(lng);
@@ -44,8 +44,8 @@ public class DateUtils {
         applyPattern(dateFormatText);
         return simpleDateFormat.format(lng);
     }
-    
-    private static void applyPattern(String pattern){
+
+    private static void applyPattern(String pattern) {
         simpleDateFormat.applyPattern(pattern);
     }
 }

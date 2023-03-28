@@ -26,5 +26,4 @@ public class StudentPopulator implements Populator<StudentModel, StudentDTO> {
         target.setPhone(source.getPhone());
         target.setAddress(source.getAddress());
     }
-    
 }

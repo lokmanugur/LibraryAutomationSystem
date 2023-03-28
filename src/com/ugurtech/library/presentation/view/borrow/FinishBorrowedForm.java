@@ -5,6 +5,7 @@
  */
 package com.ugurtech.library.presentation.view.borrow;
 
+import com.ugurtech.library.application.lib.date.DateUtils;
 import com.ugurtech.library.presentation.controller.borrow.ControllerImpl;
 import com.ugurtech.library.application.lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.BookModel;
@@ -436,9 +437,9 @@ public final class FinishBorrowedForm extends ControllerImpl implements Initiali
         textFieldTitle.setText(bookModel.getBookName());
         textFieldShelf.setText(String.valueOf(bookModel.getShelf()));
         textFieldPages.setText(String.valueOf(bookModel.getPageNumbber()));
-        textFieldStartDate.setText(String.valueOf(personBookModel.getStartDate()));
-        textFieldFinishDate.setText(String.valueOf(personBookModel.getFinishDate()));
-        textFieldDeadline.setText(String.valueOf(personBookModel.getDeadLine()));
+        textFieldStartDate.setText(DateUtils.longToDateForTable(personBookModel.getStartDate()));
+        textFieldFinishDate.setText(DateUtils.longToDateForTable(personBookModel.getFinishDate()));
+        textFieldDeadline.setText(DateUtils.longToDateForTable(personBookModel.getDeadLine()));
         StudentModel studentModel = personBookModel.getStudentModel();
         textFieldNameSurname.setText(studentModel.getFirstName() + " " + studentModel.getLastName());
         textFieldStudentNumber.setText(String.valueOf(studentModel.getStudentNumber()));

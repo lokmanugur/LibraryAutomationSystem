@@ -18,11 +18,11 @@ import java.util.List;
 public class StudentFacadeImpl implements StudentFacade {
 
     private final StudentService studentService;
-    private final PopulatingConverter<StudentModel, StudentDTO> converter = PopulatingConverter.of(StudentDTO.class)
-            .withPopulator(new StudentPopulator());
+    private final PopulatingConverter<StudentModel, StudentDTO> converter;
 
     public StudentFacadeImpl(StudentService studentService) {
         this.studentService = studentService;
+        converter=PopulatingConverter.of(StudentDTO.class).withPopulator(new StudentPopulator());
     }
     
     @Override

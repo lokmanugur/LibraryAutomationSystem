@@ -26,17 +26,11 @@ public class MainFrame extends JFrame {
         allFrame = desktopPane.getAllFrames();
         if (!Arrays.asList(allFrame).contains(internalFrame)) {
             desktopPane.add(internalFrame);
-            try {
-                internalFrame.setSelected(true);
-            } catch (PropertyVetoException ex) {
-                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            try {
-                internalFrame.setSelected(true);
-            } catch (PropertyVetoException ex) {
-                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        }
+        try {
+            internalFrame.setSelected(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         internalFrame.setVisible(true);
     }

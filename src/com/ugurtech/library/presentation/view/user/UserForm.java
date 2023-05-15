@@ -77,8 +77,6 @@ public final class UserForm extends UserController implements Initialize {
         setResizable(true);
         setTitle("User Add Form");
 
-        addUserPanel.setBorder(null);
-
         labelPassword.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelPassword.setText("Password");
 

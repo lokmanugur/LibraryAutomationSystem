@@ -7,8 +7,8 @@ package com.ugurtech.library.presentation.controller.main;
 
 import com.ugurtech.library.presentation.controller.AbstractController;
 import com.ugurtech.library.presentation.controller.Initialize;
-import com.ugurtech.library.application.lib.date.SessionTimeCounter;
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import resources.lib.date.SessionTimeCounter;
+import resources.lib.validation.UserInfoMessages;
 import com.ugurtech.library.presentation.view.login.LoginForm;
 import com.ugurtech.library.presentation.view.main.MainForm;
 import com.ugurtech.library.presentation.view.author.AuthorSearchForm;
@@ -134,7 +134,7 @@ public class MainFormController extends AbstractController implements Initialize
             mainForm.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         });
         mainForm.getDatabaseMenuItem().addActionListener((java.awt.event.ActionEvent evt) -> {
-            mainForm.addDesktopPane(DatabaseUI.getInstance());
+            mainForm.addDesktopPane(DatabaseUI.INSTANCE);
         });
     }
 

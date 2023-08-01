@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE server SYSTEM "roles.dtd">
+<!DOCTYPE server SYSTEM "../SQLite/roles.dtd">
 <server>
     <serverAdress>localhost</serverAdress>
-    <port>1527</port>
-    <databaseName>RestoranServis</databaseName>
-    <userName>Blue</userName>
-    <password>Blue896</password>
+    <port>5432</port>
+    <databaseName>library</databaseName>
+    <userName>postgre</userName>
+    <password>postgre</password>
 </server>

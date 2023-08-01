@@ -5,9 +5,9 @@
  */
 package com.ugurtech.library.presentation.view.borrow;
 
-import com.ugurtech.library.application.lib.date.DateUtils;
+import resources.lib.date.DateUtils;
 import com.ugurtech.library.presentation.controller.borrow.ControllerImpl;
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import resources.lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.BookModel;
 import com.ugurtech.library.model.PersonBookModel;
 import com.ugurtech.library.model.StudentModel;

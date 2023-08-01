@@ -22,7 +22,7 @@ import com.ugurtech.library.application.service.language.LanguageService;
 import com.ugurtech.library.application.service.language.LanguageServiceImpl;
 import com.ugurtech.library.application.service.usertype.UserTypeService;
 import com.ugurtech.library.application.service.usertype.UserTypeServiceImpl;
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import resources.lib.validation.UserInfoMessages;
 import com.ugurtech.library.presentation.view.firststep.FirstStepForm;
 import java.awt.Color;
 import java.awt.event.ActionEvent;

@@ -30,28 +30,28 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <Component id="panelDB" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="panelDB" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="panelDB">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Database Ba&#x11f;lant&#x131; Ayarlar&#x131;">
+            <TitledBorder title="Database Connection Settings">
               <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder/>
               </Border>
@@ -63,75 +63,71 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="labelUrl" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelPort" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelDBName" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelUserName" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelPassword" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="port" min="-2" pref="73" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="labelDBName" alignment="0" max="32767" attributes="0"/>
+                              <Component id="labelUserName" alignment="0" max="32767" attributes="0"/>
+                              <Component id="labelPassword" alignment="0" max="32767" attributes="0"/>
+                              <Component id="labelPort" alignment="0" max="32767" attributes="0"/>
+                              <Component id="labelUrl" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="textFieldPortNumber" min="-2" pref="73" max="-2" attributes="0"/>
+                              <Component id="textFieldDBName" alignment="0" max="32767" attributes="0"/>
+                              <Component id="textFieldServerAddress" alignment="0" max="32767" attributes="0"/>
+                              <Component id="textFieldUserName" alignment="0" max="32767" attributes="0"/>
+                              <Component id="textFieldPassword" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="sifre" alignment="0" max="32767" attributes="0"/>
-                              <Component id="kulaniciAdi" alignment="0" max="32767" attributes="0"/>
-                              <Component id="textFieldDBName" alignment="0" max="32767" attributes="0"/>
-                              <Component id="sunucuAdresi" max="32767" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="verial" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="varsayilan" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="kaydet" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="buttonDefault" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="buttonFillDefault" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="buttonSave" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="labelUrl" min="-2" max="-2" attributes="0"/>
-                      <Component id="sunucuAdresi" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="textFieldServerAddress" max="32767" attributes="0"/>
+                      <Component id="labelUrl" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelPort" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="port" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelPort" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="textFieldPortNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelDBName" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelDBName" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="textFieldDBName" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelUserName" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="kulaniciAdi" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelUserName" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="textFieldUserName" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelPassword" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="sifre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelPassword" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="textFieldPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="11" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="kaydet" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="varsayilan" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="verial" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonSave" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonFillDefault" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonDefault" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -141,62 +137,58 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="labelUrl">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Sunucu Adresi:"/>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="Server Address:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="sunucuAdresi">
+        <Component class="javax.swing.JTextField" name="textFieldServerAddress">
         </Component>
         <Component class="javax.swing.JLabel" name="labelPort">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Port:"/>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="Port Number:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="port">
+        <Component class="javax.swing.JTextField" name="textFieldPortNumber">
         </Component>
         <Component class="javax.swing.JTextField" name="textFieldDBName">
         </Component>
         <Component class="javax.swing.JLabel" name="labelDBName">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Database Ad&#x131;:"/>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="Database Name:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="kulaniciAdi">
+        <Component class="javax.swing.JTextField" name="textFieldUserName">
         </Component>
         <Component class="javax.swing.JLabel" name="labelUserName">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Kulan&#x131;c&#x131; Ad&#x131;:"/>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="User Name:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelPassword">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x15e;ifre:"/>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="Password:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="sifre">
+        <Component class="javax.swing.JPasswordField" name="textFieldPassword">
         </Component>
-        <Component class="javax.swing.JButton" name="kaydet">
+        <Component class="javax.swing.JButton" name="buttonSave">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Kaydet"/>
+            <Property name="text" type="java.lang.String" value="Save Current Setting"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kaydetActionPerformed"/>
-          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="varsayilan">
+        <Component class="javax.swing.JButton" name="buttonFillDefault">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Varsay&#x131;lan"/>
+            <Property name="text" type="java.lang.String" value="Get Last Setting"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="varsayilanActionPerformed"/>
-          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="verial">
+        <Component class="javax.swing.JButton" name="buttonDefault">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Veri Al"/>
+            <Property name="text" type="java.lang.String" value="Fill Default"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="verialActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

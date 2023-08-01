@@ -4,9 +4,9 @@
  */
 package com.ugurtech.library.dataaccesslayer.usertype;
 
-import com.ugurtech.library.application.lib.sql.DbUtils;
-import com.ugurtech.library.application.lib.sql.ListUtils;
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import resources.lib.sql.DbUtils;
+import resources.lib.sql.ListUtils;
+import resources.lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.responsmodels.UserTypeModel;
 import com.ugurtech.library.dataaccesslayer.DaoAbstract;
 import com.ugurtech.library.dataaccesslayer.enumeration.Tables;

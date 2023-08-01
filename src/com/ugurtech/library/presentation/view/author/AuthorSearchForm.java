@@ -1,7 +1,7 @@
 package com.ugurtech.library.presentation.view.author;
 
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
-import com.ugurtech.library.application.lib.writetofile.TableToExcelImpl;
+import resources.lib.validation.UserInfoMessages;
+import resources.lib.writetofile.TableToExcelImpl;
 import com.ugurtech.library.presentation.controller.Initialize;
 import com.ugurtech.library.presentation.controller.author.AuthorController;
 import com.ugurtech.library.presentation.view.main.MainForm;

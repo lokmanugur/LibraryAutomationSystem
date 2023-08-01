@@ -2,7 +2,7 @@ package com.ugurtech.library.presentation.view.main;
 
 import com.ugurtech.library.presentation.controller.main.MainFormController;
 import com.ugurtech.library.presentation.view.login.LoginForm;
-import com.ugurtech.library.application.lib.date.SessionTimeCounter;
+import resources.lib.date.SessionTimeCounter;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JMenu;

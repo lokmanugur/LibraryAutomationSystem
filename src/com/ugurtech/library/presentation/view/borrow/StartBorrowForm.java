@@ -5,9 +5,9 @@
  */
 package com.ugurtech.library.presentation.view.borrow;
 import com.toedter.calendar.JDateChooser;
-import com.ugurtech.library.application.lib.localization.Internationalization;
-import com.ugurtech.library.application.lib.localization.LanguageImpl;
-import com.ugurtech.library.application.lib.log.LogInternalFrame;
+import resources.lib.localization.Internationalization;
+import resources.lib.localization.LanguageImpl;
+import com.ugurtech.library.presentation.view.logFrame.LogInternalFrame;
 import com.ugurtech.library.model.BookModel;
 import com.ugurtech.library.model.PersonBookModel;
 import com.ugurtech.library.model.StudentModel;

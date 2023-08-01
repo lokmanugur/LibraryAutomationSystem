@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package com.ugurtech.library.presentation.view.booktype;
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import resources.lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.BookTypeModel;
 import com.ugurtech.library.presentation.controller.Initialize;
 import com.ugurtech.library.presentation.controller.booktype.BookTypeController;

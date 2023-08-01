@@ -6,9 +6,9 @@
 package com.ugurtech.library.dataaccesslayer;
 
 import com.ugurtech.library.dataaccesslayer.database.SQLiteDatabase;
-import com.ugurtech.library.application.lib.localization.Internationalization;
-import com.ugurtech.library.application.lib.localization.LanguageImpl;
-import com.ugurtech.library.application.lib.log.LogInternalFrame;
+import resources.lib.localization.Internationalization;
+import resources.lib.localization.LanguageImpl;
+import com.ugurtech.library.presentation.view.logFrame.LogInternalFrame;
 import com.ugurtech.library.dataaccesslayer.borrow.BorrowDaoImpl;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,7 +31,7 @@ public abstract class DaoAbstract {
     }
 
     public SQLiteDatabase openConnection() {
-        dataBase = SQLiteDatabase.getInstance();
+        dataBase = SQLiteDatabase.INSTANCE;
         return dataBase;
     }
 

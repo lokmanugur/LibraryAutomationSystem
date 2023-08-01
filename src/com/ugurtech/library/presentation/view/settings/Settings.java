@@ -5,7 +5,7 @@
  */
 package com.ugurtech.library.presentation.view.settings;
 import javax.swing.JInternalFrame;
-import com.ugurtech.library.application.lib.localization.Internationalization;
+import resources.lib.localization.Internationalization;
 
 /**
  *

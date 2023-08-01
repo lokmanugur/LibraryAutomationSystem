@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ugurtech.library.application.lib.writetofile;
+package resources.lib.writetofile;
 
-import com.ugurtech.library.application.lib.log.LogInternalFrame;
+import com.ugurtech.library.presentation.view.logFrame.LogInternalFrame;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;

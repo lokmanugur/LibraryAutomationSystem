@@ -4,10 +4,10 @@
  */
 package com.ugurtech.library.presentation.controller;
 
-import com.ugurtech.library.application.lib.localization.Internationalization;
-import com.ugurtech.library.application.lib.localization.LanguageImpl;
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
-import com.ugurtech.library.application.lib.writetofile.TableToExcelImpl;
+import resources.lib.localization.Internationalization;
+import resources.lib.localization.LanguageImpl;
+import resources.lib.validation.UserInfoMessages;
+import resources.lib.writetofile.TableToExcelImpl;
 import com.ugurtech.library.model.CurrentUserModel;
 import com.ugurtech.library.model.responsmodels.UserTypeModel;
 import javax.swing.JInternalFrame;

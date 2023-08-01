@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ugurtech.library.application.lib.log;
+package resources.lib.localization;
 
 /**
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public class LoggerClass {
-    
+public class LanguageImpl {
+
+   public static String setLanguage(Language language, String s2) {
+        return language.set(s2);
+    }
 }

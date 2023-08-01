@@ -5,7 +5,7 @@
  */
 package com.ugurtech.library.dataaccesslayer.database;
 
-import com.ugurtech.library.application.lib.log.LogInternalFrame;
+import com.ugurtech.library.presentation.view.logFrame.LogInternalFrame;
 import java.sql.*;
 
 public class MySQLDataBase extends Database{
@@ -13,8 +13,8 @@ public class MySQLDataBase extends Database{
     private static MySQLDataBase mySQLDataBase;
     
     public static MySQLDataBase getInstance(){
-        if(mySQLDataBase==null)
-           return mySQLDataBase=new MySQLDataBase();
+        if(mySQLDataBase == null)
+           return mySQLDataBase = new MySQLDataBase();
         else
             return mySQLDataBase;
     }

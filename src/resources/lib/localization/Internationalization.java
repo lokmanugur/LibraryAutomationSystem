@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ugurtech.library.application.lib.localization;
+package resources.lib.localization;
 
 import java.util.Locale;
 import java.util.ResourceBundle;

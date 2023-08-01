@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ugurtech.library.application.lib.date;
+package resources.lib.date;
 
-import com.ugurtech.library.application.lib.localization.Internationalization;
+import resources.lib.localization.Internationalization;
 import java.text.SimpleDateFormat;
 
 /**

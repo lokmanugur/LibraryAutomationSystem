@@ -6,12 +6,12 @@
  */
 package com.ugurtech.library.dataaccesslayer.book;
 
-import com.ugurtech.library.application.lib.sql.DbUtils;
+import resources.lib.sql.DbUtils;
 import com.ugurtech.library.model.AuthorModel;
 import com.ugurtech.library.model.BookModel;
 import com.ugurtech.library.model.BookTypeModel;
 import com.ugurtech.library.dataaccesslayer.DaoAbstract;
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import resources.lib.validation.UserInfoMessages;
 import com.ugurtech.library.dataaccesslayer.enumeration.Tables;
 import com.ugurtech.library.model.PublisherModel;
 import java.sql.PreparedStatement;

@@ -5,7 +5,7 @@
  */
 package com.ugurtech.library.presentation.view.publisher;
 
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import resources.lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.PublisherModel;
 import com.ugurtech.library.presentation.controller.Initialize;
 import com.ugurtech.library.presentation.controller.publisher.PublisherController;

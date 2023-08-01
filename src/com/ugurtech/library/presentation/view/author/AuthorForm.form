@@ -62,9 +62,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="cancelButton" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="buttonCancel" min="-2" pref="80" max="-2" attributes="0"/>
                           <EmptySpace pref="102" max="32767" attributes="0"/>
-                          <Component id="saveButton" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="buttonSave" min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
                       <Component id="birthDateChooser" alignment="0" max="32767" attributes="0"/>
                       <Component id="textFieldLastName" alignment="0" max="32767" attributes="0"/>
@@ -94,8 +94,8 @@
                   </Group>
                   <EmptySpace type="separate" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="cancelButton" pref="45" max="32767" attributes="0"/>
-                      <Component id="saveButton" max="32767" attributes="0"/>
+                      <Component id="buttonCancel" pref="45" max="32767" attributes="0"/>
+                      <Component id="buttonSave" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -128,12 +128,12 @@
             <Property name="horizontalTextPosition" type="int" value="10"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="cancelButton">
+        <Component class="javax.swing.JButton" name="buttonCancel">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x130;ptal"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="saveButton">
+        <Component class="javax.swing.JButton" name="buttonSave">
           <Properties>
             <Property name="text" type="java.lang.String" value="Kaydet"/>
           </Properties>

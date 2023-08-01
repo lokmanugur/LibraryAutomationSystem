@@ -5,7 +5,7 @@
  */
 package com.ugurtech.library.presentation.view.author;
 import com.toedter.calendar.JDateChooser;
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import resources.lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.AuthorModel;
 import com.ugurtech.library.presentation.controller.Initialize;
 import com.ugurtech.library.presentation.controller.author.AuthorController;
@@ -43,8 +43,8 @@ public final class AuthorForm extends AuthorController implements Initialize {
         labelLastName = new javax.swing.JLabel();
         textFieldLastName = new javax.swing.JTextField();
         labelBirthDate = new javax.swing.JLabel();
-        cancelButton = new javax.swing.JButton();
-        saveButton = new javax.swing.JButton();
+        buttonCancel = new javax.swing.JButton();
+        buttonSave = new javax.swing.JButton();
         birthDateChooser = new JDateChooser();
 
         setClosable(true);
@@ -66,9 +66,9 @@ public final class AuthorForm extends AuthorController implements Initialize {
         labelBirthDate.setText("Doğum yılı");
         labelBirthDate.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        cancelButton.setText("İptal");
+        buttonCancel.setText("İptal");
 
-        saveButton.setText("Kaydet");
+        buttonSave.setText("Kaydet");
 
         javax.swing.GroupLayout panelSaveLayout = new javax.swing.GroupLayout(panelSave);
         panelSave.setLayout(panelSaveLayout);
@@ -83,9 +83,9 @@ public final class AuthorForm extends AuthorController implements Initialize {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelSaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelSaveLayout.createSequentialGroup()
-                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(birthDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(textFieldLastName)
                     .addComponent(textFieldFirstName))
@@ -108,8 +108,8 @@ public final class AuthorForm extends AuthorController implements Initialize {
                     .addComponent(labelBirthDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(panelSaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(buttonCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(buttonSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -142,12 +142,12 @@ public final class AuthorForm extends AuthorController implements Initialize {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser birthDateChooser;
-    private javax.swing.JButton cancelButton;
+    private javax.swing.JButton buttonCancel;
+    private javax.swing.JButton buttonSave;
     private javax.swing.JLabel labelBirthDate;
     private javax.swing.JLabel labelFirstName;
     private javax.swing.JLabel labelLastName;
     private javax.swing.JPanel panelSave;
-    private javax.swing.JButton saveButton;
     private javax.swing.JTextField textFieldFirstName;
     private javax.swing.JTextField textFieldLastName;
     // End of variables declaration//GEN-END:variables
@@ -159,13 +159,13 @@ public final class AuthorForm extends AuthorController implements Initialize {
 
     @Override
     public void initController() {
-        cancelButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+        buttonCancel.addActionListener((java.awt.event.ActionEvent evt) -> {
             clearAllFields();
             authorModel=null;
             this.dispose();
         });
 
-        saveButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+        buttonSave.addActionListener((java.awt.event.ActionEvent evt) -> {
             if(Objects.isNull(authorModel)){
                 add(formToModel(new AuthorModel()));
             }else{
@@ -210,7 +210,7 @@ public final class AuthorForm extends AuthorController implements Initialize {
         labelFirstName.setText(setLanguage("authorform.panelsave.labelfirstname"));
         labelLastName.setText(setLanguage("authorform.panelsave.labellastname"));
         labelBirthDate.setText(setLanguage("authorform.panelsave.labelbirthdate"));
-        saveButton.setText(setLanguage("authorform.panelsave.savebutton"));
-        cancelButton.setText(setLanguage("authorform.panelsave.cancelbutton"));
+        buttonSave.setText(setLanguage("authorform.panelsave.savebutton"));
+        buttonCancel.setText(setLanguage("authorform.panelsave.cancelbutton"));
     }
 }

@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ugurtech.library.application.lib.sql;
+package resources.lib.sql;
 
 /**
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  *
  */
-import com.ugurtech.library.application.lib.log.LogInternalFrame;
+import com.ugurtech.library.presentation.view.logFrame.LogInternalFrame;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;

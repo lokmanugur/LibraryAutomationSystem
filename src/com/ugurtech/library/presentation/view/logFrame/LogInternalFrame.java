@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ugurtech.library.application.lib.log;
+package com.ugurtech.library.presentation.view.logFrame;
 
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import resources.lib.validation.UserInfoMessages;
 import com.ugurtech.library.presentation.view.main.MainForm;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -22,18 +22,19 @@ public class LogInternalFrame extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form LogInternalFrame
+     * 
      */
-    public static LogInternalFrame INSTANCE = new LogInternalFrame();
+    public static final LogInternalFrame INSTANCE = new LogInternalFrame();
 
     private static final Logger logger = Logger.getLogger("LibraryAutomationSystemLog");
-    private FileHandler fh = null;
+    private FileHandler fileHandler = null;
     SimpleFormatter formatter;
 
     private LogInternalFrame() {
         initComponents();
 
         try {
-            fh = new FileHandler(Paths.get("").toAbsolutePath().toString() + "/LogDirectory/LibraryLogFile.log", true);
+            fileHandler = new FileHandler(Paths.get("").toAbsolutePath().toString() + "/LogDirectory/LibraryLogFile.log", true);
         } catch (IOException | SecurityException ex) {
             Logger.getLogger(UserInfoMessages.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -98,9 +99,9 @@ public class LogInternalFrame extends javax.swing.JInternalFrame {
 
     public void addLoggerFile(String headerMessage, String message) {
         // This block configure the logger with handler and formatter  
-        logger.addHandler(fh);
+        logger.addHandler(fileHandler);
 
-        fh.setFormatter(formatter);
+        fileHandler.setFormatter(formatter);
 
         // the following statement is used to log any messages  
         logger.log(Level.SEVERE, "{0} {1}", new Object[]{headerMessage, message});

@@ -5,10 +5,10 @@
  */
 package com.ugurtech.library.dataaccesslayer.publisher;
 
-import com.ugurtech.library.application.lib.sql.DbUtils;
+import resources.lib.sql.DbUtils;
 import com.ugurtech.library.model.PublisherModel;
 import com.ugurtech.library.dataaccesslayer.DaoAbstract;
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import resources.lib.validation.UserInfoMessages;
 import com.ugurtech.library.dataaccesslayer.enumeration.Tables;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

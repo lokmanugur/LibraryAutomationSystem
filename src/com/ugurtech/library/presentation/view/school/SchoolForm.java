@@ -5,7 +5,7 @@
  */
 package com.ugurtech.library.presentation.view.school;
 
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import resources.lib.validation.UserInfoMessages;
 import com.ugurtech.library.model.SchoolModel;
 import com.ugurtech.library.presentation.controller.Initialize;
 import com.ugurtech.library.presentation.controller.school.SchoolController;

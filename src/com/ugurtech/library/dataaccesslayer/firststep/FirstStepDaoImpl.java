@@ -6,7 +6,7 @@ package com.ugurtech.library.dataaccesslayer.firststep;
 
 import com.ugurtech.library.model.requestmodels.FirstStepModel;
 import com.ugurtech.library.dataaccesslayer.DaoAbstract;
-import com.ugurtech.library.application.lib.validation.UserInfoMessages;
+import resources.lib.validation.UserInfoMessages;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

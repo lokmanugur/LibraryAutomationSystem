@@ -5,22 +5,14 @@
  */
 package com.ugurtech.library.dataaccesslayer.database;
 
-import com.ugurtech.library.application.lib.log.LogInternalFrame;
+import com.ugurtech.library.presentation.view.logFrame.LogInternalFrame;
 import java.nio.file.Paths;
 import java.sql.*;
 
 public class SQLiteDatabase {
 
-    private static SQLiteDatabase sqLiteDatabase;
+    public static final SQLiteDatabase INSTANCE = new SQLiteDatabase();
     private Connection connection;
-
-    public static SQLiteDatabase getInstance() {
-        if (sqLiteDatabase == null) {
-            return sqLiteDatabase = new SQLiteDatabase();
-        } else {
-            return sqLiteDatabase;
-        }
-    }
 
     private SQLiteDatabase() {
         try {
@@ -28,7 +20,7 @@ public class SQLiteDatabase {
             String databaseUrl = "jdbc:sqlite:" + Paths.get("").toAbsolutePath().toString() + "/SQLite/library.sqlite";
             connection = DriverManager.getConnection(databaseUrl);
         } catch (ClassNotFoundException | SQLException ex) {
-            LogInternalFrame.INSTANCE.exceptionInfoMessages(sqLiteDatabase.getClass().getName(), ex, "File Not Found or SQLException");
+            LogInternalFrame.INSTANCE.exceptionInfoMessages(INSTANCE.getClass().getName(), ex, "File Not Found or SQLException");
         }
     }
 

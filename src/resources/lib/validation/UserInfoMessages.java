@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ugurtech.library.application.lib.validation;
+package resources.lib.validation;
 
-import com.ugurtech.library.application.lib.localization.Internationalization;
+import resources.lib.localization.Internationalization;
 import java.awt.Color;
 import java.util.Date;
 import javax.swing.JLabel;

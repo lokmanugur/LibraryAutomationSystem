@@ -5,14 +5,14 @@
  */
 package com.ugurtech.library.presentation.controller.student;
 
-import com.ugurtech.library.application.service.classstd.ClassStdService;
-import com.ugurtech.library.application.service.classstd.ClassStdServiceImpl;
-import com.ugurtech.library.application.service.school.SchoolService;
-import com.ugurtech.library.application.service.school.SchoolServiceImpl;
+import com.ugurtech.library.service.classstd.ClassStdService;
+import com.ugurtech.library.service.classstd.ClassStdServiceImpl;
+import com.ugurtech.library.service.school.SchoolService;
+import com.ugurtech.library.service.school.SchoolServiceImpl;
 import com.ugurtech.library.presentation.controller.AbstractController;
 import com.ugurtech.library.presentation.controller.Controller;
-import com.ugurtech.library.application.service.student.StudentService;
-import com.ugurtech.library.application.service.student.StudentServiceImpl;
+import com.ugurtech.library.service.student.StudentService;
+import com.ugurtech.library.service.student.StudentServiceImpl;
 import com.ugurtech.library.dataaccesslayer.classstd.ClassStdDaoImpl;
 import com.ugurtech.library.dataaccesslayer.school.SchoolDaoImpl;
 import com.ugurtech.library.dataaccesslayer.student.StudentDaoImpl;

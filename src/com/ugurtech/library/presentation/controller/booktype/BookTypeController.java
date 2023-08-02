@@ -7,8 +7,8 @@ package com.ugurtech.library.presentation.controller.booktype;
 
 import com.ugurtech.library.presentation.controller.AbstractController;
 import com.ugurtech.library.presentation.controller.Controller;
-import com.ugurtech.library.application.service.booktype.BookTypeService;
-import com.ugurtech.library.application.service.booktype.BookTypeServiceImpl;
+import com.ugurtech.library.service.booktype.BookTypeService;
+import com.ugurtech.library.service.booktype.BookTypeServiceImpl;
 import com.ugurtech.library.dataaccesslayer.booktype.BookTypeDaoImpl;
 import com.ugurtech.library.model.BookTypeModel;
 import java.util.List;

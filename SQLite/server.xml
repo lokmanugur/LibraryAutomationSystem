@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE server SYSTEM "../SQLite/roles.dtd">
 <server>
-    <serverAdress>localhost</serverAdress>
-    <port>5432</port>
+    <ipAdress>localhost</ipAdress>
+    <port>3306</port>
     <databaseName>library</databaseName>
-    <userName>postgre</userName>
-    <password>postgre</password>
+    <userName>root</userName>
+    <password>123</password>
+    <filePath>/SQLite/library.sqlite</filePath>
 </server>

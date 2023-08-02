@@ -5,8 +5,8 @@
  */
 package com.ugurtech.library.presentation.controller.usertype;
 
-import com.ugurtech.library.application.service.usertype.UserTypeService;
-import com.ugurtech.library.application.service.usertype.UserTypeServiceImpl;
+import com.ugurtech.library.service.usertype.UserTypeService;
+import com.ugurtech.library.service.usertype.UserTypeServiceImpl;
 import com.ugurtech.library.dataaccesslayer.usertype.UserTypeDaoImpl;
 import com.ugurtech.library.model.responsmodels.UserTypeModel;
 import com.ugurtech.library.presentation.controller.AbstractController;

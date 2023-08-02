@@ -5,20 +5,16 @@
  */
 package com.ugurtech.library.presentation.view.database;
 
-import resources.lib.ReadXML;
-import java.io.FileNotFoundException;
-import java.nio.file.Paths;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.*;
+import com.ugurtech.library.model.DatabaseModel;
+import com.ugurtech.library.presentation.controller.database.DatabaseController;
 /**
  *
  * @author Administrator
  */
-public class DatabaseUI extends JInternalFrame {
+public class DatabaseUI extends DatabaseController {
 
     public static final DatabaseUI INSTANCE = new DatabaseUI(); ;
-    ReadXML readxml = new ReadXML();
+    private DatabaseModel databaseModel;
     private DatabaseUI() {
        initComponents();
        setLocation(getWidth()/2,getHeight()/10);
@@ -44,6 +40,8 @@ public class DatabaseUI extends JInternalFrame {
         buttonSave = new javax.swing.JButton();
         buttonFillDefault = new javax.swing.JButton();
         buttonDefault = new javax.swing.JButton();
+        textFieldFilePath = new javax.swing.JTextField();
+        labelUserName1 = new javax.swing.JLabel();
 
         setBorder(null);
         setClosable(true);
@@ -55,7 +53,7 @@ public class DatabaseUI extends JInternalFrame {
         panelDB.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Database Connection Settings"));
 
         labelUrl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelUrl.setText("Server Address:");
+        labelUrl.setText("Ip Address:");
 
         labelPort.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelPort.setText("Port Number:");
@@ -75,63 +73,74 @@ public class DatabaseUI extends JInternalFrame {
 
         buttonDefault.setText("Fill Default");
 
+        labelUserName1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelUserName1.setText("File Path:");
+
         javax.swing.GroupLayout panelDBLayout = new javax.swing.GroupLayout(panelDB);
         panelDB.setLayout(panelDBLayout);
         panelDBLayout.setHorizontalGroup(
             panelDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDBLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelDBLayout.createSequentialGroup()
-                        .addGroup(panelDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelDBName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelUserName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelPort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelUrl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldPortNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldDBName)
-                            .addComponent(textFieldServerAddress)
-                            .addComponent(textFieldUserName)
-                            .addComponent(textFieldPassword)))
+                .addGroup(panelDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelDBLayout.createSequentialGroup()
                         .addComponent(buttonDefault, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonFillDefault)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonSave)))
+                        .addComponent(buttonSave))
+                    .addGroup(panelDBLayout.createSequentialGroup()
+                        .addGroup(panelDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(labelUserName1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelDBName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelUserName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelPort, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelUrl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelDBLayout.createSequentialGroup()
+                                .addComponent(textFieldPortNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(textFieldDBName)
+                            .addComponent(textFieldServerAddress)
+                            .addComponent(textFieldUserName)
+                            .addComponent(textFieldPassword)
+                            .addComponent(textFieldFilePath))))
                 .addContainerGap())
         );
         panelDBLayout.setVerticalGroup(
             panelDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDBLayout.createSequentialGroup()
-                .addGap(11, 11, 11)
+                .addGap(8, 8, 8)
                 .addGroup(panelDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(textFieldServerAddress)
                     .addComponent(labelUrl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPort, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textFieldPortNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelDBName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textFieldDBName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textFieldUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonSave)
-                    .addComponent(buttonFillDefault)
-                    .addComponent(buttonDefault))
+                    .addComponent(labelUserName1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldFilePath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelDBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonDefault, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonFillDefault, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -149,7 +158,7 @@ public class DatabaseUI extends JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelDB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -164,8 +173,10 @@ public class DatabaseUI extends JInternalFrame {
     private javax.swing.JLabel labelPort;
     private javax.swing.JLabel labelUrl;
     private javax.swing.JLabel labelUserName;
+    private javax.swing.JLabel labelUserName1;
     private javax.swing.JPanel panelDB;
     private javax.swing.JTextField textFieldDBName;
+    private javax.swing.JTextField textFieldFilePath;
     private javax.swing.JPasswordField textFieldPassword;
     private javax.swing.JTextField textFieldPortNumber;
     private javax.swing.JTextField textFieldServerAddress;
@@ -174,38 +185,34 @@ public class DatabaseUI extends JInternalFrame {
    
     
     
-    private void getVarsayilan(){
+    private void setDefaultSettingToTextFields(){
         textFieldServerAddress.setText("localhost");
         textFieldPortNumber.setText("3306");
         textFieldDBName.setText("library");
         textFieldUserName.setText("root");
-        textFieldPassword.setText("");
+        textFieldPassword.setText("123");
+        textFieldFilePath.setText("/SQLite/library.sqlite");
     }
+    
     private void getReadXml(){
-        readxml.readXML(Paths.get("").toAbsolutePath().toString() +"/SQLite/server.xml");
-        if(!readxml.getRolev().isEmpty()){
-            textFieldServerAddress.setText(readxml.getRolev().get(0));
-        if(!readxml.getRolev().get(0).isEmpty())
-            textFieldPortNumber.setText(readxml.getRolev().get(1));
-        if(!readxml.getRolev().get(1).isEmpty())
-            textFieldDBName.setText(readxml.getRolev().get(2));
-        if(!readxml.getRolev().get(2).isEmpty())
-            textFieldUserName.setText(readxml.getRolev().get(3));
-        if(!readxml.getRolev().get(3).isEmpty())
-            textFieldPassword.setText(readxml.getRolev().get(4));
-        }
+        databaseModel = get();
+        textFieldServerAddress.setText(databaseModel.getIpAdress());
+        textFieldPortNumber.setText(databaseModel.getPortNumber());
+        textFieldDBName.setText(databaseModel.getDatabaseName());
+        textFieldUserName.setText(databaseModel.getUserName());
+        textFieldPassword.setText(databaseModel.getPassword());
+        textFieldFilePath.setText(databaseModel.getFilePath());
     }
-    private void saveXml(){
-        readxml.setServerAdress(textFieldServerAddress.getText());
-        readxml.setPort(textFieldPortNumber.getText());
-        readxml.setDatabaseName(textFieldDBName.getText());
-        readxml.setUserName(textFieldUserName.getText());
-        readxml.setPassword(String.valueOf(textFieldPassword.getPassword()));
-        try{
-            readxml.saveToXML(Paths.get("").toAbsolutePath().toString() +"/SQLite/server.xml");
-        }catch (FileNotFoundException ex){
-            Logger.getLogger(DatabaseUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    
+    private void save(){
+        databaseModel = new DatabaseModel();
+        databaseModel.setIpAdress(textFieldServerAddress.getText());
+        databaseModel.setPortNumber(textFieldPortNumber.getText());
+        databaseModel.setDatabaseName(textFieldDBName.getText());
+        databaseModel.setUserName(textFieldUserName.getText());
+        databaseModel.setPassword(String.valueOf(textFieldPassword.getPassword()));
+        databaseModel.setFilePath(textFieldFilePath.getText());
+        add(databaseModel);
     }
 
     private void initController() {
@@ -213,10 +220,10 @@ public class DatabaseUI extends JInternalFrame {
             getReadXml();
         });
         buttonSave.addActionListener((e)->{
-            saveXml();
+            save();
         });
         buttonDefault.addActionListener((e)->{
-            getVarsayilan();
+            setDefaultSettingToTextFields();
         });
     }
     

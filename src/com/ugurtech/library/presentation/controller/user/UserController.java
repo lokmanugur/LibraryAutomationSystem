@@ -5,18 +5,18 @@
  */
 package com.ugurtech.library.presentation.controller.user;
 
-import com.ugurtech.library.application.service.country.CountryService;
-import com.ugurtech.library.application.service.country.CountryServiceImpl;
-import com.ugurtech.library.application.service.language.LanguageService;
-import com.ugurtech.library.application.service.language.LanguageServiceImpl;
-import com.ugurtech.library.application.service.person.PersonService;
-import com.ugurtech.library.application.service.person.PersonServiceImpl;
+import com.ugurtech.library.service.country.CountryService;
+import com.ugurtech.library.service.country.CountryServiceImpl;
+import com.ugurtech.library.service.language.LanguageService;
+import com.ugurtech.library.service.language.LanguageServiceImpl;
+import com.ugurtech.library.service.person.PersonService;
+import com.ugurtech.library.service.person.PersonServiceImpl;
 import com.ugurtech.library.presentation.controller.AbstractController;
 import com.ugurtech.library.presentation.controller.Controller;
-import com.ugurtech.library.application.service.user.UserService;
-import com.ugurtech.library.application.service.user.UserServiceImpl;
-import com.ugurtech.library.application.service.usertype.UserTypeService;
-import com.ugurtech.library.application.service.usertype.UserTypeServiceImpl;
+import com.ugurtech.library.service.user.UserService;
+import com.ugurtech.library.service.user.UserServiceImpl;
+import com.ugurtech.library.service.usertype.UserTypeService;
+import com.ugurtech.library.service.usertype.UserTypeServiceImpl;
 import com.ugurtech.library.dataaccesslayer.country.CountryDaoImpl;
 import com.ugurtech.library.dataaccesslayer.language.LanguageDaoImpl;
 import com.ugurtech.library.dataaccesslayer.person.PersonDaoImpl;

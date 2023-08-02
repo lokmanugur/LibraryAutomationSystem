@@ -6,8 +6,8 @@ package com.ugurtech.library.presentation.controller.person;
 
 import com.ugurtech.library.presentation.controller.AbstractController;
 import com.ugurtech.library.presentation.controller.Controller;
-import com.ugurtech.library.application.service.person.PersonService;
-import com.ugurtech.library.application.service.person.PersonServiceImpl;
+import com.ugurtech.library.service.person.PersonService;
+import com.ugurtech.library.service.person.PersonServiceImpl;
 import com.ugurtech.library.dataaccesslayer.person.PersonDaoImpl;
 import com.ugurtech.library.model.PersonModel;
 import java.util.List;

@@ -7,10 +7,10 @@ package com.ugurtech.library.presentation.controller.borrow;
 
 import com.ugurtech.library.presentation.controller.AbstractController;
 import com.ugurtech.library.presentation.controller.Controller;
-import com.ugurtech.library.application.service.borrow.BorrowService;
-import com.ugurtech.library.application.service.borrow.BorrowServiceImpl;
-import com.ugurtech.library.application.service.student.StudentService;
-import com.ugurtech.library.application.service.student.StudentServiceImpl;
+import com.ugurtech.library.service.borrow.BorrowService;
+import com.ugurtech.library.service.borrow.BorrowServiceImpl;
+import com.ugurtech.library.service.student.StudentService;
+import com.ugurtech.library.service.student.StudentServiceImpl;
 import com.ugurtech.library.dataaccesslayer.borrow.BorrowDaoImpl;
 import com.ugurtech.library.dataaccesslayer.student.StudentDaoImpl;
 import com.ugurtech.library.model.PersonBookModel;

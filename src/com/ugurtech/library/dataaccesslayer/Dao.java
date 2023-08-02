@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  *
- * @author Teacher
+ * @author www.lokmanugur.com
  * @param <V>
  */
 public interface Dao<V> {

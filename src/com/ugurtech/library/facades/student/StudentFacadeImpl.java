@@ -5,7 +5,7 @@
  */
 package com.ugurtech.library.facades.student;
 
-import com.ugurtech.library.application.service.student.StudentService;
+import com.ugurtech.library.service.student.StudentService;
 import com.ugurtech.library.model.StudentModel;
 import com.ugurtech.library.dto.StudentDTO;
 import com.ugurtech.library.facades.PopulatingConverter;

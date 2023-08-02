@@ -27,22 +27,9 @@ public abstract class DaoAbstract {
     private ResultSet resultSet;
     private PreparedStatement preparedStatement;
 
-    public DaoAbstract() {
-    }
-
     public SQLiteDatabase openConnection() {
         dataBase = SQLiteDatabase.INSTANCE;
         return dataBase;
-    }
-
-    public boolean isClosed() {
-        boolean isClose = false;
-        try {
-            isClose = dataBase.getConnection().isClosed();
-        } catch (SQLException ex) {
-            getLogger(ex, "isClosed Method Exception", DaoAbstract.class.getName());
-        }
-        return isClose;
     }
 
     public void closeConnection() {
@@ -53,9 +40,18 @@ public abstract class DaoAbstract {
             getLogger(ex, "CloseConnectin Method Exception", DaoAbstract.class.getName());
         }
     }
+    
+    public boolean isClosed() {
+        boolean isClose = false;
+        try {
+            isClose = dataBase.getConnection().isClosed();
+        } catch (SQLException ex) {
+            getLogger(ex, "isClosed Method Exception", DaoAbstract.class.getName());
+        }
+        return isClose;
+    }
 
     public Statement createStatemen() {
-
         try {
             openConnection();
             statement = dataBase.getConnection().createStatement();

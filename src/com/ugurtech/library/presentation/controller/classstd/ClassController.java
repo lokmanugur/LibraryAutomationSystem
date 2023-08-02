@@ -7,8 +7,8 @@ package com.ugurtech.library.presentation.controller.classstd;
 
 import com.ugurtech.library.presentation.controller.AbstractController;
 import com.ugurtech.library.presentation.controller.Controller;
-import com.ugurtech.library.application.service.classstd.ClassStdService;
-import com.ugurtech.library.application.service.classstd.ClassStdServiceImpl;
+import com.ugurtech.library.service.classstd.ClassStdService;
+import com.ugurtech.library.service.classstd.ClassStdServiceImpl;
 import com.ugurtech.library.dataaccesslayer.classstd.ClassStdDaoImpl;
 import com.ugurtech.library.model.ClassModel;
 import java.util.List;

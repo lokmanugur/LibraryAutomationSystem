@@ -7,8 +7,8 @@ package com.ugurtech.library.presentation.controller.publisher;
 
 import com.ugurtech.library.presentation.controller.AbstractController;
 import com.ugurtech.library.presentation.controller.Controller;
-import com.ugurtech.library.application.service.publisher.PublisherService;
-import com.ugurtech.library.application.service.publisher.PublisherServiceImpl;
+import com.ugurtech.library.service.publisher.PublisherService;
+import com.ugurtech.library.service.publisher.PublisherServiceImpl;
 import com.ugurtech.library.dataaccesslayer.publisher.PublisherDaoImpl;
 import com.ugurtech.library.model.PublisherModel;
 import java.util.List;

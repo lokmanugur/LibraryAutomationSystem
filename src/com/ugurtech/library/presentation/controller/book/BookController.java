@@ -5,16 +5,16 @@
  */
 package com.ugurtech.library.presentation.controller.book;
 
-import com.ugurtech.library.application.service.author.AuthorService;
-import com.ugurtech.library.application.service.author.AuthorServiceImpl;
+import com.ugurtech.library.service.author.AuthorService;
+import com.ugurtech.library.service.author.AuthorServiceImpl;
 import com.ugurtech.library.presentation.controller.AbstractController;
 import com.ugurtech.library.presentation.controller.Controller;
-import com.ugurtech.library.application.service.book.BookService;
-import com.ugurtech.library.application.service.book.BookServiceImpl;
-import com.ugurtech.library.application.service.booktype.BookTypeService;
-import com.ugurtech.library.application.service.booktype.BookTypeServiceImpl;
-import com.ugurtech.library.application.service.publisher.PublisherService;
-import com.ugurtech.library.application.service.publisher.PublisherServiceImpl;
+import com.ugurtech.library.service.book.BookService;
+import com.ugurtech.library.service.book.BookServiceImpl;
+import com.ugurtech.library.service.booktype.BookTypeService;
+import com.ugurtech.library.service.booktype.BookTypeServiceImpl;
+import com.ugurtech.library.service.publisher.PublisherService;
+import com.ugurtech.library.service.publisher.PublisherServiceImpl;
 import com.ugurtech.library.dataaccesslayer.author.AuthorDaoImpl;
 import com.ugurtech.library.dataaccesslayer.book.BookDaoImpl;
 import com.ugurtech.library.dataaccesslayer.booktype.BookTypeDaoImpl;

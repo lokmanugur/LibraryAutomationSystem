@@ -7,8 +7,8 @@ package com.ugurtech.library.presentation.controller.school;
 
 import com.ugurtech.library.presentation.controller.AbstractController;
 import com.ugurtech.library.presentation.controller.Controller;
-import com.ugurtech.library.application.service.school.SchoolService;
-import com.ugurtech.library.application.service.school.SchoolServiceImpl;
+import com.ugurtech.library.service.school.SchoolService;
+import com.ugurtech.library.service.school.SchoolServiceImpl;
 import com.ugurtech.library.dataaccesslayer.school.SchoolDaoImpl;
 import com.ugurtech.library.model.SchoolModel;
 import java.util.List;

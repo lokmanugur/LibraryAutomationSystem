@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!ELEMENT roles (role1,role2,role3,role4)>
+<!ELEMENT roles (role1,role2,role3,role4,role5,role6)>
 <!ELEMENT role1 (#PCDATA)>
 <!ELEMENT role2 (#PCDATA)>
 <!ELEMENT role3 (#PCDATA)>
 <!ELEMENT role4 (#PCDATA)>
+<!ELEMENT role5 (#PCDATA)>
+<!ELEMENT role6 (#PCDATA)>

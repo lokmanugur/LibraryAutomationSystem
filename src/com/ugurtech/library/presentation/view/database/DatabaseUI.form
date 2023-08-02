@@ -41,7 +41,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="panelDB" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="22" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -63,11 +63,19 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="buttonDefault" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="buttonFillDefault" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="buttonSave" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="labelUserName1" max="32767" attributes="0"/>
                               <Component id="labelDBName" alignment="0" max="32767" attributes="0"/>
                               <Component id="labelUserName" alignment="0" max="32767" attributes="0"/>
                               <Component id="labelPassword" alignment="0" max="32767" attributes="0"/>
@@ -76,58 +84,60 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="textFieldPortNumber" min="-2" pref="73" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="textFieldPortNumber" min="-2" pref="73" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
                               <Component id="textFieldDBName" alignment="0" max="32767" attributes="0"/>
                               <Component id="textFieldServerAddress" alignment="0" max="32767" attributes="0"/>
                               <Component id="textFieldUserName" alignment="0" max="32767" attributes="0"/>
                               <Component id="textFieldPassword" max="32767" attributes="0"/>
+                              <Component id="textFieldFilePath" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="buttonDefault" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="buttonFillDefault" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="buttonSave" min="-2" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="textFieldServerAddress" max="32767" attributes="0"/>
                       <Component id="labelUrl" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelPort" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="textFieldPortNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelDBName" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="textFieldDBName" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelUserName" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="textFieldUserName" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelPassword" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="textFieldPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="buttonSave" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="buttonFillDefault" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="buttonDefault" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelUserName1" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="textFieldFilePath" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="buttonSave" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="buttonDefault" alignment="0" max="32767" attributes="0"/>
+                      <Component id="buttonFillDefault" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -138,7 +148,7 @@
         <Component class="javax.swing.JLabel" name="labelUrl">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="Server Address:"/>
+            <Property name="text" type="java.lang.String" value="Ip Address:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="textFieldServerAddress">
@@ -188,6 +198,14 @@
         <Component class="javax.swing.JButton" name="buttonDefault">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fill Default"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="textFieldFilePath">
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelUserName1">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="File Path:"/>
           </Properties>
         </Component>
       </SubComponents>

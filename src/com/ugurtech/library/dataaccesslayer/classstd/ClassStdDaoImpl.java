@@ -21,7 +21,7 @@ import javax.swing.table.TableModel;
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public class ClassStdDaoImpl extends DaoAbstract implements ClassStdDao {
+public class ClassStdDaoImpl extends DaoAbstract<ClassModel> implements ClassStdDao {
 
 public static final String CLSS_INSERT_QUERY = "INSERT INTO clss (classname) VALUES(?)";
     public static final String CLSS_DELETE_QUERY = "DELETE FROM clss WHERE classid=?";

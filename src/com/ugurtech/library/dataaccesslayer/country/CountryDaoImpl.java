@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author Teacher
  */
-public class CountryDaoImpl extends DaoAbstract implements CountryDao {
+public class CountryDaoImpl extends DaoAbstract<CountryModel> implements CountryDao {
     public static final String ALL_COUNTRY_QUERY="SELECT * FROM country";
     
     List<CountryModel> countryList = new ArrayList<>();

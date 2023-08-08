@@ -27,7 +27,7 @@ import javax.swing.table.TableModel;
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  * 
  */
-public class BookDaoImpl extends DaoAbstract implements BookDao {
+public class BookDaoImpl extends DaoAbstract<BookModel> implements BookDao{
 
     public static final String BOOK_SERACH_QUERY = "SELECT "
             + columnNameAsColumnTitle(Tables.Book.bookid) + ","

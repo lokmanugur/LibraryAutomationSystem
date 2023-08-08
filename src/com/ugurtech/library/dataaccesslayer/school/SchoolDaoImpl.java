@@ -22,7 +22,7 @@ import javax.swing.table.TableModel;
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  * 
  */
-public class SchoolDaoImpl extends DaoAbstract implements SchoolDao {
+public class SchoolDaoImpl extends DaoAbstract<SchoolModel> implements SchoolDao {
 
     public static final String SCHOOL_INSERT_QUERY = "INSERT INTO school (schoolname,phone,address) VALUES(?,?,?)";
     public static final String SCHOOL_UDATE_QUERY = "UPDATE school SET schoolname=?,address=?,phone=? WHERE schoolid=?";

@@ -13,7 +13,7 @@ import javax.swing.table.TableModel;
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public interface PublisherDao extends Dao<PublisherModel> {
+public interface PublisherDao {
 
     public TableModel search(String str);
     

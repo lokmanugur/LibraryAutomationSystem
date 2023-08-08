@@ -21,7 +21,7 @@ import javax.swing.table.TableModel;
  *
  * @author Teacher
  */
-public class PersonDaoImpl extends DaoAbstract implements PersonDao {
+public class PersonDaoImpl extends DaoAbstract<PersonModel> implements PersonDao {
 
     public static final String PERSON_INSERT_QUERY = "INSERT INTO person(firstname,lastname,birthdate,address,phone,createddate,lastupdate) VALUES(?,?,?,?,?,?,?)";
     public static final String PERSON_UPDATE_QUERY = "UPDATE person SET firstname=?,lastname=?,birthdate=?,address=?,phone=?,lastupdate=? WHERE personid=?";

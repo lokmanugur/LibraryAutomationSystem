@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author Teacher
  */
-public class FirstStepDaoImpl extends DaoAbstract implements FirstStepDao {
+public class FirstStepDaoImpl extends DaoAbstract<FirstStepModel> implements FirstStepDao {
 
     private static final String INSERT_PERSON = "INSERT INTO person (firstname,lastname,birthdate,address,phone,createddate) VALUES (?, ?, ?, ?, ?,?)";
     private static final String INSERT_SYSTEM_USER = "INSERT INTO sysuser (personid,usertypeid,countryid,languageid,username,userpassword,sessiontime,createddate) VALUES (?,?,?,?,?,?,?,?)";

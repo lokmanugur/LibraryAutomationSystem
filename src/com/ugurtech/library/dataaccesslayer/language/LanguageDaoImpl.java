@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author Teacher
  */
-public class LanguageDaoImpl extends DaoAbstract implements LanguageDao{
+public class LanguageDaoImpl extends DaoAbstract<LanguageModel> implements LanguageDao{
     public static final String ALL_COUNTRY_QUERY="SELECT * FROM language";
     
     @Override

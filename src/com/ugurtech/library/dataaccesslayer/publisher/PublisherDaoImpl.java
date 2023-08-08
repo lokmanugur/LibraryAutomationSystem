@@ -21,7 +21,7 @@ import javax.swing.table.TableModel;
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public class PublisherDaoImpl extends DaoAbstract implements PublisherDao {
+public class PublisherDaoImpl extends DaoAbstract<PublisherModel> implements PublisherDao {
 
     public static final String PUBLISHER_INSERT_QUERY = "INSERT INTO publisher(publishername,phone,address) VALUES(?,?,?)";
     public static final String PUBLISHER_DELETE_QUERY = "DELETE FROM publisher WHERE publisherid=?";

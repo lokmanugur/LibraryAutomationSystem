@@ -26,7 +26,7 @@ import javax.swing.table.TableModel;
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public class BorrowDaoImpl extends DaoAbstract implements BorrowDao {
+public class BorrowDaoImpl extends DaoAbstract<PersonBookModel> implements BorrowDao {
 
     public static String PERSON_BOOK_ADD_QUERY = "INSERT INTO personbook (personid,bookid,startdate,deadline) VALUES(?,?,?,?)";
     public static String UPDATE_PERSONBOOK = "UPDATE personbook SET finishdate=?,readpage=? WHERE personbookid=?";

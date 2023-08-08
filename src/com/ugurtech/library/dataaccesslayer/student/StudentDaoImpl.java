@@ -25,7 +25,7 @@ import javax.swing.table.TableModel;
  * @author ugur
  *
  */
-public class StudentDaoImpl extends DaoAbstract implements StudentDao {
+public class StudentDaoImpl extends DaoAbstract<StudentModel> implements StudentDao {
 
     public static final String PERSON_INSERT_QUERY = "INSERT INTO person(firstname,lastname,birthdate,phone,address,createddate) VALUES(?,?,?,?,?,?)";
     public static final String STUDENT_INSERT_QUERY = "INSERT INTO student(personid,schoolid,classid,studentnumber) VALUES(?,?,?,?)";

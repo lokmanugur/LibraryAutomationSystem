@@ -26,7 +26,7 @@ import javax.swing.table.TableModel;
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  *
  */
-public class UserDaoImpl extends DaoAbstract implements UserDao {
+public class UserDaoImpl extends DaoAbstract<UserModel> implements UserDao {
 
     public static String USER_INSERT_QUERY = "INSERT INTO sysuser(personid,usertypeid,countryid,languageid,username,userpassword,sessiontime,createddate) VALUES(?,?,?,?,?,?,?,?)";
     public static String USER_UPDATE_QUERY = "UPDATE sysuser SET personid=?,usertypeid=?,countryid=?,languageid=?,username=?,userpassword=?,sessiontime=?,lastupdate=? WHERE sysuserid=?";

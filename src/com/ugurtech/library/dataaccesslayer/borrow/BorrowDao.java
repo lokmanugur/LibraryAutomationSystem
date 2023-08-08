@@ -13,6 +13,6 @@ import javax.swing.table.TableModel;
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public interface BorrowDao extends Dao<PersonBookModel> {
+public interface BorrowDao {
     public TableModel search(int dateId,long startDate,long endDate,int optionsId,String searchText);
 }

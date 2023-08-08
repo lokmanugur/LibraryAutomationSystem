@@ -21,7 +21,7 @@ import javax.swing.table.TableModel;
  *
  * @author Teacher
  */
-public class UserTypeDaoImpl extends DaoAbstract implements UserTypeDao {
+public class UserTypeDaoImpl extends DaoAbstract<UserTypeModel> implements UserTypeDao {
 
     public static final String ALL_USERTYPE_QUERY = "SELECT "
             + columnNameAsColumnTitle(Tables.UserType.usertypeid) + ","

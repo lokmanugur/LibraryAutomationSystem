@@ -14,7 +14,7 @@ import javax.swing.table.TableModel;
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public interface AuthorDao extends Dao<AuthorModel>{
+public interface AuthorDao{
 
     public TableModel search(String string);
     

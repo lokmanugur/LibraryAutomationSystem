@@ -16,7 +16,7 @@ import java.util.List;
  * @author Teacher
  * 
  */
-public class LoginDaoImpl extends DaoAbstract implements LoginDao{
+public class LoginDaoImpl extends DaoAbstract<CurrentUserModel> implements LoginDao{
     private static final String SEARCH_SYSTEM_USER = "SELECT * FROM sysuser";
     private static final String USER_LOGIN = "SELECT s.sysuserid,s.usertypeid,s.personid,s.username,s.userpassword,s.createddate,s.lastupdate,s.sessiontime,"
             + "p.firstname,p.lastname,p.phone,p.address,p.birthdate,"

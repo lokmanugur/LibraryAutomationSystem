@@ -21,7 +21,7 @@ import javax.swing.table.TableModel;
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public class BookTypeDaoImpl extends DaoAbstract implements BookTypeDao {
+public class BookTypeDaoImpl extends DaoAbstract<BookTypeModel> implements BookTypeDao {
 
     public static final String BOOKTYPE_INSERT_QUERY = "INSERT INTO booktype (typename,abbreviation) VALUES(?,?)";
     public static final String BOOKTYPE_DELETE_QUERY = "DELETE FROM booktype WHERE booktype.booktypeid=?";

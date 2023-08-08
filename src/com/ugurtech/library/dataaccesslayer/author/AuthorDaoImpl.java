@@ -23,7 +23,7 @@ import javax.swing.table.TableModel;
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  * 
  */
-public class AuthorDaoImpl extends DaoAbstract implements AuthorDao {
+public class AuthorDaoImpl extends DaoAbstract<AuthorModel> implements AuthorDao {
 
     public static final String AUTHOR_UPDATE_QUERY = "UPDATE person SET firstname=?,lastname=?,birthdate=?,lastupdate=? WHERE personid=(SELECT personid FROM author WHERE authorid=?)";
     public static final String AUTHOR_INSERT_QUERY = "INSERT INTO author(personid) VALUES(?)";

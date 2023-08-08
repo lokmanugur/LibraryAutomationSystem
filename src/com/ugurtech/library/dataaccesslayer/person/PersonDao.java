@@ -12,6 +12,6 @@ import javax.swing.table.TableModel;
  *
  * @author Teacher
  */
-public interface PersonDao extends Dao<PersonModel> {
+public interface PersonDao{
     public TableModel search(String searchText);
 }

@@ -11,6 +11,6 @@ import com.ugurtech.library.dataaccesslayer.Dao;
  *
  * @author Teacher
  */
-public interface CountryDao extends Dao<CountryModel> {
+public interface CountryDao {
     
 }

@@ -13,6 +13,6 @@ import javax.swing.table.TableModel;
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public interface ClassStdDao extends Dao<ClassModel> {
+public interface ClassStdDao{
     public TableModel search(String str);
 }

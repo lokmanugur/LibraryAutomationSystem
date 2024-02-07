@@ -13,7 +13,7 @@ import javax.swing.table.TableModel;
  * @author Teacher
  * 
  */
-public interface UserTypeDao {
+public interface UserTypeDao extends Dao<UserTypeModel> {
     public TableModel search(String searchText);
     public TableModel options();
 }

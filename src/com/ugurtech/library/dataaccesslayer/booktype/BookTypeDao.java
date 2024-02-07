@@ -14,8 +14,7 @@ import javax.swing.table.TableModel;
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public interface BookTypeDao {
+public interface BookTypeDao extends Dao<BookTypeModel> {
 
     public TableModel search(String text);
-    
 }

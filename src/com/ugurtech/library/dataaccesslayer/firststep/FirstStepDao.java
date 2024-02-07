@@ -11,6 +11,6 @@ import com.ugurtech.library.dataaccesslayer.Dao;
  *
  * @author Teacher
  */
-public interface FirstStepDao{
+public interface FirstStepDao extends Dao<FirstStepModel>{
     
 }

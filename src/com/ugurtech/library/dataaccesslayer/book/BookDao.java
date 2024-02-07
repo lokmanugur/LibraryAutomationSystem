@@ -13,7 +13,7 @@ import javax.swing.table.TableModel;
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public interface BookDao{
+public interface BookDao extends Dao<BookModel>{
 
     public TableModel search(String srch,int selInd,long firstD,long lastD);
     //public BookModel getUpdate(int id);

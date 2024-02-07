@@ -21,7 +21,7 @@ import java.sql.Statement;
  * @param <T>
  *
  */
-public abstract class DaoAbstract<T> implements Dao<T>{
+public abstract class DaoAbstract<T> {
 
     private SQLiteDatabase dataBase;
     private Statement statement;

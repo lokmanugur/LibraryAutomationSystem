@@ -241,7 +241,7 @@ public class BorrowDaoImpl extends DaoAbstract<PersonBookModel> implements Borro
         PreparedStatement preparedStatement = createPrepareStatement(PERSONBOOK_DELETE_QUERTY);
         try {
             preparedStatement.setInt(1, v.getPersonBookId());
-            int effactedRow = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
                 stockIncrease(v.getBookModel().get(0).getBookId(), getStock(v.getBookModel().get(0).getBookId()), 1);
         } catch (SQLException ex) {
             rollBack();

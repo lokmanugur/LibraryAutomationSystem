@@ -11,6 +11,6 @@ import com.ugurtech.library.dataaccesslayer.Dao;
  *
  * @author Teacher
  */
-public interface LanguageDao{
+public interface LanguageDao extends Dao<LanguageModel>{
     
 }

@@ -5,8 +5,8 @@
  */
 package com.ugurtech.library.dataaccesslayer.author;
 
-import com.ugurtech.library.model.AuthorModel;
 import com.ugurtech.library.dataaccesslayer.Dao;
+import com.ugurtech.library.model.AuthorModel;
 import javax.swing.table.TableModel;
 
 
@@ -14,7 +14,7 @@ import javax.swing.table.TableModel;
  *
  * @author Lokman Ugur <lokman.ugur@hotmail.com>
  */
-public interface AuthorDao{
+public interface AuthorDao extends Dao<AuthorModel>{
 
     public TableModel search(String string);
     

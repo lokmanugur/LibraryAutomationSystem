@@ -11,7 +11,7 @@ import com.ugurtech.library.dataaccesslayer.Dao;
  *
  * @author Teacher
  */
-public interface LoginDao{
+public interface LoginDao extends Dao<CurrentUserModel>{
     boolean checkExistUsers();
     boolean checkUser(CurrentUserModel currentUser);
 }
